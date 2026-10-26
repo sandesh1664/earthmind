@@ -1,0 +1,14 @@
+import json,sys
+import psycopg
+sys.path.insert(0,'scripts')
+from database_checks import database_url
+with psycopg.connect(database_url()) as connection:
+    counts={}
+    for table,condition in [('regions',"slug LIKE 'm03-qa-%'"),('network_versions',"version_label = 'm03-qa-300'"),('data_sources',"source_version = 'm03-qa-300'")]:
+        counts[table]=connection.execute('SELECT count(*) FROM '+table+' WHERE '+condition).fetchone()[0]
+    assert not any(counts.values()),counts
+    network='22f68ce8-9247-5425-8342-827d86517ead'
+    nodes=connection.execute('SELECT count(*) FROM intersections WHERE network_version_id = %s',(network,)).fetchone()[0]
+    roads=connection.execute('SELECT count(*) FROM road_edges WHERE network_version_id = %s',(network,)).fetchone()[0]
+    assert (nodes,roads)==(6,8),(nodes,roads)
+    print(json.dumps({'owned_QA_rows_remaining':counts,'M02_original_nodes':nodes,'M02_original_roads':roads}))

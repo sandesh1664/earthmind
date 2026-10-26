@@ -1,0 +1,126 @@
+ Image earthmind-web:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 563B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 1.12kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 282B done
+#4 DONE 0.0s
+
+#5 [build  1/11] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#5 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 40.02kB done
+#6 DONE 0.0s
+
+#7 [build  6/11] COPY packages/contracts/package.json packages/contracts/package.json
+#7 CACHED
+
+#8 [build  5/11] COPY apps/web/package.json apps/web/package.json
+#8 CACHED
+
+#9 [build  7/11] COPY scripts/copy-cesium-assets.mjs scripts/copy-cesium-assets.mjs
+#9 CACHED
+
+#10 [build  4/11] COPY package.json package-lock.json ./
+#10 CACHED
+
+#11 [build  2/11] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#11 CACHED
+
+#12 [build  3/11] WORKDIR /app
+#12 CACHED
+
+#13 [build  8/11] RUN npm ci
+#13 CACHED
+
+#14 [build  9/11] COPY apps/web apps/web
+#14 DONE 0.0s
+
+#15 [build 10/11] COPY packages/contracts packages/contracts
+#15 DONE 0.0s
+
+#16 [build 11/11] RUN npm run build --workspace @earthmind/web
+#16 0.142 
+#16 0.142 > @earthmind/web@0.1.0 prebuild
+#16 0.142 > node ../../scripts/copy-cesium-assets.mjs
+#16 0.142 
+#16 0.324 Copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+#16 0.326 
+#16 0.326 > @earthmind/web@0.1.0 build
+#16 0.326 > next build
+#16 0.326 
+#16 0.480 ▲ Next.js 16.4.3 (Turbopack)
+#16 0.499 ✓ Running next.config.ts took 19ms
+#16 0.507 
+#16 0.519   Creating an optimized production build ...
+#16 3.724 ✓ Compiled successfully in 3.2s
+#16 3.725   Running TypeScript ...
+#16 5.807   Finished TypeScript in 2.1s ...
+#16 5.808   Collecting page data using 9 workers ...
+#16 6.113   Generating static pages using 9 workers (0/3) ...
+#16 6.218 ✓ Generating static pages using 9 workers (3/3) in 105ms
+#16 6.220   Finalizing page optimization ...
+#16 6.428 
+#16 6.430 Route (app)
+#16 6.430 ┌ ○ /
+#16 6.430 ├ ○ /_not-found
+#16 6.430 ├ ƒ /api/capabilities
+#16 6.430 ├ ƒ /api/city/config
+#16 6.430 ├ ƒ /api/diagnostics
+#16 6.430 ├ ƒ /api/diagnostics/[id]
+#16 6.430 ├ ƒ /api/geospatial/[...path]
+#16 6.430 ├ ƒ /api/health
+#16 6.430 └ ƒ /api/health/live
+#16 6.430 
+#16 6.430 
+#16 6.430 ○  (Static)   prerendered as static content
+#16 6.430 ƒ  (Dynamic)  server-rendered on demand
+#16 6.430 
+#16 DONE 6.5s
+
+#17 [runtime 2/5] WORKDIR /app
+#17 CACHED
+
+#18 [runtime 3/5] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#18 DONE 0.1s
+
+#19 [runtime 4/5] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#19 DONE 0.0s
+
+#20 [runtime 5/5] COPY --from=build --chown=node:node /app/apps/web/public ./apps/web/public
+#20 DONE 0.0s
+
+#21 exporting to image
+#21 exporting layers
+#21 exporting layers 0.7s done
+#21 exporting manifest sha256:c9a97e795e88c49d1479f22449c7c54ca9b8216001f1d1cfb4c0ad1f1003d89a done
+#21 exporting config sha256:f4ff3e2c590e47993c4faa2cdcb225cb0e7f29b804539f45e519c5799ff7fb40 done
+#21 exporting attestation manifest sha256:a5590e0c7ea9d18e481d1f9e7ca13549b0cbc4fbbff55de27238f3664baf331f done
+#21 exporting manifest list sha256:df59a34d91559d716bff26c9cab8a2d53d76939bb5f93eb64e823a1282643c70 done
+#21 naming to docker.io/library/earthmind-web:m01 done
+#21 unpacking to docker.io/library/earthmind-web:m01
+#21 unpacking to docker.io/library/earthmind-web:m01 0.3s done
+#21 DONE 1.0s
+
+#22 resolving provenance for metadata file
+#22 DONE 0.0s
+ Image earthmind-web:m01 Built 
+ Container earthmind-web-1 Recreate 
+ Container earthmind-web-1 Recreated 
+ Container earthmind-web-1 Starting 
+ Container earthmind-web-1 Started 
+ Container earthmind-web-1 Waiting 
+ Container earthmind-web-1 Healthy 

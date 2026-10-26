@@ -1,0 +1,52 @@
+
+Running 3 tests using 1 worker
+
+(node:43909) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/browser/city.spec.ts:21:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (21.6s)
+(node:44474) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [desktop] › tests/browser/city.spec.ts:106:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (11.1s)
+  ✓  3 [desktop] › tests/browser/city.spec.ts:119:1 › M03 actual browser without WebGL shows a usable metadata fallback (1.1s)
+
+
+  1) [desktop] › tests/browser/city.spec.ts:21:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('selected-feature-id')
+    Expected: "892cdfec-5d1c-5880-aa32-66ff680f1756"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('selected-feature-id') with timeout 15000ms
+      - waiting for getByTestId('selected-feature-id')
+
+
+      50 |   const y = Number(await scene.getAttribute("data-pick-y"));
+      51 |   await page.mouse.click(rect.x+x, rect.y+y);
+    > 52 |   await expect(page.getByTestId("selected-feature-id")).toHaveText(backend.features[0]!.id);
+         |                                                         ^
+      53 |   await expect(page.getByTestId("selected-road-identifier")).toHaveText(backend.features[0]!.properties.sumo_edge_id);
+      54 |   await expect(page.getByTestId("selected-road-lanes")).toHaveText(String(backend.features[0]!.properties.lane_count));
+      55 |   await expect(page.getByTestId("selected-road-length")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString("en", {maximumFractionDigits:2}));
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:52:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/browser/city.spec.ts:21:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+  2 passed (34.8s)

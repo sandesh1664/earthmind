@@ -221,6 +221,11 @@ const SpatialFeatureSchema = z
     ]),
     properties: z
       .object({
+        network_version_id: UUID.optional(),
+        name: z.string().max(255).nullable().optional(),
+        source_edge_id: z.string().max(255).nullable().optional(),
+        start_intersection_id: UUID.optional(),
+        end_intersection_id: UUID.optional(),
         road_class: z.string().max(128).optional(),
         lane_count: z.number().int().positive().optional(),
         speed_limit_mps: finite.positive().nullable().optional(),

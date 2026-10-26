@@ -1,0 +1,452 @@
+[
+  {
+    "target": 506275,
+    "visited": 626,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 29
+        }
+      },
+      {
+        "node": {
+          "id": 1421477,
+          "name": "C++ Persistent roots",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "v8_inspector::V8InspectorSessionImpl::V8InspectorSessionImpl(V8InspectorImpl *, int, int, V8Inspector::ManagedChannel *, StringView, V8Inspector::ClientTrustLevel, std::shared_ptr<V8DebuggerBarrier>, V8EmbedderState)@../../v8/src/inspector/v8-inspector-session-impl.cc:114"
+        }
+      },
+      {
+        "node": {
+          "id": 114,
+          "name": "blink::DevToolsSession",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 4
+        }
+      },
+      {
+        "node": {
+          "id": 42294,
+          "name": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::InspectorAgent, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 42296,
+          "name": "blink::InspectorDOMAgent",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 42298,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<int, blink::KeyValuePair<int, cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<int>, blink::HashTraits<cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<int>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 131
+        }
+      },
+      {
+        "node": {
+          "id": 506275,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 769363,
+    "visited": 626,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 29
+        }
+      },
+      {
+        "node": {
+          "id": 1421477,
+          "name": "C++ Persistent roots",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "v8_inspector::V8InspectorSessionImpl::V8InspectorSessionImpl(V8InspectorImpl *, int, int, V8Inspector::ManagedChannel *, StringView, V8Inspector::ClientTrustLevel, std::shared_ptr<V8DebuggerBarrier>, V8EmbedderState)@../../v8/src/inspector/v8-inspector-session-impl.cc:114"
+        }
+      },
+      {
+        "node": {
+          "id": 114,
+          "name": "blink::DevToolsSession",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 4
+        }
+      },
+      {
+        "node": {
+          "id": 42294,
+          "name": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::InspectorAgent, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 42296,
+          "name": "blink::InspectorDOMAgent",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 42298,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<int, blink::KeyValuePair<int, cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<int>, blink::HashTraits<cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<int>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 306
+        }
+      },
+      {
+        "node": {
+          "id": 769363,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 1089767,
+    "visited": 28956,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 29
+        }
+      },
+      {
+        "node": {
+          "id": 1421477,
+          "name": "C++ Persistent roots",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "v8_inspector::V8InspectorSessionImpl::V8InspectorSessionImpl(V8InspectorImpl *, int, int, V8Inspector::ManagedChannel *, StringView, V8Inspector::ClientTrustLevel, std::shared_ptr<V8DebuggerBarrier>, V8EmbedderState)@../../v8/src/inspector/v8-inspector-session-impl.cc:114"
+        }
+      },
+      {
+        "node": {
+          "id": 114,
+          "name": "blink::DevToolsSession",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 4
+        }
+      },
+      {
+        "node": {
+          "id": 42294,
+          "name": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::InspectorAgent, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 42296,
+          "name": "blink::InspectorDOMAgent",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 42298,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<int, blink::KeyValuePair<int, cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<int>, blink::HashTraits<cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<int>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 404
+        }
+      },
+      {
+        "node": {
+          "id": 1089767,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 922791,
+    "visited": 626,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 29
+        }
+      },
+      {
+        "node": {
+          "id": 1421477,
+          "name": "C++ Persistent roots",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "v8_inspector::V8InspectorSessionImpl::V8InspectorSessionImpl(V8InspectorImpl *, int, int, V8Inspector::ManagedChannel *, StringView, V8Inspector::ClientTrustLevel, std::shared_ptr<V8DebuggerBarrier>, V8EmbedderState)@../../v8/src/inspector/v8-inspector-session-impl.cc:114"
+        }
+      },
+      {
+        "node": {
+          "id": 114,
+          "name": "blink::DevToolsSession",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 4
+        }
+      },
+      {
+        "node": {
+          "id": 42294,
+          "name": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::InspectorAgent, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 42296,
+          "name": "blink::InspectorDOMAgent",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 42298,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<int, blink::KeyValuePair<int, cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<int>, blink::HashTraits<cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<int>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 38
+        }
+      },
+      {
+        "node": {
+          "id": 922791,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 624889,
+    "visited": 28557,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 29
+        }
+      },
+      {
+        "node": {
+          "id": 1421477,
+          "name": "C++ Persistent roots",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "v8_inspector::V8InspectorSessionImpl::V8InspectorSessionImpl(V8InspectorImpl *, int, int, V8Inspector::ManagedChannel *, StringView, V8Inspector::ClientTrustLevel, std::shared_ptr<V8DebuggerBarrier>, V8EmbedderState)@../../v8/src/inspector/v8-inspector-session-impl.cc:114"
+        }
+      },
+      {
+        "node": {
+          "id": 114,
+          "name": "blink::DevToolsSession",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 4
+        }
+      },
+      {
+        "node": {
+          "id": 42294,
+          "name": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::InspectorAgent, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 42296,
+          "name": "blink::InspectorDOMAgent",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 42298,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<int, blink::KeyValuePair<int, cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<int>, blink::HashTraits<cppgc::internal::BasicMember<blink::Node, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<int>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 197
+        }
+      },
+      {
+        "node": {
+          "id": 624889,
+          "name": "<canvas width=\"1\" height=\"1\">",
+          "type": "native"
+        }
+      }
+    ]
+  }
+]

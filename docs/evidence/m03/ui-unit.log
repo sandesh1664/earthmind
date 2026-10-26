@@ -1,0 +1,20 @@
+✔ layer controls expose all eight scene switches and block only unavailable licensed providers (4.181167ms)
+✔ configured provider controls become available without claiming they have loaded (0.897167ms)
+✔ layer changes preserve other settings and do not mutate the previous state (0.042958ms)
+✔ road inspector reflects backend numbers and does not invent absent speed/source values (8.319125ms)
+✔ intersection inspector distinguishes absent signal metadata from a false stored flag (1.115334ms)
+✔ selection matches both category and stable feature identifier (0.070791ms)
+✔ unknown or stale selection uses the empty inspector rather than fabricated metadata (0.478083ms)
+✔ building property values render as escaped text and only supplied fields (0.746583ms)
+✔ camera toolbar has all three destination presets and disables unavailable selection commands (1.937167ms)
+✔ unavailable renderer keeps all ten camera buttons safely disabled (1.433291ms)
+✔ inspector value formatting keeps zero and false distinct from missing values (0.071625ms)
+✔ viewer error boundary preserves the normal child surface and exposes a deterministic fallback state (0.167875ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 259.437958

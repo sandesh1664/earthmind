@@ -16,3 +16,5 @@
 **/*.tsbuildinfo
 docs
 .github
+
+**/public/cesium

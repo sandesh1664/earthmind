@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 92 items / 54 deselected / 38 selected
+
+apps/api/tests/test_database_integration.py .                            [  2%]
+apps/api/tests/test_geospatial_api_integration.py .......                [ 21%]
+apps/api/tests/test_geospatial_database.py ............................. [ 97%]
+.                                                                        [100%]
+
+====================== 38 passed, 54 deselected in 1.51s =======================
+PostgreSQL: PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+PostGIS: 3.6 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+Migration: 0004_run_state_integrity; metadata: EARTHMIND, schema 1

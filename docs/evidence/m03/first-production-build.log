@@ -1,0 +1,30 @@
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 prebuild
+> node ../../scripts/copy-cesium-assets.mjs
+
+Copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 1346ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.4s
+  Running TypeScript ...
+components/city/runtime/scene-controller.ts(138,7): error TS2412: Type '{ kind: "road"; id: string; x: number; y: number; } | null | undefined' is not assignable to type '{ kind: "road"; id: string; x: number; y: number; } | null' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the type of the target.
+  Type 'undefined' is not assignable to type '{ kind: "road"; id: string; x: number; y: number; } | null'.
+Failed to type check.
+
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /private/tmp/earthmind-m03/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /private/tmp/earthmind-m03/apps/web
+npm error command failed
+npm error command sh -c next build

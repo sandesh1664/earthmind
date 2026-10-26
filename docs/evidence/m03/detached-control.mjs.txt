@@ -1,0 +1,21 @@
+import {chromium} from '/private/tmp/earthmind-m03/node_modules/@playwright/test/index.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch({headless:true});
+const context=await browser.newContext({viewport:{width:1440,height:1000}});
+const page=await context.newPage(); const cdp=await context.newCDPSession(page);
+await cdp.send('HeapProfiler.enable'); await cdp.send('DOM.enable');
+await page.goto('http://127.0.0.1:3000');
+const records=[];
+async function click(label){await page.evaluate(label=>{const button=[...document.querySelectorAll('nav button')].find(b=>b.textContent.trim()===label||b.textContent.trim()===label+'M03'); if(!button)throw new Error('Missing '+label);button.click();},label);}
+for(let i=0;i<7;i++){
+  await click('City Explorer');
+  const handle=await page.waitForFunction(()=>document.querySelector('[data-testid="cesium-viewer"]')?.getAttribute('data-road-count')==='8'&&document.querySelector('[data-testid="cesium-viewer"]')?.getAttribute('data-camera-moving')==='false'); await handle.dispose();
+  await click('Overview');
+  await page.waitForTimeout(250); await cdp.send('HeapProfiler.collectGarbage');
+  records.push({cycle:i+1,...await cdp.send('Memory.getDOMCounters')});
+}
+let detached;
+try {detached=await cdp.send('DOM.getDetachedDomNodes');}catch(error){detached={error:String(error)};}
+await writeFile('/private/tmp/earthmind-m03-results/detached-control-observations.json',JSON.stringify({records,detached},null,2));
+console.log(JSON.stringify({records,detachedRoots:detached.detachedNodes?.map(n=>({node:n.treeNode.nodeName,attributes:n.treeNode.attributes,retained:n.retainedNodeIds,children:n.treeNode.childNodeCount}))??detached},null,2));
+await browser.close();

@@ -1,0 +1,326 @@
+{
+  "samples": [
+    {
+      "time": 1198,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "0",
+        "intersectionCount": "6",
+        "geometryReady": "false",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27440° E · 25.19720° N · 2,400 m altitude"
+    },
+    {
+      "time": 1653.5,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "327.89",
+        "pickY": "521.39",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27440° E · 25.19720° N · 2,400 m altitude"
+    },
+    {
+      "time": 2061.400000002235,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.63",
+        "pickY": "427.78",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27440° E · 25.19720° N · 2,400 m altitude"
+    },
+    {
+      "time": 2508.300000000745,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "0",
+        "intersectionCount": "3",
+        "geometryReady": "false",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27440° E · 25.19720° N · 2,400 m altitude"
+    },
+    {
+      "time": 2931.800000000745,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "6",
+        "intersectionCount": "3",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "341.74",
+        "pickY": "267.57",
+        "pickId": "d42c2c67-3a32-5feb-b0fc-5b81b8f9e189"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 3356.300000000745,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "0",
+        "intersectionCount": "6",
+        "geometryReady": "false",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 3795.7000000029802,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 4198.10000000149,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 4598.5,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 5016.400000002235,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 5418.70000000298,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 5821,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 6233.70000000298,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 6635.900000002235,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    },
+    {
+      "time": 7084.900000002235,
+      "status": {
+        "testid": "cesium-viewer",
+        "phase": "ready",
+        "roadCount": "8",
+        "intersectionCount": "6",
+        "geometryReady": "true",
+        "cameraMoving": "true",
+        "layerVisibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "pickX": "331.82",
+        "pickY": "423.43",
+        "pickId": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "canvas": {
+        "width": 814,
+        "height": 680,
+        "csswidth": 814,
+        "cssheight": 680
+      },
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude"
+    }
+  ],
+  "errors": []
+}

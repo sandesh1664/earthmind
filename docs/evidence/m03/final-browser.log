@@ -1,0 +1,96 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web --
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test
+
+
+Running 24 tests using 2 workers
+
+(node:52964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:52965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.6s)
+  ✓   3 [desktop] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (384ms)
+  ✘   4 [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (1.7s)
+(node:53011) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [desktop] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (263ms)
+  ✓   6 [desktop] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (1.6s)
+(node:53025) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (20.5s)
+  ✓   7 [tablet] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (19.0s)
+  ✓   8 [desktop] › tests/browser/city.spec.ts:126:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (10.8s)
+  ✓  10 [desktop] › tests/browser/city.spec.ts:151:1 › M03 actual browser without WebGL shows a usable metadata fallback (990ms)
+(node:53056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.9s)
+  ✓  12 [tablet] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (323ms)
+  ✓  13 [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (489ms)
+  ✓  14 [tablet] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (238ms)
+  ✓  15 [tablet] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (1.6s)
+  ✓   9 [tablet] › tests/browser/city.spec.ts:126:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (10.8s)
+(node:53082) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  16 [tablet] › tests/browser/city.spec.ts:151:1 › M03 actual browser without WebGL shows a usable metadata fallback (1.1s)
+(node:53090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.8s)
+  ✓  19 [mobile] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (249ms)
+  ✓  20 [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (679ms)
+  ✓  21 [mobile] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (551ms)
+  ✓  22 [mobile] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (1.8s)
+  ✓  17 [mobile] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.7s)
+  ✓  23 [mobile] › tests/browser/city.spec.ts:126:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (9.6s)
+  ✓  24 [mobile] › tests/browser/city.spec.ts:151:1 › M03 actual browser without WebGL shows a usable metadata fallback (1.3s)
+
+
+  1) [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    + ]
+
+      75 |     fullPage: true,
+      76 |   });
+    > 77 |   expect(errors).toEqual([]);
+         |                  ^
+      78 | });
+      79 |
+      80 | test("M02 UI-only empty dataset is honest", async ({ page }) => {
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:77:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+  23 passed (1.1m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test

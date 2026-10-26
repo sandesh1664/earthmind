@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:48876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/performance/city.performance.ts:4:1 › actual 300-road PostGIS display, selection and repeated viewer cleanup (2.1m)
+
+
+  1) tests/performance/city.performance.ts:4:1 › actual 300-road PostGIS display, selection and repeated viewer cleanup 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 25
+    Received:   495
+
+      70 |   expect(steadyHeap).toHaveLength(10);
+      71 |   expect(Math.max(...steadyHeap)-Math.min(...steadyHeap)).toBeLessThan(1024*1024);
+    > 72 |   expect(Math.max(...steadyDOM.map(value=>value.nodes))-Math.min(...steadyDOM.map(value=>value.nodes))).toBeLessThan(25);
+         |                                                                                                         ^
+      73 |   expect(Math.max(...steadyDOM.map(value=>value.jsEventListeners))-Math.min(...steadyDOM.map(value=>value.jsEventListeners))).toBeLessThan(10);
+      74 |   expect(selectionMs.every(value=>value<5000)).toBe(true);
+      75 | });
+        at /Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts:72:105
+
+    Error Context: test-results/city.performance.ts-actual-c2ab1-and-repeated-viewer-cleanup/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city.performance.ts-actual-c2ab1-and-repeated-viewer-cleanup/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city.performance.ts-actual-c2ab1-and-repeated-viewer-cleanup/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/performance/city.performance.ts:4:1 › actual 300-road PostGIS display, selection and repeated viewer cleanup 
+Removed only temporary QA network/nodes/roads/region/source; M02 fixture preserved
+Traceback (most recent call last):
+  File "/Users/redmug/EARTHMIND/scripts/verify_city_performance.py", line 184, in <module>
+    main()
+  File "/Users/redmug/EARTHMIND/scripts/verify_city_performance.py", line 178, in main
+    result.check_returncode()
+  File "/Users/redmug/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 502, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['npx', 'playwright', 'test', '--config', 'playwright.performance.config.ts']' returned non-zero exit status 1.

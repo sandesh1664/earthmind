@@ -112,3 +112,17 @@ ARM64 evidence, queue delivery semantics and deployment boundaries.
 M02 extends this preserved foundation with the shared PostGIS spatial schema,
 provenance and bounded geospatial APIs. See [M02 architecture](geospatial-architecture.md)
 and [ADR 0009](decisions/0009-geospatial-foundation.md) for the additive design.
+
+
+M03 extends the same application with a lazy browser-only Cesium viewer. React
+owns interface/query/typed-selection state; a mount-scoped controller owns the
+SDK viewer, camera, native primitives and providers. The existing read-only
+Next proxy and bounded M02 FastAPI endpoints query the same PostGIS store. No
+new service, ORM, migration or geographic source of truth is introduced.
+
+See [frontend architecture](frontend-architecture.md), [3D scene](3d-digital-twin.md),
+[ADR 0010](decisions/0010-cesium-viewer.md) and
+[ADR 0011](decisions/0011-cesium-lifecycle-patch.md). Provider access is optional;
+the credential-free packaged Natural Earth/ellipsoid fallback remains usable.
+The accepted SDK patch and explicit lifecycle cleanup have a version-locked
+upgrade obligation and actual browser regression evidence.

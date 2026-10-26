@@ -1,0 +1,62 @@
+{
+  "delayedPostUnmountJSHeapBytes": 24552068,
+  "dataset": "Temporary project-generated synthetic QA network in actual PostGIS; 300 nodes and 300 roads; not Dubai observations",
+  "cycles": 15,
+  "loadMs": [
+    3647,
+    1816,
+    2313,
+    2193,
+    2271,
+    2207,
+    2234,
+    2356,
+    2229,
+    2337,
+    2205,
+    2394,
+    2554,
+    2363,
+    1674
+  ],
+  "selectionMs": [
+    39,
+    453,
+    257,
+    33,
+    47,
+    49,
+    35,
+    48,
+    37,
+    48,
+    34,
+    39,
+    32,
+    39,
+    579
+  ],
+  "postUnmountCollectedJSHeapBytes": [
+    22418236,
+    23065512,
+    23515032,
+    23727540,
+    24147920,
+    24400412,
+    24464068,
+    24592892,
+    25087164,
+    25203952,
+    25277616,
+    25396008,
+    25455108,
+    25552256,
+    25589512
+  ],
+  "graphics": {
+    "api": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "errors": [],
+  "scope": "Local Chromium/diagnostics-enabled; JS heap excludes GPU allocations; fifteen cycles are not a long-duration leak or production throughput benchmark"
+}

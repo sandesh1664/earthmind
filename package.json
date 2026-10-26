@@ -17,6 +17,10 @@
     "lint": "npm run lint --workspace @earthmind/web",
     "typecheck": "npm run typecheck --workspace @earthmind/web",
     "test": "npm run test --workspace @earthmind/web",
-    "test:browser": "npm run test:browser --workspace @earthmind/web --"
+    "test:browser": "npm run test:browser --workspace @earthmind/web --",
+    "postinstall": "patch-package --error-on-fail"
+  },
+  "devDependencies": {
+    "patch-package": "8.0.1"
   }
 }

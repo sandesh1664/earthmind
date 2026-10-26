@@ -47,7 +47,7 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/m02/m01-regression-${info.project.name}.png`,
+    path: `../../docs/evidence/m03/m01-regression-${info.project.name}.png`,
     fullPage: true,
   });
   const menu = page.getByRole("button", {
@@ -55,16 +55,16 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
     exact: true,
   });
   if (await menu.isVisible()) await menu.click();
-  const city = page.getByRole("button", { name: "City Explorer", exact: true });
+  const city = page.getByRole("button", { name: "Scenario Studio", exact: true });
   await city.focus();
   await expect(city).toBeFocused();
   await city.press("Enter");
   await expect(
-    page.getByRole("heading", { name: "City Explorer", exact: true }).first(),
+    page.getByRole("heading", { name: "Scenario Studio", exact: true }).first(),
   ).toBeVisible();
   await expect(
     page.getByText(
-      "This workspace is scoped to the M01 foundation. This workflow is not enabled yet.",
+      "This workflow is reserved for a later milestone and is not enabled yet.",
       { exact: true },
     ),
   ).toBeVisible();

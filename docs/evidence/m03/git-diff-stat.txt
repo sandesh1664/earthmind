@@ -1,0 +1,208 @@
+ .dockerignore                                      |    2 +
+ .env.example                                       |    8 +
+ .gitattributes                                     |    3 +
+ .github/workflows/ci.yml                           |   10 +-
+ .gitignore                                         |    3 +
+ AGENTS.md                                          |   17 +-
+ Makefile                                           |    3 +-
+ README.md                                          |   82 +-
+ apps/web/AGENTS.md                                 |    9 +
+ apps/web/app/api/city/config/route.ts              |   14 +
+ apps/web/app/city.css                              | 1218 +++
+ apps/web/app/layout.tsx                            |    4 +-
+ apps/web/components/city/CesiumViewer.tsx          |   54 +
+ apps/web/components/city/CityExplorer.tsx          |  626 ++
+ apps/web/components/city/FeatureInspector.tsx      |  278 +
+ apps/web/components/city/LayerManager.tsx          |  122 +
+ apps/web/components/city/MapToolbar.tsx            |  116 +
+ apps/web/components/city/ViewerErrorBoundary.tsx   |   30 +
+ .../components/city/runtime/camera-settlement.ts   |   32 +
+ apps/web/components/city/runtime/camera.ts         |   58 +
+ apps/web/components/city/runtime/layers.ts         |  157 +
+ apps/web/components/city/runtime/lifecycle.ts      |   33 +
+ apps/web/components/city/runtime/providers.ts      |  114 +
+ .../components/city/runtime/scene-controller.ts    |  224 +
+ apps/web/components/dashboard.tsx                  |   19 +-
+ apps/web/eslint.config.mjs                         |    2 +-
+ apps/web/hooks/use-city-data.ts                    |  168 +
+ apps/web/lib/city/api.ts                           |  305 +
+ apps/web/lib/city/config.ts                        |   19 +
+ apps/web/lib/city/query-options.ts                 |   10 +
+ apps/web/lib/city/types.ts                         |   98 +
+ apps/web/lib/geo/camera-presets.ts                 |    5 +
+ apps/web/lib/geo/coordinates.ts                    |   18 +
+ apps/web/lib/geo/selection.ts                      |   35 +
+ apps/web/lib/geospatial-proxy.ts                   |    2 +-
+ apps/web/lib/geospatial.ts                         |    5 +
+ apps/web/package.json                              |   17 +-
+ apps/web/playwright.config.ts                      |    3 +-
+ apps/web/playwright.performance.config.ts          |    7 +
+ apps/web/tests/browser/city.spec.ts                |  164 +
+ apps/web/tests/browser/dashboard.spec.ts           |    8 +-
+ apps/web/tests/browser/geospatial.spec.ts          |    4 +-
+ apps/web/tests/city-config.test.ts                 |   23 +
+ apps/web/tests/city-data.test.ts                   |  359 +
+ apps/web/tests/city-renderer.test.ts               |  171 +
+ apps/web/tests/city-ui.test.ts                     |  220 +
+ apps/web/tests/performance/city.performance.ts     |   80 +
+ compose.yaml                                       |    4 +
+ docs/3d-digital-twin.md                            |  225 +
+ docs/architecture.md                               |   14 +
+ docs/cesium-integration.md                         |  130 +
+ docs/decisions/0010-cesium-viewer.md               |   40 +
+ docs/decisions/0011-cesium-lifecycle-patch.md      |  134 +
+ docs/evidence/m03/assets-http.log                  |    1 +
+ docs/evidence/m03/attribution-layout-deploy.log    |  126 +
+ docs/evidence/m03/baseline-database.log            |   17 +
+ docs/evidence/m03/baseline.log                     |  155 +
+ docs/evidence/m03/benchmark-300-roads.png          |  Bin 0 -> 238732 bytes
+ docs/evidence/m03/browser-camera-fixed.json        |  226 +
+ docs/evidence/m03/browser-camera-fixed.log         |   50 +
+ docs/evidence/m03/browser-camera-fixed.png         |  Bin 0 -> 140874 bytes
+ docs/evidence/m03/browser-desktop-first-context.md |  266 +
+ docs/evidence/m03/browser-desktop-first.json       |  292 +
+ docs/evidence/m03/browser-desktop-first.log        |   52 +
+ docs/evidence/m03/browser-desktop-first.png        |  Bin 0 -> 132593 bytes
+ docs/evidence/m03/browser-full.log                 |   49 +
+ docs/evidence/m03/browser-settlement-fixed.log     |    8 +
+ docs/evidence/m03/camera-fix-deploy.log            |  123 +
+ docs/evidence/m03/camera-observations-before.json  |  326 +
+ docs/evidence/m03/camera-settlement-deploy.log     |  129 +
+ docs/evidence/m03/candidate-secret-check.log       |   10 +
+ .../canvas-retainer-paths-excluding-inspector.json | 1079 +++
+ docs/evidence/m03/canvas-retainer-paths.json       |  452 ++
+ docs/evidence/m03/canvas-retainers-metadata.json   |   34 +
+ docs/evidence/m03/canvas-retainers.log             |   34 +
+ docs/evidence/m03/canvas-retainers.mjs.txt         |   30 +
+ docs/evidence/m03/cesium-weakmap-patch.json        |   10 +
+ docs/evidence/m03/ci-syntax.log                    |    1 +
+ docs/evidence/m03/city-data-cache-lint.log         |    0
+ docs/evidence/m03/city-data-cache-types.log        |    0
+ docs/evidence/m03/city-data-cache-unit.log         |   31 +
+ docs/evidence/m03/city-data-lint.log               |    0
+ docs/evidence/m03/city-data-types-fixed.log        |    0
+ docs/evidence/m03/city-data-types.log              |    4 +
+ docs/evidence/m03/city-data-unit.log               |   30 +
+ docs/evidence/m03/city-desktop.png                 |  Bin 0 -> 224056 bytes
+ docs/evidence/m03/city-mobile.png                  |  Bin 0 -> 145136 bytes
+ docs/evidence/m03/city-network-desktop.json        |   30 +
+ docs/evidence/m03/city-network-mobile.json         |   26 +
+ docs/evidence/m03/city-network-tablet.json         |   26 +
+ docs/evidence/m03/city-tablet.png                  |  Bin 0 -> 183564 bytes
+ docs/evidence/m03/commands.jsonl                   |   74 +
+ docs/evidence/m03/context-isolation.log            |    2 +
+ docs/evidence/m03/context-release-deploy.log       |  123 +
+ .../m03/detached-control-observations.json         | 7461 ++++++++++++++++++
+ docs/evidence/m03/detached-control.log             |  532 ++
+ docs/evidence/m03/detached-control.mjs.txt         |   21 +
+ docs/evidence/m03/development-browser.mjs.txt      |   29 +
+ docs/evidence/m03/development-observations.json    |   38 +
+ docs/evidence/m03/development-server.log           |   48 +
+ docs/evidence/m03/development-strict-mode.log      |    3 +
+ docs/evidence/m03/dom-disable-control.log          |    0
+ docs/evidence/m03/failure-recovery.log             |   71 +
+ docs/evidence/m03/final-advisories.log             |   22 +
+ docs/evidence/m03/final-browser-isolated.log       |   49 +
+ docs/evidence/m03/final-browser.log                |   96 +
+ docs/evidence/m03/final-data.log                   |    1 +
+ docs/evidence/m03/final-database.log               |   17 +
+ docs/evidence/m03/final-db-regression.log          |   17 +
+ docs/evidence/m03/final-dev.log                    |  335 +
+ docs/evidence/m03/final-development.log            |    3 +
+ docs/evidence/m03/final-inspection-output.log      |    1 +
+ docs/evidence/m03/final-migrate.log                |    6 +
+ docs/evidence/m03/final-postgis-inspection.log     |    1 +
+ docs/evidence/m03/final-quality-complete.log       |  199 +
+ docs/evidence/m03/final-quality-patched.log        |  199 +
+ docs/evidence/m03/final-quality.log                |  195 +
+ docs/evidence/m03/final-services.log               |    7 +
+ docs/evidence/m03/final-services.py.txt            |   15 +
+ docs/evidence/m03/final-setup.log                  |   49 +
+ docs/evidence/m03/final-smoke.log                  |   17 +
+ docs/evidence/m03/first-production-build.log       |   30 +
+ docs/evidence/m03/first-target-quality.log         |  192 +
+ docs/evidence/m03/first-web-deploy.log             |  142 +
+ docs/evidence/m03/geospatial-desktop.png           |  Bin 0 -> 353960 bytes
+ docs/evidence/m03/geospatial-mobile.png            |  Bin 0 -> 242782 bytes
+ docs/evidence/m03/geospatial-tablet.png            |  Bin 0 -> 328859 bytes
+ docs/evidence/m03/git-changed-files.txt            |    0
+ docs/evidence/m03/git-commit.log                   |    0
+ docs/evidence/m03/git-diff-stat.txt                |    0
+ docs/evidence/m03/git-gates.json                   |    0
+ docs/evidence/m03/git_gates.py.txt                 |   41 +
+ docs/evidence/m03/hooks.log                        |    6 +
+ docs/evidence/m03/implementation-notes.txt         |    6 +
+ docs/evidence/m03/input-handler-fix-deploy.log     |  129 +
+ docs/evidence/m03/listener-retainers.json          | 7950 ++++++++++++++++++++
+ docs/evidence/m03/locked-web-install.log           |    8 +
+ docs/evidence/m03/m01-regression-desktop.png       |  Bin 0 -> 424442 bytes
+ docs/evidence/m03/m01-regression-mobile.png        |  Bin 0 -> 248354 bytes
+ docs/evidence/m03/m01-regression-tablet.png        |  Bin 0 -> 362267 bytes
+ docs/evidence/m03/migration-regression.log         |  154 +
+ docs/evidence/m03/native-architecture.log          |    7 +
+ docs/evidence/m03/npm-advisories.log               |   22 +
+ docs/evidence/m03/observe-camera.mjs.txt           |   19 +
+ .../m03/parse-retainers-excluding-inspector.py.txt |   44 +
+ docs/evidence/m03/patched-clean-install.log        |   15 +
+ docs/evidence/m03/patched-target-install.log       |   15 +
+ docs/evidence/m03/performance-extended.log         |    9 +
+ .../m03/performance-fifteen-cycles-results.json    |  151 +
+ docs/evidence/m03/performance-fifteen-cycles.json  |   62 +
+ docs/evidence/m03/performance-first.json           |  107 +
+ .../m03/performance-five-cycles-results.json       |  151 +
+ docs/evidence/m03/performance-five-cycles.json     |   31 +
+ .../m03/performance-handler-only-results.json      |  186 +
+ docs/evidence/m03/performance-handler-only.json    |  259 +
+ docs/evidence/m03/performance-listener-fix.log     |   45 +
+ docs/evidence/m03/performance-observations.json    |  259 +
+ docs/evidence/m03/performance-patched.log          |    9 +
+ .../m03/performance-real-postgis-fixed.log         |    9 +
+ docs/evidence/m03/performance-real-postgis.log     |   11 +
+ docs/evidence/m03/performance-results.json         |  151 +
+ .../performance-thirty-cycles-before-results.json  |  186 +
+ .../m03/performance-thirty-cycles-before.json      |  259 +
+ docs/evidence/m03/performance-thirty-cycles.log    |   45 +
+ docs/evidence/m03/playwright-results.json          | 1040 +++
+ .../m03/postgis-inspection-before-output-flag.json |  388 +
+ docs/evidence/m03/postgis-inspection.json          |  388 +
+ docs/evidence/m03/production-build-fixed.log       |   40 +
+ docs/evidence/m03/python-advisories.log            |   19 +
+ .../m03/renderer-camera-regression-units.log       |   16 +
+ .../m03/renderer-context-release-units.log         |   21 +
+ docs/evidence/m03/renderer-credit-style-units.log  |   23 +
+ .../m03/renderer-native-listener-regression.log    |   22 +
+ docs/evidence/m03/renderer-reviewed-final.log      |   16 +
+ docs/evidence/m03/renderer-reviewed-units.log      |   16 +
+ docs/evidence/m03/renderer-settlement-units.log    |   19 +
+ docs/evidence/m03/renderer-units.log               |   15 +
+ docs/evidence/m03/run_check.py.txt                 |   27 +
+ docs/evidence/m03/source-whitespace.log            |    0
+ docs/evidence/m03/staged-secret-check.log          |   10 +
+ docs/evidence/m03/staged-whitespace.log            |    0
+ docs/evidence/m03/terrain-cache-patch-deploy.log   |  152 +
+ docs/evidence/m03/trace-control-observations.json  |  110 +
+ docs/evidence/m03/trace-control.log                |  110 +
+ docs/evidence/m03/trace-control.mjs.txt            |   28 +
+ docs/evidence/m03/ui-lint.log                      |    4 +
+ docs/evidence/m03/ui-types.log                     |    4 +
+ docs/evidence/m03/ui-unit.log                      |   20 +
+ docs/evidence/m03/verify-development.py.txt        |   32 +
+ docs/evidence/m03/verify-final-data.py.txt         |   14 +
+ docs/evidence/m03/webgl-fallback-desktop.png       |  Bin 0 -> 240678 bytes
+ docs/evidence/m03/webgl-fallback-mobile.png        |  Bin 0 -> 136579 bytes
+ docs/evidence/m03/webgl-fallback-tablet.png        |  Bin 0 -> 180796 bytes
+ docs/frontend-architecture.md                      |  278 +
+ docs/milestone-03-checklist.md                     |   21 +
+ docs/performance.md                                |  107 +
+ docs/security.md                                   |   26 +
+ docs/verification-m02.md                           |  285 +
+ docs/verification.md                               |  558 +-
+ infra/docker/web.Dockerfile                        |    3 +
+ package-lock.json                                  |  531 +-
+ package.json                                       |    6 +-
+ patches/@cesium+engine+26.4.0.patch                |   24 +
+ scripts/check_cesium_assets.py                     |   64 +
+ scripts/copy-cesium-assets.mjs                     |   38 +
+ scripts/inspect_geospatial_database.py             |    8 +-
+ scripts/verify_city_performance.py                 |  184 +
+ 207 files changed, 33800 insertions(+), 331 deletions(-)

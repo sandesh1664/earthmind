@@ -105,7 +105,7 @@ export async function proxyGeospatial(
       {
         method: "GET",
         headers: { Accept: "application/json" },
-        signal: AbortSignal.timeout(8_000),
+        signal: AbortSignal.any([request.signal, AbortSignal.timeout(8_000)]),
         cache: "no-store",
       },
     );

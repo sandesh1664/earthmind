@@ -1,0 +1,34 @@
+{
+  "before": {
+    "documents": 2,
+    "nodes": 936,
+    "jsEventListeners": 391
+  },
+  "canvases": [
+    {
+      "backendNodeId": 19,
+      "heapId": "506275"
+    },
+    {
+      "backendNodeId": 20,
+      "heapId": "769363"
+    },
+    {
+      "backendNodeId": 22,
+      "heapId": "1089767"
+    },
+    {
+      "backendNodeId": 21,
+      "heapId": "922791"
+    },
+    {
+      "backendNodeId": 423,
+      "heapId": "624889"
+    }
+  ],
+  "after": {
+    "documents": 2,
+    "nodes": 936,
+    "jsEventListeners": 391
+  }
+}

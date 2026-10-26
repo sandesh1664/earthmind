@@ -1,0 +1,30 @@
+✔ city road adapters retain actual inspector fields and strip private metadata (1.9125ms)
+✔ road schemas reject wrong geometry, invalid ranges, empty extent and nonfinite values (0.361417ms)
+✔ absent node signal metadata stays absent instead of becoming a fabricated false (0.290292ms)
+✔ map bbox clips the camera to a region without computing metric geometry (0.553166ms)
+✔ camera requests reject invalid, wrapping, excessive or sub-precision extents (0.087833ms)
+✔ equivalent camera extents generate stable quantized request bounds (0.054125ms)
+✔ fetches real-contract roads through the same-origin proxy with bounded bbox and pagination (16.909833ms)
+✔ pagination stops after 500 features and reports remaining data explicitly (4.463292ms)
+✔ aggregate coordinate budget truncates before loading another page (13.050791ms)
+✔ inconsistent counts, offsets, empty pages and duplicate identifiers fail visibly (0.876625ms)
+✔ network changes during pagination reject mixed snapshots (0.743875ms)
+✔ features from a different network cannot enter the selected scene (0.10325ms)
+✔ intersection loads preserve known signal status and synthetic identity (0.167542ms)
+✔ aborted queries never start a request or return a stale successful result (0.144208ms)
+✔ a region/network change cancels the next pagination response before parsing (1.319625ms)
+✔ oversized declared and streaming JSON responses are rejected with a display-budget message (0.684292ms)
+✔ non-JSON, invalid geometry, missing resources and service failures stay explicit (0.33975ms)
+✔ region catalogs paginate within the same 500-item budget (3.298833ms)
+✔ network registry rejects another region and missing boundary identity (0.8805ms)
+✔ backward-compatible proxy allowlist retains inspector fields without private source credentials (1.062917ms)
+✔ camera or region query replacement aborts obsolete work and late responses cannot overwrite current data (3.639542ms)
+✔ browser request cancellation propagates through the read-only Next proxy to FastAPI fetch (0.282875ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.26325

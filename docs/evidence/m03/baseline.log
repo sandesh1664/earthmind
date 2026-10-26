@@ -1,0 +1,155 @@
+uv lock --check
+Resolved 67 packages in 16ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+51 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 40 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked mypy
+Success: no issues found in 40 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 105 items / 38 deselected / 67 selected
+
+apps/api/tests/test_api_v1.py ...........                                [ 16%]
+apps/api/tests/test_contracts.py .......                                 [ 26%]
+apps/api/tests/test_geometry.py ....................                     [ 56%]
+apps/api/tests/test_geospatial_security.py .......                       [ 67%]
+apps/api/tests/test_health.py .........                                  [ 80%]
+packages/simulation-worker/tests/test_jobs.py ........                   [ 92%]
+packages/simulation-worker/tests/test_runtime_check.py ..                [ 95%]
+packages/simulation-worker/tests/test_worker.py ...                      [100%]
+
+====================== 67 passed, 38 deselected in 0.61s =======================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ same-origin diagnostics reject malformed JSON, unsupported jobs and extra fields (21.024417ms)
+✔ diagnostic submissions reject simple cross-site requests and foreign origins (0.32775ms)
+✔ same-origin diagnostic lookup rejects a non-UUID before fetching upstream (1.512959ms)
+✔ standalone bind address accepts the real loopback Host and same browser Origin (2.291167ms)
+✔ standalone origin guard fails closed for foreign origins, malformed Host and DNS rebinding (0.455875ms)
+✔ diagnostic proxy preserves queue-full HTTP429 without forwarding internal upstream details (0.163834ms)
+✔ diagnostic proxy rejects invalid success payloads and returns a safe unavailable response (0.20525ms)
+✔ spatial contracts enforce finite longitude/latitude and actual metric area (2.664375ms)
+✔ region boundary preview uses parsed GeoJSON and finite coordinate-only paths (1.005333ms)
+✔ public consumer strips unapproved provenance fields (0.8035ms)
+✔ validation status cannot claim success for an invalid report (0.644625ms)
+✔ read-only proxy reaches allowlisted region API and validates public response (18.64575ms)
+✔ proxy rejects traversal, arbitrary endpoints, invalid IDs and unbounded queries before fetch (1.356875ms)
+✔ proxy preserves missing/invalid resources and hides internal error payloads (0.679875ms)
+✔ proxy rejects a valid but mismatched resource identity (0.158875ms)
+✔ uncomputed topology counts stay unknown when validation budget is exceeded (0.086542ms)
+✔ proxy reaches the configured API origin and forwards a healthy contract (21.124292ms)
+✔ degraded dependencies preserve the readiness failure (0.203792ms)
+✔ invalid upstream JSON never reports healthy (0.11675ms)
+✔ network failure returns a bounded degraded response without internal error details (0.123542ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.124584ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.127584ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.053709ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (5.553541ms)
+✔ versioned liveness and capabilities use the canonical Zod API boundary (1.243ms)
+✔ diagnostic requests reject future simulation kinds and unknown fields (0.15125ms)
+✔ diagnostic jobs validate UUID, lifecycle and JSON results from the canonical model (0.890333ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.217917ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 155.824541
+npm run build
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 40ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 208ms
+  Running TypeScript ...
+  Finished TypeScript in 589ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/3) ...
+✓ Generating static pages using 9 workers (3/3) in 64ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/capabilities
+├ ƒ /api/diagnostics
+├ ƒ /api/diagnostics/[id]
+├ ƒ /api/geospatial/[...path]
+├ ƒ /api/health
+└ ƒ /api/health/live
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+uv run --locked python scripts/smoke.py
+PASS http://127.0.0.1:8000/health/live: {"status":"ok","service":"api"}
+PASS http://127.0.0.1:8000/api/v1/health: {"service":"EARTHMIND API","status":"healthy","version":"0.1.0"}
+PASS http://127.0.0.1:8000/api/v1/ready: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health/live: {"status":"ok","service":"web"}
+PASS http://127.0.0.1:3000: HTTP 200, EARTHMIND dashboard rendered
+PASS actual worker job c3f09cd5-1272-4810-a280-85c4ffe76b1a: {"architecture": "aarch64", "kind": "diagnostic", "message": "Worker consumed this diagnostic from the Redis queue.", "worker_pid": 7}
+PASS actual worker job 0de24249-2855-49af-b23c-6a7cd56e26e7: {"architecture": "aarch64", "binary_versions": {"netconvert": "Eclipse SUMO netconvert Version 1.15.0", "sumo": "Eclipse SUMO sumo Version 1.15.0"}, "checked_at": "2026-10-26T21:46:43.253210+00:00", "kind": "sumo_runtime", "output_files": ["network.net.xml", "tripinfo.xml", "netconvert.log", "sumo.log"], "steps": 25, "traci_protocol": 20, "traci_server_version": "SUMO 1.15.0", "trips": [{"arrival": "22.00", "depart": "0.00", "duration": "22.00", "id": "probe_0", "routeLength": "195.00"}, {"arrival": "24.00", "depart": "2.00", "duration": "22.00", "id": "probe_1", "routeLength": "195.00"}], "vehicles_completed": 2, "vehicles_departed": 2, "verified": true, "version": "1.15.0", "worker_pid": 7}
+PASS http://127.0.0.1:8000/api/v1/system/capabilities: {"application":"EARTHMIND","version":"0.1.0","milestone":"M01","capabilities":{"api":true,"database":true,"redis":true,"worker":true,"simulation_runtime":true,"dubai_network_import":false,"traffic_simulation":false,"ai_forecasting":false},"runtime":{"verified":true,"version":"1.15.0","checked_at":"2026-10-26T21:46:43.253210Z","architecture":"aarch64"}}
+PASS http://127.0.0.1:3000/api/capabilities: {"application":"EARTHMIND","capabilities":{"ai_forecasting":false,"api":true,"database":true,"dubai_network_import":false,"redis":true,"simulation_runtime":true,"traffic_simulation":false,"worker":true},"milestone":"M01","runtime":{"architecture":"aarch64","checked_at":"2026-10-26T21:46:43.253210Z","verified":true,"version":"1.15.0"},"version":"0.1.0"}
+SMOKE PASSED: web -> API -> PostGIS -> Redis queue -> worker + actual SUMO fixture
+uv run --locked python scripts/geospatial_smoke.py
+{"area_km2": 1.3398134937911033, "bounds": [55.2685, 25.19, 55.2805, 25.2], "centroid": [55.2745, 25.195000053], "edges": 8, "independent_area_km2": 1.3398134937901496, "is_synthetic": true, "license_identifier": "LicenseRef-EARTHMIND-Proprietary-Synthetic", "nearest_distance_m": 20.15803569, "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "nodes": 6, "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb", "unauthorized_write_status": 403, "validation": {"boundary_tolerance_m": 5, "checks": {"attributes_valid": true, "connectivity_valid": true, "counts_consistent": true, "duplicate_edges_absent": true, "endpoints_consistent": true, "geometry_valid": true, "identifiers_unique": true, "metadata_complete": true, "nonempty": true, "references_consistent": true, "region_coverage": true}, "counts": {"components": 1, "edges": 8, "isolated_nodes": 0, "nodes": 6}, "errors": [], "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "semantics": "VALID has no findings. VALID_WITH_WARNINGS passes integrity checks but has structural or metadata warnings. INVALID has integrity errors. NOT_VALIDATED exceeds the bounded feature or coordinate validation budget. Synthetic topology is not evidence of real-world network accuracy.", "status": "VALID", "validated": true, "warnings": []}}
+M02 SMOKE PASSED: real PostGIS geometry, provenance, topology, meter queries and write gate

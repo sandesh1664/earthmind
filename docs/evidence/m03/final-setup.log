@@ -1,0 +1,49 @@
+sh scripts/bootstrap.sh
+Host: Darwin/arm64
+ProductName:		macOS
+ProductVersion:		26.5.1
+BuildVersion:		25F80
+v26.0.0
+11.12.1
+uv 0.11.12 (63c5f57d3 2026-05-08 aarch64-apple-darwin)
+git version 2.54.0
+Docker version 29.9.1, build dfc520d
+Docker Compose version v5.6.0
+Docker engine: linux/aarch64
+Docker memory limit: 8319504384 bytes
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   460Gi   218Gi   214Gi    51%    1.7M  2.2G    0%   /System/Volumes/Data
+Python 3.12 is already installed
+Preserved existing .env values
+uv sync --all-packages --group dev --locked
+Resolved 67 packages in 2ms
+   Building earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+   Building earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+   Building earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+      Built earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+      Built earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+Prepared 3 packages in 6ms
+Uninstalled 3 packages in 1ms
+Installed 3 packages in 1ms
+ ~ earthmind-api==0.1.0 (from file:///Users/redmug/EARTHMIND/apps/api)
+ ~ earthmind-contracts==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/contracts)
+ ~ earthmind-worker==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/simulation-worker)
+npm ci
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+> earthmind@0.1.0 postinstall
+> patch-package --error-on-fail
+
+patch-package 8.0.1
+Applying patches...
+@cesium/engine@26.4.0 ✔
+
+added 450 packages, and audited 453 packages in 6s
+
+158 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+uv run --locked pre-commit install
+pre-commit installed at .git/hooks/pre-commit

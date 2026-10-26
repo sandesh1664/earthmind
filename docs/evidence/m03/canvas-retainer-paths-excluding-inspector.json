@@ -1,0 +1,1079 @@
+[
+  {
+    "target": 506275,
+    "visited": 95250,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 10
+        }
+      },
+      {
+        "node": {
+          "id": 23,
+          "name": "(Global handles)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "1 / V8PerContextData::context_"
+        }
+      },
+      {
+        "node": {
+          "id": 160697,
+          "name": "system / NativeContext / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "global_proxy_object"
+        }
+      },
+      {
+        "node": {
+          "id": 25847,
+          "name": "Window / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 14
+        }
+      },
+      {
+        "node": {
+          "id": 42354,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::KeyValuePair<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 2
+        }
+      },
+      {
+        "node": {
+          "id": 539755,
+          "name": "TrustedTypePolicyFactory",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 24408,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<blink::String, blink::KeyValuePair<blink::String, cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<String>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<String>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495405,
+          "name": "TrustedTypePolicy",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 13790,
+          "name": "blink::TrustedTypePolicyOptions",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 13792,
+          "name": "V8CreateHTMLCallback",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495391,
+          "name": "createHTML",
+          "type": "closure"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "context"
+        }
+      },
+      {
+        "node": {
+          "id": 342855,
+          "name": "system / Context / scope @349661",
+          "type": "object"
+        },
+        "edge": {
+          "type": "context",
+          "name": "sp"
+        }
+      },
+      {
+        "node": {
+          "id": 474249,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 618507,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 617863,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indices"
+        }
+      },
+      {
+        "node": {
+          "id": 618477,
+          "name": "Uint16Array",
+          "type": "native"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indexBuffers"
+        }
+      },
+      {
+        "node": {
+          "id": 616685,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "ba1f57bc-3d61-47e7-854b-caf0b2224613"
+        }
+      },
+      {
+        "node": {
+          "id": 616535,
+          "name": "hP",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "_gl"
+        }
+      },
+      {
+        "node": {
+          "id": 539931,
+          "name": "WebGL2RenderingContext",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 15
+        }
+      },
+      {
+        "node": {
+          "id": 506275,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 769363,
+    "visited": 95250,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 10
+        }
+      },
+      {
+        "node": {
+          "id": 23,
+          "name": "(Global handles)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "1 / V8PerContextData::context_"
+        }
+      },
+      {
+        "node": {
+          "id": 160697,
+          "name": "system / NativeContext / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "global_proxy_object"
+        }
+      },
+      {
+        "node": {
+          "id": 25847,
+          "name": "Window / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 14
+        }
+      },
+      {
+        "node": {
+          "id": 42354,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::KeyValuePair<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 2
+        }
+      },
+      {
+        "node": {
+          "id": 539755,
+          "name": "TrustedTypePolicyFactory",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 24408,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<blink::String, blink::KeyValuePair<blink::String, cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<String>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<String>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495405,
+          "name": "TrustedTypePolicy",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 13790,
+          "name": "blink::TrustedTypePolicyOptions",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 13792,
+          "name": "V8CreateHTMLCallback",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495391,
+          "name": "createHTML",
+          "type": "closure"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "context"
+        }
+      },
+      {
+        "node": {
+          "id": 342855,
+          "name": "system / Context / scope @349661",
+          "type": "object"
+        },
+        "edge": {
+          "type": "context",
+          "name": "sp"
+        }
+      },
+      {
+        "node": {
+          "id": 474249,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 618507,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 617863,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indices"
+        }
+      },
+      {
+        "node": {
+          "id": 618477,
+          "name": "Uint16Array",
+          "type": "native"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indexBuffers"
+        }
+      },
+      {
+        "node": {
+          "id": 616685,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "2f97e74c-3900-41dd-bc2c-5d6ba7cad8ad"
+        }
+      },
+      {
+        "node": {
+          "id": 786219,
+          "name": "hP",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "_gl"
+        }
+      },
+      {
+        "node": {
+          "id": 769239,
+          "name": "WebGL2RenderingContext",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 15
+        }
+      },
+      {
+        "node": {
+          "id": 769363,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 1089767,
+    "visited": 95250,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 10
+        }
+      },
+      {
+        "node": {
+          "id": 23,
+          "name": "(Global handles)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "1 / V8PerContextData::context_"
+        }
+      },
+      {
+        "node": {
+          "id": 160697,
+          "name": "system / NativeContext / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "global_proxy_object"
+        }
+      },
+      {
+        "node": {
+          "id": 25847,
+          "name": "Window / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 14
+        }
+      },
+      {
+        "node": {
+          "id": 42354,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::KeyValuePair<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 2
+        }
+      },
+      {
+        "node": {
+          "id": 539755,
+          "name": "TrustedTypePolicyFactory",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 24408,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<blink::String, blink::KeyValuePair<blink::String, cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<String>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<String>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495405,
+          "name": "TrustedTypePolicy",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 13790,
+          "name": "blink::TrustedTypePolicyOptions",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 13792,
+          "name": "V8CreateHTMLCallback",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495391,
+          "name": "createHTML",
+          "type": "closure"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "context"
+        }
+      },
+      {
+        "node": {
+          "id": 342855,
+          "name": "system / Context / scope @349661",
+          "type": "object"
+        },
+        "edge": {
+          "type": "context",
+          "name": "epT"
+        }
+      },
+      {
+        "node": {
+          "id": 431731,
+          "name": "er2",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "camera"
+        }
+      },
+      {
+        "node": {
+          "id": 1087911,
+          "name": "eno",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "_scene"
+        }
+      },
+      {
+        "node": {
+          "id": 1093807,
+          "name": "epy",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "_canvas"
+        }
+      },
+      {
+        "node": {
+          "id": 1089767,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 922791,
+    "visited": 95250,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 10
+        }
+      },
+      {
+        "node": {
+          "id": 23,
+          "name": "(Global handles)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "1 / V8PerContextData::context_"
+        }
+      },
+      {
+        "node": {
+          "id": 160697,
+          "name": "system / NativeContext / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "global_proxy_object"
+        }
+      },
+      {
+        "node": {
+          "id": 25847,
+          "name": "Window / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 14
+        }
+      },
+      {
+        "node": {
+          "id": 42354,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::KeyValuePair<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 2
+        }
+      },
+      {
+        "node": {
+          "id": 539755,
+          "name": "TrustedTypePolicyFactory",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 24408,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<blink::String, blink::KeyValuePair<blink::String, cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<String>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<String>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495405,
+          "name": "TrustedTypePolicy",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 13790,
+          "name": "blink::TrustedTypePolicyOptions",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 13792,
+          "name": "V8CreateHTMLCallback",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495391,
+          "name": "createHTML",
+          "type": "closure"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "context"
+        }
+      },
+      {
+        "node": {
+          "id": 342855,
+          "name": "system / Context / scope @349661",
+          "type": "object"
+        },
+        "edge": {
+          "type": "context",
+          "name": "sp"
+        }
+      },
+      {
+        "node": {
+          "id": 474249,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 618507,
+          "name": "Array",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 16
+        }
+      },
+      {
+        "node": {
+          "id": 617863,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indices"
+        }
+      },
+      {
+        "node": {
+          "id": 618477,
+          "name": "Uint16Array",
+          "type": "native"
+        },
+        "edge": {
+          "type": "property",
+          "name": "indexBuffers"
+        }
+      },
+      {
+        "node": {
+          "id": 616685,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "c1e40cfb-88e9-4195-b703-fdb7e98db342"
+        }
+      },
+      {
+        "node": {
+          "id": 951673,
+          "name": "hP",
+          "type": "object"
+        },
+        "edge": {
+          "type": "property",
+          "name": "_gl"
+        }
+      },
+      {
+        "node": {
+          "id": 922821,
+          "name": "WebGL2RenderingContext",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 15
+        }
+      },
+      {
+        "node": {
+          "id": 922791,
+          "name": "<canvas width=\"814\" height=\"680\" style=\"image-rendering: pixelated;\">",
+          "type": "native"
+        }
+      }
+    ]
+  },
+  {
+    "target": 624889,
+    "visited": 95251,
+    "rootPath": [
+      {
+        "node": {
+          "id": 1,
+          "name": "",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 3,
+          "name": "(GC roots)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "element",
+          "name": 10
+        }
+      },
+      {
+        "node": {
+          "id": 23,
+          "name": "(Global handles)",
+          "type": "synthetic"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "1 / V8PerContextData::context_"
+        }
+      },
+      {
+        "node": {
+          "id": 160697,
+          "name": "system / NativeContext / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "global_proxy_object"
+        }
+      },
+      {
+        "node": {
+          "id": 25847,
+          "name": "Window / http://127.0.0.1:3000",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 14
+        }
+      },
+      {
+        "node": {
+          "id": 42354,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::KeyValuePair<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicyFactory, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<cppgc::internal::BasicMember<const blink::DOMWrapperWorld, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 2
+        }
+      },
+      {
+        "node": {
+          "id": 539755,
+          "name": "TrustedTypePolicyFactory",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 24408,
+          "name": "blink::HeapHashTableBacking<blink::HashTable<blink::String, blink::KeyValuePair<blink::String, cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::KeyValuePairExtractor, blink::HashMapValueTraits<blink::HashTraits<String>, blink::HashTraits<cppgc::internal::BasicMember<blink::TrustedTypePolicy, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>, blink::HashTraits<String>, blink::HeapAllocator>>",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495405,
+          "name": "TrustedTypePolicy",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 3
+        }
+      },
+      {
+        "node": {
+          "id": 13790,
+          "name": "blink::TrustedTypePolicyOptions",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 13792,
+          "name": "V8CreateHTMLCallback",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 495391,
+          "name": "createHTML",
+          "type": "closure"
+        },
+        "edge": {
+          "type": "internal",
+          "name": "context"
+        }
+      },
+      {
+        "node": {
+          "id": 342855,
+          "name": "system / Context / scope @349661",
+          "type": "object"
+        },
+        "edge": {
+          "type": "context",
+          "name": "oK"
+        }
+      },
+      {
+        "node": {
+          "id": 473711,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 625005,
+          "name": "Object",
+          "type": "object"
+        },
+        "edge": {
+          "type": "element",
+          "name": 1
+        }
+      },
+      {
+        "node": {
+          "id": 625125,
+          "name": "CanvasRenderingContext2D",
+          "type": "native"
+        },
+        "edge": {
+          "type": "element",
+          "name": 7
+        }
+      },
+      {
+        "node": {
+          "id": 624889,
+          "name": "<canvas width=\"1\" height=\"1\">",
+          "type": "native"
+        }
+      }
+    ]
+  }
+]

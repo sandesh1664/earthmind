@@ -3,12 +3,13 @@
 **AI-Powered Urban Intelligence Platform** — a local-first foundation for a
 Dubai urban digital twin research platform.
 
-M02 adds permanent PostGIS region/network storage, dataset provenance, bounded
-spatial APIs and a Geospatial Data dashboard to the verified M01 foundation.
-It persists an illustrative Dubai study polygon and a clearly synthetic graph;
-real Dubai road ingestion, traffic scenarios, digital twins and AI forecasting
-remain later work. M01 health/capability contracts retain version 0.1.0 and their
-original M01 identity for compatibility; the Geospatial Data module is M02.
+M03 adds an interactive Cesium 3D City Explorer to M02's PostGIS region/network
+storage, provenance, bounded spatial APIs and Geospatial Data dashboard.
+M02 supplies an illustrative Dubai study polygon and a clearly synthetic graph;
+real Dubai road ingestion, traffic execution, operational telemetry and AI
+forecasting remain later work. M01 health/capability contracts retain version 0.1.0 and their
+original M01 identity for compatibility; Geospatial Data is M02 and City Explorer
+is M03.
 
 ## Launch on Apple Silicon
 
@@ -29,8 +30,27 @@ PostgreSQL is bound to **127.0.0.1:5434**; Redis has no host port. New setup
 creates an ignored `.env` with a generated local password and owner-only access.
 Existing credentials are preserved; setup appends a generated development write
 token only when its key is missing. Re-run `make dev` to rebuild source changes,
-apply migrations, seed the idempotent synthetic fixture and run both smoke checks.
+apply migrations, seed the idempotent synthetic fixture and run the API, spatial and Cesium asset smoke checks.
 Select **Geospatial Data** in the dashboard to inspect the real persisted data.
+
+## Implemented in M03
+
+- A lazy browser-only CesiumJS 1.146.0 globe, selected-region overlays, batched
+  road centerlines, stored intersection markers and deterministic feature picking.
+- Dubai Overview, Downtown Dubai and Business Bay cameras; region/feature focus,
+  top-down/perspective, zoom/reset, layer controls and an accurate metadata inspector.
+- Bounded camera queries with cancellation, runtime schemas, paginated feature
+  loading and inactive-viewport cache eviction. PostgreSQL remains authoritative.
+- Locally hosted Workers/ThirdParty/Assets/Widgets, low-resolution Natural Earth
+  imagery and ellipsoid terrain work without an account or external tile requests.
+- Optional licensed Cesium ion imagery/terrain/OSM Buildings with public-token
+  configuration, provider errors, attribution and explicit missing-access states.
+- Responsive desktop/tablet/mobile inspection, keyboard feature controls,
+  WebGL fallback and opt-in local rendering diagnostics.
+
+Select **City Explorer** in the dashboard. Navigation and M02 overlays work
+without a simulation. Buildings require authorized provider access; no real
+building coverage, traffic, signal observations or forecast is invented.
 
 ## Implemented in M02
 
@@ -91,6 +111,7 @@ result. The worker runs native tools in a bounded child process. Capability
 | --- | --- |
 | Web | Next.js 16.4.3, React 19.3.1, strict TypeScript, Tailwind 4.3.3 |
 | Web state/validation | TanStack Query 5.105.0, Zod 4.6.7, Lucide 1.61.0 |
+| 3D visualization | CesiumJS 1.146.0, local runtime assets, optional scoped ion providers |
 | API | Python 3.12, FastAPI, Pydantic v2, SQLAlchemy 2, psycopg 3, Alembic |
 | Data | PostgreSQL 17, PostGIS 3.6.4, Redis 7.4 |
 | Runtime | SUMO/netconvert 1.15.0; traci/sumolib 1.15.0 |
@@ -109,26 +130,28 @@ creation is a development API operation rather than a browser form.
 | Command | Behavior |
 | --- | --- |
 | `make setup` | Validate tools/ARM64, preserve or create private config, install locks/hooks |
-| `make dev` | Build/start services, migrate, seed, verify native architecture and both smokes |
+| `make dev` | Build/start services, migrate, seed, verify native architecture and all smokes |
 | `make down` | Stop this project; preserve named volumes |
 | `make test` | Backend/worker unit tests and frontend tests |
 | `make lint` | Lock/schema consistency, Ruff, ESLint and type checks |
 | `make typecheck` | Strict mypy and TypeScript |
 | `make migrate` | Apply Alembic upgrades through the one-shot container |
 | `make seed` | Idempotently persist the synthetic M02 study region and graph |
-| `make smoke` | Real M01 queue/SUMO regression plus M02 API/PostGIS/web connectivity |
+| `make smoke` | Real M01 queue/SUMO, M02 API/PostGIS/web and M03 Cesium asset checks |
 | `make logs` | Show bounded service logs |
 | `make status` | Show every service and migration status |
 | `make clean` | Remove known disposable caches only |
 | `make build` | Build the standalone production frontend |
 
-Additional verification:
+Additional verification (enable local diagnostics for the native canvas-picking
+browser checks; ordinary startup keeps them disabled):
 
 ```sh
+CITY_DIAGNOSTICS_ENABLED=true make dev
 uv run --locked python scripts/database_checks.py
-uv run --locked python scripts/inspect_geospatial_database.py
+uv run --locked python scripts/inspect_geospatial_database.py --output docs/evidence/m03/postgis-inspection.json
 uv run --locked python scripts/verify_migrations.py
-uv run --locked python scripts/failure_smoke.py
+CITY_DIAGNOSTICS_ENABLED=true uv run --locked python scripts/failure_smoke.py
 npx playwright install chromium
 npm run test:browser
 uv run --locked python infra/verification/check_build_context.py
@@ -138,6 +161,9 @@ uv run --locked pre-commit run --all-files
 `verify_migrations.py` creates its own isolated empty database project and removes
 only its own fixture volumes. `failure_smoke.py` briefly stops this project's
 worker/Redis/database and restores them. Run these against local development.
+Run browser checks after the database suite has finished; integration checks
+mutate isolated test transactions and should not contend with deployed browser
+readiness observations. Do not run outage checks alongside browser tests.
 Normal tests intentionally deselect live integration tests; `database_checks.py`
 sets the live database configuration and runs them explicitly.
 
@@ -162,10 +188,12 @@ are maintained deliberately; see ADR 0001. No unnecessary microservices are adde
 
 - [Setup](docs/setup.md), [operations](docs/operations.md), [troubleshooting](docs/troubleshooting.md)
 - [Architecture](docs/architecture.md), [security](docs/security.md), [decisions](docs/decisions)
+- [Cesium setup and token configuration](docs/cesium-integration.md), [3D scene](docs/3d-digital-twin.md)
+- [Frontend architecture](docs/frontend-architecture.md), [performance observations](docs/performance.md)
 - [Geospatial architecture](docs/geospatial-architecture.md), [schema/ER diagram](docs/database-schema.md)
 - [Spatial API and examples](docs/api.md), [dataset provenance](docs/data-sources.md)
-- [Actual M02 commands, results, failures and acceptance](docs/verification.md)
-- [Preserved M01 verification](docs/verification-m01.md)
+- [Actual M03 commands, results, failures and acceptance](docs/verification.md)
+- [Preserved M02 verification](docs/verification-m02.md), [M01 verification](docs/verification-m01.md)
 
 This is a local development stack using production builds. Shared deployment
 requires role separation, authentication, TLS, managed secrets and tested
@@ -180,4 +208,28 @@ blank configuration disables creation. Other spatial endpoints are read-only
 or geometry calculations. This is a local development gate, not user identity.
 Keep the loopback bindings; shared deployment requires the security work above.
 
-M02 stops at geospatial persistence and synthetic validation. M03 is not started.
+M03 stops at geographic visualization. M04 is not started.
+
+For a scoped public Cesium ion token, use the documented `CESIUM_ION_PUBLIC_TOKEN`
+runtime setting in ignored `.env`, recreate web and reload the viewer. No private
+server token belongs in that setting. Missing access explicitly blocks optional
+buildings/terrain while the local globe and PostGIS overlays remain usable.
+
+Rendering verification and optional local diagnostics:
+
+```sh
+CITY_DIAGNOSTICS_ENABLED=true make dev
+npm run test:browser
+uv run --locked python scripts/verify_city_performance.py
+```
+
+The performance command creates a clearly synthetic temporary 300-road dataset
+in actual PostGIS, uses the real browser/APIs, and removes only its own records
+in a finally block. It never resets normal volumes or converts the seed into a
+traffic simulation. Generated Cesium assets are copied at build/dev startup and
+stay outside Git. See the performance report for measured scope and limitations.
+
+The current stable Cesium engine needs a documented three-statement lifecycle
+patch. `npm ci` applies it using pinned patch-package; dev/build verify the exact
+patched source hash. Do not skip install scripts. See [ADR0011](docs/decisions/0011-cesium-lifecycle-patch.md)
+before upgrading Cesium or removing the patch.

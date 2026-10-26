@@ -1,0 +1,32 @@
+import os
+import pathlib
+import signal
+import subprocess
+import time
+import urllib.request
+
+root=pathlib.Path('/private/tmp/earthmind-m03-results')
+command=['npm','run','dev','--workspace','@earthmind/web','--','--hostname','127.0.0.1','--port','3300']
+print('Development command:',command,flush=True)
+with (root/'development-server.log').open('w') as log:
+    server=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,env={**os.environ,'CITY_DIAGNOSTICS_ENABLED':'true'})
+    try:
+        deadline=time.monotonic()+60
+        while time.monotonic()<deadline:
+            if server.poll() is not None:
+                raise RuntimeError(f'Development server stopped early: {server.returncode}')
+            try:
+                with urllib.request.urlopen('http://127.0.0.1:3300/api/health/live',timeout=2) as response:
+                    if response.status==200:break
+            except Exception:
+                time.sleep(.25)
+        else:raise RuntimeError('Development startup timed out')
+        subprocess.run(['node',str(root/'development-browser.mjs')],check=True)
+    finally:
+        if server.poll() is None:
+            os.killpg(server.pid,signal.SIGTERM)
+            try:server.wait(timeout=15)
+            except subprocess.TimeoutExpired:
+                os.killpg(server.pid,signal.SIGKILL)
+                server.wait(timeout=5)
+        print('Controlled development server shutdown:',server.returncode,flush=True)

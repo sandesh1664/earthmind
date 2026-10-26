@@ -1,0 +1,259 @@
+{
+  "domSamples": [
+    {
+      "documents": 2,
+      "nodes": 7050,
+      "jsEventListeners": 472
+    },
+    {
+      "documents": 2,
+      "nodes": 7105,
+      "jsEventListeners": 486
+    },
+    {
+      "documents": 2,
+      "nodes": 7160,
+      "jsEventListeners": 500
+    },
+    {
+      "documents": 2,
+      "nodes": 7215,
+      "jsEventListeners": 514
+    },
+    {
+      "documents": 2,
+      "nodes": 7270,
+      "jsEventListeners": 528
+    },
+    {
+      "documents": 2,
+      "nodes": 7325,
+      "jsEventListeners": 542
+    },
+    {
+      "documents": 2,
+      "nodes": 7380,
+      "jsEventListeners": 556
+    },
+    {
+      "documents": 2,
+      "nodes": 7435,
+      "jsEventListeners": 570
+    },
+    {
+      "documents": 2,
+      "nodes": 7490,
+      "jsEventListeners": 584
+    },
+    {
+      "documents": 2,
+      "nodes": 7545,
+      "jsEventListeners": 598
+    },
+    {
+      "documents": 2,
+      "nodes": 7600,
+      "jsEventListeners": 612
+    },
+    {
+      "documents": 2,
+      "nodes": 7655,
+      "jsEventListeners": 626
+    },
+    {
+      "documents": 2,
+      "nodes": 7710,
+      "jsEventListeners": 640
+    },
+    {
+      "documents": 2,
+      "nodes": 7765,
+      "jsEventListeners": 654
+    },
+    {
+      "documents": 2,
+      "nodes": 7821,
+      "jsEventListeners": 683
+    },
+    {
+      "documents": 2,
+      "nodes": 7875,
+      "jsEventListeners": 682
+    },
+    {
+      "documents": 2,
+      "nodes": 7930,
+      "jsEventListeners": 696
+    },
+    {
+      "documents": 2,
+      "nodes": 7985,
+      "jsEventListeners": 710
+    },
+    {
+      "documents": 2,
+      "nodes": 8040,
+      "jsEventListeners": 724
+    },
+    {
+      "documents": 2,
+      "nodes": 8095,
+      "jsEventListeners": 738
+    },
+    {
+      "documents": 2,
+      "nodes": 8150,
+      "jsEventListeners": 752
+    },
+    {
+      "documents": 2,
+      "nodes": 8205,
+      "jsEventListeners": 766
+    },
+    {
+      "documents": 2,
+      "nodes": 8260,
+      "jsEventListeners": 780
+    },
+    {
+      "documents": 2,
+      "nodes": 8315,
+      "jsEventListeners": 794
+    },
+    {
+      "documents": 2,
+      "nodes": 8370,
+      "jsEventListeners": 808
+    },
+    {
+      "documents": 2,
+      "nodes": 8425,
+      "jsEventListeners": 822
+    },
+    {
+      "documents": 2,
+      "nodes": 8480,
+      "jsEventListeners": 836
+    },
+    {
+      "documents": 2,
+      "nodes": 8535,
+      "jsEventListeners": 850
+    },
+    {
+      "documents": 2,
+      "nodes": 8590,
+      "jsEventListeners": 864
+    },
+    {
+      "documents": 2,
+      "nodes": 8645,
+      "jsEventListeners": 878
+    }
+  ],
+  "delayedPostUnmountJSHeapBytes": 25476040,
+  "dataset": "Temporary project-generated synthetic QA network in actual PostGIS; 300 nodes and 300 roads; not Dubai observations",
+  "cycles": 30,
+  "loadMs": [
+    4513,
+    2084,
+    2368,
+    2386,
+    1936,
+    1679,
+    2545,
+    2231,
+    2328,
+    2328,
+    2271,
+    2344,
+    2151,
+    2180,
+    1690,
+    2198,
+    1693,
+    1745,
+    2146,
+    2235,
+    2224,
+    2392,
+    2174,
+    1805,
+    2230,
+    1810,
+    2180,
+    2224,
+    2147,
+    2387
+  ],
+  "selectionMs": [
+    175,
+    165,
+    44,
+    33,
+    316,
+    565,
+    42,
+    44,
+    35,
+    44,
+    49,
+    43,
+    102,
+    41,
+    706,
+    39,
+    553,
+    643,
+    89,
+    36,
+    44,
+    44,
+    38,
+    678,
+    38,
+    640,
+    37,
+    43,
+    106,
+    40
+  ],
+  "postUnmountCollectedJSHeapBytes": [
+    22477312,
+    23063544,
+    23539792,
+    23811016,
+    24198424,
+    24432520,
+    24617536,
+    24681696,
+    25092772,
+    25250072,
+    25327200,
+    25396500,
+    25469476,
+    25534060,
+    26011400,
+    25756208,
+    25804184,
+    25969900,
+    26033980,
+    25982976,
+    26026352,
+    26181632,
+    26121332,
+    26314396,
+    26352200,
+    26462832,
+    26448288,
+    26496964,
+    26497952,
+    26638264
+  ],
+  "graphics": {
+    "api": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "errors": [],
+  "scope": "Local Chromium/diagnostics-enabled; JS heap excludes GPU allocations; thirty cycles are not a long-duration leak or production throughput benchmark"
+}

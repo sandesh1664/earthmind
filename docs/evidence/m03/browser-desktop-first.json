@@ -1,0 +1,292 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "tests/browser/city.spec.ts",
+      "--project=desktop"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../docs/evidence/m03/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "city.spec.ts",
+      "file": "city.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "M03 real Cesium globe, backend road picking, camera controls, layers and attribution",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 21611,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('selected-feature-id')\nExpected: \u001b[32m\"892cdfec-5d1c-5880-aa32-66ff680f1756\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByTestId('selected-feature-id') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('selected-feature-id')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('selected-feature-id')\nExpected: \u001b[32m\"892cdfec-5d1c-5880-aa32-66ff680f1756\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByTestId('selected-feature-id') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('selected-feature-id')\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:52:57",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                      "column": 57,
+                      "line": 52
+                    },
+                    "snippet": "  50 |   const y = Number(await scene.getAttribute(\"data-pick-y\"));\n  51 |   await page.mouse.click(rect.x+x, rect.y+y);\n> 52 |   await expect(page.getByTestId(\"selected-feature-id\")).toHaveText(backend.features[0]!.id);\n     |                                                         ^\n  53 |   await expect(page.getByTestId(\"selected-road-identifier\")).toHaveText(backend.features[0]!.properties.sumo_edge_id);\n  54 |   await expect(page.getByTestId(\"selected-road-lanes\")).toHaveText(String(backend.features[0]!.properties.lane_count));\n  55 |   await expect(page.getByTestId(\"selected-road-length\")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString(\"en\", {maximumFractionDigits:2}));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                        "column": 57,
+                        "line": 52
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('selected-feature-id')\nExpected: \u001b[32m\"892cdfec-5d1c-5880-aa32-66ff680f1756\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByTestId('selected-feature-id') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('selected-feature-id')\u001b[22m\n\n\n  50 |   const y = Number(await scene.getAttribute(\"data-pick-y\"));\n  51 |   await page.mouse.click(rect.x+x, rect.y+y);\n> 52 |   await expect(page.getByTestId(\"selected-feature-id\")).toHaveText(backend.features[0]!.id);\n     |                                                         ^\n  53 |   await expect(page.getByTestId(\"selected-road-identifier\")).toHaveText(backend.features[0]!.properties.sumo_edge_id);\n  54 |   await expect(page.getByTestId(\"selected-road-lanes\")).toHaveText(String(backend.features[0]!.properties.lane_count));\n  55 |   await expect(page.getByTestId(\"selected-road-length\")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString(\"en\", {maximumFractionDigits:2}));\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:52:57"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T21:59:32.431Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                    "column": 57,
+                    "line": 52
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-3b4c3e8332a9aaaeb33e",
+          "file": "city.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "M03 actual repeated navigation destroys the old viewer and restores one scene",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T21:59:54.588Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-209dd09e5884f7dfe1da",
+          "file": "city.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "M03 actual browser without WebGL shows a usable metadata fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1123,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T22:00:05.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-f65321978235e14ffce9",
+          "file": "city.spec.ts",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T21:59:32.207Z",
+    "duration": 34753.342000000004,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

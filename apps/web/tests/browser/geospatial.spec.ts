@@ -52,7 +52,7 @@ test("M02 real PostGIS fixture, network validation and provenance render without
       ),
     )
     .toBeGreaterThanOrEqual(180);
-  await expect(page.locator("footer")).toContainText("MILESTONE M02");
+  await expect(page.locator("footer")).toContainText("MILESTONE M03");
   await expect(page.getByTestId("network-node-count")).toHaveText("6");
   await expect(page.getByTestId("network-edge-count")).toHaveText("8");
   await expect(page.locator(".geo-validation")).toHaveText(/VALID/);
@@ -71,7 +71,7 @@ test("M02 real PostGIS fixture, network validation and provenance render without
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/m02/geospatial-${info.project.name}.png`,
+    path: `../../docs/evidence/m03/geospatial-${info.project.name}.png`,
     fullPage: true,
   });
   expect(errors).toEqual([]);

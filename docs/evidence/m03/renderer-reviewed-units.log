@@ -1,0 +1,16 @@
+✔ renderer adapters preserve longitude then latitude and calculate only degree bounds (0.887708ms)
+✔ renderer adapters reject unsupported dimensionality and invalid geographic positions (0.115292ms)
+✔ pick priority is deterministic for overlapping intersections, roads and buildings (0.093709ms)
+✔ building metadata copies only actual bounded primitive values and excludes credential keys (0.107459ms)
+✔ async native resources cannot be adopted after a toggle or disposal (0.063292ms)
+✔ strict-mode cleanup prevents stale import initialization while allowing a fresh mount (0.031208ms)
+✔ Dubai reference presets are geographic cameras rather than study boundaries (0.036917ms)
+✔ building identifiers preserve OSM element namespaces and opaque local fallbacks (0.050291ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.891542

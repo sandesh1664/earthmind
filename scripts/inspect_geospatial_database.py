@@ -1,5 +1,6 @@
 """Record real schema/index/fixture observations; small-fixture plans are not benchmarks."""
 
+import argparse
 import json
 from collections.abc import Callable
 from pathlib import Path
@@ -38,6 +39,11 @@ def index_names(node: dict[str, Any]) -> set[str]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--output", type=Path, default=Path("docs/evidence/m02/postgis-inspection.json")
+    )
+    arguments = parser.parse_args()
     with psycopg.connect(database_url(), connect_timeout=3) as connection:
         version = connection.execute("SELECT version(),PostGIS_Full_Version()").fetchone()
         tables = [
@@ -125,7 +131,7 @@ def main() -> None:
             "fixture": {"area_km2": fixture[0], "geometry": fixture[1], "centroid": fixture[2]},
             "plans": plans,
         }
-    destination = Path("docs/evidence/m02/postgis-inspection.json")
+    destination = arguments.output
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(result, indent=2) + "\n")
     print(

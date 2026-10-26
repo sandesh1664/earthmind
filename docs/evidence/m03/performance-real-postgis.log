@@ -1,0 +1,11 @@
+Error: No tests found
+
+Removed only temporary QA network/nodes/roads/region/source; M02 fixture preserved
+Traceback (most recent call last):
+  File "/Users/redmug/EARTHMIND/scripts/verify_city_performance.py", line 184, in <module>
+    main()
+  File "/Users/redmug/EARTHMIND/scripts/verify_city_performance.py", line 178, in main
+    result.check_returncode()
+  File "/Users/redmug/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 502, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['npx', 'playwright', 'test', '--config', 'playwright.performance.config.ts']' returned non-zero exit status 1.

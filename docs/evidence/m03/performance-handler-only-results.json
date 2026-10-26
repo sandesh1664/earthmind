@@ -1,0 +1,186 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance.config.ts"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.performance.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/performance",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../docs/evidence/m03/performance-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "city.performance.ts",
+      "file": "city.performance.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual 300-road PostGIS display, selection and repeated viewer cleanup",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 124444,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m25\u001b[39m\nReceived:   \u001b[31m495\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m25\u001b[39m\nReceived:   \u001b[31m495\u001b[39m\n    at /Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts:72:105",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts",
+                      "column": 105,
+                      "line": 72
+                    },
+                    "snippet": "  70 |   expect(steadyHeap).toHaveLength(10);\n  71 |   expect(Math.max(...steadyHeap)-Math.min(...steadyHeap)).toBeLessThan(1024*1024);\n> 72 |   expect(Math.max(...steadyDOM.map(value=>value.nodes))-Math.min(...steadyDOM.map(value=>value.nodes))).toBeLessThan(25);\n     |                                                                                                         ^\n  73 |   expect(Math.max(...steadyDOM.map(value=>value.jsEventListeners))-Math.min(...steadyDOM.map(value=>value.jsEventListeners))).toBeLessThan(10);\n  74 |   expect(selectionMs.every(value=>value<5000)).toBe(true);\n  75 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts",
+                        "column": 105,
+                        "line": 72
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m25\u001b[39m\nReceived:   \u001b[31m495\u001b[39m\n\n  70 |   expect(steadyHeap).toHaveLength(10);\n  71 |   expect(Math.max(...steadyHeap)-Math.min(...steadyHeap)).toBeLessThan(1024*1024);\n> 72 |   expect(Math.max(...steadyDOM.map(value=>value.nodes))-Math.min(...steadyDOM.map(value=>value.nodes))).toBeLessThan(25);\n     |                                                                                                         ^\n  73 |   expect(Math.max(...steadyDOM.map(value=>value.jsEventListeners))-Math.min(...steadyDOM.map(value=>value.jsEventListeners))).toBeLessThan(10);\n  74 |   expect(selectionMs.every(value=>value<5000)).toBe(true);\n  75 | });\n    at /Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts:72:105"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T22:27:28.932Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city.performance.ts-actual-c2ab1-and-repeated-viewer-cleanup/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city.performance.ts-actual-c2ab1-and-repeated-viewer-cleanup/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/performance/city.performance.ts",
+                    "column": 105,
+                    "line": 72
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "2f90eef6095374724ba5-78e7d9194c30fb94026c",
+          "file": "city.performance.ts",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T22:27:28.682Z",
+    "duration": 126758.12000000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

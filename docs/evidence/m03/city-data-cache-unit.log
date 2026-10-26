@@ -1,0 +1,31 @@
+✔ city road adapters retain actual inspector fields and strip private metadata (1.934084ms)
+✔ road schemas reject wrong geometry, invalid ranges, empty extent and nonfinite values (0.401ms)
+✔ absent node signal metadata stays absent instead of becoming a fabricated false (0.3065ms)
+✔ map bbox clips the camera to a region without computing metric geometry (0.618458ms)
+✔ camera requests reject invalid, wrapping, excessive or sub-precision extents (0.090208ms)
+✔ equivalent camera extents generate stable quantized request bounds (0.049292ms)
+✔ fetches real-contract roads through the same-origin proxy with bounded bbox and pagination (21.839833ms)
+✔ pagination stops after 500 features and reports remaining data explicitly (4.94975ms)
+✔ aggregate coordinate budget truncates before loading another page (13.662375ms)
+✔ inconsistent counts, offsets, empty pages and duplicate identifiers fail visibly (0.893042ms)
+✔ network changes during pagination reject mixed snapshots (1.865208ms)
+✔ features from a different network cannot enter the selected scene (0.181542ms)
+✔ intersection loads preserve known signal status and synthetic identity (0.208292ms)
+✔ aborted queries never start a request or return a stale successful result (0.171333ms)
+✔ a region/network change cancels the next pagination response before parsing (0.719458ms)
+✔ oversized declared and streaming JSON responses are rejected with a display-budget message (0.712834ms)
+✔ non-JSON, invalid geometry, missing resources and service failures stay explicit (0.330666ms)
+✔ region catalogs paginate within the same 500-item budget (3.4725ms)
+✔ network registry rejects another region and missing boundary identity (0.8935ms)
+✔ backward-compatible proxy allowlist retains inspector fields without private source credentials (1.096917ms)
+✔ camera or region query replacement aborts obsolete work and late responses cannot overwrite current data (4.18175ms)
+✔ browser request cancellation propagates through the read-only Next proxy to FastAPI fetch (0.321458ms)
+✔ inactive camera viewports are garbage-collected while the active viewport retains its fresh shared cache (11.602709ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 229.604125

@@ -1,0 +1,110 @@
+[
+  {
+    "traced": false,
+    "samples": [
+      {
+        "cycle": 1,
+        "documents": 2,
+        "nodes": 924,
+        "jsEventListeners": 379,
+        "usedSize": 20907092
+      },
+      {
+        "cycle": 2,
+        "documents": 2,
+        "nodes": 928,
+        "jsEventListeners": 383,
+        "usedSize": 21513392
+      },
+      {
+        "cycle": 3,
+        "documents": 2,
+        "nodes": 932,
+        "jsEventListeners": 387,
+        "usedSize": 21980548
+      },
+      {
+        "cycle": 4,
+        "documents": 2,
+        "nodes": 936,
+        "jsEventListeners": 391,
+        "usedSize": 22180468
+      },
+      {
+        "cycle": 5,
+        "documents": 2,
+        "nodes": 940,
+        "jsEventListeners": 395,
+        "usedSize": 22490600
+      },
+      {
+        "cycle": 6,
+        "documents": 2,
+        "nodes": 944,
+        "jsEventListeners": 399,
+        "usedSize": 22649612
+      },
+      {
+        "cycle": 7,
+        "documents": 2,
+        "nodes": 948,
+        "jsEventListeners": 403,
+        "usedSize": 22764400
+      }
+    ]
+  },
+  {
+    "traced": true,
+    "samples": [
+      {
+        "cycle": 1,
+        "documents": 2,
+        "nodes": 2647,
+        "jsEventListeners": 386,
+        "usedSize": 21213664
+      },
+      {
+        "cycle": 2,
+        "documents": 2,
+        "nodes": 2702,
+        "jsEventListeners": 394,
+        "usedSize": 21813856
+      },
+      {
+        "cycle": 3,
+        "documents": 2,
+        "nodes": 2757,
+        "jsEventListeners": 402,
+        "usedSize": 22198884
+      },
+      {
+        "cycle": 4,
+        "documents": 2,
+        "nodes": 2812,
+        "jsEventListeners": 410,
+        "usedSize": 22455492
+      },
+      {
+        "cycle": 5,
+        "documents": 2,
+        "nodes": 2867,
+        "jsEventListeners": 418,
+        "usedSize": 22762904
+      },
+      {
+        "cycle": 6,
+        "documents": 2,
+        "nodes": 2922,
+        "jsEventListeners": 426,
+        "usedSize": 22929748
+      },
+      {
+        "cycle": 7,
+        "documents": 2,
+        "nodes": 2977,
+        "jsEventListeners": 434,
+        "usedSize": 23052540
+      }
+    ]
+  }
+]

@@ -1,285 +1,294 @@
-# M02 verification — 2026-10-26
+# M03 verification — 2026-10-27
 
-This is the M02 implementation and audit record for `/Users/redmug/EARTHMIND`,
-branch `codex/m02-geospatial`, extending clean M01 commit
-`ff043bcb47c80ff66e2d5ddd1092ed1466571a26`. The
-[preserved M01 report](verification-m01.md) and its evidence are unchanged
-historical records. All times here use Asia/Dubai (UTC+04:00).
+This is the actual M03 implementation/audit record for `/Users/redmug/EARTHMIND`,
+branch `codex/m03-digital-twin`, extending independently inspected clean M02
+commit `60df3cd43e424d004c2dae20858d472430f3b938`. Times use Asia/Dubai (UTC+04).
+[Preserved M02 report](verification-m02.md), [M01 report](verification-m01.md)
+and their historical evidence remain unchanged. No M04 work or remote push is
+included. The main database and user environment were preserved.
 
-The M01 repository, instructions, routes, settings/engine/base, migrations,
-Compose, frontend, locks and verification evidence were independently inspected
-before major changes. Actual `make smoke` passed at the M01 baseline, including
-HTTP/queue/worker and a real SUMO fixture; [baseline output](evidence/m02/m01-baseline-smoke.log).
-No main development volume was reset and no M01 table or test was removed.
+## Environment, scope and independently verified baseline
 
-## Environment and compatibility
+Read AGENTS, tree/Git status, previous reports, frontend/config/locks, API
+conventions, spatial models/fixtures/endpoints and Compose before changing source.
+Actual baseline `make lint typecheck test build smoke` and 38 live PostGIS tests
+passed; [baseline](evidence/m03/baseline.log),
+[database](evidence/m03/baseline-database.log). The baseline had 67 Python / 28
+frontend tests. The final diff does not change the backend, frozen migrations,
+contracts, worker, uv.lock or M01/M02 evidence. No competing ORM/engine/database
+was added. The same 14 M02 spatial endpoints and published synthetic fixture are
+reused; no new schema migration was needed. The inspection script now accepts an explicit
+output path, so M03 reruns preserve historical M02 measurement evidence.
 
-Host macOS/darwin ARM64; Docker Engine 29.9.1 linux/aarch64, Compose v5.6.0;
-host Node 26.0.0/npm 11.12.1/uv 0.11.12. Project Python remains constrained to
-3.12: actual host 3.12.13, container 3.12.15; no Python 3.14 compatibility claim.
-The web container uses Node 22.23.4. Locked GeoAlchemy2, Shapely, pyproj and
-NetworkX install and execute successfully in the ARM64 Python 3.12 image.
-PostgreSQL is 17.11, PostGIS is 3.6.4 with GEOS/PROJ support; complete version
-strings appear in [actual SQL inspection](evidence/m02/postgis-inspection.json).
+Host: macOS26.5.1 ARM64, Node26.0.0/npm11.12.1/uv0.11.12, Python3.12.13.
+Docker29.9.1/Compose5.6.0 native linux/aarch64, web Node22.23.4, Python3.12.15,
+PostgreSQL17.11/PostGIS3.6.4 and SUMO1.15.0. All final service images are ARM64.
+M01's digest-pinned custom native PostGIS build is preserved because the chosen
+upstream image lacks ARM64. No AMD64 emulation or Python3.14 assumption is used.
+Services remain loopback web3000/API8000/DB**5434**, Redis unpublished.
 
-All final service images were verified linux/arm64 against the native engine;
-[architecture output](evidence/m02/native-architecture.log). M01's digest-pinned
-custom ARM64 PostGIS build is retained because its selected upstream image lacks
-ARM64. Native SUMO/netconvert 1.15.0 remains working. No AMD64 emulation was used.
-Image names retain `:m01` to preserve existing local image conventions; rebuilt
-API/web/worker images contain the final M02 source. Default host ports remain
-loopback web 3000, API 8000 and PostgreSQL **5434**; Redis is unpublished.
+Next16.4.3/React19.3.1/strict TypeScript/Tailwind/TanStack Query/Zod/Lucide remain
+the existing stack. New CesiumJS**1.146.0** is exact-locked; registry compatibility
+requires Node>=22. It resolves engine26.4.0/widgets16.3.0/core0.1.0. Pinned
+patch-package8.0.1 applies the documented three-statement lifecycle repair.
+Clean npm installs, build-time exact-source SHA guard, native Docker production
+build and actual browser execution verify compatibility. React Hook Form is not
+added: selectors/buttons perform read-only inspection and need no form workflow.
 
-## Implemented requirements and acceptance
+## Acceptance — final independently executable result
 
-| Requirement | Status | Evidence / scope |
+| Requirement | Status | Evidence / limit |
 | --- | --- | --- |
-| Preserve working M01 foundation and single ORM/engine/settings | PASS | Baseline smoke, unchanged contracts, full regression suite |
-| Thirteen required M02 tables, UUID/UTC/JSONB, explicit constraints | PASS | Live catalog inspection; 30 persistence integration cases |
-| PostGIS geometry types, validity/range/2D/SRID and GiST indexes | PASS | Four EPSG:4326 columns; actual index queries and DB rejection tests |
-| Metric area/length/distance and longitude/latitude GeoJSON | PASS | PostGIS geography, independent pyproj area, geometry units/live API |
-| Explicit graph endpoints, same-network references and immutable publication | PASS | Composite FKs, row locks, triggers and real DB mutation rejection |
-| Scenario/demand consistency, strict run/timestamps, finite metrics | PASS | Database constraints/triggers; regressions pass after additive 0004 |
-| Synthetic Dubai study region and >=6-node/8-edge graph | PASS | Actual persisted IDs/counts; stable synthetic provisional identifiers |
-| Idempotent seed, source attribution/license/version/checksum | PASS | First seed created; repeats false; synthetic demand/scenario/intervention fixtures only |
-| Fourteen typed REST endpoints, safe errors, pagination and write gate | PASS | Seven live API test functions exercise every route and rejection cases |
-| Bbox/polygon/nearby filters and bounded processing/serialization | PASS | Real indexed queries, API limits, streaming-body tests, aggregate coordinate preflight |
-| VALID/WARN/INVALID/NOT_VALIDATED network validation | PASS | Explicit weak topology, meter tolerance, null unknown counts, structured tests |
-| Responsive real-data Geospatial Data dashboard | PASS | 15 browser cases across desktop/tablet/mobile; screenshots and live backend |
-| Fresh M01 upgrade, repeat migration, schema comparison, safe downgrade | PASS | Isolated rehearsal; legacy sentinel retained, empty downgrade works, populated downgrade refused |
-| M01 health/queue/worker/SUMO/build regressions | PASS | Final smoke, unit/browser checks and actual dependency outage/recovery |
-| Locked lint/types/test/build | PASS | Local commands below |
-| Final hooks, staged secret review and source whitespace | PASS | Six hooks passed; actual staged127 files checked;2 configured secrets absent; no keys/caches/archives/>2MB files |
-| Required documentation and architecture decision | PASS | Schema/ER, architecture, API, sources, README, AGENTS, security, ADR 0009 |
-| Hosted GitHub Actions execution | NOT RUN | Workflow parsed locally; no remote push or hosted execution authorized |
-| Physical-device browser testing / production load benchmark | NOT RUN | Chromium viewports and eight-edge fixture only |
-| Shared/public deployment identity, TLS, least-privilege roles, backups | NOT RUN | Explicit development boundary; outside M02's loopback-only option |
+| Preserve M01/M02 tests and deployed services | PASS | Baseline plus final67 Python units,38 database cases, original browser checks, queue/SUMO and outage recovery |
+| Browser-only real Cesium globe; no SSR errors | PASS | Lazy ssr:false import, correct base URL, native WebGL2 browser tests and production build |
+| Static Workers/ThirdParty/Assets/Widgets and notices | PASS | Exact-package copy; real worker traffic; HTTP/MIME/SHA comparisons for JS/WASM/XML/CSS/license |
+| Dubai overview, Downtown, Business Bay, region/road focus | PASS | Actual camera pose/settlement tests, reset/zoom/top-down/perspective; no simulation needed |
+| Real stored region boundary/fill/outline/centroid | PASS | Existing GeoJSON, holes/coordinate validation, backend metric area/bounds |
+| PostGIS roads/intersections and network version selection | PASS | Existing API/bbox/pagination;6 nodes / 8 roads plus300-road QA profile; stale responses guarded |
+| Typed bounded cancellable camera-based requests | PASS | Zod,100-page/500-feature/25k-position caps, viewport debounce, extent clipping, abort propagation, inactive cache eviction |
+| Deterministic native picking and correct inspector | PASS | Actual canvas click; selected ID/UUID/lane/length match API; intersection>road>building priority |
+| Working available map controls | PASS | Native scene visibility for region/roads/nodes/imagery/highlight/centroid; camera controls; unavailable providers explicitly disabled |
+| Optional licensed ion buildings, imagery and terrain rendering | BLOCKED | No configured public token/entitlement; no claim of building coverage, live building picks or enabled-provider attribution verification |
+| Missing token handling and lawful local fallback | PASS | Packaged Natural Earth public-domain imagery/ellipsoid, no external default requests, usable overlays/cameras |
+| Attribution and data truthfulness | PASS | Visible native Cesium/Natural Earth credits and software notices; synthetic labels/actual source license; no traffic/AI claims |
+| Responsive desktop/tablet/mobile, keyboard controls | PASS | Three Chromium viewports, mobile selected-feature bottom sheet, tablet drawer, accessible lists; no horizontal overflow |
+| WebGL unavailable and error/empty/retry handling | PASS | Actual separate WebGL-disabled browser; real metadata remains usable; isolated UI/provider/query error tests |
+| Viewer lifecycle/Strict Mode/resource cleanup | PASS |3 actual dev remounts,9 functional lifecycle mount cycles; public context-loss checks;30-cycle memory/DOM/listener profile |
+| Responsive selection for hundreds of features | PASS | Actual300-road / 300-node ready scene;30 selections38–853 ms in this environment |
+| No sustained retained DOM/listener growth in measured run | PASS | All 30 post-unmount samples 2142 DOM nodes / 458 listeners; last 10 heap variation 294220 bytes; bounded evidence, not indefinite proof |
+| Lint/types/unit tests/production build/locked setup | PASS | Exact commands/output below, clean npm patch installs and native build |
+| Docker, migrations, worker and SUMO regression | PASS | Native startup; fresh/repeated migration checks; actual2 vehicle / 25 step runtime; final healthy services |
+| Security/licensing/reproducibility review | PASS | Allowlisted public config/proxy, scoped token policy, text rendering, dependency/context/Git scans; development limitations below |
+| Required documentation and architecture decisions | PASS | Cesium,3D scene,frontend,performance,security,README,AGENTS,ADRs0010/0011 and evidence |
+| Physical Apple GPU/Metal FPS, GPU memory, process RSS/long-run production load | NOT RUN | Chromium uses SwiftShader; no numerical hardware FPS or universal leak-free guarantee |
+| Hosted CI execution | NOT RUN | YAML checked locally only; no push/hosted run authorized |
+| Working-tree/staged review, secret/whitespace scans and hooks | PASS | Actual candidate/staged scans, source/staged whitespace and all 6 hooks passed; outputs below |
+| Focused local commit and clean status | PASS | Requested commit actually exited0 with 6 hooks passing; empty status observed, then evidence included by documentation amendment |
 
-No mandatory local M02 implementation requirement remains missing. The explicitly
-unexecuted checks above are not claimed as passes. Real OSM/RTA ingestion, SUMO
-network conversion, traffic execution, signal control, AI, Cesium and M03 are
-outside this milestone and were not implemented.
+All independently executable M03 implementation requirements are implemented.
+Optional-provider acceptance remains explicitly BLOCKED as permitted by the
+specification. A provider test double is not substituted for real licensed access.
 
-## Exact commands and actual results
+## Exact commands and actual output
 
-Commands below ran in `/Users/redmug/EARTHMIND`. The complete executed argv,
-working directory, timestamps, durations and exits (including staged-source
-supplementary checks) are in [commands.jsonl](evidence/m02/commands.jsonl).
-The runner itself is retained as [run_check.py.txt](evidence/m02/run_check.py.txt).
-Normal `make test` deliberately deselects integration; actual PostGIS tests ran
-separately. A successful Docker build is not used as a substitute for live tests.
+Commands ran in the target repository unless the complete record specifies the
+writable temporary staging tree. [commands.jsonl](evidence/m03/commands.jsonl)
+contains actual argv, cwd, start time, duration, exit and output filename,
+including failed/supplementary iterations. [runner](evidence/m03/run_check.py.txt)
+records outputs without inventing statuses. Some diagnostics were manual;
+retained sources/JSON identify their limited scope. Normal pytest deselects live
+integration; the actual 38 cases were run separately. Expected downgrade-refusal
+child errors belong to a checked overall successful rehearsal.
 
-| Dubai time | Exact command | Exit | Status | Actual result / output |
+| Dubai time | Exact command | Exit | Status | Actual result |
 | --- | --- | --- | --- | --- |
-| 22:18:53 | `make setup` | 0 | PASS | Locked workspace installs, generated missing server token without replacing credentials, hooks installed. [setup](evidence/m02/setup.log) |
-| 22:32:54 | `docker compose build` | 0 | PASS | Native images rebuilt with additive integrity migration and spatial index fix. [rebuild-integrity](evidence/m02/rebuild-integrity.log) |
-| 22:34:40 | `make migrate` | 0 | PASS | Main database advanced to 0004_run_state_integrity; M01 retained. [migrate-integrity](evidence/m02/migrate-integrity.log) |
-| 22:26:13 | `make seed` | 0 | PASS | Created synthetic region/network: 6 nodes and 8 edges. [seed-first](evidence/m02/seed-first.log) |
-| 22:49:02 | `make lint typecheck test build` | 0 | PASS | 67 Python unit tests; 28 frontend tests; mypy 40 files; Ruff/ESLint/tsc and production Next build passed. [final-quality-verified](evidence/m02/final-quality-verified.log) |
-| 22:49:19 | `uv run --locked python scripts/database_checks.py` | 0 | PASS | 38 actual PostGIS tests passed: 30 persistence, 7 spatial API and 1 M01 session test. [final-database-integration](evidence/m02/final-database-integration.log) |
-| 22:47:52 | `make dev` | 0 | PASS | All services healthy; repeat seed created=false; real M01 and M02 smokes passed. [final-dev](evidence/m02/final-dev.log) |
-| 22:49:18 | `uv run --locked python scripts/verify_migrations.py` | 0 | PASS | Fresh M01->head, legacy-row retention, repeated upgrade/check, empty downgrade/re-upgrade, idempotent seed and populated downgrade refusal. [final-migration-rehearsal](evidence/m02/final-migration-rehearsal.log) |
-| 22:49:19 | `uv run --locked python scripts/inspect_geospatial_database.py` | 0 | PASS | 13 M02 tables, 4 spatial columns, actual bbox/geography indexed executions. [final-postgis-inspection](evidence/m02/final-postgis-inspection.log) |
-| 22:44:46 | `npm run test:browser` | 0 | PASS | 15 passed: 6 real deployment cases, 9 explicitly mocked UI-state cases across 3 viewports. [final-browser](evidence/m02/final-browser.log) |
-| 22:41:53 | `uv run --locked python scripts/failure_smoke.py` | 0 | PASS | Worker, Redis, DB outages produced readiness503; liveness200; restoration passed. [failure-recovery](evidence/m02/failure-recovery.log) |
-| 22:45:58 | `uv run --locked python infra/verification/check_build_context.py` | 0 | PASS | Five synthetic environment fixtures excluded from actual Docker contexts. [context-isolation](evidence/m02/context-isolation.log) |
-| 22:46:00 | `uv run --locked python scripts/check_architecture.py` | 0 | PASS | Every service image linux/arm64; engine aarch64. [native-architecture](evidence/m02/native-architecture.log) |
-| 22:37:13 | `npm audit --json` | 0 | PASS | Zero known npm advisory findings. [npm-audit](evidence/m02/npm-audit.log) |
-| 22:49:42 | `make migrate` | 0 | PASS | Repeated main upgrade succeeded at 0004; data preserved. [final-migrate](evidence/m02/final-migrate.log) |
-| 22:49:39 | `make smoke` | 0 | PASS | Actual final M01 SUMO/queue and M02 spatial/web/PostGIS/write-gate checks passed. [final-smoke](evidence/m02/final-smoke.log) |
-| 22:49:45 | `docker compose ps --all` | 0 | PASS | Five healthy long-running services; migration exited0; loopback ports. [final-services](evidence/m02/final-services.log) |
+| 01:46:35 | `make lint typecheck test build smoke` | 0 | PASS | Independent M01/M02 lint/types/unit/build and deployed queue/SUMO/PostGIS smoke. [output](evidence/m03/baseline.log) |
+| 01:49:11 | `uv run --locked python scripts/database_checks.py` | 0 | PASS | 38 actual PostGIS integration tests passed before modifications. [output](evidence/m03/baseline-database.log) |
+| 02:54:26 | `make setup` | 0 | PASS | Preserved existing config; locked uv/npm install; exact SDK patch applied; hooks installed. [output](evidence/m03/final-setup.log) |
+| 02:43:38 | `npm ci` | 0 | PASS | Clean staged npm install applies the pinned engine patch. [output](evidence/m03/patched-clean-install.log) |
+| 02:44:35 | `npm ci` | 0 | PASS | Clean target npm install applies the same pinned engine patch. [output](evidence/m03/patched-target-install.log) |
+| 02:57:23 | `make lint typecheck test build` | 0 | PASS | 67 Python units; 81 frontend tests; strict mypy 42 files, tsc, Ruff, ESLint and standalone build passed after final output-path fix. [output](evidence/m03/final-quality-complete.log) |
+| 02:48:09 | `env CITY_DIAGNOSTICS_ENABLED=true make dev` | 0 | PASS | Native ARM64 images built/started, migration head0004, seed created=false, actual API/SUMO/spatial/asset smokes passed. [output](evidence/m03/final-dev.log) |
+| 02:49:37 | `uv run --locked python scripts/database_checks.py` | 0 | PASS | 38 selected actual database tests passed:30 persistence, 7 spatial API, 1 M01 session integration; 54 deselected. [output](evidence/m03/final-db-regression.log) |
+| 02:01:50 | `uv run --locked python scripts/verify_migrations.py` | 0 | PASS | Fresh isolated M01->M02 upgrade, sentinel retention, repeat/check, empty downgrade/re-upgrade, populated destructive downgrade refusal. [output](evidence/m03/migration-regression.log) |
+| 02:49:34 | `python3 /private/tmp/earthmind-m03-results/verify-development.py` | 0 | PASS | Actual Next development/Strict Mode server at3300;3 navigation/remount cycles, one live canvas/zero after unmount, workers loaded, no page errors; server stopped. [output](evidence/m03/final-development.log) |
+| 02:52:37 | `npm run test:browser` | 0 | PASS | 24 Chromium cases passed across desktop/tablet/mobile with no DB/outage checks running concurrently. [output](evidence/m03/final-browser-isolated.log) |
+| 02:46:03 | `uv run --locked python scripts/verify_city_performance.py` | 0 | PASS | 30 actual 300-road mount/selection/unmount cycles; final stability gates passed and owned QA rows cleaned. [output](evidence/m03/performance-patched.log) |
+| 02:53:47 | `uv run --locked python scripts/failure_smoke.py` | 0 | PASS | Stopped worker, Redis and DB separately; readiness503/liveness200 and recovery verified; services restored. [output](evidence/m03/failure-recovery.log) |
+| 02:54:01 | `make migrate` | 0 | PASS | Repeated upgrade succeeds at0004_run_state_integrity; existing data retained. [output](evidence/m03/final-migrate.log) |
+| 02:54:03 | `make smoke` | 0 | PASS | Actual web/API/PostGIS/queue/SUMO and M02 spatial smoke plus byte-matched Cesium assets/config. [output](evidence/m03/final-smoke.log) |
+| 02:54:04 | `uv run --locked python scripts/check_architecture.py` | 0 | PASS | Native engine aarch64; every service image linux/arm64, no AMD64 emulation. [output](evidence/m03/native-architecture.log) |
+| 02:57:22 | `uv run --locked python scripts/inspect_geospatial_database.py --output docs/evidence/m03/postgis-inspection.json` | 0 | PASS | Actual schema/spatial columns and indexed bbox/geography plans retained under M03; historical M02 evidence preserved. [output](evidence/m03/final-inspection-output.log) |
+| 02:54:05 | `uv run --locked python infra/verification/check_build_context.py` | 0 | PASS | Five synthetic environment fixtures excluded from real Docker contexts. [output](evidence/m03/context-isolation.log) |
+| 02:54:05 | `docker compose ps --all` | 0 | PASS | Five long-running services healthy; migration exited0; DB loopback5434; Redis unpublished. [output](evidence/m03/final-services.log) |
+| 02:54:42 | `uv run --locked python /private/tmp/earthmind-m03-results/verify-final-data.py` | 0 | PASS | Zero QA region/network/source records remain; original M02 fixture retains6 nodes / 8 roads. [output](evidence/m03/final-data.log) |
+| 02:49:36 | `npm audit --json` | 0 | PASS | Zero known npm vulnerabilities including the new Cesium/patch tooling. [output](evidence/m03/final-advisories.log) |
+| 02:54:01 | `Pinned pip-audit argv below` | 0 | PASS | 64 installed distributions inventoried:61 public distributions audited without known findings;3 local packages skipped. [output](evidence/m03/python-advisories.log) |
+| 02:14:01 | `Inline YAML inspection argv in commands.jsonl` | 0 | PASS | Workflow parsed locally; native ARM runner, read-only permissions and diagnostics/performance sequencing checked. [output](evidence/m03/ci-syntax.log) |
 
-`make lint` includes lock consistency, canonical M01 contract parity, Ruff and
-formatting, ESLint, mypy and TypeScript; explicit `make typecheck` also ran.
-The updated native ARM64 CI YAML was parsed and its permissions/inspection step
-asserted locally: [output](evidence/m02/ci-syntax.log), exact inline Python argv
-in commands.jsonl. Hosted CI remains NOT RUN.
-
-Pinned Python advisory command (actual target environment, no dependency changes):
+Python advisory command (exit0; no dependency edits):
 
 ```sh
-UV_CACHE_DIR=/private/tmp/earthmind-m02-uv-cache uvx --python 3.12 --from pip-audit==2.10.1 pip-audit --path /Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages --format json --progress-spinner off --timeout 15 --cache-dir /private/tmp/earthmind-m02-pip-audit-cache
+UV_CACHE_DIR=/private/tmp/earthmind-m03-uv-cache uvx --python 3.12 --from pip-audit==2.10.1 pip-audit --path /Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages --format json --progress-spinner off --timeout 15 --cache-dir /private/tmp/earthmind-m03-pip-audit-cache
 ```
 
-Exit0: all 64 installed distributions accounted for, 61 public packages audited,
-zero known findings; 3 unpublished EARTHMIND packages skipped. Actual inventory
-was unchanged. [Summary](evidence/m02/python-advisories.summary.json),
-[result/command](evidence/m02/python-advisories.result.json),
-[raw advisory JSON](evidence/m02/python-advisories.json). This excludes private
-package contents, application logic and native OS/PostGIS/SUMO libraries.
+The 3 unpublished EARTHMIND packages are skipped by the public advisory service,
+not silently audited. Native operating-system packages/application logic are not
+covered by npm/pip advisory scans. An existing transitive ESLint9.39.5 reports an upstream
+support deprecation during install; this is retained and has no reported advisory
+finding in the actual scan. Transitive apt repositories remain live, so permanent
+byte-identical system-image reproduction is not claimed.
 
-## Database and API observations
+## Browser and visual evidence
 
-Executed `SELECT PostGIS_Version();` and
-`SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename;`
-against real PostGIS (database_checks.py and inspection script). The JSON
-inspection records full versions, the complete actual public table list, geometry
-columns and index definitions. Required M02 tables are users, regions,
-data_sources, network_versions, road_edges, intersections, demand_profiles,
-scenarios, scenario_interventions, simulation_runs, run_metrics, run_artifacts
-and audit_events; M01 system_metadata remains schema1 and migration head is0004.
+Final isolated result: **24 passed** in 63.83 s overall command time. Chromium
+viewports: desktop1440×1000, tablet820×1180, mobile390×844. Fifteen cases use real
+services:9 M03 (native scene/canvas picking, lifecycle and actual WebGL-disabled
+fallback across 3 viewports) plus 6 existing M01/M02 deployment checks. The other 9
+legacy cases explicitly mock isolated empty/error/retry UI states; they are not
+claimed as actual service outages. Separate failure_smoke.py verifies real
+worker/Redis/database outages and recovery.
 
-The database suite covers stored geometry, metric queries, invalid SRID/range/
-empty/type/vertices, NaN/infinity, foreign keys/duplicates, restricted deletion,
-transaction rollback, publication immutability, scenario consistency, audit-key
-guards and run-state/timestamp integrity. API cases run in-process FastAPI with
-an actual PostGIS session/transaction; they are not an HTTP substitute for the
-separate deployed smoke. They cover all14 routes, authorized201, missing/wrong
-token403, conflict409, missing404, invalid422, body413 in security units,
-pagination/empty/boundary cases, private provenance filtering, bbox/polygon
-bounds, true meter distances, index eligibility and null budget counts. The new
-aggregate-coordinate budget case also traps any attempted shape materialization.
-All test mutations use rollback; the main fixture remains stable.
+The native canvas pick uses a plain projected diagnostic coordinate, never a
+native Viewer exposed globally. The inspector ID/lanes/rounded length is compared
+with the actual network API. Real worker requests resolve, no forbidden external
+default requests occur, layer visibility changes real primitives, credit/legend
+rectangles do not overlap, and console/page error arrays are empty in the final
+isolated run. Picking diagnostics are explicitly opt-in; default remains false.
 
-Alembic `check` reported no new upgrade operations. Isolated verification begins
-without the PostGIS extension, establishes M01 and a sentinel row, upgrades to
-M02, tests an empty downgrade and upgrade, seeds twice, then verifies that a
-populated downgrade fails before dropping research data. That child nonzero
-exit is expected and checked; the overall verification exits0. Only the isolated
-`earthmind-m02-verification` fixture volumes are removed, never the main volumes.
+Actual screenshots: [City desktop](evidence/m03/city-desktop.png),
+[tablet](evidence/m03/city-tablet.png), [mobile](evidence/m03/city-mobile.png),
+[no-WebGL fallback](evidence/m03/webgl-fallback-desktop.png),
+[300-road profile](evidence/m03/benchmark-300-roads.png).
+The close-range packaged Natural Earth texture is intentionally low-resolution;
+these are screenshots of synthetic geographic overlays, not rendered real Dubai
+building coverage. View the JSON screenshots/report alongside their actual tests.
 
-## Actual synthetic fixture and topology result
+## Architecture, data and lifecycle decisions
 
-Region `8d31afa3-5d52-59b5-a8bc-691b5867dfcb`, slug `dubai-downtown-demo`:
-Downtown Dubai — Synthetic Study Region. Network
-`22f68ce8-9247-5425-8342-827d86517ead`, version `synthetic-v1`, published.
-The first source collection timestamp is an actual seed time, not an invented
-observation date. Boundary/graph are project-generated and illustrative.
+React owns controls, query state and plain typed feature selection. A dedicated
+mount-scoped controller owns Viewer/native camera/resources; Cesium modules load
+only after setting `/cesium/` as the base URL. Rendering uses batched ground
+polylines, point collections with zoom visibility, validated region entities and
+separate highlights. Request-render mode and stable geometry updates avoid
+rebuilding the network for ordinary React changes. API/GeoJSON remains EPSG4326,
+longitude/latitude; area comes from PostGIS geography, not degree arithmetic.
 
-- Bounds `[55.2685,25.19,55.2805,25.2]`; representative geographic centroid
-  `[55.2745,25.195000053]` lies inside the boundary.
-- Database geodesic area `1.3398134937911033 km²`; independent pyproj result
-  `1.3398134937901496 km²`.
-- Six intersections/eight edges, mixed one-way metadata, one simulated signal,
-  deterministic provisional identifiers; no verified SUMO or street identities.
-- Fresh validation: VALID, 11 checks true, 1 weak component, 0 isolated nodes,
-  no errors/warnings, geography boundary tolerance5m.
-- Actual nearby query distance `20.15803569 m`; contains centroid=true and
-  `[0,0]`=false; unauthorized deployed region creation returned403.
-- License `LicenseRef-EARTHMIND-Proprietary-Synthetic`; original source and
-  network checksum preserved; no external source URL or real dataset claim.
+The M02 fixture is unchanged: region8d31afa3-5d52-59b5-a8bc-691b5867dfcb,
+network22f68ce8-9247-5425-8342-827d86517ead, synthetic-v1,6 nodes / 8 edges and
+1.3398134937911033 km². A stored signal flag is synthetic metadata, not an inferred
+or verified Dubai traffic light. All 300-road benchmark data is separately marked
+synthetic and removed by owned UUIDs in finally blocks. A final SQL check finds
+zero QA source/region/network rows and the original6/8 fixture intact.
 
-Actual GeoJSON examples are in [API docs](api.md); complete stored geometry is in
-[inspection JSON](evidence/m02/postgis-inspection.json). Synthetic demand,
-scenario and intervention rows are persistence fixtures with execution disabled.
-No simulation_runs or measured traffic metrics were seeded. The real SUMO
-regression still runs M01's separate two-vehicle/25-step fixture; those are
-synthetic runtime results, not M02 traffic-scenario output.
+Camera motion is measured through public position/direction/up/viewport samples;
+350 ms of actual stability precedes the separate350 ms spatial-query debounce.
+Mode changes orbit the picked ground center instead of rotating at the displaced
+camera position. Query budgets are per layer:500 features/25k positions,100 per page,
+4 MiB streaming client response and8 s per HTTP request; bbox clipped to one degree
+and region. This is not an8 s whole multi-page transaction deadline or a 4 MiB
+streaming Next upstream cap. The existing proxy/backend page/vertex/deadline
+bounds remain the server controls. Inactive viewport data has gcTime0.
 
-VALID_WITH_WARNINGS permits descriptive/weak-connectivity warnings;
-INVALID marks integrity errors. NOT_VALIDATED skips traversal when a feature or
-aggregate-coordinate budget is exceeded, returning actual node/edge counts and
-null components/isolates. It must not imply zero or successful connectivity.
-Topology validation never infers junctions from geometric crossings or proves
-real-world road accuracy.
+The observed terrain-grid cache retained destroyed buffers/WebGL canvases.
+A version-locked WeakMap patch corrects the 3 affected cache statements at install.
+Build/dev checks the exact patched SHA256
+`8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c`.
+Public input-handler destruction, owned credit stylesheet removal, Viewer
+teardown and optional owned context loss complete application cleanup. No live
+private-cache mutation or DOM.disable workaround is used. See
+[ADR0010](decisions/0010-cesium-viewer.md),
+[ADR0011](decisions/0011-cesium-lifecycle-patch.md) and
+[performance](performance.md). SDK upgrades must revisit the patch and rerun
+these regressions; this maintenance obligation is explicit.
 
-## Actual spatial index observations
+## Measured performance and scope
 
-The final inspection executed EXPLAIN(ANALYZE,BUFFERS,FORMAT JSON) for real bbox
-and meter-radius queries against the eight-edge fixture. With sequential scans
-disabled for index eligibility, bbox used `ix_road_edges_geom_gist` and proximity
-used `ix_road_edges_geography_gist`. Observed execution times in this run were
-0.014ms and 0.008ms respectively. Default and forced plans are retained in
-[postgis-inspection.json](evidence/m02/postgis-inspection.json).
-These are single tiny-fixture observations, not throughput/latency benchmarks.
-A sequential scan can correctly be cheaper for eight rows.
+Final actual 30-cycle run:300 roads and300 intersections ready per mount; view-load
+1147–4376 ms (median 1694.5 ms); feature-selection observation38–853 ms
+(median 529 ms). DOM2142/listeners458 remain constant across all 30 post-unmount
+samples. Last 10collectedJSheap25,508,980–25,803,200bytes, variation294,220bytes
+(0.281 MiB); delayed final 24,813,632 bytes. No page errors. These timings include
+Playwright actionability/interface work and are not isolated GPU latency.
 
-## Failures retained and defects fixed
+Chromium reports WebGL2 via ANGLE/Vulkan SwiftShader software rendering. No
+physical Apple GPU FPS is claimed. JS heap excludes GPU allocations and process
+RSS;30-cycles/late-run gates establish bounded stability, not indefinite flat
+memory. Tracing was disabled for performance because controlled A/B tests showed
+instrumentation retention. Functional tests retain failure traces separately.
+The original fixed thresholds were not loosened: after 20 warm-ups, last 10heap
+variation<1 MiB, DOM variation<25, listener variation<10, all selections<5 s.
 
-No initial failed check is relabeled as a pass. Corrective runs are separate.
+## Earlier failures retained; corrective runs are separate
 
-| Actual earlier failure | Result | Fix and subsequent proof |
+| Actual failed/insufficient observation | Status | Repair / later evidence |
 | --- | --- | --- |
-| Queued timestamp mutations accepted at migration0003 | FAIL: 2 regressions failed, exit1 | Added0004 timestamp/state constraints; final30 DB cases pass. [before](evidence/m02/run-state-before.log), [command](evidence/m02/run-state-before.json) |
-| Database accepted valid5,001-position geometry beyond API budget | FAIL: 2 regressions failed, exit1 | Added0004 stored5,000-position guards; final tests pass. [before](evidence/m02/vertex-budget-before.log), [command](evidence/m02/vertex-budget-before.json) |
-| Geography typmod prevented expression-index use | Observed forced Seq Scan | Plain geography cast now uses real functional index. [actual before/after plans](evidence/m02/geography-index-fix-proof.json) |
-| Fresh-migration sentinel omitted required UUID | FAIL: harness exit1 | Addedgen_random_uuid sentinel; final fresh/empty/populated migration rehearsal passes. [failure](evidence/m02/fresh-migrations.log) |
-| Inspection expected incorrect bbox index name | FAIL: exit1 | Corrected assertion to actual `_gist` name; final indexed query succeeds. [failure](evidence/m02/indexed-spatial-query.log) |
-| Browser launch in restricted sandbox | BLOCKED/exit1; no browser pages executed | Final approved real deployment run passes15. [original report](evidence/m02/frontend-browser-sandbox-failure.json) |
-| Turbopack port binding denied in staged sandbox; cached error repeated | FAIL: build attempts; no successful-build claim for those runs | Cleared only task-generated cache; final host/container builds pass. [panic1](evidence/m02/next-panic-875b667e414eaab4a4ee4c9fde7e391b.log), [panic2](evidence/m02/next-panic-cf4020773125a93dbee0f807788d20c2.log) |
-| Task-generated temporary Next cache accidentally synced into lint input | FAIL: make exited2;72 generated-code errors/74 warnings | Removed only that cache; no source lint exclusions. [failure](evidence/m02/final-quality.log) |
-| Inspection dialect factory lacked upstream typing | FAIL: mypy1 error in40 files; make exit2 | Narrowed documented callable type; final full quality exit0. [failure](evidence/m02/final-quality-fixed.log) |
+| Initial scoped data TypeScript command missing Node type roots | FAIL exit2 | Corrected isolated tsconfig invocation; final strict repo checks pass; city-data-types.log |
+| First production build compiled then failed optional pickProbe TS2412 | FAIL exit1 | Narrowed return contract; production-build-fixed and final native builds pass |
+| First native pick after top-down selected no road | FAIL exit1 | Actual camera pivot corrected; first screenshot/report retained; final native pick matches API |
+| Camera stayed moving although pose/8roads/6nodes had settled | FAIL exit1 | Read-only pose observations retained; public-pose settlement replaces unreliable moveEnd; final browser checks pass |
+| First performance command discovered no tests | FAIL exit1 | Explicit performance testMatch added; owned rows cleaned; later actual cases run |
+|5-cycle functional and15-cycle extension observed heap warm-up | NOT sufficient for stability | Kept raw arrays and extended to30-cycles; no fabricated memory PASS for these samples |
+| First30-cycle profile retained55 DOM / 14 listeners per cycle | FAIL exit1 | Public handler teardown reduced listener retention; thresholds unchanged |
+| Handler-only30-cycle profile still retained55 DOM / 8 listeners | FAIL exit1 | Trace control separated instrumentation; owned styles and actual terrain-cache retainer repaired |
+| Final mixed verification captured1 M02 region-proxy HTTP503 | FAIL exit1;23/24 passed | Occurred during live DB integration/development checks; cause not conclusively established. Full isolated rerun24/24 passed; error assertions unchanged. Run these suites serially. |
 
-Review also fixed excessive polygon query extent, fabricated zero graph counts
-in budget responses, aggregate geometry loading risk, and a CSS selector that
-stretched a preview icon. These are validated by endpoint/DB/browser regressions;
-no OOM or secret exposure was observed or invented. Restricted dependency-cache/
-network attempts and cache cleanup are recorded in
-[implementation notes](evidence/m02/implementation-notes.txt).
-Frozen0003 SQL resource files received trailing-whitespace-only normalization;
-SQL token sequences are unchanged. Integrity changes use separate0004.
+See the individual logs/reports in evidence/m03, especially
+[first build](evidence/m03/first-production-build.log),
+[first browser](evidence/m03/browser-desktop-first.log),
+[settlement failure](evidence/m03/browser-camera-fixed.log),
+[first30-cycle failure](evidence/m03/performance-thirty-cycles.log),
+[handler-only failure](evidence/m03/performance-listener-fix.log),
+[final mixed-run failure](evidence/m03/final-browser.log),
+[isolated success](evidence/m03/final-browser-isolated.log).
+Early native floating-point unit comparison was corrected to a tolerance;
+its failing terminal output was not archived and is not invented. Final unit
+output is retained. The existing inspection script initially overwrote M02 measurement output during
+a successful check. That generated change was archived under M03 and the M02
+file restored byte-for-byte from baseline. The new --output option, docs and CI
+now target M03; the final command was rerun successfully.
 
-## Browser, frontend and regression scope
+Temporary full heap snapshots and trace archives are not
+committed; filtered retainer paths, trace controls and exact logs are retained.
 
-Fifteen Chromium cases passed at desktop1440×1000, tablet820×1180 and
-mobile390×844. Six cases use the real deployed M01/M02 backend: health, actual
-queued diagnostics/SUMO, region geometry, counts, validation, provenance and
-navigation. Nine cases explicitly mock UI empty/error/retry states; they are not
-reported as real dependency outages. Actual outages are independently tested by
-failure_smoke.py. Preview icon/geometry sizing and M02 milestone labels are
-asserted; no overflow or console/page errors were observed. Screenshots:
-[desktop](evidence/m02/geospatial-desktop.png),
-[tablet](evidence/m02/geospatial-tablet.png),
-[mobile](evidence/m02/geospatial-mobile.png).
+## Security, licensing and unresolved boundaries
 
-## Security, reproducibility and limitations
+The public config endpoint returns only ionPublicToken/imageryAssetId/
+terrainAssetId/diagnosticsEnabled. Only explicitly named browser-public token
+configuration is read; private GIS/database/M02 write tokens are not exposed.
+Public tokens must be read-only and asset/origin-scoped. The actual configuration
+has no token. No default SDK token was borrowed and no credentials were invented.
+Optional providers use supported SDK APIs with cancellation/generation checks and
+loading/error/destruction handling. Their actual licensed tile rendering and
+provider-specific attribution remain BLOCKED until authorized access exists.
 
-All host ports remain loopback; Redis remains private. Only region creation
-mutates data and requires a server-only development token with constant-time
-comparison; blank configuration disables writes. It is not an identity/role
-system. Public geometry calculations and sanitized reads are intentional.
-No token reaches browser or worker. Shared deployment still requires actual
-identity/authorization, least-privilege DB roles, TLS, secrets and tested backups.
+Natural Earth is public domain and its credit remains visible. Cesium software
+and third-party notices are copied. OSM/ion terms/attribution are documented in
+[Cesium integration](cesium-integration.md), with official references. No tile
+scraping/bulk download, unrestricted server proxy or raw metadata HTML is added.
+Native building picks show only bounded available properties and namespace-aware
+stable identifiers; no missing name/height is invented.
 
-Requests, coordinates, extent, radius, pagination and aggregate graph work are
-bounded. Direct SQL constraints, RESTRICT foreign keys and locked immutable
-publication protect persistence. API errors omit private raw errors/inputs.
-Original provenance JSON/artifact locations are private; public URLs lose
-credentials/local addresses/query/fragment, and no source URLs are fetched.
-Audit key filtering is a defensive rule, not semantic secret detection under
-arbitrary innocent keys; trusted writers must avoid all credentials.
+Existing loopback development security limits remain: no shared-user identity,
+privileged local DB role, private-network Redis without password, at-most-once
+M01 diagnostics, no global rate quotas, production TLS / managed secrets/backups or
+native OS advisory audit. A4 MiB browser streaming budget is not a complete upstream
+server-memory limit. Local review and scans cover their stated scope, not a
+production security certification. Real city imports, simulations, telemetry and
+AI are absent as required; M03 is geographic visualization only.
 
-Local API/migration roles remain privileged; Redis has no password on the private
-network; M01 diagnostic jobs remain at-most-once; no global rate limit/per-user
-quota, production load test or native-package advisory scan was performed.
-Digest/uv/npm pins are retained; transitive apt repositories remain live, so
-byte-identical permanent system builds are not claimed. The public provenance
-license is project-specific, not a declaration that third-party data is usable.
+## Git delivery
 
-## Git delivery and next milestone
+Actual `git diff --check`, `git diff --cached --check`, and
+`uv run --locked pre-commit run --all-files` exited0. All 6 hooks passed. The
+commit-eligible scan checked519 files; the first actual staged scan checked200
+blobs against2 configured working secret values and found no matches, private
+keys, generated caches/archives or files over 2 MB. No secret values were printed.
+The final post-document scan is recorded separately.
 
-The final diff summary and changed-file inventory are recorded under
-`docs/evidence/m02/git-diff-stat.txt` and `git-changed-files.txt` before commit.
-Candidate/staged secret scans, whitespace checks and all six hooks passed before
-the focused local commit. Exact executed commands are in commands.jsonl and the
-Git logs below; current commit identity is reported by `git log -1` and the final
-response. The implementation commit exited0 with all six hooks passing again;
-`git status --porcelain=v1` then returned empty. The final documentation and
-these execution records are included in the same focused local commit.
-No remote push is authorized or performed.
+[Hooks](evidence/m03/hooks.log), [staged scan](evidence/m03/staged-secret-check.log),
+[source whitespace](evidence/m03/source-whitespace.log),
+[staged whitespace](evidence/m03/staged-whitespace.log),
+[candidate scan](evidence/m03/candidate-secret-check.log),
+[scan source](evidence/m03/git_gates.py.txt). The complete staged diff was reviewed;
+M01/M02 evidence, backend/contracts/worker and frozen migrations remain unchanged.
+Raw evidence is deliberately retained, while generated Cesium assets, installed
+packages, full heap snapshots and trace archives stay outside the commit. The
+patch's mandatory unified-diff context spaces have a narrow whitespace attribute.
 
-M03 readiness: the tested local persistence/API foundation is ready for a
-separately authorized next milestone. A future real import still needs an
-explicit licensed/versioned source, accurate extraction/conversion and new
-verification; M02 synthetic topology is not sufficient evidence for those.
-M03 implementation has not begun.
+The pre-commit diff snapshot and changed-file inventory are retained under
+`docs/evidence/m03/git-diff-stat.txt` and `git-changed-files.txt`. Actual `git commit -m 'feat(earthmind): implement immersive Dubai 3D digital twin viewer'`
+exited0 with all 6 hooks passing again. `git status --porcelain=v1` then returned
+empty. The post-document staged scan checked 207 blobs against the 2 configured
+secrets with no matches/keys/caches/oversized files.
+[Commit output](evidence/m03/git-commit.log),
+[final staged scan](evidence/m03/final-staged-secret-check.log),
+[gate record](evidence/m03/git-gates.json). The actual execution log and this
+status update are included through a documentation-only amendment of that same
+focused commit; the final identity comes from `git log -1` after amendment.
+No remote push has occurred. Final commit identity is reported by `git log -1`
+and the delivery response rather than a self-referential hash inside the commit.
 
-
-Final pre-commit commands (all exit0): `git diff --check`,
-`git diff --cached --check`,
-`uv run --locked pre-commit run --all-files`, and
-`uv run --locked python /private/tmp/earthmind-m02-results/git_gates.py --staged`.
-[Hooks](evidence/m02/hooks.log), [staged scan](evidence/m02/staged-secret-check.log),
-[whitespace](evidence/m02/staged-whitespace.log),
-[candidate scan](evidence/m02/candidate-secret-check.log). The retained scan source
-is [git_gates.py.txt](evidence/m02/git_gates.py.txt); actual configured values
-were read privately from ignored `.env` and never printed.
-
-
-The final staged scan after adding the report/diff records checked135 files,
-2 configured secret values, no matches/keys/caches/archives/>2MB artifacts.
-`git commit -m 'feat(earthmind): implement geospatial persistence and spatial APIs'`
-actually exited0; [commit output](evidence/m02/git-commit.log). A clean status
-was observed immediately afterwards. [Git gate record](evidence/m02/git-gates.json).
-Final identity is available from `git log -1` after the documentation amendment;
-no remote push or M03 implementation occurred.
+M04 readiness: the independently tested local visualization foundation is ready
+for separately authorized next-milestone planning, subject to provider access and
+explicit production/performance limits above. M04 has not begun.

@@ -1,0 +1,226 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "tests/browser/city.spec.ts",
+      "--project=desktop",
+      "--grep",
+      "real Cesium"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../docs/evidence/m03/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "city.spec.ts",
+      "file": "city.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "M03 real Cesium globe, backend road picking, camera controls, layers and attribution",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 19552,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    32 × locator resolved to <div data-phase=\"ready\" data-road-count=\"8\" data-pick-x=\"331.82\" data-pick-y=\"423.43\" data-camera-moving=\"true\" data-geometry-ready=\"true\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-intersection-count=\"6\" data-pick-id=\"892cdfec-5d1c-5880-aa32-66ff680f1756\" data-layer-visibility=\"{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    32 × locator resolved to <div data-phase=\"ready\" data-road-count=\"8\" data-pick-x=\"331.82\" data-pick-y=\"423.43\" data-camera-moving=\"true\" data-geometry-ready=\"true\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-intersection-count=\"6\" data-pick-id=\"892cdfec-5d1c-5880-aa32-66ff680f1756\" data-layer-visibility=\"{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n\n    at ready (/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:18:23)\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:33:17",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                      "column": 23,
+                      "line": 18
+                    },
+                    "snippet": "  16 |   await expect(scene).toHaveAttribute(\"data-intersection-count\", \"6\");\n  17 |   await expect(scene.locator(\"canvas\")).toHaveCount(1);\n> 18 |   await expect(scene).toHaveAttribute(\"data-camera-moving\", \"false\");\n     |                       ^\n  19 |   return scene;\n  20 | }\n  21 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                        "column": 23,
+                        "line": 18
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    32 × locator resolved to <div data-phase=\"ready\" data-road-count=\"8\" data-pick-x=\"331.82\" data-pick-y=\"423.43\" data-camera-moving=\"true\" data-geometry-ready=\"true\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-intersection-count=\"6\" data-pick-id=\"892cdfec-5d1c-5880-aa32-66ff680f1756\" data-layer-visibility=\"{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"true\"\u001b[22m\n\n\n  16 |   await expect(scene).toHaveAttribute(\"data-intersection-count\", \"6\");\n  17 |   await expect(scene.locator(\"canvas\")).toHaveCount(1);\n> 18 |   await expect(scene).toHaveAttribute(\"data-camera-moving\", \"false\");\n     |                       ^\n  19 |   return scene;\n  20 | }\n  21 |\n    at ready (/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:18:23)\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:33:17"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T22:04:17.711Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts",
+                    "column": 23,
+                    "line": 18
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-3b4c3e8332a9aaaeb33e",
+          "file": "city.spec.ts",
+          "line": 22,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T22:04:17.466Z",
+    "duration": 20113.593,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

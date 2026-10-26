@@ -1,0 +1,41 @@
+"""Inspect actual Git candidate or staged bytes without printing configured secrets."""
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+from dotenv import dotenv_values
+
+staged = '--staged' in sys.argv
+if staged:
+    paths = subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+else:
+    paths = subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z']).decode().split('\0')
+paths = sorted(set(filter(None,paths)))
+config = dotenv_values('.env')
+secrets = [value.encode() for key,value in config.items() if value and ('PASSWORD' in key or 'TOKEN' in key or 'SECRET' in key) and len(value)>=8]
+forbidden = []
+secret_matches = []
+private_keys = []
+oversized = []
+for name in paths:
+    pieces = Path(name).parts
+    if any(part in {'node_modules','.venv','.next','__pycache__','test-results','playwright-report'} for part in pieces) or name.endswith(('.zip','.tar','.gz','.7z','.sqlite','.parquet','.tsbuildinfo','.heapsnapshot')) or name.startswith('apps/web/public/cesium/') or (Path(name).name.startswith('.env') and name != '.env.example'):
+        forbidden.append(name)
+    if staged:
+        data = subprocess.check_output(['git','show',':'+name])
+    else:
+        file=Path(name)
+        if not file.is_file():
+            continue
+        data=file.read_bytes()
+    if len(data)>2_000_000:
+        oversized.append({'path':name,'bytes':len(data)})
+    if any(value in data for value in secrets):
+        secret_matches.append(name)
+    if re.search(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',data):
+        private_keys.append(name)
+result={'scope':'actual staged blobs' if staged else 'all commit-eligible tracked/untracked files','files_checked':len(paths),'configured_secret_values_checked':len(secrets),'configured_secret_match_paths':secret_matches,'private_key_paths':private_keys,'forbidden_artifact_paths':forbidden,'files_over_2MB':oversized}
+result['status']='PASS' if not any((secret_matches,private_keys,forbidden,oversized)) else 'FAIL'
+print(json.dumps(result,indent=2))
+sys.exit(0 if result['status']=='PASS' else 1)

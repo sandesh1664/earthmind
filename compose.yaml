@@ -136,6 +136,10 @@ services:
       dockerfile: infra/docker/web.Dockerfile
     environment:
       API_INTERNAL_URL: http://api:8000
+      CESIUM_ION_PUBLIC_TOKEN: ${CESIUM_ION_PUBLIC_TOKEN:-}
+      CESIUM_ION_IMAGERY_ASSET_ID: ${CESIUM_ION_IMAGERY_ASSET_ID:-3812}
+      CESIUM_ION_TERRAIN_ASSET_ID: ${CESIUM_ION_TERRAIN_ASSET_ID:-1}
+      CITY_DIAGNOSTICS_ENABLED: ${CITY_DIAGNOSTICS_ENABLED:-false}
     ports:
       - "127.0.0.1:${WEB_PORT:-3000}:3000"
     depends_on:

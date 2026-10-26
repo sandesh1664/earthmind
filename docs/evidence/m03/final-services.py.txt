@@ -1,0 +1,15 @@
+import os,subprocess,sys
+runner='/private/tmp/earthmind-m03-results/run_check.py'
+env={**os.environ,'CITY_DIAGNOSTICS_ENABLED':'true'}
+checks=[
+ ('failure-recovery',['uv','run','--locked','python','scripts/failure_smoke.py']),
+ ('final-migrate',['make','migrate']),
+ ('final-smoke',['make','smoke']),
+ ('native-architecture',['uv','run','--locked','python','scripts/check_architecture.py']),
+ ('final-postgis-inspection',['uv','run','--locked','python','scripts/inspect_geospatial_database.py']),
+ ('context-isolation',['uv','run','--locked','python','infra/verification/check_build_context.py']),
+ ('final-services',['docker','compose','ps','--all'])
+]
+for label,command in checks:
+ result=subprocess.run([sys.executable,runner,label,*command],env=env)
+ if result.returncode: sys.exit(result.returncode)

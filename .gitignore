@@ -19,3 +19,6 @@ dist/
 build/
 test-results/
 playwright-report/
+
+# Generated from the exact locked Cesium npm package at build/dev startup.
+apps/web/public/cesium/

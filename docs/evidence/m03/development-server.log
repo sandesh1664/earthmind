@@ -1,0 +1,48 @@
+
+> @earthmind/web@0.1.0 predev
+> node ../../scripts/copy-cesium-assets.mjs
+
+Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+
+> @earthmind/web@0.1.0 dev
+> next dev --hostname 0.0.0.0 --hostname 127.0.0.1 --port 3300
+
+▲ Next.js 16.4.3 (Turbopack)
+- Local:         http://127.0.0.1:3300
+- Network:       http://127.0.0.1:3300
+✓ Ready in 175ms
+✓ Running next.config.ts took 11ms
+
+ GET /api/health/live 200 in 35ms (next.js: 28ms, application-code: 6ms)
+ GET / 200 in 301ms (next.js: 112ms, application-code: 189ms)
+ GET /api/health 200 in 19ms (next.js: 7ms, application-code: 11ms)
+ GET /api/capabilities 200 in 56ms (next.js: 25ms, application-code: 31ms)
+ GET /api/city/config 200 in 18ms (next.js: 13ms, application-code: 5ms)
+ GET /api/geospatial/regions?limit=100&offset=0 200 in 654ms (next.js: 621ms, application-code: 32ms)
+ GET /api/geospatial/networks?region_id=8d31afa3-5d52-59b5-a8bc-691b5867dfcb&limit=100&offset=0 200 in 38ms (next.js: 5ms, application-code: 32ms)
+ GET /api/geospatial/regions/8d31afa3-5d52-59b5-a8bc-691b5867dfcb/geojson 200 in 22ms (next.js: 5ms, application-code: 17ms)
+ GET /api/geospatial/data-sources/128b1fd1-70f3-503a-b58a-e30bdf071edf 200 in 10ms (next.js: 1.2ms, application-code: 9ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 15ms (next.js: 0.7ms, application-code: 14ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/validation 200 in 28ms (next.js: 0.7ms, application-code: 27ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 20ms (next.js: 0.6ms, application-code: 20ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 12ms (next.js: 0.6ms, application-code: 11ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 38ms (next.js: 8ms, application-code: 30ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 23ms (next.js: 0.6ms, application-code: 22ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 12ms (next.js: 2ms, application-code: 10ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 9ms (next.js: 0.6ms, application-code: 8ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 11ms (next.js: 0.5ms, application-code: 11ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 11ms (next.js: 0.8ms, application-code: 10ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 19ms (next.js: 1.2ms, application-code: 17ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 17ms (next.js: 1.8ms, application-code: 15ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 13ms (next.js: 2ms, application-code: 11ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 11ms (next.js: 0.3ms, application-code: 10ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 15ms (next.js: 2ms, application-code: 13ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 13ms (next.js: 0.3ms, application-code: 13ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 14ms (next.js: 0.4ms, application-code: 14ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 16ms (next.js: 0.2ms, application-code: 16ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 14ms (next.js: 2ms, application-code: 12ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.196916%2C55.2805%2C25.2&limit=100&offset=0 200 in 11ms (next.js: 0.5ms, application-code: 10ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 14ms (next.js: 2ms, application-code: 12ms)
+ GET /api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0 200 in 11ms (next.js: 0.3ms, application-code: 11ms)
+[?25h

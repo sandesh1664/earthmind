@@ -1,0 +1,10 @@
+{
+  "path": "node_modules/@cesium/engine/Source/Scene/GlobeSurfaceTile.js",
+  "package": "@cesium/engine",
+  "version": "26.4.0",
+  "original_sha256": "bbb3db83e30e63218d9588dda665f3c56adaa3ed910fa8f709a81d99a170f9f1",
+  "patched_sha256": "8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c",
+  "changed_statements": 3,
+  "semantics": "Replace per-context UUID-keyed strong dictionary with Context-keyed WeakMap; preserve active index-buffer reuse, destroyed-buffer replacement and reference counting.",
+  "remaining_indexBuffers_references": 6
+}

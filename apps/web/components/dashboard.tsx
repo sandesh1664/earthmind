@@ -46,11 +46,14 @@ import {
 } from "lucide-react";
 import { requestJSON } from "@/lib/client";
 import { GeospatialData } from "@/components/geospatial-data";
+import dynamic from "next/dynamic";
+
+const CityExplorer = dynamic(() => import("@/components/city/CityExplorer"), { ssr: false, loading: () => <p role="status">Loading the 3D workspace…</p> });
 
 const navigation: { label: string; icon: LucideIcon; active: boolean }[] = [
   { label: "Overview", icon: LayoutDashboard, active: true },
   { label: "Geospatial Data", icon: MapIcon, active: true },
-  { label: "City Explorer", icon: MapIcon, active: false },
+  { label: "City Explorer", icon: MapIcon, active: true },
   { label: "Scenario Studio", icon: Layers3, active: false },
   { label: "Simulation Laboratory", icon: FlaskConical, active: false },
   { label: "Traffic Intelligence", icon: Route, active: false },
@@ -313,7 +316,7 @@ export function Dashboard() {
     },
   ];
   return (
-    <div className="mission-shell">
+    <div className={`mission-shell${section === "City Explorer" ? " city-active" : ""}`}>
       {menuOpen && (
         <button
           className="nav-scrim"
@@ -338,7 +341,7 @@ export function Dashboard() {
           </span>
         </a>
         <p className="nav-label">
-          WORKSPACE <span>M02</span>
+          WORKSPACE <span>M03</span>
         </p>
         <nav aria-label="Main navigation">
           {navigation.map(({ label, icon: Icon, active }) => (
@@ -394,7 +397,7 @@ export function Dashboard() {
               LOCAL DEVELOPMENT
             </span>
             <span className="keyboard-hint">
-              <Command size={11} /> M02
+              <Command size={11} /> M03
             </span>
           </div>
         </header>
@@ -679,6 +682,8 @@ export function Dashboard() {
                 <span className="foundation-tag">FOUNDATION ONLY</span>
               </section>
             </>
+          ) : section === "City Explorer" ? (
+            <CityExplorer />
           ) : section === "Geospatial Data" ? (
             <GeospatialData />
           ) : (
@@ -692,8 +697,8 @@ export function Dashboard() {
               <div className="scope-notice">
                 <ShieldCheck size={17} />
                 <span>
-                  This workspace is scoped to the M01 foundation. This workflow
-                  is not enabled yet.
+                  This workflow is reserved for a later milestone and is not
+                  enabled yet.
                 </span>
               </div>
               <button
@@ -713,7 +718,7 @@ export function Dashboard() {
             <div>
               <span>VERSION {caps?.version ?? "—"}</span>
               <span className="footer-divider" />
-              <span>MILESTONE M02</span>
+              <span>MILESTONE M03</span>
               <a href="/api/health">
                 Readiness API <ArrowUpRight size={11} />
               </a>

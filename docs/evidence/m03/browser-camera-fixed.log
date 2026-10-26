@@ -1,0 +1,50 @@
+
+Running 1 test using 1 worker
+
+(node:45730) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (19.6s)
+
+
+  1) [desktop] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "false"
+    Received: "true"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 15000ms
+      - waiting for getByTestId('cesium-viewer')
+        32 × locator resolved to <div data-phase="ready" data-road-count="8" data-pick-x="331.82" data-pick-y="423.43" data-camera-moving="true" data-geometry-ready="true" class="city-viewer-surface" data-testid="cesium-viewer" data-intersection-count="6" data-pick-id="892cdfec-5d1c-5880-aa32-66ff680f1756" data-layer-visibility="{"boundary":true,"roads":true,"intersections":true,"centroid":false,"highlight":false,"buildings":false,"imagery":true,"terrain":false}">…</div>
+           - unexpected value "true"
+
+
+      16 |   await expect(scene).toHaveAttribute("data-intersection-count", "6");
+      17 |   await expect(scene.locator("canvas")).toHaveCount(1);
+    > 18 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+         |                       ^
+      19 |   return scene;
+      20 | }
+      21 |
+        at ready (/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:18:23)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:33:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/browser/city.spec.ts:22:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 

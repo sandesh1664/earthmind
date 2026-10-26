@@ -1,0 +1,44 @@
+import json
+from collections import deque
+from pathlib import Path
+r=json.loads(Path('/private/tmp/earthmind-m03-results/canvas-retainers.heapsnapshot').read_text())
+meta=r['snapshot']['meta']; nodes=r['nodes']; edges=r['edges']; strings=r['strings']
+nf=meta['node_fields']; ef=meta['edge_fields']; nw=len(nf); ew=len(ef)
+ni=nf.index('id'); nn=nf.index('name'); ne=nf.index('edge_count'); nt=nf.index('type')
+et=ef.index('type'); en=ef.index('name_or_index'); eto=ef.index('to_node')
+weak=meta['edge_types'][et].index('weak'); incoming={};offset=0
+for source in range(0,len(nodes),nw):
+ for x in range(nodes[source+ne]):
+  ei=offset+x*ew
+  if edges[ei+et]!=weak:
+   target=edges[ei+eto]
+   incoming.setdefault(target,[]).append((source,ei))
+ offset+=nodes[source+ne]*ew
+ids=[int(x['heapId']) for x in json.loads(Path('/private/tmp/earthmind-m03-results/canvas-retainers-metadata.json').read_text())['canvases']]
+indices={nodes[i+ni]:i for i in range(0,len(nodes),nw) if nodes[i+ni] in ids}
+def describe(index):
+ return {'id':nodes[index+ni],'name':strings[nodes[index+nn]],'type':meta['node_types'][nt][nodes[index+nt]]}
+def edge_label(index):
+ kind=meta['edge_types'][et][edges[index+et]]
+ value=edges[index+en]
+ return {'type':kind,'name':value if kind in ('element','hidden') else strings[value]}
+output=[]
+for hid,index in indices.items():
+ q=deque([(index,0)]);visited={index};back={};found=None
+ while q:
+  current,depth=q.popleft()
+  if current==0:found=current;break
+  if depth>=25:continue
+  for source,edge in incoming.get(current,[]):
+   if 'InspectorDOMAgent' in strings[nodes[source+nn]] or 'DevToolsSession' in strings[nodes[source+nn]]:continue
+   if source in visited:continue
+   visited.add(source);back[source]=(current,edge);q.append((source,depth+1))
+ path=[]
+ if found is not None:
+  current=found
+  while current!=index:
+   dest,edge=back[current];path.append({'node':describe(current),'edge':edge_label(edge)});current=dest
+  path.append({'node':describe(index)})
+ output.append({'target':hid,'visited':len(visited),'rootPath':path})
+print(json.dumps(output,indent=2))
+Path('/private/tmp/earthmind-m03-results/canvas-retainer-paths-excluding-inspector.json').write_text(json.dumps(output,indent=2)+'\n')

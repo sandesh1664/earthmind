@@ -1,0 +1,199 @@
+uv lock --check
+Resolved 67 packages in 2ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+53 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 42 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked mypy
+Success: no issues found in 42 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 105 items / 38 deselected / 67 selected
+
+apps/api/tests/test_api_v1.py ...........                                [ 16%]
+apps/api/tests/test_contracts.py .......                                 [ 26%]
+apps/api/tests/test_geometry.py ....................                     [ 56%]
+apps/api/tests/test_geospatial_security.py .......                       [ 67%]
+apps/api/tests/test_health.py .........                                  [ 80%]
+packages/simulation-worker/tests/test_jobs.py ........                   [ 92%]
+packages/simulation-worker/tests/test_runtime_check.py ..                [ 95%]
+packages/simulation-worker/tests/test_worker.py ...                      [100%]
+
+====================== 67 passed, 38 deselected in 0.49s =======================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ missing public visualization token produces the usable offline configuration (1.833458ms)
+✔ viewer configuration exposes only the explicitly public token and allowlisted settings (0.169125ms)
+✔ malformed visualization configuration fails closed without forwarding arbitrary URLs (0.397292ms)
+✔ city road adapters retain actual inspector fields and strip private metadata (3.795541ms)
+✔ road schemas reject wrong geometry, invalid ranges, empty extent and nonfinite values (0.843083ms)
+✔ absent node signal metadata stays absent instead of becoming a fabricated false (0.683791ms)
+✔ map bbox clips the camera to a region without computing metric geometry (0.845458ms)
+✔ camera requests reject invalid, wrapping, excessive or sub-precision extents (0.120958ms)
+✔ equivalent camera extents generate stable quantized request bounds (0.066125ms)
+✔ fetches real-contract roads through the same-origin proxy with bounded bbox and pagination (30.809583ms)
+✔ pagination stops after 500 features and reports remaining data explicitly (8.313ms)
+✔ aggregate coordinate budget truncates before loading another page (15.507292ms)
+✔ inconsistent counts, offsets, empty pages and duplicate identifiers fail visibly (1.016083ms)
+✔ network changes during pagination reject mixed snapshots (1.814125ms)
+✔ features from a different network cannot enter the selected scene (0.161708ms)
+✔ intersection loads preserve known signal status and synthetic identity (0.203208ms)
+✔ aborted queries never start a request or return a stale successful result (0.180209ms)
+✔ a region/network change cancels the next pagination response before parsing (0.704625ms)
+✔ oversized declared and streaming JSON responses are rejected with a display-budget message (0.724875ms)
+✔ non-JSON, invalid geometry, missing resources and service failures stay explicit (0.355541ms)
+✔ region catalogs paginate within the same 500-item budget (3.577542ms)
+✔ network registry rejects another region and missing boundary identity (0.94675ms)
+✔ backward-compatible proxy allowlist retains inspector fields without private source credentials (1.128584ms)
+✔ camera or region query replacement aborts obsolete work and late responses cannot overwrite current data (3.860792ms)
+✔ browser request cancellation propagates through the read-only Next proxy to FastAPI fetch (0.284917ms)
+✔ inactive camera viewports are garbage-collected while the active viewport retains its fresh shared cache (13.101125ms)
+✔ renderer adapters preserve longitude then latitude and calculate only degree bounds (1.063125ms)
+✔ renderer adapters reject unsupported dimensionality and invalid geographic positions (0.109709ms)
+✔ pick priority is deterministic for overlapping intersections, roads and buildings (0.072041ms)
+✔ building metadata copies only actual bounded primitive values and excludes credential keys (0.112625ms)
+✔ async native resources cannot be adopted after a toggle or disposal (0.069416ms)
+✔ strict-mode cleanup prevents stale import initialization while allowing a fresh mount (0.033083ms)
+✔ Dubai reference presets are geographic cameras rather than study boundaries (0.042375ms)
+✔ building identifiers preserve OSM element namespaces and opaque local fallbacks (0.055125ms)
+✔ camera settlement requires measured stability rather than a fixed flight timeout (0.123042ms)
+✔ camera settlement tolerates subdisplay numeric jitter while accumulating physical movement (0.080166ms)
+✔ camera rotations and viewport changes are observed even without a position change (0.041458ms)
+✔ owned WebGL disposal destroys native resources before releasing the canvas context (0.06ms)
+✔ owned WebGL disposal tolerates missing extensions and already-lost contexts (0.051042ms)
+✔ actual Cesium input-handler destruction removes retained DOM listeners before viewer disposal (0.280375ms)
+✔ credit style ownership excludes shared and unrelated CSS (0.054167ms)
+✔ layer controls expose all eight scene switches and block only unavailable licensed providers (4.777958ms)
+✔ configured provider controls become available without claiming they have loaded (0.9565ms)
+✔ layer changes preserve other settings and do not mutate the previous state (0.049959ms)
+✔ road inspector reflects backend numbers and does not invent absent speed/source values (9.217333ms)
+✔ intersection inspector distinguishes absent signal metadata from a false stored flag (1.175542ms)
+✔ selection matches both category and stable feature identifier (0.074375ms)
+✔ unknown or stale selection uses the empty inspector rather than fabricated metadata (0.495833ms)
+✔ building property values render as escaped text and only supplied fields (0.969083ms)
+✔ camera toolbar has all three destination presets and disables unavailable selection commands (2.171958ms)
+✔ unavailable renderer keeps all ten camera buttons safely disabled (1.644ms)
+✔ inspector value formatting keeps zero and false distinct from missing values (0.092667ms)
+✔ viewer error boundary preserves the normal child surface and exposes a deterministic fallback state (0.171125ms)
+✔ same-origin diagnostics reject malformed JSON, unsupported jobs and extra fields (32.483667ms)
+✔ diagnostic submissions reject simple cross-site requests and foreign origins (0.31075ms)
+✔ same-origin diagnostic lookup rejects a non-UUID before fetching upstream (0.293417ms)
+✔ standalone bind address accepts the real loopback Host and same browser Origin (1.787625ms)
+✔ standalone origin guard fails closed for foreign origins, malformed Host and DNS rebinding (0.425375ms)
+✔ diagnostic proxy preserves queue-full HTTP429 without forwarding internal upstream details (0.1645ms)
+✔ diagnostic proxy rejects invalid success payloads and returns a safe unavailable response (0.200958ms)
+✔ spatial contracts enforce finite longitude/latitude and actual metric area (2.453833ms)
+✔ region boundary preview uses parsed GeoJSON and finite coordinate-only paths (0.818958ms)
+✔ public consumer strips unapproved provenance fields (0.778667ms)
+✔ validation status cannot claim success for an invalid report (0.620917ms)
+✔ read-only proxy reaches allowlisted region API and validates public response (24.922166ms)
+✔ proxy rejects traversal, arbitrary endpoints, invalid IDs and unbounded queries before fetch (1.024208ms)
+✔ proxy preserves missing/invalid resources and hides internal error payloads (0.691208ms)
+✔ proxy rejects a valid but mismatched resource identity (0.149709ms)
+✔ uncomputed topology counts stay unknown when validation budget is exceeded (0.184334ms)
+✔ proxy reaches the configured API origin and forwards a healthy contract (27.579084ms)
+✔ degraded dependencies preserve the readiness failure (0.417125ms)
+✔ invalid upstream JSON never reports healthy (0.226708ms)
+✔ network failure returns a bounded degraded response without internal error details (1.566709ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.4885ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.2495ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.138375ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (6.011208ms)
+✔ versioned liveness and capabilities use the canonical Zod API boundary (2.322166ms)
+✔ diagnostic requests reject future simulation kinds and unknown fields (0.212084ms)
+✔ diagnostic jobs validate UUID, lifecycle and JSON results from the canonical model (2.318875ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.464708ms)
+ℹ tests 81
+ℹ suites 0
+ℹ pass 81
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 664.672916
+npm run build
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 prebuild
+> node ../../scripts/copy-cesium-assets.mjs
+
+Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 1439ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 290ms
+  Running TypeScript ...
+  Finished TypeScript in 689ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/3) ...
+✓ Generating static pages using 9 workers (3/3) in 66ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/capabilities
+├ ƒ /api/city/config
+├ ƒ /api/diagnostics
+├ ƒ /api/diagnostics/[id]
+├ ƒ /api/geospatial/[...path]
+├ ƒ /api/health
+└ ƒ /api/health/live
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

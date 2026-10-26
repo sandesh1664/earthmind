@@ -36,4 +36,19 @@
 - Run `scripts/database_checks.py`, `scripts/verify_migrations.py`,
   `scripts/inspect_geospatial_database.py` and browser checks for spatial changes.
   Keep actual failures as evidence. Do not reset main volumes to pass tests.
-- Do not push or begin M03 without explicit authorization.
+- M03 uses Cesium only in lazy browser modules. Set CESIUM_BASE_URL before import;
+  retain exact-package Workers/ThirdParty/Assets/Widgets and license copy workflow.
+- React owns UI/query selection; the mount-scoped controller owns native Cesium
+  objects. Always dispose viewers/events/provider work and guard stale async results.
+- Keep maps bounded (500 features/25,000 positions per layer); abort stale fetches
+  through the proxy, debounce camera requests and evict inactive viewport caches.
+- Credential-free fallback is packaged Natural Earth plus ellipsoid terrain.
+  Optional ion resources must preserve provider attribution and explicit errors.
+  Never borrow a default Cesium token or fabricate building metadata/coverage.
+- Only explicitly public scoped visualization tokens may reach /api/city/config;
+  private GIS, database and M02 write tokens stay server-side. Inspectors render text.
+- Verify actual browser/WebGL, canvas picks, asset HTTP bytes, lifecycle and M01/M02
+  regressions; isolated mocks are not end-to-end evidence. Preserve failed runs.
+- Keep performance QA datasets clearly synthetic and remove only task-owned rows;
+  distinguish JS heap/software-renderer observations from GPU/production benchmarks.
+- Do not push or begin M04 without explicit authorization.

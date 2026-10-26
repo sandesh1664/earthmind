@@ -1,0 +1,23 @@
+✔ renderer adapters preserve longitude then latitude and calculate only degree bounds (0.993375ms)
+✔ renderer adapters reject unsupported dimensionality and invalid geographic positions (0.115083ms)
+✔ pick priority is deterministic for overlapping intersections, roads and buildings (0.066ms)
+✔ building metadata copies only actual bounded primitive values and excludes credential keys (0.121125ms)
+✔ async native resources cannot be adopted after a toggle or disposal (0.067958ms)
+✔ strict-mode cleanup prevents stale import initialization while allowing a fresh mount (0.031375ms)
+✔ Dubai reference presets are geographic cameras rather than study boundaries (0.042875ms)
+✔ building identifiers preserve OSM element namespaces and opaque local fallbacks (0.062541ms)
+✔ camera settlement requires measured stability rather than a fixed flight timeout (0.12325ms)
+✔ camera settlement tolerates subdisplay numeric jitter while accumulating physical movement (0.076334ms)
+✔ camera rotations and viewport changes are observed even without a position change (0.039167ms)
+✔ owned WebGL disposal destroys native resources before releasing the canvas context (0.061709ms)
+✔ owned WebGL disposal tolerates missing extensions and already-lost contexts (0.045125ms)
+✔ actual Cesium input-handler destruction removes retained DOM listeners before viewer disposal (0.280167ms)
+✔ credit style ownership excludes shared and unrelated CSS (0.066417ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 685.448917

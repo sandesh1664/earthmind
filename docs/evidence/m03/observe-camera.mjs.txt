@@ -1,0 +1,19 @@
+import {chromium} from '/private/tmp/earthmind-m03/node_modules/@playwright/test/index.mjs';
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:3000');
+await page.getByRole('button',{name:'City Explorer',exact:true}).click();
+await page.getByTestId('cesium-viewer').waitFor();
+const samples=[];
+for(let n=0;n<15;n++){
+  samples.push(await page.evaluate(()=>{
+    const element=document.querySelector('[data-testid="cesium-viewer"]');
+    const canvas=element?.querySelector('canvas');
+    const bounds=canvas?.getBoundingClientRect();
+    return {time:performance.now(),status:element?{...element.dataset}:null,canvas:canvas?{width:canvas.width,height:canvas.height,csswidth:bounds.width,cssheight:bounds.height}:null,camera:document.querySelector('[data-testid="camera-position"]')?.textContent};
+  }));
+  await page.waitForTimeout(400);
+}
+console.log(JSON.stringify({samples,errors},null,2));
+await browser.close();

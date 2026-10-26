@@ -1,0 +1,30 @@
+import {chromium} from '/private/tmp/earthmind-m03/node_modules/@playwright/test/index.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch({headless:true}); const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const cdp=await page.context().newCDPSession(page);
+await cdp.send('HeapProfiler.enable'); await cdp.send('HeapProfiler.startTrackingHeapObjects',{trackAllocations:false}); await cdp.send('DOM.enable');
+await page.goto('http://127.0.0.1:3000');
+for(let i=0;i<4;i++){
+  await page.getByRole('button',{name:'City Explorer',exact:true}).click();
+  const handle=await page.waitForFunction(()=>document.querySelector('[data-testid="cesium-viewer"]')?.getAttribute('data-road-count')==='8'&&document.querySelector('[data-testid="cesium-viewer"]')?.getAttribute('data-camera-moving')==='false'); await handle.dispose();
+  await page.getByRole('button',{name:'Overview',exact:true}).click(); await page.waitForTimeout(500);
+  await cdp.send('HeapProfiler.collectGarbage');
+}
+const detached=await cdp.send('DOM.getDetachedDomNodes');
+function canvases(node){return [...(node.nodeName==='CANVAS'?[node.backendNodeId]:[]),...(node.children??[]).flatMap(canvases)];}
+const ids=detached.detachedNodes.flatMap(info=>canvases(info.treeNode));
+const metadata={before:await cdp.send('Memory.getDOMCounters'),canvases:[]};
+for(const id of ids){
+ const remote=await cdp.send('DOM.resolveNode',{backendNodeId:id,objectGroup:'canvasProbe'});
+ const heapId=await cdp.send('HeapProfiler.getHeapObjectId',{objectId:remote.object.objectId});
+ metadata.canvases.push({backendNodeId:id,heapId:heapId.heapSnapshotObjectId});
+}
+await cdp.send('Runtime.releaseObjectGroup',{objectGroup:'canvasProbe'});
+await cdp.send('HeapProfiler.collectGarbage');
+const chunks=[]; cdp.on('HeapProfiler.addHeapSnapshotChunk',({chunk})=>chunks.push(chunk));
+await cdp.send('HeapProfiler.takeHeapSnapshot',{reportProgress:false,exposeInternals:true});
+await writeFile('/private/tmp/earthmind-m03-results/canvas-retainers.heapsnapshot',chunks.join(''));
+metadata.after=await cdp.send('Memory.getDOMCounters');
+await writeFile('/private/tmp/earthmind-m03-results/canvas-retainers-metadata.json',JSON.stringify(metadata,null,2));
+console.log(JSON.stringify(metadata,null,2));
+await browser.close();

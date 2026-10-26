@@ -1,0 +1,6 @@
+M03 source inspection began from clean M02 commit60df3cd. Baseline quality/build/smoke and38realPostGIScases passed before deployment changes.
+Initial renderer unit6pass1fail used exactfloatingpointexpected55.275 vs55.275000000000006; assertion corrected to numeric tolerance. Initial output not archived; subsequent actualchecks archived.
+Initial scopeddata typecheck temporary config couldnotlocateNode type roots; bothfailedandcorrectedlogs retained.
+First productionbuild compiledCesium but failed strictoptionalpickProbe typing; narrowedreturntype andcorrectedproductionbuildpassed.
+First realbrowserdesktop3cases:1failed(nativepick aftercamera topdown driftedgroundfocusoutsideM02region),2passed(actualcleanupandWebGLunsupportedfallback). OriginalPNG/JSON/log retained.
+Second realbrowser1case failed initialcameraMovingdiagnosticsettlement after15s (native8roads6nodes were ready); root retained failure and requested engine-level investigation. Not reported asPASS.

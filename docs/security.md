@@ -66,3 +66,29 @@ normal SQL/API use, but the local privileged database administrator can alter
 schema/triggers. Restrict roles and require authenticated authorization before
 external exposure. The M01 diagnostic queue remains independently scoped and
 unauthenticated on loopback; it does not consume M02 persisted simulation_runs.
+
+
+## M03 visualization providers
+
+Cesium and workers load from the same-origin exact locked package. The default
+Natural Earth/ellipsoid mode makes no external provider requests and adds no
+unrestricted tile proxy. Existing geospatial proxy paths remain allowlisted and
+read-only; request cancellation propagates upstream. Map responses have a4MiB
+streaming client budget, bounded page/feature/coordinate counts, timeouts and
+zero inactive viewport cache retention. This supplements existing database/API
+bounds; no arbitrary geographic query or executable metadata is accepted.
+
+The runtime viewer configuration returns only explicit public visualization
+settings. `CESIUM_ION_PUBLIC_TOKEN` must be an intentionally browser-public,
+read-only, asset/origin-restricted token. No server/private GIS credential or
+M02 development write token is returned. Provider URLs are SDK-controlled and
+never submitted to an open server proxy. Rendered metadata uses React text,
+without raw HTML. OSM identities distinguish element namespaces; fallback IDs
+are opaque mount-local feature keys rather than token-bearing URLs.
+
+Provider automatic credit UI and copied software/data notices must remain
+visible. Real building/imagery access requires the operator's entitlement and
+current terms. No token was invented and no prohibited tiles were harvested.
+Opt-in diagnostics expose numeric scene observations/projections, not native
+viewer objects or credentials; they are disabled by default. Local loopback and
+all earlier identity/role/TLS/backup limits still apply.
