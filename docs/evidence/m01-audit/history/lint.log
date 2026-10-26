@@ -1,0 +1,28 @@
+uv lock --check
+Resolved 58 packages in 3ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+20 files already formatted
+uv run --locked mypy
+Success: no issues found in 17 source files
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+

@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "CapabilityFlags": {
+      "additionalProperties": false,
+      "properties": {
+        "ai_forecasting": {
+          "const": false,
+          "default": false,
+          "title": "Ai Forecasting",
+          "type": "boolean"
+        },
+        "api": {
+          "const": true,
+          "default": true,
+          "title": "Api",
+          "type": "boolean"
+        },
+        "database": {
+          "title": "Database",
+          "type": "boolean"
+        },
+        "dubai_network_import": {
+          "const": false,
+          "default": false,
+          "title": "Dubai Network Import",
+          "type": "boolean"
+        },
+        "redis": {
+          "title": "Redis",
+          "type": "boolean"
+        },
+        "simulation_runtime": {
+          "title": "Simulation Runtime",
+          "type": "boolean"
+        },
+        "traffic_simulation": {
+          "const": false,
+          "default": false,
+          "title": "Traffic Simulation",
+          "type": "boolean"
+        },
+        "worker": {
+          "title": "Worker",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "database",
+        "redis",
+        "worker",
+        "simulation_runtime"
+      ],
+      "title": "CapabilityFlags",
+      "type": "object"
+    },
+    "SumoRuntimeRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Architecture",
+          "type": "string"
+        },
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "verified": {
+          "title": "Verified",
+          "type": "boolean"
+        },
+        "version": {
+          "maxLength": 512,
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "verified",
+        "version",
+        "checked_at",
+        "architecture"
+      ],
+      "title": "SumoRuntimeRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "application": {
+      "const": "EARTHMIND",
+      "default": "EARTHMIND",
+      "title": "Application",
+      "type": "string"
+    },
+    "capabilities": {
+      "$ref": "#/$defs/CapabilityFlags"
+    },
+    "milestone": {
+      "const": "M01",
+      "default": "M01",
+      "title": "Milestone",
+      "type": "string"
+    },
+    "runtime": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SumoRuntimeRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "capabilities"
+  ],
+  "title": "SystemCapabilities",
+  "type": "object"
+}

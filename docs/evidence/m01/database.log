@@ -1,0 +1,10 @@
+                                                              version                                                               |                                                                                                                                                                    postgis_full_version                                                                                                                                                                    
+------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit | POSTGIS="3.6.4 94d984b" [EXTENSION] PGSQL="170" GEOS="3.11.1-CAPI-1.17.1" PROJ="9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db" (compiled against PROJ 9.1.1) LIBXML="2.9.14" LIBJSON="0.16" LIBPROTOBUF="1.4.1" WAGYU="0.5.0 (Internal)"
+(1 row)
+
+ version_num  
+--------------
+ 0001_postgis
+(1 row)
+

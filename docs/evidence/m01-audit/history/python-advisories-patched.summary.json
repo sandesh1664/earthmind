@@ -1,0 +1,25 @@
+{
+  "installed_packages": 55,
+  "reported_packages": 55,
+  "audited_public_packages": 52,
+  "skipped_packages": [
+    {
+      "name": "earthmind-api",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-api (0.1.0)"
+    },
+    {
+      "name": "earthmind-contracts",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-contracts (0.1.0)"
+    },
+    {
+      "name": "earthmind-worker",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-worker (0.1.0)"
+    }
+  ],
+  "unreported_installed_packages": [],
+  "non_target_reported_packages": [],
+  "finding_entries": 0,
+  "unique_advisory_ids": [],
+  "installed_pytest_version": "9.1.1",
+  "limitations": "Python package advisory scan only; local unpublished packages skipped. Does not scan operating-system/shared-library vulnerabilities or establish application-code safety."
+}

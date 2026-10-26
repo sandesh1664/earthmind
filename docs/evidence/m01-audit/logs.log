@@ -1,0 +1,209 @@
+docker compose --env-file .env logs --tail=100
+web-1    | ▲ Next.js 16.4.3
+redis-1  | 1:C 26 Oct 2026 17:36:36.537 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 26 Oct 2026 17:36:36.537 * Redis version=7.4.11, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 26 Oct 2026 17:36:36.538 * Configuration loaded
+redis-1  | 1:M 26 Oct 2026 17:36:36.538 * monotonic clock: POSIX clock_gettime
+web-1    | - Local:         http://localhost:3000
+web-1    | - Network:       http://0.0.0.0:3000
+web-1    | ✓ Ready in 0ms
+web-1    | ✓ Running next.config took 0.6ms
+redis-1  | 1:M 26 Oct 2026 17:36:36.538 * Running mode=standalone, port=6379.
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * Server initialized
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * Reading RDB base file on AOF loading...
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * Loading RDB produced by version 7.4.11
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * RDB age 3928 seconds
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * RDB memory usage when created 0.94 Mb
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * RDB is base AOF
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1  | 1:M 26 Oct 2026 17:36:36.539 * DB loaded from base file appendonly.aof.1.base.rdb: 0.000 seconds
+redis-1  | 1:M 26 Oct 2026 17:36:36.541 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.001 seconds
+redis-1  | 1:M 26 Oct 2026 17:36:36.541 * DB loaded from append only file: 0.002 seconds
+redis-1  | 1:M 26 Oct 2026 17:36:36.541 * Opening AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1  | 1:M 26 Oct 2026 17:36:36.541 * Ready to accept connections tcp
+redis-1  | 1:signal-handler (1793036360) Received SIGTERM scheduling shutdown...
+redis-1  | 1:M 26 Oct 2026 17:39:20.853 * User requested shutdown...
+redis-1  | 1:M 26 Oct 2026 17:39:20.853 * Calling fsync() on the AOF file.
+redis-1  | 1:M 26 Oct 2026 17:39:20.853 * Saving the final RDB snapshot before exiting.
+redis-1  | 1:M 26 Oct 2026 17:39:20.854 * DB saved on disk
+redis-1  | 1:M 26 Oct 2026 17:39:20.854 # Redis is now ready to exit, bye bye...
+redis-1  | 1:C 26 Oct 2026 17:39:21.065 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1  | 1:C 26 Oct 2026 17:39:21.065 * Redis version=7.4.11, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1  | 1:C 26 Oct 2026 17:39:21.065 * Configuration loaded
+redis-1  | 1:M 26 Oct 2026 17:39:21.065 * monotonic clock: POSIX clock_gettime
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * Running mode=standalone, port=6379.
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * Server initialized
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * Reading RDB base file on AOF loading...
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * Loading RDB produced by version 7.4.11
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * RDB age 4093 seconds
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * RDB memory usage when created 0.94 Mb
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * RDB is base AOF
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1  | 1:M 26 Oct 2026 17:39:21.066 * DB loaded from base file appendonly.aof.1.base.rdb: 0.000 seconds
+redis-1  | 1:M 26 Oct 2026 17:39:21.067 * DB loaded from incr file appendonly.aof.1.incr.aof: 0.001 seconds
+redis-1  | 1:M 26 Oct 2026 17:39:21.067 * DB loaded from append only file: 0.001 seconds
+redis-1  | 1:M 26 Oct 2026 17:39:21.067 * Opening AOF incr file appendonly.aof.1.incr.aof on server start
+redis-1  | 1:M 26 Oct 2026 17:39:21.067 * Ready to accept connections tcp
+redis-1  | 1:M 26 Oct 2026 17:44:22.045 * 100 changes in 300 seconds. Saving...
+redis-1  | 1:M 26 Oct 2026 17:44:22.046 * Background saving started by pid 371
+redis-1  | 371:C 26 Oct 2026 17:44:22.062 * DB saved on disk
+redis-1  | 371:C 26 Oct 2026 17:44:22.063 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+redis-1  | 1:M 26 Oct 2026 17:44:22.151 * Background saving terminated with success
+worker-1  | 2026-10-26 17:36:44,759 INFO earthmind_worker.runtime Simulation worker started (bounded M01 diagnostics)
+worker-1  | 2026-10-26 17:36:45,293 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:37:15,713 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:37:46,107 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:38:16,524 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:38:46,910 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:39:17,310 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:39:17,927 INFO earthmind_worker.runtime Simulation worker stopped
+worker-1  | 2026-10-26 17:39:19,949 INFO earthmind_worker.runtime Simulation worker started (bounded M01 diagnostics)
+worker-1  | 2026-10-26 17:39:20,322 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:39:20,856 WARNING earthmind_worker.jobs Redis queue unavailable; retry 1/5
+worker-1  | 2026-10-26 17:39:50,705 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:40:21,108 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:40:51,495 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:41:21,895 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:41:52,276 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:42:22,614 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:42:52,996 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:43:23,364 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:43:53,747 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:44:24,131 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:44:54,511 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:45:24,869 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:45:55,249 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:46:25,637 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:46:56,031 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:47:26,450 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+worker-1  | 2026-10-26 17:47:56,813 INFO earthmind_worker.jobs SUMO synthetic runtime verified
+db-1      | 
+db-1      | PostgreSQL Database directory appears to contain a database; Skipping initialization
+db-1      | 
+db-1      | 2026-10-26 17:36:36.516 UTC [1] LOG:  starting PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+db-1      | 2026-10-26 17:36:36.517 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1      | 2026-10-26 17:36:36.517 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1      | 2026-10-26 17:36:36.518 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1      | 2026-10-26 17:36:36.520 UTC [29] LOG:  database system was shut down at 2026-10-26 17:36:35 UTC
+db-1      | 2026-10-26 17:36:36.524 UTC [1] LOG:  database system is ready to accept connections
+db-1      | 2026-10-26 17:39:21.132 UTC [1] LOG:  received fast shutdown request
+db-1      | 2026-10-26 17:39:21.133 UTC [1] LOG:  aborting any active transactions
+db-1      | 2026-10-26 17:39:21.133 UTC [243] FATAL:  terminating connection due to administrator command
+db-1      | 2026-10-26 17:39:21.133 UTC [180] FATAL:  terminating connection due to administrator command
+db-1      | 2026-10-26 17:39:21.133 UTC [64] FATAL:  terminating connection due to administrator command
+db-1      | 2026-10-26 17:39:21.135 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+db-1      | 2026-10-26 17:39:21.135 UTC [27] LOG:  shutting down
+db-1      | 2026-10-26 17:39:21.136 UTC [27] LOG:  checkpoint starting: shutdown immediate
+db-1      | 2026-10-26 17:39:21.142 UTC [27] LOG:  checkpoint complete: wrote 60 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.008 s; sync files=39, longest=0.002 s, average=0.001 s; distance=221 kB, estimate=221 kB; lsn=0/2336D88, redo lsn=0/2336D88
+db-1      | 2026-10-26 17:39:21.145 UTC [1] LOG:  database system is shut down
+db-1      | 
+db-1      | PostgreSQL Database directory appears to contain a database; Skipping initialization
+db-1      | 
+db-1      | 2026-10-26 17:39:21.398 UTC [1] LOG:  starting PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+db-1      | 2026-10-26 17:39:21.398 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1      | 2026-10-26 17:39:21.398 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1      | 2026-10-26 17:39:21.399 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1      | 2026-10-26 17:39:21.401 UTC [28] LOG:  database system was shut down at 2026-10-26 17:39:21 UTC
+db-1      | 2026-10-26 17:39:21.403 UTC [1] LOG:  database system is ready to accept connections
+db-1      | 2026-10-26 17:44:21.444 UTC [26] LOG:  checkpoint starting: time
+db-1      | 2026-10-26 17:44:21.454 UTC [26] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.011 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/2336E90, redo lsn=0/2336E38
+api-1     | {"timestamp": "2026-10-26T17:42:55.350899+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:37432 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:00.554557+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:42306 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:05.763180+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:42322 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:11.030764+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54568 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:16.271061+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54574 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.601693+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41876 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.602044+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41890 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.602325+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41902 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.605221+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41892 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.627678+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.628015+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.773666+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.773907+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.774984+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41876 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.871079+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/diagnostics/e92d3597-bcec-42e3-bcc7-6e7175f28c42 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.871391+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41876 - \"GET /api/v1/diagnostics/477a48e2-c2d7-49e4-be5d-ac8a9768367c HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.871942+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/fabff8ee-6188-4949-a1c7-d6f313521d99 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.972351+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41876 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.973769+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:18.974812+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.067863+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41902 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.068388+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41892 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.069683+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41890 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.076558+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/1140749d-5f35-48dc-8949-e2b9fd8f7f85 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.077319+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41940 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.077613+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41932 - \"POST /api/v1/diagnostics HTTP/1.1\" 202"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.084520+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41916 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.091084+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/8cc3989d-d878-4a7e-b9e9-71bf90cc2f3b HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:19.092011+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/diagnostics/f32d3669-2d3c-46f8-90e4-64f18718d020 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.084087+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/1140749d-5f35-48dc-8949-e2b9fd8f7f85 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.089785+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.090157+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.095012+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/8cc3989d-d878-4a7e-b9e9-71bf90cc2f3b HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.102891+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.103228+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.165948+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/f32d3669-2d3c-46f8-90e4-64f18718d020 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.863965+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.865140+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.905356+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.962058+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:20.962256+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.176255+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/diagnostics/f32d3669-2d3c-46f8-90e4-64f18718d020 HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.184269+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.184443+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.539996+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54726 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.796592+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.851244+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41860 - \"GET /api/v1/system/capabilities HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:21.851465+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "172.20.0.6:41874 - \"GET /api/v1/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:26.765257+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54728 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:31.972054+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:45490 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:37.233990+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:45496 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:42.467535+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54366 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:47.651139+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54370 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:52.867565+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53576 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:43:58.064593+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53586 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:03.243391+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35942 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:08.467318+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35946 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:13.728655+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:50962 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:18.967838+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:50978 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:24.129788+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53838 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:29.373215+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53844 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:34.634286+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:51834 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:39.865433+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54828 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:45.071874+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54836 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:50.335925+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:34986 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:44:55.563466+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:34990 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:00.769571+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:57482 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:06.028423+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:57486 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:11.274369+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53554 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:16.540980+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:53568 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:21.768782+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:33294 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:26.972413+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:33302 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:32.273747+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:43116 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:37.537297+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:43130 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:42.766593+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35102 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:47.974646+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35104 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:53.265209+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35554 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:45:58.455450+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:35564 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:03.664362+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:39414 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:08.860445+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:39418 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:14.066565+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:37406 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:19.274034+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:37410 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:24.547394+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:41670 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:29.755561+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:41678 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:35.026812+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:52120 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:40.271311+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:40064 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:45.540973+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:40078 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:50.766432+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:39012 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:46:55.933525+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:39026 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:01.167669+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:56630 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:06.371364+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:56634 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:11.670371+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54298 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:16.924007+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:54306 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:22.144132+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:46298 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:27.369622+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:46304 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:32.570879+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:38070 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:37.757138+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:38082 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:42.962042+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:50290 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:48.172714+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:50292 - \"GET /health/ready HTTP/1.1\" 200"}
+api-1     | {"timestamp": "2026-10-26T17:47:53.436593+00:00", "level": "INFO", "service": "EARTHMIND API", "logger": "uvicorn.access", "message": "127.0.0.1:56796 - \"GET /health/ready HTTP/1.1\" 200"}

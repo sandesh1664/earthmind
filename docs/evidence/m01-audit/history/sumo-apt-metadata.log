@@ -1,0 +1,33 @@
+Unable to find image 'python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70' locally
+docker.io/library/python@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70: Pulling from library/python
+Digest: sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+Status: Downloaded newer image for python@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+sumo:
+  Installed: (none)
+  Candidate: 1.15.0+dfsg-1+deb12u1
+  Version table:
+     1.15.0+dfsg-1+deb12u1 500
+        500 http://deb.debian.org/debian bookworm/main arm64 Packages
+sumo-tools:
+  Installed: (none)
+  Candidate: 1.15.0+dfsg-1+deb12u1
+  Version table:
+     1.15.0+dfsg-1+deb12u1 500
+        500 http://deb.debian.org/debian bookworm/main arm64 Packages
+Package: sumo
+Version: 1.15.0+dfsg-1+deb12u1
+Installed-Size: 116038
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Architecture: arm64
+Depends: fonts-roboto-unhinted, python3 (<< 3.12), python3 (>= 3.11~), python3:any, libavcodec59 (>= 7:5.0), libavformat59 (>= 7:5.0), libavutil57 (>= 7:5.0), libc6 (>= 2.34), libfox-1.6-0, libgcc-s1 (>= 3.0), libgdal32 (>= 3.0.0), libgl1, libgl2ps1.4 (>= 1.4.2+dfsg1), libglu1-mesa | libglu1, libopenscenegraph161 (>= 3.6.5+dfsg1), libopenthreads21 (>= 3.6.5+dfsg1), libproj25 (>= 5.0.0), libstdc++6 (>= 11), libswscale6 (>= 7:5.0), libxerces-c3.2, zlib1g (>= 1:1.1.4)
+Recommends: sumo-tools
+Description: Simulation of Urban MObility (SUMO)
+Description-md5: 6474797555ea3a70838074722fee9bc7
+Homepage: https://sumo.dlr.de/
+Section: science
+Priority: optional
+Filename: pool/main/s/sumo/sumo_1.15.0+dfsg-1+deb12u1_arm64.deb
+Size: 24410528
+MD5sum: f0945fe7039e38ff1d2599236e342c7d
+SHA256: c3b56a53f0c79a114d4a99c9610bd8772ab2f07c47b1e3146239a7595845673e
+

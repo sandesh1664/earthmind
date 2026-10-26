@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "architecture": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Architecture",
+      "type": "string"
+    },
+    "checked_at": {
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "verified": {
+      "title": "Verified",
+      "type": "boolean"
+    },
+    "version": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "verified",
+    "version",
+    "checked_at",
+    "architecture"
+  ],
+  "title": "SumoRuntimeRecord",
+  "type": "object"
+}

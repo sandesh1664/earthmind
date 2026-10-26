@@ -1,0 +1,27 @@
+uv python install 3.12
+Python 3.12 is already installed
+uv sync --all-packages --group dev --locked
+Resolved 58 packages in 2ms
+   Building earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+   Building earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+   Building earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+      Built earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+Prepared 3 packages in 6ms
+Uninstalled 3 packages in 1ms
+Installed 3 packages in 1ms
+ ~ earthmind-api==0.1.0 (from file:///Users/redmug/EARTHMIND/apps/api)
+ ~ earthmind-contracts==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/contracts)
+ ~ earthmind-worker==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/simulation-worker)
+npm ci
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 380 packages, and audited 383 packages in 4s
+
+145 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+uv run --locked pre-commit install
+pre-commit installed at .git/hooks/pre-commit

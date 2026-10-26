@@ -1,0 +1,5 @@
+Official scanner: https://pypi.org/project/pip-audit/2.10.1/
+Primary PyPI advisory metadata: https://pypi.org/pypi/pytest/8.4.2/json
+Reviewed advisory: https://github.com/advisories/GHSA-6w46-j5rx-g56g
+Maintainer release/changelog: https://docs.pytest.org/en/stable/changelog.html#pytest-9-0-3-2026-04-07
+Advisory severity: Moderate, CVSS 6.8, local attack vector; affected pytest <9.0.3, fixed9.0.3.

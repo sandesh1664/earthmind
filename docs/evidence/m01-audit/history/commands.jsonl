@@ -1,0 +1,6 @@
+{"label": "setup", "command": ["make", "setup"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:06:18.512245+04:00", "duration_seconds": 4.455, "exit_code": 0, "output_file": "setup.log"}
+{"label": "setup-patched", "command": ["make", "setup"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:16:53.135330+04:00", "duration_seconds": 6.047, "exit_code": 0, "output_file": "setup-patched.log"}
+{"label": "lint", "command": ["make", "lint"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:17:19.001562+04:00", "duration_seconds": 3.689, "exit_code": 0, "output_file": "lint.log"}
+{"label": "clean-images", "command": ["docker", "compose", "build", "--no-cache"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:17:15.205738+04:00", "duration_seconds": 69.958, "exit_code": 0, "output_file": "clean-images.log"}
+{"label": "tests", "command": ["make", "test"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:19:04.625069+04:00", "duration_seconds": 1.95, "exit_code": 0, "output_file": "tests.log"}
+{"label": "web-build", "command": ["make", "build"], "cwd": "/Users/redmug/EARTHMIND", "started_at": "2026-10-26T21:19:08.445653+04:00", "duration_seconds": 3.972, "exit_code": 0, "output_file": "web-build.log"}

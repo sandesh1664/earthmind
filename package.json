@@ -1,0 +1,22 @@
+{
+  "name": "earthmind",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/contracts"
+  ],
+  "engines": {
+    "node": ">=22.13.0 <27",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @earthmind/web",
+    "build": "npm run build --workspace @earthmind/web",
+    "start": "npm run start --workspace @earthmind/web",
+    "lint": "npm run lint --workspace @earthmind/web",
+    "typecheck": "npm run typecheck --workspace @earthmind/web",
+    "test": "npm run test --workspace @earthmind/web",
+    "test:browser": "npm run test:browser --workspace @earthmind/web"
+  }
+}

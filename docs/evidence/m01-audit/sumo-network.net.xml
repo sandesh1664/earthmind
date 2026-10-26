@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-10-26 17:43:27 by Eclipse SUMO netconvert Version 1.15.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="/tmp/earthmind-m01-sumo/tiny.nod.xml"/>
+        <edge-files value="/tmp/earthmind-m01-sumo/tiny.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="/tmp/earthmind-m01-sumo/network.net.xml"/>
+    </output>
+
+</configuration>
+-->
+
+<net version="1.9" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,200.00,0.00" origBoundary="0.00,0.00,200.00,0.00" projParameter="!"/>
+
+    <edge id=":middle_0" function="internal">
+        <lane id=":middle_0_0" index="0" speed="10.00" length="0.10" shape="100.00,-1.60 100.00,-1.60"/>
+    </edge>
+
+    <edge id="middle_east" from="middle" to="east" priority="-1">
+        <lane id="middle_east_0" index="0" speed="10.00" length="100.00" shape="100.00,-1.60 200.00,-1.60"/>
+    </edge>
+    <edge id="west_middle" from="west" to="middle" priority="-1">
+        <lane id="west_middle_0" index="0" speed="10.00" length="100.00" shape="-0.00,-1.60 100.00,-1.60"/>
+    </edge>
+
+    <junction id="east" type="dead_end" x="200.00" y="0.00" incLanes="middle_east_0" intLanes="" shape="200.00,-3.20 200.00,0.00"/>
+    <junction id="middle" type="priority" x="100.00" y="0.00" incLanes="west_middle_0" intLanes=":middle_0_0" shape="100.00,0.00 100.00,-3.20 100.00,0.00">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="west" type="dead_end" x="0.00" y="0.00" incLanes="" intLanes="" shape="-0.00,0.00 -0.00,-3.20"/>
+
+    <connection from="west_middle" to="middle_east" fromLane="0" toLane="0" via=":middle_0_0" dir="s" state="M"/>
+
+    <connection from=":middle_0" to="middle_east" fromLane="0" toLane="0" dir="s" state="M"/>
+
+</net>

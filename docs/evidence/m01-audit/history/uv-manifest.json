@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.image.index.v1+json",
+  "manifests": [
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:027318b213a7804ecd085ea7efdcdc4d44fa202c6e676c86ce86c0206d38f65c",
+      "size": 669,
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:5cda3661968474ee2e6f4d90ac578db91ba76db29b8d6d7f25f2a5fcb58f5d37",
+      "size": 841,
+      "annotations": {
+        "vnd.docker.reference.digest": "sha256:027318b213a7804ecd085ea7efdcdc4d44fa202c6e676c86ce86c0206d38f65c",
+        "vnd.docker.reference.type": "attestation-manifest"
+      },
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:27edc596b1455d0f6102773d292c33ffd16a5662a658b589005ea242874bf264",
+      "size": 669,
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:cd592cfcb864d0f8185380ae7a6fd03539d3f0fb773b522c33aa02a42dcef3c9",
+      "size": 841,
+      "annotations": {
+        "vnd.docker.reference.digest": "sha256:27edc596b1455d0f6102773d292c33ffd16a5662a658b589005ea242874bf264",
+        "vnd.docker.reference.type": "attestation-manifest"
+      },
+      "platform": {
+        "architecture": "unknown",
+        "os": "unknown"
+      }
+    }
+  ],
+  "annotations": {
+    "org.opencontainers.image.created": "2026-05-08T22:08:32.249Z",
+    "org.opencontainers.image.description": "An extremely fast Python package and project manager, written in Rust.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "63c5f57d36c03835b9840149c76f20c5bdb982a7",
+    "org.opencontainers.image.source": "https://github.com/astral-sh/uv",
+    "org.opencontainers.image.title": "uv",
+    "org.opencontainers.image.url": "https://github.com/astral-sh/uv",
+    "org.opencontainers.image.version": "0.11.12"
+  }
+}

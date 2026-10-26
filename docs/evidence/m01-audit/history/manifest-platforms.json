@@ -1,0 +1,110 @@
+{
+  "postgres": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    {
+      "architecture": "arm",
+      "os": "linux",
+      "variant": "v7"
+    },
+    {
+      "architecture": "arm64",
+      "os": "linux",
+      "variant": "v8"
+    },
+    {
+      "architecture": "386",
+      "os": "linux"
+    },
+    {
+      "architecture": "ppc64le",
+      "os": "linux"
+    }
+  ],
+  "python": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    {
+      "architecture": "arm",
+      "os": "linux",
+      "variant": "v7"
+    },
+    {
+      "architecture": "arm64",
+      "os": "linux",
+      "variant": "v8"
+    },
+    {
+      "architecture": "386",
+      "os": "linux"
+    },
+    {
+      "architecture": "ppc64le",
+      "os": "linux"
+    }
+  ],
+  "node": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    {
+      "architecture": "arm",
+      "os": "linux",
+      "variant": "v7"
+    },
+    {
+      "architecture": "arm64",
+      "os": "linux",
+      "variant": "v8"
+    },
+    {
+      "architecture": "ppc64le",
+      "os": "linux"
+    }
+  ],
+  "redis": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    {
+      "architecture": "arm",
+      "os": "linux",
+      "variant": "v7"
+    },
+    {
+      "architecture": "arm64",
+      "os": "linux",
+      "variant": "v8"
+    },
+    {
+      "architecture": "386",
+      "os": "linux"
+    },
+    {
+      "architecture": "ppc64le",
+      "os": "linux"
+    }
+  ],
+  "uv": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    },
+    {
+      "architecture": "arm64",
+      "os": "linux"
+    }
+  ],
+  "postgis-upstream": [
+    {
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  ]
+}

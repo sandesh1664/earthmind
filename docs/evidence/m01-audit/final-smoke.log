@@ -1,0 +1,12 @@
+uv run --locked python scripts/smoke.py
+PASS http://127.0.0.1:8000/health/live: {"status":"ok","service":"api"}
+PASS http://127.0.0.1:8000/api/v1/health: {"service":"EARTHMIND API","status":"healthy","version":"0.1.0"}
+PASS http://127.0.0.1:8000/api/v1/ready: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health/live: {"status":"ok","service":"web"}
+PASS http://127.0.0.1:3000: HTTP 200, EARTHMIND dashboard rendered
+PASS actual worker job d8cb6d51-b580-47b9-a4b4-43c1edf2b7ad: {"architecture": "aarch64", "kind": "diagnostic", "message": "Worker consumed this diagnostic from the Redis queue.", "worker_pid": 7}
+PASS actual worker job 2c868c9a-7a93-4828-8571-c779e365c58f: {"architecture": "aarch64", "binary_versions": {"netconvert": "Eclipse SUMO netconvert Version 1.15.0", "sumo": "Eclipse SUMO sumo Version 1.15.0"}, "checked_at": "2026-10-26T17:49:24.726623+00:00", "kind": "sumo_runtime", "output_files": ["network.net.xml", "tripinfo.xml", "netconvert.log", "sumo.log"], "steps": 25, "traci_protocol": 20, "traci_server_version": "SUMO 1.15.0", "trips": [{"arrival": "22.00", "depart": "0.00", "duration": "22.00", "id": "probe_0", "routeLength": "195.00"}, {"arrival": "24.00", "depart": "2.00", "duration": "22.00", "id": "probe_1", "routeLength": "195.00"}], "vehicles_completed": 2, "vehicles_departed": 2, "verified": true, "version": "1.15.0", "worker_pid": 7}
+PASS http://127.0.0.1:8000/api/v1/system/capabilities: {"application":"EARTHMIND","version":"0.1.0","milestone":"M01","capabilities":{"api":true,"database":true,"redis":true,"worker":true,"simulation_runtime":true,"dubai_network_import":false,"traffic_simulation":false,"ai_forecasting":false},"runtime":{"verified":true,"version":"1.15.0","checked_at":"2026-10-26T17:49:24.726623Z","architecture":"aarch64"}}
+PASS http://127.0.0.1:3000/api/capabilities: {"application":"EARTHMIND","capabilities":{"ai_forecasting":false,"api":true,"database":true,"dubai_network_import":false,"redis":true,"simulation_runtime":true,"traffic_simulation":false,"worker":true},"milestone":"M01","runtime":{"architecture":"aarch64","checked_at":"2026-10-26T17:49:24.726623Z","verified":true,"version":"1.15.0"},"version":"0.1.0"}
+SMOKE PASSED: web -> API -> PostGIS -> Redis queue -> worker + actual SUMO fixture

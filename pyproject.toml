@@ -1,0 +1,42 @@
+[project]
+name = "earthmind"
+version = "0.1.0"
+description = "EARTHMIND M01 development workspace"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["apps/api", "packages/simulation-worker", "packages/contracts"]
+
+[dependency-groups]
+dev = [
+  "httpx>=0.28,<0.29",
+  "mypy>=1.18,<2",
+  "pre-commit>=4.3,<5",
+  "pytest>=9.0.3,<10",
+  "pytest-asyncio>=1.2,<2",
+  "ruff>=0.14,<0.15",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+exclude = ["node_modules", ".venv", ".next"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["apps/api/src", "apps/api/migrations", "packages/simulation-worker/src", "packages/contracts/src/earthmind_contracts", "packages/contracts/generate_types.py", "infra/verification/check_build_context.py", "scripts"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["apps/api/tests", "packages/simulation-worker/tests"]
+asyncio_mode = "auto"
+addopts = '-ra -m "not integration"'
+markers = ["integration: requires live PostgreSQL/PostGIS or the container SUMO runtime"]

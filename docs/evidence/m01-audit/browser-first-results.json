@@ -1,0 +1,532 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 820,
+            "height": 1180
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "tablet"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/redmug/EARTHMIND/apps/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "isMobile": true,
+          "hasTouch": true
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../docs/evidence/m01-audit/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 5,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "dashboard.spec.ts",
+      "file": "dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 30600,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                      "column": 45,
+                      "line": 27
+                    },
+                    "snippet": "  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                        "column": 45,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n\n  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:37:47.306Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                    "column": 45,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-964d9e1fba4f61031fa3",
+          "file": "dashboard.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 374,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:38:19.532Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-a1c87396d7ffd4769e04",
+          "file": "dashboard.spec.ts",
+          "line": 78,
+          "column": 1
+        },
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 30437,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                      "column": 45,
+                      "line": 27
+                    },
+                    "snippet": "  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                        "column": 45,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n\n  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:37:47.304Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                    "column": 45,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-a3309bc2405e89f615dd",
+          "file": "dashboard.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:38:19.513Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-1100b0414e54d0f429ab",
+          "file": "dashboard.spec.ts",
+          "line": 78,
+          "column": 1
+        },
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "failed",
+                  "duration": 30591,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                      "column": 45,
+                      "line": 27
+                    },
+                    "snippet": "  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                        "column": 45,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.job-status')\nExpected: \u001b[32m\"succeeded\"\u001b[39m\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.job-status') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.job-status')\u001b[22m\n\n\n  25 |     .getByRole(\"button\", { name: \"Run worker diagnostic\", exact: true })\n  26 |     .click();\n> 27 |   await expect(page.locator(\".job-status\")).toHaveText(\"succeeded\", {\n     |                                             ^\n  28 |     timeout: 30_000,\n  29 |   });\n  30 |   await expect(page.getByLabel(\"Diagnostic result\")).toBeVisible();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:37:47.306Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/redmug/EARTHMIND/apps/web/test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts",
+                    "column": 45,
+                    "line": 27
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-733bd2e69b85e715d9b4",
+          "file": "dashboard.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T17:38:19.480Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-af290a176cd5665696bf",
+          "file": "dashboard.spec.ts",
+          "line": 78,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T17:37:47.079Z",
+    "duration": 32939.149,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

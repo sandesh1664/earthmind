@@ -1,0 +1,8 @@
+{
+  "command": "env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uvx --python 3.12 --from pip-audit==2.10.1 pip-audit --path /Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages --format json --progress-spinner off --timeout 15 --cache-dir /private/tmp/earthmind-pip-audit-cache",
+  "cwd": "/Users/redmug/EARTHMIND",
+  "exit_code": 0,
+  "tool_source": "https://pypi.org/project/pip-audit/2.10.1/",
+  "scope": "/Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages",
+  "installed_pytest_version": "9.1.1"
+}

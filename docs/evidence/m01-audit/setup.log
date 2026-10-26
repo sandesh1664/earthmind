@@ -1,0 +1,46 @@
+sh scripts/bootstrap.sh
+Host: Darwin/arm64
+ProductName:		macOS
+ProductVersion:		26.5.1
+BuildVersion:		25F80
+v26.0.0
+11.12.1
+uv 0.11.12 (63c5f57d3 2026-05-08 aarch64-apple-darwin)
+git version 2.54.0
+Docker version 29.9.1, build dfc520d
+Docker Compose version v5.6.0
+Docker engine: linux/aarch64
+Docker memory limit: 8319504384 bytes
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   460Gi   204Gi   228Gi    48%    1.5M  2.4G    0%   /System/Volumes/Data
+Python 3.12 is already installed
+Preserved existing .env values
+uv sync --all-packages --group dev --locked
+Resolved 60 packages in 13ms
+   Building earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+   Building earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+   Building earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+      Built earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+Prepared 6 packages in 957ms
+Uninstalled 4 packages in 7ms
+Installed 6 packages in 28ms
+ ~ earthmind-api==0.1.0 (from file:///Users/redmug/EARTHMIND/apps/api)
+ ~ earthmind-contracts==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/contracts)
+ ~ earthmind-worker==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/simulation-worker)
+ + greenlet==3.5.6
+ - psycopg-pool==3.3.3
+ + sumolib==1.15.0
+ + traci==1.15.0
+npm ci
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 403 packages, and audited 406 packages in 6s
+
+151 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+uv run --locked pre-commit install
+pre-commit installed at .git/hooks/pre-commit

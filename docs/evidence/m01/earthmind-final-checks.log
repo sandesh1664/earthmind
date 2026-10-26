@@ -1,0 +1,123 @@
+uv python install 3.12
+Python 3.12 is already installed
+uv sync --all-packages --group dev --locked
+Resolved 58 packages in 6ms
+   Building earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+   Building earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+   Building earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-contracts @ file:///Users/redmug/EARTHMIND/packages/contracts
+      Built earthmind-worker @ file:///Users/redmug/EARTHMIND/packages/simulation-worker
+      Built earthmind-api @ file:///Users/redmug/EARTHMIND/apps/api
+Prepared 3 packages in 204ms
+Uninstalled 3 packages in 2ms
+Installed 3 packages in 1ms
+ ~ earthmind-api==0.1.0 (from file:///Users/redmug/EARTHMIND/apps/api)
+ ~ earthmind-contracts==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/contracts)
+ ~ earthmind-worker==0.1.0 (from file:///Users/redmug/EARTHMIND/packages/simulation-worker)
+npm ci
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 380 packages, and audited 383 packages in 31s
+
+145 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+uv run pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+uv lock --check
+Resolved 58 packages in 2ms
+uv run ruff check .
+All checks passed!
+uv run ruff format --check .
+17 files already formatted
+uv run mypy
+Success: no issues found in 14 source files
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 12 items
+
+apps/api/tests/test_contracts.py ..                                      [ 16%]
+apps/api/tests/test_health.py ........                                   [ 83%]
+packages/simulation-worker/tests/test_worker.py ..                       [100%]
+
+============================== 12 passed in 3.67s ==============================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ proxy reaches the configured API origin and forwards a healthy contract (20.589834ms)
+✔ degraded dependencies preserve the readiness failure (0.155833ms)
+✔ invalid upstream JSON never reports healthy (0.105209ms)
+✔ network failure returns a bounded degraded response without internal error details (0.426083ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.156166ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.135583ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.037916ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.922375
+npm run build
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 1537ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 860ms
+  Running TypeScript ...
+  Finished TypeScript in 687ms ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/3) ...
+✓ Generating static pages using 6 workers (3/3) in 164ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/health
+└ ƒ /api/health/live
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

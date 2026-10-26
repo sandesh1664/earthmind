@@ -1,0 +1,3 @@
+runner: ubuntu-24.04-arm
+steps: 18
+permissions: {'contents': 'read'}

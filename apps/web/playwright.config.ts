@@ -1,0 +1,34 @@
+import { defineConfig } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./tests/browser",
+  timeout: 45_000,
+  expect: { timeout: 15_000 },
+  fullyParallel: false,
+  retries: 0,
+  reporter: [
+    ["list"],
+    [
+      "json",
+      { outputFile: "../../docs/evidence/m01-audit/playwright-results.json" },
+    ],
+  ],
+  use: {
+    baseURL: process.env.WEB_BASE_URL ?? "http://127.0.0.1:3000",
+    browserName: "chromium",
+    trace: "retain-on-failure",
+    screenshot: "only-on-failure",
+  },
+  projects: [
+    { name: "desktop", use: { viewport: { width: 1440, height: 1000 } } },
+    { name: "tablet", use: { viewport: { width: 820, height: 1180 } } },
+    {
+      name: "mobile",
+      use: {
+        viewport: { width: 390, height: 844 },
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+  ],
+});

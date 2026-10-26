@@ -1,0 +1,41 @@
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 13 items
+
+apps/api/tests/test_contracts.py ..                                      [ 15%]
+apps/api/tests/test_health.py .........                                  [ 84%]
+packages/simulation-worker/tests/test_worker.py ..                       [100%]
+
+============================== 13 passed in 0.23s ==============================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ proxy reaches the configured API origin and forwards a healthy contract (21.668917ms)
+✔ degraded dependencies preserve the readiness failure (0.155917ms)
+✔ invalid upstream JSON never reports healthy (0.112833ms)
+✔ network failure returns a bounded degraded response without internal error details (0.102208ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.123083ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.112625ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.041083ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (3.388542ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.224916ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.637833

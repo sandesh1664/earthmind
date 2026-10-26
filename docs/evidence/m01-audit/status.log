@@ -1,0 +1,8 @@
+docker compose --env-file .env ps --all
+NAME                  IMAGE                                                                                        COMMAND                  SERVICE   CREATED          STATUS                     PORTS
+earthmind-api-1       earthmind-python:m01                                                                         "uvicorn earthmind_a…"   api       11 minutes ago   Up 11 minutes (healthy)    127.0.0.1:8000->8000/tcp
+earthmind-db-1        earthmind-postgis:m01                                                                        "docker-entrypoint.s…"   db        11 minutes ago   Up 8 minutes (healthy)     127.0.0.1:5434->5432/tcp
+earthmind-migrate-1   earthmind-python:m01                                                                         "alembic -c apps/api…"   migrate   11 minutes ago   Exited (0) 8 minutes ago   
+earthmind-redis-1     redis:7.4-bookworm@sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b   "docker-entrypoint.s…"   redis     11 minutes ago   Up 8 minutes (healthy)     6379/tcp
+earthmind-web-1       earthmind-web:m01                                                                            "docker-entrypoint.s…"   web       6 minutes ago    Up 6 minutes (healthy)     127.0.0.1:3000->3000/tcp
+earthmind-worker-1    earthmind-worker:m01                                                                         "python -m earthmind…"   worker    11 minutes ago   Up 8 minutes (healthy)     

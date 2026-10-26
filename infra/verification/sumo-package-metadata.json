@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-10-26",
+  "engine": {
+    "distribution": "Debian bookworm",
+    "package": "sumo",
+    "version": "1.15.0+dfsg-1+deb12u1",
+    "architecture": "arm64",
+    "source": "http://deb.debian.org/debian/dists/bookworm/main/binary-arm64/Packages",
+    "filename": "pool/main/s/sumo/sumo_1.15.0+dfsg-1+deb12u1_arm64.deb",
+    "sha256": "c3b56a53f0c79a114d4a99c9610bd8772ab2f07c47b1e3146239a7595845673e"
+  },
+  "python_clients": [
+    {
+      "name": "traci",
+      "version": "1.15.0",
+      "requires_dist": [
+        "sumolib (>=1.15.0)"
+      ],
+      "source": "https://pypi.org/pypi/traci/1.15.0/json",
+      "wheels": [
+        {
+          "filename": "traci-1.15.0-py3-none-any.whl",
+          "sha256": "df44e5c6b01c16834bf2b4c804c0c58f45ae0406d9b45ee13a37b26b1fbfb610"
+        }
+      ]
+    },
+    {
+      "name": "sumolib",
+      "version": "1.15.0",
+      "requires_dist": [
+        "matplotlib ; extra == 'visualization'"
+      ],
+      "source": "https://pypi.org/pypi/sumolib/1.15.0/json",
+      "wheels": [
+        {
+          "filename": "sumolib-1.15.0-py3-none-any.whl",
+          "sha256": "6791601ba4a0013a04ebd70b3f2042a41437355c26f132efceeecd9c6ffcd399"
+        }
+      ]
+    }
+  ],
+  "official_docs": [
+    "https://sumo.dlr.de/docs/Installing/Linux_Build.html",
+    "https://sumo.dlr.de/docs/TraCI/Interfacing_TraCI_from_Python.html"
+  ]
+}

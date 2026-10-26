@@ -1,0 +1,72 @@
+$ env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uv run --locked pytest -m 'not integration' apps/api/tests
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m01-audit
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 28 items / 1 deselected / 27 selected
+
+apps/api/tests/test_api_v1.py ...........                                [ 40%]
+apps/api/tests/test_contracts.py .......                                 [ 66%]
+apps/api/tests/test_health.py .........                                  [100%]
+
+======================= 27 passed, 1 deselected in 0.30s =======================
+
+ACTUAL EXIT CODE: 0
+
+$ env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uv run --locked ruff check apps/api packages/contracts/src/earthmind_contracts
+All checks passed!
+
+ACTUAL EXIT CODE: 0
+
+$ env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uv run --locked ruff format --check apps/api packages/contracts/src/earthmind_contracts
+15 files already formatted
+
+ACTUAL EXIT CODE: 0
+
+$ env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uv run --locked mypy apps/api/src apps/api/migrations packages/contracts/src/earthmind_contracts
+Success: no issues found in 11 source files
+
+ACTUAL EXIT CODE: 0
+
+$ env UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-cache uv run --locked --package earthmind-api alembic -c apps/api/alembic.ini upgrade head --sql
+BEGIN;
+
+CREATE TABLE alembic_version (
+    version_num VARCHAR(32) NOT NULL, 
+    CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
+);
+
+-- Running upgrade  -> 0001_postgis
+
+CREATE EXTENSION IF NOT EXISTS postgis;
+
+INSERT INTO alembic_version (version_num) VALUES ('0001_postgis') RETURNING alembic_version.version_num;
+
+-- Running upgrade 0001_postgis -> 0002_system_metadata
+
+CREATE TABLE system_metadata (
+    id UUID NOT NULL, 
+    application_name VARCHAR(64) NOT NULL, 
+    schema_version INTEGER DEFAULT 1 NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    PRIMARY KEY (id), 
+    CONSTRAINT uq_system_metadata_application_name UNIQUE (application_name), 
+    CONSTRAINT ck_system_metadata_name_nonempty CHECK (length(application_name) > 0), 
+    CONSTRAINT ck_system_metadata_schema_version CHECK (schema_version >= 1), 
+    CONSTRAINT ck_system_metadata_timestamp_order CHECK (updated_at >= created_at)
+);
+
+CREATE INDEX ix_system_metadata_created_at ON system_metadata (created_at);
+
+INSERT INTO system_metadata (id, application_name, schema_version) VALUES ('00000000-0000-4000-8000-000000000001', 'EARTHMIND', 1) ON CONFLICT (application_name) DO NOTHING;
+
+UPDATE alembic_version SET version_num='0002_system_metadata' WHERE alembic_version.version_num = '0001_postgis';
+
+COMMIT;
+
+
+ACTUAL EXIT CODE: 0
+

@@ -1,0 +1,3 @@
+# Preserve command output exactly, including tool-emitted trailing spaces/CRLF.
+# Source and documentation outside raw evidence retain normal whitespace checks.
+docs/evidence/** -text -whitespace

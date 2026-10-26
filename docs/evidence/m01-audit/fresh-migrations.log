@@ -1,0 +1,63 @@
+$ docker compose --project-name earthmind-m01-verification --env-file .env ps --all --quiet
+$ docker compose --project-name earthmind-m01-verification --env-file .env up --detach --wait --wait-timeout 120 db
+ Network earthmind-m01-verification_default Creating 
+ Network earthmind-m01-verification_default Creating 
+ Volume earthmind-m01-verification_postgres_data Creating 
+ Volume earthmind-m01-verification_postgres_data Creating 
+ Volume earthmind-m01-verification_postgres_data Created 
+ Volume earthmind-m01-verification_postgres_data Created 
+ Network earthmind-m01-verification_default Created 
+ Network earthmind-m01-verification_default Created 
+ Container earthmind-m01-verification-db-1 Creating 
+ Container earthmind-m01-verification-db-1 Created 
+ Container earthmind-m01-verification-db-1 Starting 
+ Container earthmind-m01-verification-db-1 Started 
+ Container earthmind-m01-verification-db-1 Waiting 
+ Container earthmind-m01-verification-db-1 Healthy 
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc DROP EXTENSION IF EXISTS postgis
+DROP EXTENSION
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM pg_extension WHERE extname='postgis'
+0
+$ docker compose --project-name earthmind-m01-verification --env-file .env run --rm migrate
+ Container earthmind-m01-verification-db-1 Running 
+ Container earthmind-m01-verification-db-1 Waiting 
+ Container earthmind-m01-verification-db-1 Healthy 
+ Container earthmind-m01-verification-migrate-run-d34758a980ea Creating 
+ Container earthmind-m01-verification-migrate-run-d34758a980ea Created 
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0002_system_metadata
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT PostGIS_Version(); SELECT application_name,schema_version FROM system_metadata
+3.6 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+EARTHMIND|1
+$ docker compose --project-name earthmind-m01-verification --env-file .env run --rm migrate
+ Container earthmind-m01-verification-db-1 Running 
+ Container earthmind-m01-verification-db-1 Waiting 
+ Container earthmind-m01-verification-db-1 Healthy 
+ Container earthmind-m01-verification-migrate-run-843040522550 Creating 
+ Container earthmind-m01-verification-migrate-run-843040522550 Created 
+$ docker compose --project-name earthmind-m01-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini downgrade 0001_postgis
+ Container earthmind-m01-verification-db-1 Running 
+ Container earthmind-m01-verification-db-1 Waiting 
+ Container earthmind-m01-verification-db-1 Healthy 
+ Container earthmind-m01-verification-migrate-run-600320d49842 Creating 
+ Container earthmind-m01-verification-migrate-run-600320d49842 Created 
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT to_regclass('public.system_metadata') IS NULL
+t
+$ docker compose --project-name earthmind-m01-verification --env-file .env run --rm migrate
+ Container earthmind-m01-verification-db-1 Running 
+ Container earthmind-m01-verification-db-1 Waiting 
+ Container earthmind-m01-verification-db-1 Healthy 
+ Container earthmind-m01-verification-migrate-run-c22edd5725c2 Creating 
+ Container earthmind-m01-verification-migrate-run-c22edd5725c2 Created 
+$ docker compose --project-name earthmind-m01-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM system_metadata WHERE application_name='EARTHMIND'
+1
+$ docker compose --project-name earthmind-m01-verification --env-file .env down --volumes --remove-orphans
+ Container earthmind-m01-verification-db-1 Stopping 
+ Container earthmind-m01-verification-db-1 Stopped 
+ Container earthmind-m01-verification-db-1 Removing 
+ Container earthmind-m01-verification-db-1 Removed 
+ Network earthmind-m01-verification_default Removing 
+ Volume earthmind-m01-verification_postgres_data Removing 
+ Volume earthmind-m01-verification_postgres_data Removed 
+ Network earthmind-m01-verification_default Removed 
+PASS: fresh database, missing-extension recovery, repeated upgrade and metadata downgrade/upgrade

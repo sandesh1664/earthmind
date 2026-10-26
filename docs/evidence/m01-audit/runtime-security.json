@@ -1,0 +1,79 @@
+{
+  "api": {
+    "architecture": "linux/arm64",
+    "health": "healthy",
+    "user": "10001:10001",
+    "memory_limit": 536870912,
+    "cpu_nanos": 500000000,
+    "pids_limit": 128,
+    "cap_drop": [
+      "ALL"
+    ],
+    "restart": {
+      "Name": "on-failure",
+      "MaximumRetryCount": 3
+    },
+    "docker_socket_mounted": false
+  },
+  "worker": {
+    "architecture": "linux/arm64",
+    "health": "healthy",
+    "user": "10001:10001",
+    "memory_limit": 805306368,
+    "cpu_nanos": 1000000000,
+    "pids_limit": 128,
+    "cap_drop": [
+      "ALL"
+    ],
+    "restart": {
+      "Name": "on-failure",
+      "MaximumRetryCount": 3
+    },
+    "docker_socket_mounted": false,
+    "database_credentials_present": false
+  },
+  "web": {
+    "architecture": "linux/arm64",
+    "health": "healthy",
+    "user": "node",
+    "memory_limit": 536870912,
+    "cpu_nanos": 500000000,
+    "pids_limit": 128,
+    "cap_drop": [
+      "ALL"
+    ],
+    "restart": {
+      "Name": "on-failure",
+      "MaximumRetryCount": 3
+    },
+    "docker_socket_mounted": false
+  },
+  "db": {
+    "architecture": "linux/arm64",
+    "health": "healthy",
+    "user": "",
+    "memory_limit": 805306368,
+    "cpu_nanos": 1000000000,
+    "pids_limit": 128,
+    "cap_drop": null,
+    "restart": {
+      "Name": "on-failure",
+      "MaximumRetryCount": 3
+    },
+    "docker_socket_mounted": false
+  },
+  "redis": {
+    "architecture": "linux/arm64",
+    "health": "healthy",
+    "user": "",
+    "memory_limit": 134217728,
+    "cpu_nanos": 250000000,
+    "pids_limit": 64,
+    "cap_drop": null,
+    "restart": {
+      "Name": "on-failure",
+      "MaximumRetryCount": 3
+    },
+    "docker_socket_mounted": false
+  }
+}

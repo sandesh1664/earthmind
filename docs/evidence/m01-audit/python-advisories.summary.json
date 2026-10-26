@@ -1,0 +1,33 @@
+{
+  "installed_packages": 57,
+  "reported_packages": 57,
+  "audited_public_packages": 54,
+  "skipped_packages": [
+    {
+      "name": "earthmind-api",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-api (0.1.0)"
+    },
+    {
+      "name": "earthmind-contracts",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-contracts (0.1.0)"
+    },
+    {
+      "name": "earthmind-worker",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-worker (0.1.0)"
+    }
+  ],
+  "unreported_installed_packages": [],
+  "non_target_reported_packages": [],
+  "version_mismatches": [],
+  "inventory_changed_during_scan": false,
+  "finding_entries": 0,
+  "unique_advisory_ids": [],
+  "selected_installed_versions": {
+    "pytest": "9.1.1",
+    "greenlet": "3.5.6",
+    "sumolib": "1.15.0",
+    "traci": "1.15.0",
+    "psycopg-pool": null
+  },
+  "limitations": "Python package advisory scan only; local unpublished packages skipped. Does not scan operating-system/shared-library or SUMO executable vulnerabilities and does not establish application-code safety."
+}

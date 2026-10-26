@@ -1,0 +1,25 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test
+
+
+Running 6 tests using 3 workers
+
+(node:25251) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25250) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25249) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.6s)
+  ✓  1 [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.6s)
+  ✓  4 [tablet] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (359ms)
+  ✓  5 [mobile] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (374ms)
+  ✓  2 [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (3.7s)
+  ✓  6 [desktop] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (272ms)
+
+  6 passed (4.4s)

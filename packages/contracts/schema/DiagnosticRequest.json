@@ -1,0 +1,18 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "enum": [
+        "diagnostic",
+        "sumo_runtime"
+      ],
+      "title": "Kind",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind"
+  ],
+  "title": "DiagnosticRequest",
+  "type": "object"
+}

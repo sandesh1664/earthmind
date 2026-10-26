@@ -1,0 +1,126 @@
+uv lock --check
+Resolved 60 packages in 15ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+33 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 26 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked mypy
+Success: no issues found in 26 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 41 items / 1 deselected / 40 selected
+
+apps/api/tests/test_api_v1.py ...........                                [ 27%]
+apps/api/tests/test_contracts.py .......                                 [ 45%]
+apps/api/tests/test_health.py .........                                  [ 67%]
+packages/simulation-worker/tests/test_jobs.py ........                   [ 87%]
+packages/simulation-worker/tests/test_runtime_check.py ..                [ 92%]
+packages/simulation-worker/tests/test_worker.py ...                      [100%]
+
+======================= 40 passed, 1 deselected in 1.13s =======================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ same-origin diagnostics reject malformed JSON, unsupported jobs and extra fields (61.679959ms)
+✔ diagnostic submissions reject simple cross-site requests and foreign origins (0.460666ms)
+✔ same-origin diagnostic lookup rejects a non-UUID before fetching upstream (0.492834ms)
+✔ diagnostic proxy preserves queue-full HTTP429 without forwarding internal upstream details (0.523916ms)
+✔ diagnostic proxy rejects invalid success payloads and returns a safe unavailable response (1.278208ms)
+✔ proxy reaches the configured API origin and forwards a healthy contract (63.461125ms)
+✔ degraded dependencies preserve the readiness failure (1.115042ms)
+✔ invalid upstream JSON never reports healthy (0.466375ms)
+✔ network failure returns a bounded degraded response without internal error details (1.702375ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.279583ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.15425ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.045166ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (6.491041ms)
+✔ versioned liveness and capabilities use the canonical Zod API boundary (1.408083ms)
+✔ diagnostic requests reject future simulation kinds and unknown fields (0.175208ms)
+✔ diagnostic jobs validate UUID, lifecycle and JSON results from the canonical model (0.959042ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.24525ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270.029958
+npm run build
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 2.1s
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1698ms
+  Running TypeScript ...
+  Finished TypeScript in 1165ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/3) ...
+✓ Generating static pages using 9 workers (3/3) in 258ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/capabilities
+├ ƒ /api/diagnostics
+├ ƒ /api/diagnostics/[id]
+├ ƒ /api/health
+└ ƒ /api/health/live
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

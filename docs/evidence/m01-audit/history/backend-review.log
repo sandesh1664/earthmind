@@ -1,0 +1,89 @@
+Agent backend review; cwd=/private/tmp/earthmind-m01-audit
+
+Pre-fix regression against untouched pre-audit baseline
+$ env PYTHONPATH=/private/tmp/earthmind-m01-audit-baseline/apps/api/src:/private/tmp/earthmind-m01-audit-baseline/packages/simulation-worker/src:/private/tmp/earthmind-m01-audit-baseline/packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/python -m pytest apps/api/tests/test_health.py::test_shutdown_closes_database_even_if_redis_close_fails
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m01-audit
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 1 item
+
+apps/api/tests/test_health.py F                                          [100%]
+
+=================================== FAILURES ===================================
+___________ test_shutdown_closes_database_even_if_redis_close_fails ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10ad961e0>
+
+    async def test_shutdown_closes_database_even_if_redis_close_fails(
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        cache = AsyncMock()
+        cache.aclose.side_effect = ConnectionError("Redis unavailable during shutdown")
+        pool = AsyncMock()
+        monkeypatch.setattr(
+            "earthmind_api.dependencies.AsyncConnectionPool", lambda *args, **kwargs: pool
+        )
+        monkeypatch.setattr("earthmind_api.dependencies.Redis.from_url", lambda *args, **kwargs: cache)
+        infrastructure = Infrastructure(Settings())
+    
+        with pytest.raises(ConnectionError, match="Redis unavailable during shutdown"):
+            await infrastructure.close()
+    
+        cache.aclose.assert_awaited_once()
+>       pool.close.assert_awaited_once()
+
+apps/api/tests/test_health.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <AsyncMock name='mock.close' id='4475432512'>
+
+    def assert_awaited_once(self):
+        """
+        Assert that the mock was awaited exactly once.
+        """
+        if not self.await_count == 1:
+            msg = (f"Expected {self._mock_name or 'mock'} to have been awaited once."
+                   f" Awaited {self.await_count} times.")
+>           raise AssertionError(msg)
+E           AssertionError: Expected close to have been awaited once. Awaited 0 times.
+
+/Users/redmug/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/unittest/mock.py:2334: AssertionError
+=========================== short test summary info ============================
+FAILED apps/api/tests/test_health.py::test_shutdown_closes_database_even_if_redis_close_fails
+============================== 1 failed in 0.24s ===============================
+ACTUAL EXIT CODE: 1
+
+Final backend tests against audit staging
+$ env PYTHONPATH=/private/tmp/earthmind-m01-audit/apps/api/src:/private/tmp/earthmind-m01-audit/packages/simulation-worker/src:/private/tmp/earthmind-m01-audit/packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/python -m pytest apps/api/tests packages/simulation-worker/tests
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m01-audit
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 13 items
+
+apps/api/tests/test_contracts.py ..                                      [ 15%]
+apps/api/tests/test_health.py .........                                  [ 84%]
+packages/simulation-worker/tests/test_worker.py ..                       [100%]
+
+============================== 13 passed in 0.17s ==============================
+ACTUAL EXIT CODE: 0
+
+Final backend Ruff lint
+$ env PYTHONPATH=/private/tmp/earthmind-m01-audit/apps/api/src:/private/tmp/earthmind-m01-audit/packages/simulation-worker/src:/private/tmp/earthmind-m01-audit/packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/ruff check apps/api packages/simulation-worker packages/contracts/src/earthmind_contracts
+All checks passed!
+ACTUAL EXIT CODE: 0
+
+Final backend Ruff format
+$ env PYTHONPATH=/private/tmp/earthmind-m01-audit/apps/api/src:/private/tmp/earthmind-m01-audit/packages/simulation-worker/src:/private/tmp/earthmind-m01-audit/packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/ruff format --check apps/api packages/simulation-worker packages/contracts/src/earthmind_contracts
+15 files already formatted
+ACTUAL EXIT CODE: 0
+
+Final backend strict mypy
+$ env PYTHONPATH=/private/tmp/earthmind-m01-audit/apps/api/src:/private/tmp/earthmind-m01-audit/packages/simulation-worker/src:/private/tmp/earthmind-m01-audit/packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/mypy apps/api/src apps/api/migrations packages/simulation-worker/src packages/contracts/src/earthmind_contracts
+Success: no issues found in 12 source files
+ACTUAL EXIT CODE: 0

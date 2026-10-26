@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-10-26 17:43:27 by Eclipse SUMO sumo Version 1.15.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/tmp/earthmind-m01-sumo/network.net.xml"/>
+        <route-files value="/tmp/earthmind-m01-sumo/tiny.rou.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="/tmp/earthmind-m01-sumo/tripinfo.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="120"/>
+        <step-length value="1"/>
+    </time>
+
+    <report>
+        <duration-log.disable value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="54051"/>
+    </traci_server>
+
+    <random_number>
+        <seed value="42"/>
+    </random_number>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="probe_0" depart="0.00" departLane="west_middle_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="22.00" arrivalLane="middle_east_0" arrivalPos="100.00" arrivalSpeed="9.48" duration="22.00" routeLength="195.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="1.36" rerouteNo="0" devices="tripinfo_probe_0" vType="probe" speedFactor="0.95" vaporized=""/>
+    <tripinfo id="probe_1" depart="2.00" departLane="west_middle_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="24.00" arrivalLane="middle_east_0" arrivalPos="100.00" arrivalSpeed="10.00" duration="22.00" routeLength="195.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="2.15" rerouteNo="0" devices="tripinfo_probe_1" vType="probe" speedFactor="1.07" vaporized=""/>
+</tripinfos>

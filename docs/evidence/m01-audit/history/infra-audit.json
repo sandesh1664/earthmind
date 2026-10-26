@@ -1,0 +1,106 @@
+{
+  "scope": "M01 infrastructure audit; no M02 behavior added",
+  "findings": [
+    {
+      "severity": "P1",
+      "state": "fixed",
+      "file": ".dockerignore",
+      "line": 2,
+      "finding": "Root-only ignore patterns allowed nested environment files into Docker COPY context. Reproduced with three synthetic nested fixtures; no real secrets found in existing API image.",
+      "fix": "Recursive **/.env and **/.env.* patterns; only root .env.example exempted."
+    },
+    {
+      "severity": "P2",
+      "state": "fixed",
+      "file": "infra/docker/python.Dockerfile",
+      "line": 13,
+      "finding": "Frozen sync did not validate stale project metadata and isolated Hatchling build requirements floated outside uv.lock.",
+      "fix": "Use --locked and uv_build==0.11.12 for all pure Python workspace packages; bundled backend has no transitive requirements."
+    },
+    {
+      "severity": "P2",
+      "state": "fixed-partially",
+      "file": "infra/docker/postgis/Dockerfile",
+      "line": 6,
+      "finding": "Unversioned PostGIS system packages could change on clean rebuilds.",
+      "fix": "Exact3.6.4+dfsg-2.pgdg12+1 top-level packages; transitive apt dependencies still float."
+    },
+    {
+      "severity": "P2",
+      "state": "fixed",
+      "file": "compose.yaml",
+      "line": 66,
+      "finding": "Worker received database superuser credentials and CORS configuration it did not use.",
+      "fix": "Worker environment now Redis URL only."
+    },
+    {
+      "severity": "P2",
+      "state": "remaining-development-limit",
+      "file": "compose.yaml",
+      "line": 14,
+      "finding": "API and migrations still use local database superuser. Actual role query returned earthmind|t|t|t. TCP connections require SCRAM; published ports localhost-only.",
+      "decision": "Document local-only admin-role scope; least-privilege shared deployment roles are not implemented."
+    },
+    {
+      "severity": "P2",
+      "state": "remaining-condition",
+      "file": "compose.yaml",
+      "line": 35,
+      "finding": "PostGIS-dependent database health gates migration. Fresh initialized M01 volumes work; an already-initialized unversioned database lacking extension cannot reach migration.",
+      "decision": "Reported to root; no live data modified to reproduce."
+    }
+  ],
+  "executed": [
+    {
+      "command": "docker compose --env-file /Users/redmug/EARTHMIND/.env config --quiet",
+      "cwd": "/private/tmp/earthmind-m01-audit",
+      "exit_code": 0
+    },
+    {
+      "command": "python3.12 infra/verification/check_build_context.py",
+      "cwd": "/private/tmp/earthmind-m01-audit",
+      "exit_code": 0,
+      "result": "5 synthetic env files excluded; safe example and app file retained"
+    },
+    {
+      "command": "UV_CACHE_DIR=/private/tmp/earthmind-audit-uv-build-cache uv build --all-packages --wheel --offline --out-dir /private/tmp/earthmind-audit-wheels",
+      "cwd": "/private/tmp/earthmind-m01-audit",
+      "exit_code": 0,
+      "result": "All3wheels built offline; expected module and py.typed present"
+    },
+    {
+      "command": "/Users/redmug/EARTHMIND/.venv/bin/ruff check infra/verification/check_build_context.py",
+      "exit_code": 0
+    },
+    {
+      "command": "/Users/redmug/EARTHMIND/.venv/bin/ruff format --check infra/verification/check_build_context.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git ls-remote https://github.com/actions/checkout.git refs/tags/v6",
+      "exit_code": 0,
+      "result": "d23441a48e516b6c34aea4fa41551a30e30af803"
+    },
+    {
+      "command": "git ls-remote https://github.com/actions/setup-node.git refs/tags/v6",
+      "exit_code": 0,
+      "result": "249970729cb0ef3589644e2896645e5dc5ba9c38"
+    },
+    {
+      "command": "git ls-remote https://github.com/astral-sh/setup-uv.git refs/tags/v10.3.2",
+      "exit_code": 0,
+      "result": "07a047e608db84b3d8c06cd9a7c7dcc9c355c18e"
+    }
+  ],
+  "sources": [
+    "https://docs.docker.com/build/concepts/context/#matching",
+    "https://docs.astral.sh/uv/concepts/build-backend/",
+    "https://pypi.org/pypi/uv_build/0.11.12/json"
+  ],
+  "not_claimed": [
+    "Hosted CI run",
+    "Bitwise reproducible apt transitives",
+    "Non-superuser API role",
+    "No security defects outside M01 local threat model"
+  ]
+}

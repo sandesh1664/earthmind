@@ -1,0 +1,18 @@
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+WARN Fixing invalid version specifier by removing star after comparison operator other than equal and not equal (before: `>=3.6.*`; after: `>=3.6`)
+Downloading pygments (1.2MiB)
+Downloading pip (1.7MiB)
+ Downloaded pygments
+ Downloaded pip
+Installed 29 packages in 20ms
+Found 2 known vulnerabilities in 1 package

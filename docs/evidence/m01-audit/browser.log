@@ -1,0 +1,154 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test
+
+
+Running 6 tests using 3 workers
+
+(node:24564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24563) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24562) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (30.6s)
+  ✘  1 [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (30.4s)
+  ✘  3 [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (30.6s)
+(node:24675) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24677) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [mobile] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (328ms)
+  ✓  5 [tablet] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (336ms)
+  ✓  6 [desktop] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (374ms)
+
+
+  1) [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.job-status')
+    Expected: "succeeded"
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" locator('.job-status') with timeout 30000ms
+      - waiting for locator('.job-status')
+
+
+      25 |     .getByRole("button", { name: "Run worker diagnostic", exact: true })
+      26 |     .click();
+    > 27 |   await expect(page.locator(".job-status")).toHaveText("succeeded", {
+         |                                             ^
+      28 |     timeout: 30_000,
+      29 |   });
+      30 |   await expect(page.getByLabel("Diagnostic result")).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.job-status')
+    Expected: "succeeded"
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" locator('.job-status') with timeout 30000ms
+      - waiting for locator('.job-status')
+
+
+      25 |     .getByRole("button", { name: "Run worker diagnostic", exact: true })
+      26 |     .click();
+    > 27 |   await expect(page.locator(".job-status")).toHaveText("succeeded", {
+         |                                             ^
+      28 |     timeout: 30_000,
+      29 |   });
+      30 |   await expect(page.getByLabel("Diagnostic result")).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.job-status')
+    Expected: "succeeded"
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" locator('.job-status') with timeout 30000ms
+      - waiting for locator('.job-status')
+
+
+      25 |     .getByRole("button", { name: "Run worker diagnostic", exact: true })
+      26 |     .click();
+    > 27 |   await expect(page.locator(".job-status")).toHaveText("succeeded", {
+         |                                             ^
+      28 |     timeout: 30_000,
+      29 |   });
+      30 |   await expect(page.getByLabel("Diagnostic result")).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/dashboard.spec.ts:27:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/dashboard-real-dashboard-c-340dc-ation-and-responsive-layout-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+    [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+    [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout 
+  3 passed (32.9s)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test

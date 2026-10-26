@@ -1,0 +1,66 @@
+{
+  "$defs": {
+    "DependencyChecks": {
+      "additionalProperties": false,
+      "properties": {
+        "database": {
+          "enum": [
+            "ok",
+            "error"
+          ],
+          "title": "Database",
+          "type": "string"
+        },
+        "redis": {
+          "enum": [
+            "ok",
+            "error"
+          ],
+          "title": "Redis",
+          "type": "string"
+        },
+        "worker": {
+          "enum": [
+            "ok",
+            "error"
+          ],
+          "title": "Worker",
+          "type": "string"
+        }
+      },
+      "required": [
+        "database",
+        "redis",
+        "worker"
+      ],
+      "title": "DependencyChecks",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "checks": {
+      "$ref": "#/$defs/DependencyChecks"
+    },
+    "service": {
+      "const": "api",
+      "default": "api",
+      "title": "Service",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "degraded"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "checks"
+  ],
+  "title": "ReadyHealth",
+  "type": "object"
+}

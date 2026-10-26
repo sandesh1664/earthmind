@@ -1,0 +1,110 @@
+ Image earthmind-web:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 563B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 981B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 264B done
+#4 DONE 0.0s
+
+#5 [build  1/10] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#5 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 379.64kB done
+#6 DONE 0.0s
+
+#7 [build  3/10] WORKDIR /app
+#7 CACHED
+
+#8 [build  2/10] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#8 CACHED
+
+#9 [build  5/10] COPY apps/web/package.json apps/web/package.json
+#9 CACHED
+
+#10 [build  6/10] COPY packages/contracts/package.json packages/contracts/package.json
+#10 CACHED
+
+#11 [build  4/10] COPY package.json package-lock.json ./
+#11 CACHED
+
+#12 [build  7/10] RUN npm ci
+#12 CACHED
+
+#13 [build  8/10] COPY apps/web apps/web
+#13 DONE 0.0s
+
+#14 [build  9/10] COPY packages/contracts packages/contracts
+#14 DONE 0.0s
+
+#15 [build 10/10] RUN npm run build --workspace @earthmind/web
+#15 0.115 
+#15 0.115 > @earthmind/web@0.1.0 build
+#15 0.115 > next build
+#15 0.115 
+#15 0.261 ▲ Next.js 16.4.3 (Turbopack)
+#15 0.280 ✓ Running next.config.ts took 19ms
+#15 0.288 
+#15 0.299   Creating an optimized production build ...
+#15 1.723 ✓ Compiled successfully in 1422ms
+#15 1.724   Running TypeScript ...
+#15 2.924   Finished TypeScript in 1199ms ...
+#15 2.925   Collecting page data using 9 workers ...
+#15 3.176   Generating static pages using 9 workers (0/3) ...
+#15 3.360 ✓ Generating static pages using 9 workers (3/3) in 183ms
+#15 3.362   Finalizing page optimization ...
+#15 3.551 
+#15 3.552 Route (app)
+#15 3.552 ┌ ○ /
+#15 3.552 ├ ○ /_not-found
+#15 3.552 ├ ƒ /api/capabilities
+#15 3.552 ├ ƒ /api/diagnostics
+#15 3.552 ├ ƒ /api/diagnostics/[id]
+#15 3.552 ├ ƒ /api/health
+#15 3.552 └ ƒ /api/health/live
+#15 3.552 
+#15 3.552 
+#15 3.552 ○  (Static)   prerendered as static content
+#15 3.552 ƒ  (Dynamic)  server-rendered on demand
+#15 3.552 
+#15 DONE 3.6s
+
+#16 [runtime 2/4] WORKDIR /app
+#16 CACHED
+
+#17 [runtime 3/4] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#17 DONE 0.1s
+
+#18 [runtime 4/4] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#18 DONE 0.0s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 0.7s done
+#19 exporting manifest sha256:24cb422dc8678245b5399f7ba9bedcbc8cc420c0a5e4e5704ec7c78c1d72ac36 done
+#19 exporting config sha256:9897f85c0642788d8ddcd32dec2e0837431e79de436442d94162a7070ab21a57 done
+#19 exporting attestation manifest sha256:db7638e46441c9a9c1e481898fc4e7121a32673e03963bd6b57e09361ac79182 done
+#19 exporting manifest list sha256:45a5a95e0a9594ce8841a6db94bf1a9f51202f67bccaa713f763504fa4395f64 done
+#19 naming to docker.io/library/earthmind-web:m01 done
+#19 unpacking to docker.io/library/earthmind-web:m01
+#19 unpacking to docker.io/library/earthmind-web:m01 0.2s done
+#19 DONE 0.9s
+
+#20 resolving provenance for metadata file
+#20 DONE 0.0s
+ Image earthmind-web:m01 Built 
+ Container earthmind-web-1 Recreate 
+ Container earthmind-web-1 Recreated 
+ Container earthmind-web-1 Starting 
+ Container earthmind-web-1 Started 
+ Container earthmind-web-1 Waiting 
+ Container earthmind-web-1 Healthy 

@@ -1,0 +1,35 @@
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ same-origin diagnostics reject malformed JSON, unsupported jobs and extra fields (20.92075ms)
+✔ diagnostic submissions reject simple cross-site requests and foreign origins (1.242625ms)
+✔ same-origin diagnostic lookup rejects a non-UUID before fetching upstream (0.27875ms)
+✔ standalone bind address accepts the real loopback Host and same browser Origin (1.708125ms)
+✔ standalone origin guard fails closed for foreign origins, malformed Host and DNS rebinding (0.408083ms)
+✔ diagnostic proxy preserves queue-full HTTP429 without forwarding internal upstream details (0.168958ms)
+✔ diagnostic proxy rejects invalid success payloads and returns a safe unavailable response (0.177459ms)
+✔ proxy reaches the configured API origin and forwards a healthy contract (38.265125ms)
+✔ degraded dependencies preserve the readiness failure (0.423292ms)
+✔ invalid upstream JSON never reports healthy (0.38825ms)
+✔ network failure returns a bounded degraded response without internal error details (1.699625ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.29225ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.322167ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.090208ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (7.733833ms)
+✔ versioned liveness and capabilities use the canonical Zod API boundary (2.596166ms)
+✔ diagnostic requests reject future simulation kinds and unknown fields (0.341541ms)
+✔ diagnostic jobs validate UUID, lifecycle and JSON results from the canonical model (1.694792ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.2665ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.851417

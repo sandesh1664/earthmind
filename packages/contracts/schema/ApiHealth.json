@@ -1,0 +1,25 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "service": {
+      "const": "EARTHMIND API",
+      "default": "EARTHMIND API",
+      "title": "Service",
+      "type": "string"
+    },
+    "status": {
+      "const": "healthy",
+      "default": "healthy",
+      "title": "Status",
+      "type": "string"
+    },
+    "version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "title": "ApiHealth",
+  "type": "object"
+}

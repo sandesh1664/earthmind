@@ -1,0 +1,19 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "service": {
+      "const": "api",
+      "default": "api",
+      "title": "Service",
+      "type": "string"
+    },
+    "status": {
+      "const": "ok",
+      "default": "ok",
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "title": "LiveHealth",
+  "type": "object"
+}

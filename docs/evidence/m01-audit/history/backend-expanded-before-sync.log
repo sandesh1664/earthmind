@@ -1,0 +1,38 @@
+Observed initial expanded API dependency failure before updated lock installation.
+$ env PYTHONPATH=apps/api/src:packages/simulation-worker/src:packages/contracts/src /Users/redmug/EARTHMIND/.venv/bin/python -m pytest -m 'not integration' apps/api/tests
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m01-audit
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 17 items / 1 error / 1 deselected / 16 selected
+
+==================================== ERRORS ====================================
+________________ ERROR collecting apps/api/tests/test_api_v1.py ________________
+ImportError while importing test module '/private/tmp/earthmind-m01-audit/apps/api/tests/test_api_v1.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py:70: in _initialize
+    from greenlet import getcurrent
+E   ModuleNotFoundError: No module named 'greenlet'
+
+The above exception was the direct cause of the following exception:
+/Users/redmug/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+apps/api/tests/test_api_v1.py:11: in <module>
+    from earthmind_api.main import create_app, get_checks, get_store
+apps/api/src/earthmind_api/main.py:20: in <module>
+    from sqlalchemy.ext.asyncio import AsyncSession
+/Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages/sqlalchemy/ext/asyncio/__init__.py:28: in <module>
+    concurrency._concurrency_shim._initialize()
+/Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages/sqlalchemy/util/concurrency.py:79: in _initialize
+    raise ImportError(_ERROR_MESSAGE) from e
+E   ImportError: The SQLAlchemy asyncio module requires that the Python 'greenlet' library is installed.  In order to ensure this dependency is available, use the 'sqlalchemy[asyncio]' install target:  'pip install sqlalchemy[asyncio]'
+=========================== short test summary info ============================
+ERROR apps/api/tests/test_api_v1.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+======================== 1 deselected, 1 error in 0.54s ========================
+
+ACTUAL EXIT CODE: 2
