@@ -1,0 +1,126 @@
+{
+  "note": "Read-only diagnostic with enable_seqscan=off on tiny synthetic fixture; index eligibility only, not a production benchmark",
+  "queries": {
+    "before_typmod": {
+      "sql": "EXPLAIN (ANALYZE,BUFFERS,FORMAT JSON) SELECT id FROM road_edges WHERE ST_DWithin(geom::geography(GEOMETRY,-1),ST_SetSRID(ST_Point(55.274,25.195),4326)::geography,250)",
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Seq Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Relation Name": "road_edges",
+            "Alias": "road_edges",
+            "Startup Cost": 10000000000.0,
+            "Total Cost": 10000000760.9,
+            "Plan Rows": 1,
+            "Plan Width": 16,
+            "Actual Startup Time": 102.642,
+            "Actual Total Time": 102.645,
+            "Actual Rows": 2,
+            "Actual Loops": 1,
+            "Filter": "st_dwithin((geom)::geography(Geometry,4326), '0101000020E6100000508D976E12A34B4052B81E85EB313940'::geography, '250'::double precision, true)",
+            "Rows Removed by Filter": 6,
+            "Shared Hit Blocks": 387,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 192,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.405,
+          "Triggers": [],
+          "JIT": {
+            "Functions": 4,
+            "Options": {
+              "Inlining": true,
+              "Optimization": true,
+              "Expressions": true,
+              "Deforming": true
+            },
+            "Timing": {
+              "Generation": {
+                "Deform": 0.147,
+                "Total": 0.335
+              },
+              "Inlining": 78.245,
+              "Optimization": 11.452,
+              "Emission": 7.409,
+              "Total": 97.442
+            }
+          },
+          "Execution Time": 124.543
+        }
+      ]
+    },
+    "after_plain": {
+      "sql": "EXPLAIN (ANALYZE,BUFFERS,FORMAT JSON) SELECT id FROM road_edges WHERE ST_DWithin(geom::geography,ST_SetSRID(ST_Point(55.274,25.195),4326)::geography,250)",
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Index Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "ix_road_edges_geography_gist",
+            "Relation Name": "road_edges",
+            "Alias": "road_edges",
+            "Startup Cost": 0.26,
+            "Total Cost": 20.78,
+            "Plan Rows": 1,
+            "Plan Width": 16,
+            "Actual Startup Time": 0.038,
+            "Actual Total Time": 0.04,
+            "Actual Rows": 2,
+            "Actual Loops": 1,
+            "Index Cond": "((geom)::geography && _st_expand('0101000020E6100000508D976E12A34B4052B81E85EB313940'::geography, '250'::double precision))",
+            "Rows Removed by Index Recheck": 0,
+            "Filter": "st_dwithin((geom)::geography, '0101000020E6100000508D976E12A34B4052B81E85EB313940'::geography, '250'::double precision, true)",
+            "Rows Removed by Filter": 2,
+            "Shared Hit Blocks": 26,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 25,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.111,
+          "Triggers": [],
+          "Execution Time": 0.057
+        }
+      ]
+    }
+  }
+}

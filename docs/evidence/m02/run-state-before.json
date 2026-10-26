@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-10-26T18:28:20.511191+00:00",
+  "cwd": "/Users/redmug/EARTHMIND",
+  "command": [
+    "/private/tmp/earthmind-m02/.venv/bin/pytest",
+    "-m",
+    "integration",
+    "-k",
+    "same_state_timestamp",
+    "/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py",
+    "--rootdir=/private/tmp/earthmind-m02"
+  ],
+  "environment": {
+    "PYTHONPATH": "/private/tmp/earthmind-m02/apps/api/src:/private/tmp/earthmind-m02/packages/contracts/src",
+    "EARTHMIND_TEST_DATABASE_URL": "loaded from ignored local .env via scripts/database_checks.database_url; value omitted"
+  },
+  "database_head": "0003_geospatial_foundation",
+  "exit_code": 1,
+  "status": "FAIL",
+  "observed_result": "2 failed, 26 deselected; both queued timestamp mutations DID NOT RAISE IntegrityError",
+  "raw_output": "run-state-before.log"
+}

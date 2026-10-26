@@ -1,0 +1,140 @@
+uv lock --check
+Resolved 67 packages in 20ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+50 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 39 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked mypy
+Success: no issues found in 39 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/redmug/EARTHMIND
+configfile: pyproject.toml
+testpaths: apps/api/tests, packages/simulation-worker/tests
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 104 items / 37 deselected / 67 selected
+
+apps/api/tests/test_api_v1.py ...........                                [ 16%]
+apps/api/tests/test_contracts.py .......                                 [ 26%]
+apps/api/tests/test_geometry.py ....................                     [ 56%]
+apps/api/tests/test_geospatial_security.py .......                       [ 67%]
+apps/api/tests/test_health.py .........                                  [ 80%]
+packages/simulation-worker/tests/test_jobs.py ........                   [ 92%]
+packages/simulation-worker/tests/test_runtime_check.py ..                [ 95%]
+packages/simulation-worker/tests/test_worker.py ...                      [100%]
+
+====================== 67 passed, 37 deselected in 0.74s =======================
+npm run test
+
+> earthmind@0.1.0 test
+> npm run test --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ same-origin diagnostics reject malformed JSON, unsupported jobs and extra fields (25.185125ms)
+✔ diagnostic submissions reject simple cross-site requests and foreign origins (0.347ms)
+✔ same-origin diagnostic lookup rejects a non-UUID before fetching upstream (0.642959ms)
+✔ standalone bind address accepts the real loopback Host and same browser Origin (3.996125ms)
+✔ standalone origin guard fails closed for foreign origins, malformed Host and DNS rebinding (0.469583ms)
+✔ diagnostic proxy preserves queue-full HTTP429 without forwarding internal upstream details (0.173625ms)
+✔ diagnostic proxy rejects invalid success payloads and returns a safe unavailable response (0.210542ms)
+✔ spatial contracts enforce finite longitude/latitude and actual metric area (2.15375ms)
+✔ region boundary preview uses parsed GeoJSON and finite coordinate-only paths (0.718042ms)
+✔ public consumer strips unapproved provenance fields (0.964958ms)
+✔ validation status cannot claim success for an invalid report (0.686667ms)
+✔ read-only proxy reaches allowlisted region API and validates public response (18.002833ms)
+✔ proxy rejects traversal, arbitrary endpoints, invalid IDs and unbounded queries before fetch (0.984833ms)
+✔ proxy preserves missing/invalid resources and hides internal error payloads (0.670333ms)
+✔ proxy rejects a valid but mismatched resource identity (0.159583ms)
+✔ uncomputed topology counts stay unknown when validation budget is exceeded (0.069625ms)
+✔ proxy reaches the configured API origin and forwards a healthy contract (24.431209ms)
+✔ degraded dependencies preserve the readiness failure (0.204666ms)
+✔ invalid upstream JSON never reports healthy (0.115416ms)
+✔ network failure returns a bounded degraded response without internal error details (0.119333ms)
+✔ HTTP failure cannot return a healthy body to the dashboard (0.124292ms)
+✔ an inconsistent healthy status with an error check is normalized to degraded (0.126583ms)
+✔ contract validator rejects enum values that only coerce to valid strings (0.054625ms)
+✔ TypeScript schema literals match the canonical Python JSON schemas (7.846208ms)
+✔ versioned liveness and capabilities use the canonical Zod API boundary (1.298542ms)
+✔ diagnostic requests reject future simulation kinds and unknown fields (0.155458ms)
+✔ diagnostic jobs validate UUID, lifecycle and JSON results from the canonical model (0.91875ms)
+✔ unexpected upstream fields are rejected instead of forwarded across the proxy (0.234667ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228.06175
+npm run build
+
+> earthmind@0.1.0 build
+> npm run build --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 42ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 408ms
+  Running TypeScript ...
+  Finished TypeScript in 1120ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/3) ...
+✓ Generating static pages using 9 workers (3/3) in 70ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/capabilities
+├ ƒ /api/diagnostics
+├ ƒ /api/diagnostics/[id]
+├ ƒ /api/geospatial/[...path]
+├ ƒ /api/health
+└ ƒ /api/health/live
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

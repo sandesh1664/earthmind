@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-10-26T18:55:07.997618+00:00",
+  "branch": "codex/m02-geospatial",
+  "whitespace_commands": {
+    "git diff --check": 0,
+    "git diff --cached --check": 0
+  },
+  "pre_commit_all_files_exit_code": 0,
+  "all_six_hooks_passed": true,
+  "final_staged_scan": {
+    "files_checked": 135,
+    "configured_secret_values_checked": 2,
+    "configured_secret_match_paths": [],
+    "private_key_paths": [],
+    "forbidden_artifact_paths": [],
+    "files_over_2MB": []
+  },
+  "commit_command": [
+    "git",
+    "commit",
+    "-m",
+    "feat(earthmind): implement geospatial persistence and spatial APIs"
+  ],
+  "commit_exit_code": 0,
+  "status_porcelain_after_implementation_commit": "",
+  "remote_push_performed": false,
+  "m03_started": false,
+  "identity_note": "Read git log -1 for final identity after this documentation/evidence amendment."
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/redmug/EARTHMIND/scripts/inspect_geospatial_database.py", line 143, in <module>
+    main()
+  File "/Users/redmug/EARTHMIND/scripts/inspect_geospatial_database.py", line 99, in main
+    raise RuntimeError(
+RuntimeError: Actual spatial query did not use expected index ix_road_edges_geom

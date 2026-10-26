@@ -1,0 +1,100 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m02
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 30 items / 28 deselected / 2 selected
+
+../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py F [ 50%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+_______ test_database_vertex_budget_matches_public_serialization[region] _______
+
+session = <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x10a91d460>
+kind = 'region'
+
+    @pytest.mark.parametrize("kind", ["region", "edge"])
+    async def test_database_vertex_budget_matches_public_serialization(
+        session: AsyncSession, kind: str
+    ) -> None:
+        """A valid but oversized persisted feature must not break public GeoJSON output."""
+        if kind == "region":
+            ring = [
+                (
+                    55.274 + 0.0002 * math.cos(index * 2 * math.pi / 5000),
+                    25.195 + 0.0002 * math.sin(index * 2 * math.pi / 5000),
+                )
+                for index in range(5000)
+            ]
+            ring.append(ring[0])
+            geometry = MultiPolygon([Polygon(ring)])
+            assert geometry.is_valid and len(ring) == 5001
+            value = Region(
+                slug=f"vertex-budget-{uuid4()}",
+                name="Synthetic vertex budget test",
+                country_code="AE",
+                timezone="Asia/Dubai",
+                boundary=from_shape(geometry, srid=4326),
+                metadata_={"is_synthetic": True},
+            )
+        else:
+            network = await draft(session)
+            start, end = await nodes(session, network)
+            geometry_line = LineString(
+                [(55.272 + index * 0.004 / 5000, 25.195) for index in range(5001)]
+            )
+            assert geometry_line.is_valid and len(geometry_line.coords) == 5001
+            value = edge(network, start, end, geom=from_shape(geometry_line, srid=4326))
+>       with pytest.raises(IntegrityError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE IntegrityError
+
+/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py:471: Failed
+________ test_database_vertex_budget_matches_public_serialization[edge] ________
+
+session = <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x10b0adbb0>
+kind = 'edge'
+
+    @pytest.mark.parametrize("kind", ["region", "edge"])
+    async def test_database_vertex_budget_matches_public_serialization(
+        session: AsyncSession, kind: str
+    ) -> None:
+        """A valid but oversized persisted feature must not break public GeoJSON output."""
+        if kind == "region":
+            ring = [
+                (
+                    55.274 + 0.0002 * math.cos(index * 2 * math.pi / 5000),
+                    25.195 + 0.0002 * math.sin(index * 2 * math.pi / 5000),
+                )
+                for index in range(5000)
+            ]
+            ring.append(ring[0])
+            geometry = MultiPolygon([Polygon(ring)])
+            assert geometry.is_valid and len(ring) == 5001
+            value = Region(
+                slug=f"vertex-budget-{uuid4()}",
+                name="Synthetic vertex budget test",
+                country_code="AE",
+                timezone="Asia/Dubai",
+                boundary=from_shape(geometry, srid=4326),
+                metadata_={"is_synthetic": True},
+            )
+        else:
+            network = await draft(session)
+            start, end = await nodes(session, network)
+            geometry_line = LineString(
+                [(55.272 + index * 0.004 / 5000, 25.195) for index in range(5001)]
+            )
+            assert geometry_line.is_valid and len(geometry_line.coords) == 5001
+            value = edge(network, start, end, geom=from_shape(geometry_line, srid=4326))
+>       with pytest.raises(IntegrityError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE IntegrityError
+
+/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py:471: Failed
+=========================== short test summary info ============================
+FAILED ../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py::test_database_vertex_budget_matches_public_serialization[region]
+FAILED ../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py::test_database_vertex_budget_matches_public_serialization[edge]
+======================= 2 failed, 28 deselected in 0.57s =======================

@@ -1,0 +1,210 @@
+uv lock --check
+Resolved 67 packages in 18ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+51 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/build/chunks/[root-of-the-server]__0fy95ldpe93jd._.js
+   46:9    error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+  283:5    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  285:5    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  287:5    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  483:85   warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  485:53   error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+  489:91   warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  491:56   error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+  495:71   warning  '__turbopack_context__' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+  495:94   warning  'module' is defined but never used                                                                                   @typescript-eslint/no-unused-vars
+  495:102  warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  497:1    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/build/chunks/[root-of-the-server]__0qxha8tfn1ryb._.js
+   26:1   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   28:1   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   35:21  warning  'ipc' is defined but never used                                                                                      @typescript-eslint/no-unused-vars
+   69:33  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+  171:73  warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  173:47  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+  177:77  warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  179:49  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+  183:75  warning  'exports' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  185:48  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/build/chunks/[turbopack]_runtime.js
+    58:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   146:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   364:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   380:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   390:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   452:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   467:24  error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   721:5   error    Do not assign to the variable `module`. See: https://nextjs.org/docs/messages/no-assign-module-variable              @next/next/no-assign-module-variable
+   730:13  warning  Expected an assignment or function call and instead saw an expression                                                @typescript-eslint/no-unused-expressions
+   825:1   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-unused-vars')
+   825:69  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+   860:12  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+   863:1   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-unused-vars')
+   871:13  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+   917:30  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+   946:34  error    A `require()` style import is forbidden                                                                              @typescript-eslint/no-require-imports
+   978:1   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-unused-vars')
+  1021:5   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  1039:5   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/build/chunks/node_modules_20v-8wlfss9m1._.js
+     3:106  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+    25:106  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+    38:108  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   476:115  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   567:110  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   589:107  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   619:107  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   722:104  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   963:110  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+   974:5    warning  'warnOnce' is assigned a value but never used                                  @typescript-eslint/no-unused-vars
+  1186:36   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  1498:103  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  1557:112  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  1895:113  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  1902:5    warning  'warnOnce' is assigned a value but never used                                  @typescript-eslint/no-unused-vars
+  1953:13   error    Unexpected aliasing of 'this' to local variable                                @typescript-eslint/no-this-alias
+  2002:103  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  2194:17   error    Unexpected aliasing of 'this' to local variable                                @typescript-eslint/no-this-alias
+  2318:17   error    Unexpected aliasing of 'this' to local variable                                @typescript-eslint/no-this-alias
+  2337:13   error    Unexpected aliasing of 'this' to local variable                                @typescript-eslint/no-this-alias
+  2446:104  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  2468:105  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3019:106  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3049:9    warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  3052:13   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  3055:40   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  3188:111  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3320:108  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3374:105  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3410:103  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3470:103  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3494:110  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3887:108  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3898:106  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3904:117  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  3965:107  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  4238:108  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  4241:1    warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  4250:106  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  4293:111  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  4319:108  warning  'exports' is defined but never used                                            @typescript-eslint/no-unused-vars
+  4841:23   warning  'comparator' is defined but never used                                         @typescript-eslint/no-unused-vars
+  5037:91   warning  'aStr' is defined but never used                                               @typescript-eslint/no-unused-vars
+  5037:97   warning  'aSourceRoot' is defined but never used                                        @typescript-eslint/no-unused-vars
+  5368:98   warning  'aSourceRoot' is defined but never used                                        @typescript-eslint/no-unused-vars
+  5377:9    warning  'cachedSegments' is assigned a value but never used                            @typescript-eslint/no-unused-vars
+  5400:13   warning  'str' is assigned a value but never used                                       @typescript-eslint/no-unused-vars
+  5909:105  warning  'aStr' is defined but never used                                               @typescript-eslint/no-unused-vars
+  5909:111  warning  'aSourceRoot' is defined but never used                                        @typescript-eslint/no-unused-vars
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/build/chunks/pool_entry-[turbopack-node]_transforms_postcss_ts_16rwn4fizkgng._.js
+  1:7  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/types/routes.d.ts
+  14:8   error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  15:24  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  16:23  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  19:18  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  20:23  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+
+/Users/redmug/EARTHMIND/apps/web/.next-before-svg-fix-retry/types/validator.ts
+   15:71   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   15:126  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   16:74   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   16:83   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   18:51   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   20:16   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   20:23   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   22:51   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   24:16   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   24:23   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   25:14   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   26:14   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   31:74   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   31:83   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   33:51   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   35:16   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   35:23   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   37:51   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   39:16   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   39:23   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   40:14   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   41:14   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   58:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   63:72   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+   63:119  error    The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+   68:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+   69:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   75:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   78:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+   79:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   85:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   88:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+   89:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   95:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   98:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+   99:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  105:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  108:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+  109:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  115:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  118:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+  119:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  125:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  128:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+  129:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  139:9    warning  'handler' is assigned a value but only used as a type                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  144:72   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+  144:119  error    The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  149:3    error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                        @typescript-eslint/ban-ts-comment
+  150:8    warning  '__Unused' is defined but never used                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+
+✖ 146 problems (72 errors, 74 warnings)
+  0 errors and 8 warnings potentially fixable with the `--fix` option.
+
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c eslint . --max-warnings 0
+make: *** [lint] Error 1

@@ -5,7 +5,7 @@ import subprocess
 
 from dotenv import dotenv_values
 
-PROJECT = "earthmind-m01-verification"
+PROJECT = "earthmind-m02-verification"
 ENVIRONMENT = {**os.environ, "DB_PORT": "55434", "API_PORT": "58000", "WEB_PORT": "53000"}
 COMMAND = ["docker", "compose", "--project-name", PROJECT, "--env-file", ".env"]
 
@@ -49,12 +49,38 @@ def main() -> None:
         sql("DROP EXTENSION IF EXISTS postgis")
         if sql("SELECT count(*) FROM pg_extension WHERE extname='postgis'").strip() != "0":
             raise RuntimeError("The isolated fixture must begin without PostGIS")
-        compose("run", "--rm", "migrate")
+        compose(
+            "run",
+            "--rm",
+            "migrate",
+            "alembic",
+            "-c",
+            "apps/api/alembic.ini",
+            "upgrade",
+            "0002_system_metadata",
+        )
         revision = sql("SELECT version_num FROM alembic_version").strip()
         if revision != "0002_system_metadata":
-            raise RuntimeError(f"Unexpected fresh migration revision: {revision}")
+            raise RuntimeError(f"Unexpected fresh M01 migration revision: {revision}")
+        sql(
+            "INSERT INTO system_metadata(id,application_name,schema_version) "
+            "VALUES (gen_random_uuid(),'M01 preservation probe',1)"
+        )
         sql("SELECT PostGIS_Version(); SELECT application_name,schema_version FROM system_metadata")
         compose("run", "--rm", "migrate")
+        if sql("SELECT version_num FROM alembic_version").strip() != "0004_run_state_integrity":
+            raise RuntimeError("M01 to M02 migration did not reach the current head")
+        if (
+            sql(
+                "SELECT count(*) FROM system_metadata "
+                "WHERE application_name='M01 preservation probe'"
+            ).strip()
+            != "1"
+        ):
+            raise RuntimeError("M02 migration did not preserve the M01 row")
+        compose("run", "--rm", "migrate")
+        compose("run", "--rm", "migrate", "alembic", "-c", "apps/api/alembic.ini", "check")
+        # Empty M02 tables can be removed safely; M01 rows must survive either path.
         compose(
             "run",
             "--rm",
@@ -63,21 +89,54 @@ def main() -> None:
             "-c",
             "apps/api/alembic.ini",
             "downgrade",
-            "0001_postgis",
+            "0002_system_metadata",
         )
-        if sql("SELECT to_regclass('public.system_metadata') IS NULL").strip() != "t":
-            raise RuntimeError("Metadata downgrade did not remove its own table")
-        compose("run", "--rm", "migrate")
+        if sql("SELECT version_num FROM alembic_version").strip() != "0002_system_metadata":
+            raise RuntimeError("Empty M02 downgrade did not return to M01")
         if (
-            sql("SELECT count(*) FROM system_metadata WHERE application_name='EARTHMIND'").strip()
+            sql(
+                "SELECT count(*) FROM system_metadata "
+                "WHERE application_name='M01 preservation probe'"
+            ).strip()
             != "1"
         ):
-            raise RuntimeError("Metadata upgrade did not restore exactly one application seed")
+            raise RuntimeError("Empty downgrade did not preserve the M01 row")
+        compose("run", "--rm", "migrate")
+        compose("run", "--rm", "migrate", "alembic", "-c", "apps/api/alembic.ini", "check")
+        compose("run", "--rm", "migrate", "python", "-m", "earthmind_api.seed")
+        repeated = compose("run", "--rm", "migrate", "python", "-m", "earthmind_api.seed")
+        if '"created": false' not in repeated:
+            raise RuntimeError("Repeated seed was not idempotent")
+        try:
+            compose(
+                "run",
+                "--rm",
+                "migrate",
+                "alembic",
+                "-c",
+                "apps/api/alembic.ini",
+                "downgrade",
+                "0002_system_metadata",
+            )
+        except subprocess.CalledProcessError as error:
+            if "M02 downgrade refused" not in (error.stdout or "") + (error.stderr or ""):
+                raise
+            print(
+                "PASS: populated-research downgrade refused as designed; "
+                "expected nonzero child exit"
+            )
+        else:
+            raise RuntimeError("Populated M02 downgrade unexpectedly succeeded")
+        if sql("SELECT count(*) FROM road_edges").strip() != "8":
+            raise RuntimeError("Protected downgrade failed to preserve the synthetic graph")
+        if sql("SELECT version_num FROM alembic_version").strip() != "0004_run_state_integrity":
+            raise RuntimeError("Protected downgrade did not roll back schema changes atomically")
+        compose("run", "--rm", "migrate")
     finally:
         compose("down", "--volumes", "--remove-orphans")
     print(
-        "PASS: fresh database, missing-extension recovery, repeated upgrade "
-        "and metadata downgrade/upgrade"
+        "PASS: fresh M01 to M02, preserved legacy data, schema consistency, "
+        "idempotent seed and protected research downgrade"
     )
 
 

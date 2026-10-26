@@ -10,7 +10,7 @@ export default defineConfig({
     ["list"],
     [
       "json",
-      { outputFile: "../../docs/evidence/m01-audit/playwright-results.json" },
+      { outputFile: "../../docs/evidence/m02/playwright-results.json" },
     ],
   ],
   use: {

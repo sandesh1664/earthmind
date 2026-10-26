@@ -1,0 +1,53 @@
+$ docker compose --project-name earthmind-m02-verification --env-file .env ps --all --quiet
+$ docker compose --project-name earthmind-m02-verification --env-file .env up --detach --wait --wait-timeout 120 db
+ Network earthmind-m02-verification_default Creating 
+ Network earthmind-m02-verification_default Creating 
+ Volume earthmind-m02-verification_postgres_data Creating 
+ Volume earthmind-m02-verification_postgres_data Creating 
+ Volume earthmind-m02-verification_postgres_data Created 
+ Volume earthmind-m02-verification_postgres_data Created 
+ Network earthmind-m02-verification_default Created 
+ Network earthmind-m02-verification_default Created 
+ Container earthmind-m02-verification-db-1 Creating 
+ Container earthmind-m02-verification-db-1 Created 
+ Container earthmind-m02-verification-db-1 Starting 
+ Container earthmind-m02-verification-db-1 Started 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc DROP EXTENSION IF EXISTS postgis
+DROP EXTENSION
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM pg_extension WHERE extname='postgis'
+0
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini upgrade 0002_system_metadata
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-6638492688f2 Creating 
+ Container earthmind-m02-verification-migrate-run-6638492688f2 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0002_system_metadata
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc INSERT INTO system_metadata(application_name,schema_version) VALUES ('M01 preservation probe',1)
+ERROR:  null value in column "id" of relation "system_metadata" violates not-null constraint
+DETAIL:  Failing row contains (null, M01 preservation probe, 1, 2026-10-26 18:37:17.031702+00, 2026-10-26 18:37:17.031702+00).
+$ docker compose --project-name earthmind-m02-verification --env-file .env down --volumes --remove-orphans
+ Container earthmind-m02-verification-db-1 Stopping 
+ Container earthmind-m02-verification-db-1 Stopped 
+ Container earthmind-m02-verification-db-1 Removing 
+ Container earthmind-m02-verification-db-1 Removed 
+ Network earthmind-m02-verification_default Removing 
+ Volume earthmind-m02-verification_postgres_data Removing 
+ Volume earthmind-m02-verification_postgres_data Removed 
+ Network earthmind-m02-verification_default Removed 
+Traceback (most recent call last):
+  File "/Users/redmug/EARTHMIND/scripts/verify_migrations.py", line 121, in <module>
+    main()
+  File "/Users/redmug/EARTHMIND/scripts/verify_migrations.py", line 65, in main
+    sql(
+  File "/Users/redmug/EARTHMIND/scripts/verify_migrations.py", line 28, in sql
+    return compose("exec", "-T", "db", "psql", "-U", user, "-d", database, "-tAc", statement)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/redmug/EARTHMIND/scripts/verify_migrations.py", line 19, in compose
+    result.check_returncode()
+  File "/Users/redmug/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/subprocess.py", line 502, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+subprocess.CalledProcessError: Command '['docker', 'compose', '--project-name', 'earthmind-m02-verification', '--env-file', '.env', 'exec', '-T', 'db', 'psql', '-U', 'earthmind', '-d', 'earthmind', '-tAc', "INSERT INTO system_metadata(application_name,schema_version) VALUES ('M01 preservation probe',1)"]' returned non-zero exit status 1.

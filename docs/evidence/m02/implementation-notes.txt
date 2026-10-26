@@ -1,0 +1,3 @@
+2026-10-26: initial sandbox uv run ruff attempts exited1 because newly pinned types-shapely/types-networkx downloads could not resolve files.pythonhosted.org; approved network sync requested. This was not a lint PASS.
+2026-10-26: preliminary final-quality exited2 because a task-generated .next-before-svg-fix-retry cache was inadvertently synced from staging; ESLint found72errors74warnings in generated output. Removed only that task-created cache, no source-rule exclusions. Original failed output retained in final-quality.log.
+Frozen0003 adjacent SQL resources received trailing-whitespace-only normalization for Git source checks; SQL token sequences unchanged, no schema/trigger semantics rewritten. Integrity changes use separate0004.

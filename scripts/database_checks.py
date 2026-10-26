@@ -36,7 +36,7 @@ def main() -> int:
             "SELECT application_name, schema_version, created_at, updated_at "
             "FROM system_metadata WHERE application_name = 'EARTHMIND'"
         ).fetchone()
-        if revision != ("0002_system_metadata",) or metadata is None or metadata[1] != 1:
+        if revision != ("0004_run_state_integrity",) or metadata is None or metadata[1] != 1:
             raise RuntimeError("Database migration or application metadata is not current")
         print(f"PostgreSQL: {version}")
         print(f"PostGIS: {postgis}")
@@ -50,7 +50,7 @@ def main() -> int:
             "pytest",
             "-m",
             "integration",
-            "apps/api/tests/test_database_integration.py",
+            "apps/api/tests",
         ],
         env=environment,
     )

@@ -1,0 +1,26 @@
+{
+  "installed_packages": 64,
+  "reported_packages": 64,
+  "audited_public_packages": 61,
+  "skipped_packages": [
+    {
+      "name": "earthmind-api",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-api (0.1.0)"
+    },
+    {
+      "name": "earthmind-contracts",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-contracts (0.1.0)"
+    },
+    {
+      "name": "earthmind-worker",
+      "skip_reason": "Dependency not found on PyPI and could not be audited: earthmind-worker (0.1.0)"
+    }
+  ],
+  "finding_entries": 0,
+  "unique_advisories": 0,
+  "findings": [],
+  "unreported_installed_packages": [],
+  "unexpected_reported_packages": [],
+  "version_mismatches": {},
+  "scope": "Python package advisories only; excludes application code, OS packages, PostGIS/SUMO native binaries and unpublished package contents."
+}

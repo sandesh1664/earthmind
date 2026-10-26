@@ -1,0 +1,35 @@
+{
+  "scope": "Independent M02 persistence/spatial safety review; no DDL rewrites by reviewer",
+  "findings": [
+    {
+      "issue": "queued timestamp mutation bypassed status transition trigger",
+      "evidence": "0003 run trigger checked queued timestamps only on INSERT; UPDATE with unchanged queued status skipped running/terminal branches",
+      "resolution": "Parent/schema agent added revision0004_run_state_integrity; live regression execution is owned by parent and was not observed by reviewer"
+    },
+    {
+      "issue": "geography cast typmod prevented functional spatial index use",
+      "evidence": "Actual EXPLAIN ANALYZE with enable_seqscan=off: geography(GEOMETRY,-1) Seq Scan; bare geography Index Scan ix_road_edges_geography_gist",
+      "resolution": "Service as_geography uses Geography(geometry_type=None); compiled-SQL unit and live index regression added",
+      "proof": "geography-index-fix-proof.json"
+    },
+    {
+      "issue": "polygon intersection query lacked spatial extent cap",
+      "evidence": "Vertex and response limits existed but a four-vertex world polygon bypassed bbox span policy",
+      "resolution": "Validated polygon bounds now obey geo_max_bbox_degrees; oversized polygon API regression added"
+    },
+    {
+      "issue": "validation budget fabricated graph counts",
+      "evidence": "NOT_VALIDATED budget branch previously returned components=0 and isolated_nodes=0 without graph computation",
+      "resolution": "Unknown graph counts are null; typed response and live API regression updated"
+    }
+  ],
+  "observed_checks": {
+    "unit_tests": 20,
+    "strict_mypy_source_files": 5,
+    "ruff": "exit0"
+  },
+  "remaining_notes": [
+    "Audit metadata rejects credential-like keys; current API writes only safe slug metadata. Arbitrary manual SQL can still place a secret under an innocuous key; no existing API leak was observed.",
+    "Actual six API integration regressions run in the parent canonical live-database suite."
+  ]
+}

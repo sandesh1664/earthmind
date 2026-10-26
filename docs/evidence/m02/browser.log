@@ -1,0 +1,40 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web --
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test
+
+
+Running 15 tests using 5 workers
+
+(node:34913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34910) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34914) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34911) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   4 [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (1.9s)
+  ✓   5 [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (1.9s)
+  ✓   6 [tablet] › tests/browser/geospatial.spec.ts:71:1 › M02 UI-only empty dataset is honest (396ms)
+  ✓   7 [desktop] › tests/browser/geospatial.spec.ts:71:1 › M02 UI-only empty dataset is honest (457ms)
+  ✓   2 [desktop] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (3.0s)
+  ✓  10 [desktop] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (306ms)
+(node:34962) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [tablet] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (4.0s)
+  ✓   8 [tablet] › tests/browser/geospatial.spec.ts:93:1 › M02 UI-only service error supports retry (1.8s)
+  ✓   9 [desktop] › tests/browser/geospatial.spec.ts:93:1 › M02 UI-only service error supports retry (1.9s)
+  ✓   1 [mobile] › tests/browser/dashboard.spec.ts:3:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (4.3s)
+  ✓  12 [tablet] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (289ms)
+  ✓  11 [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (785ms)
+  ✓  13 [mobile] › tests/browser/dashboard.spec.ts:78:1 › UI-only mocked dependency failure shows honest error state and supports retry (299ms)
+  ✓  14 [mobile] › tests/browser/geospatial.spec.ts:71:1 › M02 UI-only empty dataset is honest (447ms)
+  ✓  15 [mobile] › tests/browser/geospatial.spec.ts:93:1 › M02 UI-only service error supports retry (1.9s)
+
+  15 passed (7.5s)

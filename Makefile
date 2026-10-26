@@ -4,9 +4,9 @@ UV ?= uv
 UV_RUN := $(UV) run --locked
 COMPOSE := docker compose --env-file .env
 
-.PHONY: help setup dev test lint typecheck migrate smoke down build logs status clean
+.PHONY: help setup dev test lint typecheck migrate smoke down build logs status clean seed
 help:
-	@echo 'EARTHMIND M01: setup dev down test lint typecheck migrate smoke logs status clean build'
+	@echo 'EARTHMIND M02: setup dev down test lint typecheck migrate seed smoke logs status clean build'
 
 setup:
 	sh scripts/bootstrap.sh
@@ -18,6 +18,7 @@ dev:
 	$(UV_RUN) python scripts/check_architecture.py --host-only
 	$(COMPOSE) up --build --detach --wait --wait-timeout 240
 	$(UV_RUN) python scripts/check_architecture.py
+	$(MAKE) seed
 	$(MAKE) smoke
 
 test:
@@ -42,8 +43,12 @@ build:
 migrate:
 	$(COMPOSE) run --rm migrate
 
+seed:
+	$(COMPOSE) run --rm migrate python -m earthmind_api.seed
+
 smoke:
 	$(UV_RUN) python scripts/smoke.py
+	$(UV_RUN) python scripts/geospatial_smoke.py
 
 down:
 	$(COMPOSE) down --remove-orphans

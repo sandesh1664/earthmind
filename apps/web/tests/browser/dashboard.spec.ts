@@ -47,7 +47,7 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/m01-audit/dashboard-${info.project.name}.png`,
+    path: `../../docs/evidence/m02/m01-regression-${info.project.name}.png`,
     fullPage: true,
   });
   const menu = page.getByRole("button", {

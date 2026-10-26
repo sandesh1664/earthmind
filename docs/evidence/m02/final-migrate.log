@@ -1,0 +1,6 @@
+docker compose --env-file .env run --rm migrate
+ Container earthmind-db-1 Running 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-run-68581419afbf Creating 
+ Container earthmind-migrate-run-68581419afbf Created 

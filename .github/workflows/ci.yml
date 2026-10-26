@@ -1,4 +1,4 @@
-name: M01 quality and integration
+name: M02 quality and integration
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: m01-${{ github.workflow }}-${{ github.ref }}
+  group: m02-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -54,8 +54,11 @@ jobs:
       - name: Native ARM64 Compose startup and end-to-end smoke
         run: make dev
 
-      - name: Verify live database sessions and metadata
+      - name: Verify live database, spatial API and persistence integrity
         run: uv run --locked python scripts/database_checks.py
+
+      - name: Inspect native spatial columns and actual indexed queries
+        run: uv run --locked python scripts/inspect_geospatial_database.py
 
       - name: Verify isolated fresh and rollback migrations
         run: uv run --locked python scripts/verify_migrations.py

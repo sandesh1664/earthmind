@@ -1,8 +1,8 @@
 # EARTHMIND engineering instructions
 
-- M01 establishes the Dubai urban intelligence platform's local foundation.
-  Keep traffic ingestion, AI forecasting, digital twins, and production scenarios
-  outside this milestone.
+- M01 is the preserved foundation; M02 adds geospatial persistence and synthetic
+  structural validation. Real traffic ingestion, AI, Cesium, SUMO conversion and
+  production scenario execution remain outside the completed M02 scope.
 - Use Python 3.12 and native Linux ARM64 containers. Never enable AMD64 emulation
   to hide an incompatible dependency.
 - Keep JavaScript dependencies in the npm workspace lock and Python dependencies
@@ -17,4 +17,23 @@
 - Never commit working credentials, caches, installed dependencies, or generated
   simulation data archives. Small, clearly labeled verification fixtures and
   textual evidence are appropriate.
-- Do not push or begin M02 without explicit authorization.
+- Reuse `models.Base`, existing settings/session dependencies and the single
+  Alembic environment. Never add a competing engine or ORM base.
+- Store 2D EPSG:4326, longitude then latitude. Use geography/pyproj for metric
+  measurements, explicit topology endpoints and plain geography casts matching
+  the expression index. Geometric crossings never imply graph connections.
+- Published/archived networks and their geometry are immutable. Corrections use
+  new versions. Retain database triggers and same-network composite foreign keys.
+- Persist at most 5,000 vertices per region/edge. Respect bounded query/body/page
+  and validation budgets; NOT_VALIDATED counts are unknown, never invented zero.
+- Preserve original provenance privately; public serializers allowlist metadata
+  and sanitize source URLs. Never claim synthetic fixtures are observed streets,
+  official boundaries, verified signals or SUMO-converted networks.
+- Keep development write tokens server-only and API/web/PostgreSQL loopback-only.
+  This is not user authentication; never advertise shared production readiness.
+- Migration 0003 is frozen; 0004 adds reviewed integrity guards. Future changes
+  require new revisions. Populated M02 downgrades must refuse destructive drops.
+- Run `scripts/database_checks.py`, `scripts/verify_migrations.py`,
+  `scripts/inspect_geospatial_database.py` and browser checks for spatial changes.
+  Keep actual failures as evidence. Do not reset main volumes to pass tests.
+- Do not push or begin M03 without explicit authorization.

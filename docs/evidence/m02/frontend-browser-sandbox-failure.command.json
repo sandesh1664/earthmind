@@ -1,0 +1,12 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "test:browser",
+    "--",
+    "--list"
+  ],
+  "cwd": "/private/tmp/earthmind-m02",
+  "exit_code": 1,
+  "observed": "Existing root npm script consumed --list, launching tests. All15 Chromium launches failed macOS MachPort permission before pages executed; this is not an application integration result. Root script forwarding corrected subsequently."
+}

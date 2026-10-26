@@ -17,12 +17,14 @@ from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from earthmind_api.dependencies import HealthChecks, Infrastructure, readiness
 from earthmind_api.diagnostics import DiagnosticsStore, QueueFullError
+from earthmind_api.geometry import SpatialInputError
+from earthmind_api.geospatial_routes import router as geospatial_router
 from earthmind_api.logging import configure_logging
+from earthmind_api.request_limits import GeoBodyLimitMiddleware
 from earthmind_api.settings import Settings
 
 logger = logging.getLogger(__name__)
@@ -35,12 +37,6 @@ def get_checks(request: Request) -> HealthChecks:
 def get_store(request: Request) -> DiagnosticsStore:
     infrastructure = cast(Infrastructure, request.app.state.infrastructure)
     return DiagnosticsStore(infrastructure.cache, infrastructure.settings.health_timeout_seconds)
-
-
-async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
-    infrastructure = cast(Infrastructure, request.app.state.infrastructure)
-    async with infrastructure.session() as session:
-        yield session
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -58,6 +54,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             await infrastructure.close()
 
     application = FastAPI(title="EARTHMIND API", version="0.1.0", lifespan=lifespan)
+    application.state.settings = configuration
+    application.add_middleware(
+        GeoBodyLimitMiddleware, max_bytes=configuration.geo_max_request_bytes
+    )
     application.add_middleware(
         CORSMiddleware,
         allow_origins=configuration.cors_origins,
@@ -69,15 +69,41 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @application.exception_handler(RequestValidationError)
     async def invalid_request(_request: Request, _error: RequestValidationError) -> JSONResponse:
         return JSONResponse(
-            {"error": {"code": "invalid_request", "message": "Request validation failed"}},
+            {
+                "error": {
+                    "code": "invalid_request",
+                    "message": "Request validation failed",
+                    "fields": [
+                        {"location": list(error["loc"]), "code": error["type"]}
+                        for error in _error.errors()[:20]
+                    ],
+                }
+            },
+            status_code=422,
+        )
+
+    @application.exception_handler(SpatialInputError)
+    async def spatial_input_error(_request: Request, error: SpatialInputError) -> JSONResponse:
+        return JSONResponse(
+            {"error": {"code": "invalid_spatial_request", "message": str(error)[:256]}},
             status_code=422,
         )
 
     @application.exception_handler(StarletteHTTPException)
     async def http_error(_request: Request, error: StarletteHTTPException) -> JSONResponse:
-        codes = {404: "not_found", 429: "queue_full", 503: "dependency_unavailable"}
+        codes = {
+            403: "forbidden",
+            404: "not_found",
+            409: "conflict",
+            413: "payload_too_large",
+            429: "queue_full",
+            503: "dependency_unavailable",
+        }
         messages = {
-            404: "Diagnostic job not found",
+            403: "Developer write authorization required",
+            404: "Resource not found",
+            409: "Resource conflicts with existing data",
+            413: "Request exceeds its configured size limit",
             429: "Diagnostic queue is full",
             503: "Service dependency unavailable",
         }
@@ -191,6 +217,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         response.headers["Cache-Control"] = "no-store"
         return job
 
+    application.include_router(geospatial_router)
     return application
 
 

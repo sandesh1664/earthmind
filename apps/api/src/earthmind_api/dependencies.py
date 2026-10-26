@@ -4,9 +4,10 @@ import asyncio
 import logging
 from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
-from typing import Protocol
+from typing import Protocol, cast
 
 from earthmind_contracts import WORKER_HEARTBEAT_KEY, CheckStatus, DependencyChecks, ReadyHealth
+from fastapi import Request
 from redis.asyncio import Redis
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import (
@@ -27,6 +28,12 @@ class HealthChecks(Protocol):
     async def redis(self) -> None: ...
 
     async def worker(self) -> None: ...
+
+
+async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
+    infrastructure = cast(Infrastructure, request.app.state.infrastructure)
+    async with infrastructure.session() as session:
+        yield session
 
 
 class Infrastructure:

@@ -45,9 +45,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { requestJSON } from "@/lib/client";
+import { GeospatialData } from "@/components/geospatial-data";
 
 const navigation: { label: string; icon: LucideIcon; active: boolean }[] = [
   { label: "Overview", icon: LayoutDashboard, active: true },
+  { label: "Geospatial Data", icon: MapIcon, active: true },
   { label: "City Explorer", icon: MapIcon, active: false },
   { label: "Scenario Studio", icon: Layers3, active: false },
   { label: "Simulation Laboratory", icon: FlaskConical, active: false },
@@ -154,8 +156,8 @@ function DiagnosticPanel({ connected }: { connected: boolean }) {
         <Terminal size={19} className="muted-icon" />
       </div>
       <p className="panel-description">
-        Submit a real job to the simulation worker. SUMO verification executes
-        a tiny, labeled synthetic fixture to check the installed runtime.
+        Submit a real job to the simulation worker. SUMO verification executes a
+        tiny, labeled synthetic fixture to check the installed runtime.
       </p>
       <div className="diagnostic-actions">
         <button
@@ -336,7 +338,7 @@ export function Dashboard() {
           </span>
         </a>
         <p className="nav-label">
-          WORKSPACE <span>M01</span>
+          WORKSPACE <span>M02</span>
         </p>
         <nav aria-label="Main navigation">
           {navigation.map(({ label, icon: Icon, active }) => (
@@ -354,6 +356,9 @@ export function Dashboard() {
               <Icon size={17} />
               <span>{label}</span>
               {!active && <span className="nav-soon">LATER</span>}
+              {label === "Geospatial Data" && (
+                <span className="nav-soon geo-nav-tag">M02</span>
+              )}
               {section === label && <span className="nav-active-dot" />}
             </button>
           ))}
@@ -389,7 +394,7 @@ export function Dashboard() {
               LOCAL DEVELOPMENT
             </span>
             <span className="keyboard-hint">
-              <Command size={11} /> M01
+              <Command size={11} /> M02
             </span>
           </div>
         </header>
@@ -674,6 +679,8 @@ export function Dashboard() {
                 <span className="foundation-tag">FOUNDATION ONLY</span>
               </section>
             </>
+          ) : section === "Geospatial Data" ? (
+            <GeospatialData />
           ) : (
             <section className="future-panel">
               <span className="future-icon">
@@ -706,7 +713,7 @@ export function Dashboard() {
             <div>
               <span>VERSION {caps?.version ?? "—"}</span>
               <span className="footer-divider" />
-              <span>MILESTONE {caps?.milestone ?? "M01"}</span>
+              <span>MILESTONE M02</span>
               <a href="/api/health">
                 Readiness API <ArrowUpRight size={11} />
               </a>

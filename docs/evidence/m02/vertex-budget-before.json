@@ -1,0 +1,17 @@
+{
+  "observed_at": "2026-10-26T18:30:50.662887+00:00",
+  "command": [
+    "/private/tmp/earthmind-m02/.venv/bin/pytest",
+    "-m",
+    "integration",
+    "-k",
+    "vertex_budget",
+    "/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py",
+    "--rootdir=/private/tmp/earthmind-m02"
+  ],
+  "cwd": "/Users/redmug/EARTHMIND",
+  "database_head": "0003_geospatial_foundation",
+  "exit_code": 1,
+  "raw_output": "vertex-budget-before.log",
+  "credentials": "loaded from ignored local .env, never printed"
+}

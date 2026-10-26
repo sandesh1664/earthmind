@@ -1,0 +1,154 @@
+$ docker compose --project-name earthmind-m02-verification --env-file .env ps --all --quiet
+$ docker compose --project-name earthmind-m02-verification --env-file .env up --detach --wait --wait-timeout 120 db
+ Volume earthmind-m02-verification_postgres_data Creating 
+ Network earthmind-m02-verification_default Creating 
+ Volume earthmind-m02-verification_postgres_data Creating 
+ Network earthmind-m02-verification_default Creating 
+ Volume earthmind-m02-verification_postgres_data Created 
+ Volume earthmind-m02-verification_postgres_data Created 
+ Network earthmind-m02-verification_default Created 
+ Network earthmind-m02-verification_default Created 
+ Container earthmind-m02-verification-db-1 Creating 
+ Container earthmind-m02-verification-db-1 Created 
+ Container earthmind-m02-verification-db-1 Starting 
+ Container earthmind-m02-verification-db-1 Started 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc DROP EXTENSION IF EXISTS postgis
+DROP EXTENSION
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM pg_extension WHERE extname='postgis'
+0
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini upgrade 0002_system_metadata
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-9dc0138953ec Creating 
+ Container earthmind-m02-verification-migrate-run-9dc0138953ec Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0002_system_metadata
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc INSERT INTO system_metadata(id,application_name,schema_version) VALUES (gen_random_uuid(),'M01 preservation probe',1)
+INSERT 0 1
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT PostGIS_Version(); SELECT application_name,schema_version FROM system_metadata
+3.6 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+EARTHMIND|1
+M01 preservation probe|1
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-c9e5851d7720 Creating 
+ Container earthmind-m02-verification-migrate-run-c9e5851d7720 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0004_run_state_integrity
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM system_metadata WHERE application_name='M01 preservation probe'
+1
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-e423c8ef0c97 Creating 
+ Container earthmind-m02-verification-migrate-run-e423c8ef0c97 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini check
+No new upgrade operations detected.
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-875c420c8b6f Creating 
+ Container earthmind-m02-verification-migrate-run-875c420c8b6f Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini downgrade 0002_system_metadata
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-5f5040a1a585 Creating 
+ Container earthmind-m02-verification-migrate-run-5f5040a1a585 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0002_system_metadata
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM system_metadata WHERE application_name='M01 preservation probe'
+1
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-f02733acab9d Creating 
+ Container earthmind-m02-verification-migrate-run-f02733acab9d Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini check
+No new upgrade operations detected.
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-5b7a933b5f6d Creating 
+ Container earthmind-m02-verification-migrate-run-5b7a933b5f6d Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate python -m earthmind_api.seed
+{"created": true, "edges": 8, "is_synthetic": true, "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "nodes": 6, "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb"}
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-c4755204f05b Creating 
+ Container earthmind-m02-verification-migrate-run-c4755204f05b Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate python -m earthmind_api.seed
+{"created": false, "edges": 8, "is_synthetic": true, "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "nodes": 6, "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb"}
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-46fdf05a4387 Creating 
+ Container earthmind-m02-verification-migrate-run-46fdf05a4387 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate alembic -c apps/api/alembic.ini downgrade 0002_system_metadata
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-a21cd9b0bc4b Creating 
+ Container earthmind-m02-verification-migrate-run-a21cd9b0bc4b Created 
+Traceback (most recent call last):
+  File "/app/.venv/bin/alembic", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/alembic/config.py", line 1039, in main
+    CommandLine(prog=prog).main(argv=argv)
+  File "/app/.venv/lib/python3.12/site-packages/alembic/config.py", line 1029, in main
+    self.run_cmd(cfg, options)
+  File "/app/.venv/lib/python3.12/site-packages/alembic/config.py", line 963, in run_cmd
+    fn(
+  File "/app/.venv/lib/python3.12/site-packages/alembic/command.py", line 534, in downgrade
+    script.run_env()
+  File "/app/.venv/lib/python3.12/site-packages/alembic/script/base.py", line 550, in run_env
+    util.load_python_file(self.dir, "env.py")
+  File "/app/.venv/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 114, in load_python_file
+    module = load_module_py(module_id, path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 132, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/app/apps/api/migrations/env.py", line 39, in <module>
+    context.run_migrations()
+  File "<string>", line 8, in run_migrations
+  File "/app/.venv/lib/python3.12/site-packages/alembic/runtime/environment.py", line 970, in run_migrations
+    self.get_context().run_migrations(**kw)
+  File "/app/.venv/lib/python3.12/site-packages/alembic/runtime/migration.py", line 616, in run_migrations
+    step.migration_fn(**kw)
+  File "/app/apps/api/migrations/versions/0003_geospatial_foundation.py", line 46, in downgrade
+    raise RuntimeError(
+RuntimeError: M02 downgrade refused: populated research tables require an explicit data-preserving export/migration plan
+
+PASS: populated-research downgrade refused as designed; expected nonzero child exit
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT count(*) FROM road_edges
+8
+$ docker compose --project-name earthmind-m02-verification --env-file .env exec -T db psql -U earthmind -d earthmind -tAc SELECT version_num FROM alembic_version
+0004_run_state_integrity
+$ docker compose --project-name earthmind-m02-verification --env-file .env run --rm migrate
+ Container earthmind-m02-verification-db-1 Running 
+ Container earthmind-m02-verification-db-1 Waiting 
+ Container earthmind-m02-verification-db-1 Healthy 
+ Container earthmind-m02-verification-migrate-run-b56e8a185b64 Creating 
+ Container earthmind-m02-verification-migrate-run-b56e8a185b64 Created 
+$ docker compose --project-name earthmind-m02-verification --env-file .env down --volumes --remove-orphans
+ Container earthmind-m02-verification-db-1 Stopping 
+ Container earthmind-m02-verification-db-1 Stopped 
+ Container earthmind-m02-verification-db-1 Removing 
+ Container earthmind-m02-verification-db-1 Removed 
+ Network earthmind-m02-verification_default Removing 
+ Volume earthmind-m02-verification_postgres_data Removing 
+ Volume earthmind-m02-verification_postgres_data Removed 
+ Network earthmind-m02-verification_default Removed 
+PASS: fresh M01 to M02, preserved legacy data, schema consistency, idempotent seed and protected research downgrade

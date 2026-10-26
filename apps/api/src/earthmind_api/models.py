@@ -1,4 +1,4 @@
-"""M01 application metadata only; no simulation domain entities."""
+"""Single ORM base and retained M01 application metadata."""
 
 from datetime import datetime
 from uuid import UUID, uuid4
@@ -29,3 +29,7 @@ class SystemMetadata(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now()
     )
+
+
+# Import registrations after Base exists; all milestones share this metadata.
+from earthmind_api import geospatial_models as _geospatial_models  # noqa: E402, F401

@@ -1,0 +1,1 @@
+PASS: workflow YAML, native ARM64 runner, read-only permissions, M02 inspection step; hosted execution NOT RUN

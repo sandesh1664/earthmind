@@ -107,3 +107,8 @@ are recorded separately in `verification.md`.
 
 See the eight [architecture decision records](decisions) for component choices,
 ARM64 evidence, queue delivery semantics and deployment boundaries.
+
+
+M02 extends this preserved foundation with the shared PostGIS spatial schema,
+provenance and bounded geospatial APIs. See [M02 architecture](geospatial-architecture.md)
+and [ADR 0009](decisions/0009-geospatial-foundation.md) for the additive design.

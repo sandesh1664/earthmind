@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.7.0
+rootdir: /private/tmp/earthmind-m02
+configfile: pyproject.toml
+plugins: asyncio-1.4.1, anyio-4.15.1, platformdirs-4.13.5
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 28 items / 26 deselected / 2 selected
+
+../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py F [ 50%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+_____ test_queued_run_same_state_timestamp_tampering_rejected[started_at] ______
+
+session = <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x10e5f7230>
+column = 'started_at'
+
+    @pytest.mark.parametrize("column", ["started_at", "finished_at"])
+    async def test_queued_run_same_state_timestamp_tampering_rejected(
+        session: AsyncSession, column: str
+    ) -> None:
+        """A status-preserving update must not make an unexecuted contract appear executed."""
+        run = SimulationRun(scenario_id=SCENARIO_ID, status="queued", seed=1, input_sha256="d" * 64)
+        session.add(run)
+        await session.flush()
+>       with pytest.raises(IntegrityError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE IntegrityError
+
+/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py:430: Failed
+_____ test_queued_run_same_state_timestamp_tampering_rejected[finished_at] _____
+
+session = <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x10e5a6ab0>
+column = 'finished_at'
+
+    @pytest.mark.parametrize("column", ["started_at", "finished_at"])
+    async def test_queued_run_same_state_timestamp_tampering_rejected(
+        session: AsyncSession, column: str
+    ) -> None:
+        """A status-preserving update must not make an unexecuted contract appear executed."""
+        run = SimulationRun(scenario_id=SCENARIO_ID, status="queued", seed=1, input_sha256="d" * 64)
+        session.add(run)
+        await session.flush()
+>       with pytest.raises(IntegrityError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE IntegrityError
+
+/private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py:430: Failed
+=========================== short test summary info ============================
+FAILED ../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py::test_queued_run_same_state_timestamp_tampering_rejected[started_at]
+FAILED ../../../private/tmp/earthmind-m02/apps/api/tests/test_geospatial_database.py::test_queued_run_same_state_timestamp_tampering_rejected[finished_at]
+======================= 2 failed, 26 deselected in 0.37s =======================

@@ -1,0 +1,1 @@
+env UV_CACHE_DIR=/private/tmp/earthmind-m02-uv-cache uvx --python 3.12 --from pip-audit==2.10.1 pip-audit --path /Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages --format json --progress-spinner off --timeout 15 --cache-dir /private/tmp/earthmind-m02-pip-audit-cache

@@ -1,0 +1,71 @@
+PASS http://127.0.0.1:8000/health/ready: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+ Container earthmind-worker-1 Stopping 
+ Container earthmind-worker-1 Stopped 
+PASS http://127.0.0.1:8000/health/ready: HTTP 503 {"checks": {"database": "ok", "redis": "ok", "worker": "error"}, "service": "api", "status": "degraded"}
+PASS http://127.0.0.1:3000/api/health: HTTP 503 {"checks": {"database": "ok", "redis": "ok", "worker": "error"}, "service": "api", "status": "degraded"}
+PASS liveness during worker outage: http://127.0.0.1:8000/health/live: HTTP 200
+PASS liveness during worker outage: http://127.0.0.1:3000/api/health/live: HTTP 200
+ Container earthmind-db-1 Waiting 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-1 Starting 
+ Container earthmind-migrate-1 Started 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-redis-1 Waiting 
+ Container earthmind-redis-1 Healthy 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-worker-1 Starting 
+ Container earthmind-worker-1 Started 
+PASS http://127.0.0.1:8000/health/ready: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+ Container earthmind-redis-1 Stopping 
+ Container earthmind-redis-1 Stopped 
+PASS http://127.0.0.1:8000/health/ready: HTTP 503 {"checks": {"database": "ok", "redis": "error", "worker": "error"}, "service": "api", "status": "degraded"}
+PASS http://127.0.0.1:3000/api/health: HTTP 503 {"checks": {"database": "ok", "redis": "error", "worker": "error"}, "service": "api", "status": "degraded"}
+PASS liveness during redis outage: http://127.0.0.1:8000/health/live: HTTP 200
+PASS liveness during redis outage: http://127.0.0.1:3000/api/health/live: HTTP 200
+ Container earthmind-redis-1 Starting 
+ Container earthmind-redis-1 Started 
+PASS http://127.0.0.1:8000/health/ready: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+ Container earthmind-db-1 Stopping 
+ Container earthmind-db-1 Stopped 
+PASS http://127.0.0.1:8000/health/ready: HTTP 503 {"checks": {"database": "error", "redis": "ok", "worker": "ok"}, "service": "api", "status": "degraded"}
+PASS http://127.0.0.1:3000/api/health: HTTP 503 {"checks": {"database": "error", "redis": "ok", "worker": "ok"}, "service": "api", "status": "degraded"}
+PASS liveness during db outage: http://127.0.0.1:8000/health/live: HTTP 200
+PASS liveness during db outage: http://127.0.0.1:3000/api/health/live: HTTP 200
+ Container earthmind-db-1 Starting 
+ Container earthmind-db-1 Started 
+PASS http://127.0.0.1:8000/health/ready: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: HTTP 200 {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+ Container earthmind-api-1 Running 
+ Container earthmind-web-1 Running 
+ Container earthmind-db-1 Running 
+ Container earthmind-redis-1 Running 
+ Container earthmind-worker-1 Running 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-1 Starting 
+ Container earthmind-migrate-1 Started 
+ Container earthmind-redis-1 Waiting 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-redis-1 Healthy 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-worker-1 Waiting 
+ Container earthmind-worker-1 Healthy 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-api-1 Waiting 
+ Container earthmind-api-1 Healthy 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-redis-1 Waiting 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-worker-1 Waiting 
+ Container earthmind-api-1 Waiting 
+ Container earthmind-web-1 Waiting 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-worker-1 Healthy 
+ Container earthmind-api-1 Healthy 
+ Container earthmind-web-1 Healthy 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-redis-1 Healthy 
+FAILURE SMOKE PASSED: worker + Redis + database return 503; liveness and recovery pass
