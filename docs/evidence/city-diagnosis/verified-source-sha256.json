@@ -1,0 +1,23 @@
+{
+  "apps/web/components/city/CesiumViewer.tsx": "27a0797e6a46c5c4d3f0e3121140acf6d2a6df8a5cbc5cc4887dcbc08aa2245b",
+  "apps/web/components/city/CityExplorer.tsx": "a4df10da381602e46b88f49e4423dcdde44e14fd34d7b30f620030b7e08947c0",
+  "apps/web/components/city/LayerManager.tsx": "f941ec8c006a9e4521445d694d761a462f1b8149ba26d3dcdaab5e57b9e4c3b7",
+  "apps/web/components/city/runtime/camera.ts": "fbc1e645110c9c1e7f8d2433e28cb92732d8a3a82cd34256fd8d2e1cffa916f1",
+  "apps/web/components/city/runtime/layers.ts": "7c3fc73403fd05472ab9d403ec857b3fb2c5033b5ba4cddbd5a350787243c536",
+  "apps/web/components/city/runtime/provider-readiness.ts": "f709a5a85b24af7033c2777e43785e61a2343981c4e598bc9429339278103a4b",
+  "apps/web/components/city/runtime/providers.ts": "5b8b3e31525c916bb5954929652fbb706c4f1bf15c707aaa39ed027b43943c9b",
+  "apps/web/components/city/runtime/scene-controller.ts": "615d527abcfad74c893aaf079fff9d4bf5d3f9e33d09d357eea2a21801524be2",
+  "apps/web/lib/city/provider-policy.ts": "0401ce452c1e851bd1dc3f94345125f216b23742f804e0cab95cf59011e604d2",
+  "apps/web/lib/city/types.ts": "f8bc45632b15c250f13052a25cc46e4bae30ea4d8d38805ee2c6b674c9c8d6fe",
+  "apps/web/playwright.config.ts": "d7d49fe5644ddac63e368f9ec73de26ab737486e0c9608a10afbb6b25b18a995",
+  "apps/web/tests/browser/city.spec.ts": "2fb6152c098de35d90306964d9cde026ecc806cb23172208bb75573873e09161",
+  "apps/web/tests/browser/dashboard.spec.ts": "e013dd59e250357d9ec93d236b9568abb26c4ecc884838be0159a4a60d5233f4",
+  "apps/web/tests/browser/diagnosis.spec.ts": "07ccc4881eb3fd2285650743fddadd7484bcd80663c9b559818b750064c30453",
+  "apps/web/tests/browser/evidence.ts": "3c647a5d439e0f58c0149be9b67bc3300361e80313f99598d1065630bf3695cb",
+  "apps/web/tests/browser/geospatial.spec.ts": "e77570b08cc445c97ad7dd04a32909f909c417736e73ba528c15f9d7b96ada11",
+  "apps/web/tests/browser/recovery.spec.ts": "9ac501f260a696b600e1291854dd8f829d55e3efba509b357ef93526f917cc3f",
+  "apps/web/tests/city-imagery-policy.test.ts": "dfcdfc9bedac567669af25536e1cb14b1696ce29b96c96e60e06ed8f38f25150",
+  "apps/web/tests/city-providers.test.ts": "11bdf7ada21e27ee7f826687056060c21bdb826015ec8ecf8608c60c4a2c472b",
+  "apps/web/tests/city-ui.test.ts": "601ea03d34e4599b00b83c2fc5d0c1f5cfec995c9246a4eb1d05e5f3d716a9bf",
+  "scripts/check_cesium_assets.py": "cb754251d8aee94619eab7e008e194938d4fb17657366783213af4f65ee215ed"
+}

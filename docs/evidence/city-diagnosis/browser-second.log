@@ -1,0 +1,186 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1
+
+
+Running 39 tests using 1 worker
+
+(node:78485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.8s)
+  ✓   2 [desktop] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (15.0s)
+  ✓   3 [desktop] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (679ms)
+  ✓   4 [desktop] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.2s)
+  ✓   5 [desktop] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (445ms)
+  ✘   6 [desktop] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (35.2s)
+(node:78731) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [desktop] › tests/browser/diagnosis.spec.ts:169:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (7.2s)
+  ✓   8 [desktop] › tests/browser/diagnosis.spec.ts:204:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (8.2s)
+  ✓   9 [desktop] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (784ms)
+  ✓  10 [desktop] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (247ms)
+  ✓  11 [desktop] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 6272ms
+  ✓  12 [desktop] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (26.1s)
+Actual fresh-context navigation to nonempty ready roads: 5977ms
+  ✓  13 [desktop] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (21.2s)
+(node:78844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [tablet] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.0s)
+  ✓  15 [tablet] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (13.5s)
+  ✓  16 [tablet] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (748ms)
+  ✓  17 [tablet] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.1s)
+  ✓  18 [tablet] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (672ms)
+  ✘  19 [tablet] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (34.7s)
+(node:79024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  20 [tablet] › tests/browser/diagnosis.spec.ts:169:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (5.4s)
+  ✓  21 [tablet] › tests/browser/diagnosis.spec.ts:204:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (7.4s)
+  ✓  22 [tablet] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (713ms)
+  ✓  23 [tablet] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (259ms)
+  ✓  24 [tablet] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5159ms
+  ✓  25 [tablet] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (22.3s)
+Actual fresh-context navigation to nonempty ready roads: 5922ms
+  ✓  26 [tablet] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (19.1s)
+(node:79117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [mobile] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (17.0s)
+  ✓  28 [mobile] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (17.0s)
+  ✓  29 [mobile] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (787ms)
+  ✓  30 [mobile] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.4s)
+  ✓  31 [mobile] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (662ms)
+  ✘  32 [mobile] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (31.8s)
+(node:79193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  33 [mobile] › tests/browser/diagnosis.spec.ts:169:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (4.5s)
+  ✓  34 [mobile] › tests/browser/diagnosis.spec.ts:204:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (5.0s)
+  ✓  35 [mobile] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (1.2s)
+  ✓  36 [mobile] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (644ms)
+  ✓  37 [mobile] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (2.0s)
+Actual fresh-context navigation to nonempty ready roads: 4968ms
+  ✓  38 [mobile] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (14.3s)
+Actual fresh-context navigation to nonempty ready roads: 5107ms
+  ✓  39 [mobile] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (14.0s)
+
+
+  1) [desktop] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 0.01
+    Received:   0.01237717336979216
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      156 |     cameras.topDown = await assertFocus(page, scene, cameras.downtown.groundFocus!);
+      157 |     await page.getByRole("button", { name: "Perspective view", exact: true }).click();
+    > 158 |     await expect.poll(async () => Math.abs((await cameraState(page)).pitch + 55)).toBeLessThan(0.01);
+          |                                                                                   ^
+      159 |     cameras.perspective = await assertFocus(page, scene, cameras.topDown.groundFocus!);
+      160 |     expect(observation.errors).toEqual([]);
+      161 |     expect(observation.httpFailures).toEqual([]);
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:158:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [tablet] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 0.01
+    Received:   0.01237717336979216
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      156 |     cameras.topDown = await assertFocus(page, scene, cameras.downtown.groundFocus!);
+      157 |     await page.getByRole("button", { name: "Perspective view", exact: true }).click();
+    > 158 |     await expect.poll(async () => Math.abs((await cameraState(page)).pitch + 55)).toBeLessThan(0.01);
+          |                                                                                   ^
+      159 |     cameras.perspective = await assertFocus(page, scene, cameras.topDown.groundFocus!);
+      160 |     expect(observation.errors).toEqual([]);
+      161 |     expect(observation.httpFailures).toEqual([]);
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:158:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+
+    Error: Settled camera must retain the requested actual ground focus
+
+    Settled camera must retain the requested actual ground focus
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 25000ms exceeded while waiting on the predicate
+
+      84 |     return Boolean(camera?.groundFocus && await scene.getAttribute("data-camera-moving") === "false" &&
+      85 |       Math.abs(camera.groundFocus[0] - target[0]) < 0.0005 && Math.abs(camera.groundFocus[1] - target[1]) < 0.0005);
+    > 86 |   }, { timeout: 25_000, message: "Settled camera must retain the requested actual ground focus" }).toBe(true);
+         |                                                                                                    ^
+      87 |   const camera = await cameraState(page);
+      88 |   for (const value of [camera.longitude, camera.latitude, camera.height, camera.heading, camera.pitch]) expect(Number.isFinite(value)).toBe(true);
+      89 |   expect(camera.height).toBeGreaterThan(0);
+        at assertFocus (/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:86:100)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:139:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-second/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+    [tablet] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+    [mobile] › tests/browser/diagnosis.spec.ts:104:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+  36 passed (6.3m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1

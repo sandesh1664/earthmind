@@ -1,0 +1,53 @@
+uv lock --check
+Resolved 67 packages in 12ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+62 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 48 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+tests/browser/diagnosis.spec.ts(44,28): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+tests/browser/diagnosis.spec.ts(45,5): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(45,24): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(45,42): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(45,60): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,5): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,15): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,26): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,36): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,52): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,62): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,73): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(46,83): error TS2532: Object is possibly 'undefined'.
+tests/browser/diagnosis.spec.ts(116,68): error TS2532: Object is possibly 'undefined'.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c tsc --noEmit
+make[1]: *** [typecheck] Error 2
+make: *** [lint] Error 2

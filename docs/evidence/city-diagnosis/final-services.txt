@@ -1,0 +1,6 @@
+api running healthy exit=0
+db running healthy exit=0
+migrate exited  exit=0
+redis running healthy exit=0
+web running healthy exit=0
+worker running healthy exit=0

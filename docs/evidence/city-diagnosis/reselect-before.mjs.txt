@@ -1,0 +1,14 @@
+import {createRequire} from 'node:module';
+import {writeFile} from 'node:fs/promises';
+const {chromium,expect}=createRequire('/Users/redmug/EARTHMIND/package.json')('@playwright/test');
+const browser=await chromium.launch();const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const page=await context.newPage();
+let release=()=>{};const gate=new Promise(r=>{release=r});let held=0;const failures=[];
+page.on('requestfailed',r=>{if(r.url().includes('/api/geospatial/networks/'))failures.push({path:new URL(r.url()).pathname,error:r.failure()?.errorText});});
+await page.route('**/api/geospatial/networks/*/edges?**',async r=>{held++;await gate;try{await r.continue()}catch{}});
+await page.goto('http://127.0.0.1:3000/');
+await expect.poll(()=>held,{timeout:30000}).toBeGreaterThan(0);
+const region=page.getByLabel('3D study region',{exact:true});const id=await region.inputValue();await region.selectOption(id);release();
+let result='recovered';try{await expect.poll(async()=>Number(await page.getByTestId('cesium-viewer').getAttribute('data-road-count')),{timeout:12000}).toBeGreaterThan(0)}catch{result='roads-stay-empty'}
+const out={result,regionId:id,held,failures,scene:await page.getByTestId('cesium-viewer').evaluate(el=>Object.fromEntries([...el.attributes].filter(a=>a.name.startsWith('data-')).map(a=>[a.name,a.value])))};
+await writeFile('/private/tmp/earthmind-diagnosis-results/reselect-before.json',JSON.stringify(out,null,2)+'\n');console.log(JSON.stringify(out));await context.close();await browser.close();
+if(result==='roads-stay-empty')process.exitCode=1;

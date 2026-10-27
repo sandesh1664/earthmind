@@ -127,13 +127,15 @@ export function useCityData(camera: CameraSnapshot | null, development = false) 
     region, boundary, network, roads, intersections,
   }), [region, boundary, network, roads, intersections]);
   const selectRegion = useCallback((id: string) => {
+    if (id === regionId) return;
     void queryClient.cancelQueries({queryKey: ["city", "spatial"]});
     setSelection({regionId: id, networkId: ""});
-  }, [queryClient]);
+  }, [queryClient, regionId]);
   const selectNetwork = useCallback((id: string) => {
+    if (id === networkId) return;
     void queryClient.cancelQueries({queryKey: ["city", "spatial"]});
     setSelection({regionId, networkId: id});
-  }, [queryClient, regionId]);
+  }, [queryClient, regionId, networkId]);
   const retry = useCallback(() => {
     void queryClient.invalidateQueries({queryKey: ["city"]});
   }, [queryClient]);

@@ -1,0 +1,365 @@
+{
+  "navigationToRoadReadyMs": 5159,
+  "timingScope": "Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",
+  "regionId": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+  "networkId": "4aa62897-1a54-546c-a390-ddb156838f8e",
+  "network": {
+    "id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+    "region_id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+    "data_source_id": "6c360c5b-0e03-5144-8eed-196d402bffd2",
+    "version_label": "osm-20261026-0b027352ec38",
+    "status": "published",
+    "checksum_sha256": "0b027352ec382ba57db36eaf5ec3b54e6f95d837603599746a5a808ad6aba4f6",
+    "source_format": "osm_sumo_georeferenced",
+    "projection_srid": 4326,
+    "node_count": 1560,
+    "edge_count": 2364,
+    "is_validated": true,
+    "validation_summary": {
+      "status": "VALID_WITH_WARNINGS",
+      "warnings": [
+        "Explicit topology has 8 connected components and 0 isolated nodes"
+      ],
+      "errors": []
+    },
+    "bounds": [
+      55.258021449,
+      25.180014177,
+      55.287991751,
+      25.207998212
+    ],
+    "created_at": "2026-10-26T23:17:07.077776Z",
+    "is_synthetic": false
+  },
+  "source": {
+    "id": "6c360c5b-0e03-5144-8eed-196d402bffd2",
+    "provider_name": "OpenStreetMap contributors",
+    "dataset_name": "Downtown Dubai / Business Bay bounded OSM extract",
+    "source_type": "openstreetmap",
+    "source_url": "https://overpass-api.de/api/interpreter",
+    "license_identifier": "ODbL-1.0",
+    "attribution_text": "© OpenStreetMap contributors — https://www.openstreetmap.org/copyright",
+    "collected_at": "2026-10-26T23:12:15.216624Z",
+    "source_version": "9aab25c641c00ba9e1911001",
+    "checksum_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+    "created_at": "2026-10-26T23:17:07.077776Z",
+    "is_synthetic": false
+  },
+  "context": {
+    "source": "OpenStreetMap",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+    "bounds": [
+      55.258,
+      25.18,
+      55.288,
+      25.208
+    ],
+    "cartographic_features": 4676,
+    "explicit_height_buildings": 402,
+    "labels": 120,
+    "rejected_incomplete_ways": 0,
+    "rejected_invalid_geometry": 0,
+    "artifacts": {
+      "context.geojson": {
+        "sha256": "30237bfcdca15d4427644d966eb564947392c6370bcd59715fc41069d0d4103d",
+        "bytes": 2053685,
+        "features": 4676,
+        "positions": 39090
+      },
+      "buildings.geojson": {
+        "sha256": "fc5c22bc575a5151b09093b57dcd0a21cd3e5681b8b0d8036259b87bd33e2724",
+        "bytes": 249109,
+        "features": 402,
+        "positions": 4895
+      }
+    },
+    "limitations": [
+      "OSM height tags are not field verified",
+      "Missing heights are not inferred; footprint remains flat",
+      "Simple way polygons only; unassembled multipolygon relations omitted",
+      "Cartographic roads are context, selectable network comes from PostGIS"
+    ]
+  },
+  "selectedRoad": {
+    "type": "Feature",
+    "id": "19ea3fd6-b0f0-5768-8678-918c74178d86",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          55.27864154,
+          25.204447676
+        ],
+        [
+          55.278641235,
+          25.204405872
+        ],
+        [
+          55.278640313,
+          25.204280955
+        ],
+        [
+          55.278630994,
+          25.204114547
+        ],
+        [
+          55.278613879,
+          25.203948544
+        ],
+        [
+          55.278588962,
+          25.203783444
+        ],
+        [
+          55.278411682,
+          25.202802855
+        ],
+        [
+          55.278385625,
+          25.202676427
+        ],
+        [
+          55.278352154,
+          25.202551538
+        ],
+        [
+          55.278311564,
+          25.202428372
+        ],
+        [
+          55.27826395,
+          25.202307245
+        ],
+        [
+          55.278209304,
+          25.20218861
+        ],
+        [
+          55.278147773,
+          25.202072738
+        ],
+        [
+          55.27786918,
+          25.20163176
+        ],
+        [
+          55.277315446,
+          25.200783517
+        ],
+        [
+          55.277223361,
+          25.200660022
+        ],
+        [
+          55.277123566,
+          25.200541402
+        ],
+        [
+          55.277016501,
+          25.200428249
+        ],
+        [
+          55.276902361,
+          25.200320657
+        ],
+        [
+          55.276781785,
+          25.200219219
+        ],
+        [
+          55.276654866,
+          25.200124252
+        ],
+        [
+          55.276522199,
+          25.200035809
+        ],
+        [
+          55.276384172,
+          25.199954526
+        ],
+        [
+          55.276241281,
+          25.199880454
+        ],
+        [
+          55.276093869,
+          25.199813868
+        ],
+        [
+          55.275942576,
+          25.199755045
+        ],
+        [
+          55.275787798,
+          25.199704172
+        ],
+        [
+          55.275629982,
+          25.199661208
+        ],
+        [
+          55.274015781,
+          25.199307021
+        ],
+        [
+          55.273870937,
+          25.199273055
+        ],
+        [
+          55.273725091,
+          25.199243364
+        ],
+        [
+          55.273578192,
+          25.199217905
+        ],
+        [
+          55.273430437,
+          25.199196859
+        ],
+        [
+          55.273283076,
+          25.199186652
+        ],
+        [
+          55.273135477,
+          25.199189759
+        ],
+        [
+          55.27298858,
+          25.199202849
+        ],
+        [
+          55.27284318,
+          25.199225933
+        ],
+        [
+          55.272700073,
+          25.199258749
+        ],
+        [
+          55.272560056,
+          25.199301171
+        ],
+        [
+          55.272264196,
+          25.199414043
+        ],
+        [
+          55.272115306,
+          25.199466337
+        ],
+        [
+          55.27196216,
+          25.199507432
+        ],
+        [
+          55.271805754,
+          25.199536841
+        ],
+        [
+          55.271647281,
+          25.199554535
+        ],
+        [
+          55.271487686,
+          25.199560343
+        ],
+        [
+          55.271328161,
+          25.199554235
+        ],
+        [
+          55.271169696,
+          25.199536222
+        ],
+        [
+          55.271013382,
+          25.199506452
+        ],
+        [
+          55.270860407,
+          25.199465119
+        ],
+        [
+          55.270711709,
+          25.199412506
+        ],
+        [
+          55.270568177,
+          25.19934903
+        ],
+        [
+          55.270430994,
+          25.199275064
+        ],
+        [
+          55.270273049,
+          25.199178195
+        ],
+        [
+          55.270094395,
+          25.199068669
+        ]
+      ]
+    },
+    "properties": {
+      "network_version_id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+      "metadata": {
+        "osm_way_id": "80528559",
+        "osm_lanes": "2",
+        "osm_directional_lanes": null,
+        "osm_maxspeed": "60",
+        "lane_count_source": "sumo_interpreted_osm_lanes",
+        "speed_limit_source": "osm",
+        "turn_restrictions_status": "partial_osm_relations_no_field_verification",
+        "geometry_derivation": "sumo_lane_centerline_from_osm",
+        "osm_way_ids": [
+          "80528559",
+          "135704775",
+          "1094723107"
+        ],
+        "sumo_identifier_verified": true
+      },
+      "sumo_edge_id": "135704775",
+      "source_edge_id": "osm:way:80528559",
+      "name": "شارع المستقبل",
+      "road_class": "secondary",
+      "lane_count": 2,
+      "speed_limit_mps": 16.666666666666668,
+      "length_m": 1233.6634575588553,
+      "is_one_way": true,
+      "is_synthetic": false,
+      "start_intersection_id": "dfe4c915-e858-54b3-b866-a5693ead928d",
+      "end_intersection_id": "f6528e49-0a73-56d1-b7b1-cba650883051"
+    }
+  },
+  "edgeRequests": [
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=400",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.183607%2C55.288%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.183607%2C55.288%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.183607%2C55.288%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.183607%2C55.288%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.183607%2C55.288%2C25.208&limit=100&offset=400",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.260526%2C25.181562%2C55.288%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.260526%2C25.181562%2C55.288%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.260526%2C25.181562%2C55.288%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.260526%2C25.181562%2C55.288%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.260526%2C25.181562%2C55.288%2C25.208&limit=100&offset=400",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.262434%2C25.194422%2C55.286301%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.262434%2C25.194422%2C55.286301%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.262434%2C25.194422%2C55.286301%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.262434%2C25.194422%2C55.286301%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.262434%2C25.194422%2C55.286301%2C25.208&limit=100&offset=400"
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "externalRequests": []
+}

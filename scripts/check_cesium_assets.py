@@ -17,6 +17,7 @@ def main() -> None:
         "Workers/createGeometry.js": "application/javascript",
         "ThirdParty/zip-module.wasm": "application/wasm",
         "Assets/Textures/NaturalEarthII/tilemapresource.xml": "xml",
+        "Assets/Textures/NaturalEarthII/2/5/2.jpg": "image/jpeg",
         "Widgets/widgets.css": "text/css",
         "LICENSE.md": "",
     }

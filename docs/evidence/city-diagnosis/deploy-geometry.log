@@ -1,0 +1,136 @@
+ Image earthmind-web:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 563B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 ...
+
+#4 [auth] library/node:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 DONE 1.4s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 314B done
+#5 DONE 0.0s
+
+#6 [build  1/12] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#6 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 46.08kB done
+#7 DONE 0.0s
+
+#8 [build  7/12] COPY scripts/copy-cesium-assets.mjs scripts/copy-cesium-assets.mjs
+#8 CACHED
+
+#9 [build  4/12] COPY package.json package-lock.json ./
+#9 CACHED
+
+#10 [build  3/12] WORKDIR /app
+#10 CACHED
+
+#11 [build  6/12] COPY packages/contracts/package.json packages/contracts/package.json
+#11 CACHED
+
+#12 [build  2/12] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#12 CACHED
+
+#13 [build  8/12] COPY patches patches
+#13 CACHED
+
+#14 [build  5/12] COPY apps/web/package.json apps/web/package.json
+#14 CACHED
+
+#15 [build  9/12] RUN npm ci
+#15 CACHED
+
+#16 [build 10/12] COPY apps/web apps/web
+#16 DONE 0.0s
+
+#17 [build 11/12] COPY packages/contracts packages/contracts
+#17 DONE 0.0s
+
+#18 [build 12/12] RUN npm run build --workspace @earthmind/web
+#18 0.104 
+#18 0.104 > @earthmind/web@0.1.0 prebuild
+#18 0.104 > node ../../scripts/copy-cesium-assets.mjs
+#18 0.104 
+#18 0.207 Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+#18 0.208 
+#18 0.208 > @earthmind/web@0.1.0 build
+#18 0.208 > next build
+#18 0.208 
+#18 0.326 ▲ Next.js 16.4.3 (Turbopack)
+#18 0.339 ✓ Running next.config.ts took 13ms
+#18 0.346 
+#18 0.356   Creating an optimized production build ...
+#18 3.443 ✓ Compiled successfully in 3.1s
+#18 3.445   Running TypeScript ...
+#18 5.496 tests/browser/diagnosis.spec.ts(44,28): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+#18 5.496   Type 'undefined' is not assignable to type 'string'.
+#18 5.496 tests/browser/diagnosis.spec.ts(45,5): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(45,24): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(45,42): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(45,60): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,5): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,15): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,26): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,36): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,52): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,62): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,73): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(46,83): error TS2532: Object is possibly 'undefined'.
+#18 5.496 tests/browser/diagnosis.spec.ts(116,68): error TS2532: Object is possibly 'undefined'.
+#18 5.517 Failed to type check.
+#18 5.517 
+#18 5.530 npm error Lifecycle script `build` failed with error:
+#18 5.530 npm error code 1
+#18 5.530 npm error path /app/apps/web
+#18 5.530 npm error workspace @earthmind/web@0.1.0
+#18 5.530 npm error location /app/apps/web
+#18 5.530 npm error command failed
+#18 5.530 npm error command sh -c next build
+#18 ERROR: process "/bin/sh -c npm run build --workspace @earthmind/web" did not complete successfully: exit code: 1
+------
+ > [build 12/12] RUN npm run build --workspace @earthmind/web:
+5.496 tests/browser/diagnosis.spec.ts(116,68): error TS2532: Object is possibly 'undefined'.
+5.517 Failed to type check.
+5.517 
+5.530 npm error Lifecycle script `build` failed with error:
+5.530 npm error code 1
+5.530 npm error path /app/apps/web
+5.530 npm error workspace @earthmind/web@0.1.0
+5.530 npm error location /app/apps/web
+5.530 npm error command failed
+5.530 npm error command sh -c next build
+------
+web.Dockerfile:14
+
+--------------------
+
+  12 |     COPY apps/web apps/web
+
+  13 |     COPY packages/contracts packages/contracts
+
+  14 | >>> RUN npm run build --workspace @earthmind/web
+
+  15 |     
+
+  16 |     FROM node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d AS runtime
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build --workspace @earthmind/web" did not complete successfully: exit code: 1
+
+
+
+View build details: docker-desktop://dashboard/build/default/default/4gim3bei8j9cqepe9wmcspjhx
+

@@ -75,19 +75,18 @@ export function LayerManager({
       </div>
       <div className="city-layer-list">
         {LAYERS.map(({ key, label, source }) => {
-          const blocked =
-            !hasProviderAccess && (key === "terrain" || (key === "buildings" && !hasLocalBuildings));
           const provider = providerStates[key];
-          const message = blocked
-            ? "Blocked · public provider token required"
-            : provider?.message;
+          const unavailable = !hasProviderAccess && (key === "terrain" || (key === "buildings" && !hasLocalBuildings));
+          const blocked = unavailable || provider?.status === "blocked";
+          const message = provider?.status === "blocked" ? provider.message
+            : unavailable ? "Blocked · public provider token required" : provider?.message;
           return (
             <div className="city-layer-row" key={key}>
               <label>
                 <input
                   type="checkbox"
                   checked={layers[key]}
-                  disabled={blocked}
+                  disabled={blocked && !layers[key]}
                   onChange={() => onChange(toggleLayer(layers, key))}
                   aria-label={label}
                 />
@@ -97,6 +96,7 @@ export function LayerManager({
                   <small>{source}</small>
                 </span>
                 {blocked && <LockKeyhole size={13} aria-hidden="true" />}
+                {blocked && <span className="city-layer-state city-warning">Blocked</span>}
                 {!blocked && provider?.status === "loading" && (
                   <span className="city-layer-state">Loading</span>
                 )}
@@ -110,7 +110,7 @@ export function LayerManager({
                   provider?.status === "loading" ||
                   (key === "imagery" && layers.imagery)) && (
                   <p
-                    className={`city-layer-detail ${provider?.status === "error" ? "city-warning" : ""}`}
+                    className={`city-layer-detail ${blocked || provider?.status === "error" ? "city-warning" : ""}`}
                   >
                     {message}
                   </p>

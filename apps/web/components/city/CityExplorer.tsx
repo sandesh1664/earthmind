@@ -33,6 +33,7 @@ import { FeatureInspector, selectedFeature } from "./FeatureInspector";
 import { LayerManager } from "./LayerManager";
 import { MapToolbar } from "./MapToolbar";
 import { ViewerErrorBoundary } from "./ViewerErrorBoundary";
+import { effectiveImageryMode, imageryDescription } from "@/lib/city/provider-policy";
 
 const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
   ssr: false,
@@ -133,9 +134,12 @@ export function CityExplorer() {
   const isSynthetic =
     data.network?.is_synthetic ?? data.region?.metadata.is_synthetic;
   const isOSM = !isSynthetic && Boolean(data.network && (data.network.source_format.toLowerCase().includes("osm") || data.source?.provider_name.toLowerCase().includes("openstreetmap")));
-  const basemapSource = data.config?.imageryMode === "natural-earth" ? "Natural Earth"
-    : data.config?.imageryMode === "ion" ? "Cesium ion" : "OpenStreetMap";
+  const imageryMode = data.config ? effectiveImageryMode(data.config,isSynthetic === true) : null;
+  const basemapSource = imageryMode === "natural-earth" ? "Natural Earth"
+    : imageryMode === "ion" ? "Cesium ion" : "OpenStreetMap";
   const selectedRows = featureTab === "roads" ? data.roads : data.intersections;
+  const providerErrors = (["imagery","buildings","terrain"] as const)
+    .flatMap(name => viewerStatus?.[name].status === "error" ? [{name,message:viewerStatus[name].message}] : []);
 
   return (
     <section
@@ -168,6 +172,7 @@ export function CityExplorer() {
             value={data.regionId}
             disabled={!data.regions.length}
             onChange={(event) => {
+              if (event.target.value === data.regionId) return;
               data.selectRegion(event.target.value);
               select(null);
               setCamera(null);
@@ -193,6 +198,7 @@ export function CityExplorer() {
             value={data.networkId}
             disabled={!data.networks.length}
             onChange={(event) => {
+              if (event.target.value === data.networkId) return;
               data.selectNetwork(event.target.value);
               select(null);
             }}
@@ -292,7 +298,10 @@ export function CityExplorer() {
         <span className={isOSM ? "city-real-source" : ""} data-testid="city-geographic-source">
           {isOSM ? "REAL GEOGRAPHIC DATA — OpenStreetMap" : isSynthetic ? "SYNTHETIC GEOGRAPHY — Development fixture" : `GEOGRAPHIC BASEMAP — ${basemapSource}`}
         </span>
-        <span>3D BUILDINGS — {viewerStatus?.buildings.status === "ready" ? "OSM tagged heights / provider coverage dependent" : data.config?.ionPublicToken ? "Provider supplied, availability pending" : "Token not configured"}</span>
+        <span>3D BUILDINGS — {imageryMode === "local-osm"
+          ? `OSM source-height context · ${viewerStatus?.buildings.status === "ready" ? "partial coverage" : viewerStatus?.buildings.status ?? "loading"}`
+          : viewerStatus?.buildings.status === "ready" ? "Cesium OSM tiles · partial provider coverage"
+          : !data.config?.ionPublicToken ? "Blocked · public token required" : `Cesium OSM tiles · ${viewerStatus?.buildings.status ?? "loading"}`}</span>
         <span>SYNTHETIC TRAFFIC — CLI smoke only; no viewer playback</span>
         <span>LIVE TRAFFIC — Not connected</span>
         <span>INFERRED SIGNALS — Not field verified</span>
@@ -415,7 +424,7 @@ export function CityExplorer() {
             aria-label="Camera position indicator"
           >
             <MapPin size={13} />
-            <span data-testid="camera-position">
+            <span data-testid="camera-position" data-camera={data.config?.diagnosticsEnabled && camera ? JSON.stringify(camera) : undefined}>
               {camera
                 ? `${camera.longitude.toFixed(5)}° E · ${camera.latitude.toFixed(5)}° N · ${Math.round(camera.height).toLocaleString("en")} m altitude`
                 : "Camera position available when the globe initializes"}
@@ -639,13 +648,14 @@ export function CityExplorer() {
           ))}
         </div>
       )}
-      {!data.config?.ionPublicToken && data.config && (
+      {data.config && (
         <p className="city-provider-notice">
           <Globe2 size={15} />
           <span>
-            {data.config?.imageryMode === "natural-earth" ? "Natural Earth basemap" : "Local OpenStreetMap cartography"}; ellipsoid terrain.
-            <strong>Cesium ion building tiles unavailable:</strong> set CESIUM_ION_PUBLIC_TOKEN.
-            OSM tagged-height context coverage is partial.
+            {imageryDescription(data.config,isSynthetic === true)}.
+            {!data.config.ionPublicToken && <> <strong>Cesium ion building tiles unavailable:</strong> set CESIUM_ION_PUBLIC_TOKEN.</>}
+            {imageryMode === "local-osm" && <> Ellipsoid terrain; OSM tagged-height buildings cover only part of the source area.</>}
+            {providerErrors.map(({name,message}) => <span role="alert" key={name}> {name}: {message}</span>)}
           </span>
         </p>
       )}

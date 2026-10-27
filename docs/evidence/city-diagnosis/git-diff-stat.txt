@@ -1,0 +1,226 @@
+ apps/web/components/city/CesiumViewer.tsx          |    2 +-
+ apps/web/components/city/CityExplorer.tsx          |   26 +-
+ apps/web/components/city/LayerManager.tsx          |   14 +-
+ apps/web/components/city/runtime/camera.ts         |   19 +-
+ apps/web/components/city/runtime/layers.ts         |    5 +
+ .../components/city/runtime/provider-readiness.ts  |   39 +
+ apps/web/components/city/runtime/providers.ts      |  139 +-
+ .../components/city/runtime/scene-controller.ts    |   11 +-
+ apps/web/hooks/use-city-data.ts                    |    6 +-
+ apps/web/lib/city/provider-policy.ts               |   14 +
+ apps/web/lib/city/types.ts                         |    5 +
+ apps/web/playwright.config.ts                      |    6 +-
+ apps/web/tests/browser/city.spec.ts                |   16 +-
+ apps/web/tests/browser/dashboard.spec.ts           |    3 +-
+ apps/web/tests/browser/diagnosis.spec.ts           |  353 ++++
+ apps/web/tests/browser/evidence.ts                 |   14 +
+ apps/web/tests/browser/geospatial.spec.ts          |    3 +-
+ apps/web/tests/browser/recovery.spec.ts            |   13 +-
+ apps/web/tests/city-imagery-policy.test.ts         |   19 +
+ apps/web/tests/city-providers.test.ts              |   74 +
+ apps/web/tests/city-ui.test.ts                     |    4 +-
+ docs/cesium-integration.md                         |   17 +
+ docs/city-explorer-diagnosis.md                    |  373 ++++
+ docs/decisions/0013-city-rendering-diagnostics.md  |   61 +
+ .../city-diagnosis/acceptance-summary.json         |  322 ++++
+ .../city-diagnosis/architecture-acceptance.log     |    7 +
+ .../evidence/city-diagnosis/architecture-final.log |    7 +
+ docs/evidence/city-diagnosis/architecture.log      |    7 +
+ docs/evidence/city-diagnosis/baseline.log          |  228 +++
+ .../evidence/city-diagnosis/browser-acceptance.log |   70 +
+ .../browser-acceptance/city-network-desktop.json   |   22 +
+ .../browser-acceptance/city-network-mobile.json    |   35 +
+ .../browser-acceptance/city-network-tablet.json    |   24 +
+ .../diagnosis-actual-local-desktop.json            |  213 +++
+ .../diagnosis-actual-local-desktop.png             |  Bin 0 -> 556359 bytes
+ .../diagnosis-actual-local-mobile.json             |  219 +++
+ .../diagnosis-actual-local-mobile.png              |  Bin 0 -> 196275 bytes
+ .../diagnosis-actual-local-tablet.json             |  231 +++
+ .../diagnosis-actual-local-tablet.png              |  Bin 0 -> 420487 bytes
+ .../diagnosis-boundary-visible-desktop.png         |  Bin 0 -> 566057 bytes
+ .../diagnosis-boundary-visible-mobile.png          |  Bin 0 -> 128143 bytes
+ .../diagnosis-boundary-visible-tablet.png          |  Bin 0 -> 430087 bytes
+ ...agnosis-controlled-context-failure-desktop.json |   69 +
+ ...iagnosis-controlled-context-failure-desktop.png |  Bin 0 -> 177551 bytes
+ ...iagnosis-controlled-context-failure-mobile.json |   69 +
+ ...diagnosis-controlled-context-failure-mobile.png |  Bin 0 -> 109312 bytes
+ ...iagnosis-controlled-context-failure-tablet.json |   69 +
+ ...diagnosis-controlled-context-failure-tablet.png |  Bin 0 -> 171762 bytes
+ ...diagnosis-controlled-missing-token-desktop.json |   68 +
+ .../diagnosis-controlled-missing-token-desktop.png |  Bin 0 -> 180364 bytes
+ .../diagnosis-controlled-missing-token-mobile.json |   80 +
+ .../diagnosis-controlled-missing-token-mobile.png  |  Bin 0 -> 91820 bytes
+ .../diagnosis-controlled-missing-token-tablet.json |   74 +
+ .../diagnosis-controlled-missing-token-tablet.png  |  Bin 0 -> 166625 bytes
+ ...iagnosis-controlled-same-selection-desktop.json |   60 +
+ ...diagnosis-controlled-same-selection-desktop.png |  Bin 0 -> 123142 bytes
+ ...diagnosis-controlled-same-selection-mobile.json |   60 +
+ .../diagnosis-controlled-same-selection-mobile.png |  Bin 0 -> 78914 bytes
+ ...diagnosis-controlled-same-selection-tablet.json |   60 +
+ .../diagnosis-controlled-same-selection-tablet.png |  Bin 0 -> 115140 bytes
+ .../diagnosis-controlled-worker-delay-desktop.json |   61 +
+ .../diagnosis-controlled-worker-delay-desktop.png  |  Bin 0 -> 570709 bytes
+ .../diagnosis-controlled-worker-delay-mobile.json  |   73 +
+ .../diagnosis-controlled-worker-delay-mobile.png   |  Bin 0 -> 199226 bytes
+ .../diagnosis-controlled-worker-delay-tablet.json  |   67 +
+ .../diagnosis-controlled-worker-delay-tablet.png   |  Bin 0 -> 452986 bytes
+ .../browser-acceptance/layout-desktop.json         |   25 +
+ .../browser-acceptance/layout-mobile.json          |   25 +
+ .../browser-acceptance/layout-tablet.json          |   25 +
+ .../browser-acceptance/playwright-results.json     | 1795 ++++++++++++++++++
+ .../browser-acceptance/real-network-desktop.json   |  375 ++++
+ .../browser-acceptance/real-network-mobile.json    |  196 ++
+ .../browser-acceptance/real-network-tablet.json    |  363 ++++
+ .../evidence/city-diagnosis/browser-before.mjs.txt |   43 +
+ .../browser-before/development-fixture.png         |  Bin 0 -> 124102 bytes
+ .../browser-before/observations.json               |  140 ++
+ .../city-diagnosis/browser-before/real-default.png |  Bin 0 -> 566518 bytes
+ docs/evidence/city-diagnosis/browser-delivery.log  |  291 +++
+ .../browser-delivery/city-network-desktop.json     |   26 +
+ .../browser-delivery/city-network-mobile.json      |   30 +
+ .../browser-delivery/city-network-tablet.json      |   24 +
+ .../diagnosis-actual-local-desktop.json            |  225 +++
+ .../diagnosis-actual-local-mobile.json             |   91 +
+ .../diagnosis-actual-local-tablet.json             |  213 +++
+ ...agnosis-controlled-context-failure-desktop.json |   93 +
+ ...iagnosis-controlled-context-failure-mobile.json |   99 +
+ ...iagnosis-controlled-context-failure-tablet.json |   81 +
+ ...diagnosis-controlled-missing-token-desktop.json |   62 +
+ .../diagnosis-controlled-missing-token-mobile.json |   86 +
+ .../diagnosis-controlled-missing-token-tablet.json |   80 +
+ ...iagnosis-controlled-same-selection-desktop.json |   71 +
+ ...diagnosis-controlled-same-selection-mobile.json |   60 +
+ ...diagnosis-controlled-same-selection-tablet.json |   60 +
+ .../diagnosis-controlled-worker-delay-desktop.json |   55 +
+ .../diagnosis-controlled-worker-delay-mobile.json  |   67 +
+ .../diagnosis-controlled-worker-delay-tablet.json  |   61 +
+ .../error-context.md                               |  320 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 555801 bytes
+ .../error-context.md                               |  356 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 199228 bytes
+ .../error-context.md                               |  242 +++
+ .../test-failed-1.png                              |  Bin 0 -> 125084 bytes
+ .../error-context.md                               |  355 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 78914 bytes
+ .../error-context.md                               |  343 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 115157 bytes
+ .../browser-delivery/layout-desktop.json           |   25 +
+ .../browser-delivery/layout-mobile.json            |   25 +
+ .../browser-delivery/layout-tablet.json            |   25 +
+ .../browser-delivery/playwright-results.json       | 1995 ++++++++++++++++++++
+ .../browser-delivery/real-network-desktop.json     |  375 ++++
+ .../browser-delivery/real-network-mobile.json      |  196 ++
+ .../browser-delivery/real-network-tablet.json      |  365 ++++
+ docs/evidence/city-diagnosis/browser-final.log     |  110 ++
+ .../browser-final/city-network-desktop.json        |   26 +
+ .../browser-final/city-network-mobile.json         |   43 +
+ .../browser-final/city-network-tablet.json         |   25 +
+ .../diagnosis-actual-local-desktop.json            |  213 +++
+ .../diagnosis-actual-local-tablet.json             |  243 +++
+ ...agnosis-controlled-context-failure-desktop.json |   63 +
+ ...iagnosis-controlled-context-failure-tablet.json |   81 +
+ ...diagnosis-controlled-missing-token-desktop.json |   74 +
+ .../diagnosis-controlled-missing-token-tablet.json |   86 +
+ .../diagnosis-controlled-worker-delay-desktop.json |   91 +
+ .../diagnosis-controlled-worker-delay-tablet.json  |   67 +
+ .../error-context.md                               |  165 ++
+ .../test-failed-1.png                              |  Bin 0 -> 75487 bytes
+ .../browser-final/layout-desktop.json              |   25 +
+ .../browser-final/layout-tablet.json               |   25 +
+ .../browser-final/playwright-results.json          | 1562 +++++++++++++++
+ .../browser-final/real-network-desktop.json        |  375 ++++
+ .../browser-final/real-network-tablet.json         |  365 ++++
+ docs/evidence/city-diagnosis/browser-first.log     |   85 +
+ .../error-context.md                               |  132 ++
+ .../test-failed-1.png                              |  Bin 0 -> 533706 bytes
+ .../error-context.md                               |  165 ++
+ .../test-failed-1.png                              |  Bin 0 -> 6489 bytes
+ .../browser-first/playwright-results.json          | 1138 +++++++++++
+ docs/evidence/city-diagnosis/browser-second.log    |  186 ++
+ .../browser-second/city-network-desktop.json       |   24 +
+ .../browser-second/city-network-mobile.json        |   43 +
+ .../browser-second/city-network-tablet.json        |   26 +
+ .../diagnosis-actual-local-desktop.json            |  206 ++
+ .../diagnosis-actual-local-mobile.json             |  101 +
+ .../diagnosis-actual-local-tablet.json             |  218 +++
+ ...agnosis-controlled-context-failure-desktop.json |   61 +
+ ...iagnosis-controlled-context-failure-mobile.json |   69 +
+ ...iagnosis-controlled-context-failure-tablet.json |   77 +
+ ...diagnosis-controlled-missing-token-desktop.json |   66 +
+ .../diagnosis-controlled-missing-token-mobile.json |   62 +
+ .../diagnosis-controlled-missing-token-tablet.json |   62 +
+ .../error-context.md                               |  317 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 569966 bytes
+ .../error-context.md                               |  341 ++++
+ .../test-failed-1.png                              |  Bin 0 -> 199228 bytes
+ .../error-context.md                               |  314 +++
+ .../test-failed-1.png                              |  Bin 0 -> 435223 bytes
+ .../browser-second/layout-desktop.json             |   25 +
+ .../browser-second/layout-mobile.json              |   25 +
+ .../browser-second/layout-tablet.json              |   25 +
+ .../browser-second/playwright-results.json         | 1711 +++++++++++++++++
+ .../browser-second/real-network-desktop.json       |  375 ++++
+ .../browser-second/real-network-mobile.json        |  196 ++
+ .../browser-second/real-network-tablet.json        |  365 ++++
+ .../city-diagnosis/camera-pick-failure.json        |   20 +
+ docs/evidence/city-diagnosis/capture-current.log   |    1 +
+ .../city-diagnosis/capture-current.mjs.txt         |   26 +
+ docs/evidence/city-diagnosis/commands.jsonl        |   40 +
+ .../current-browser/city-current-desktop.png       |  Bin 0 -> 570687 bytes
+ .../current-browser/observations.json              |   50 +
+ .../city-diagnosis/database-inventory-after.json   |  167 ++
+ .../database-inventory-comparison.json             |   20 +
+ .../city-diagnosis/database-inventory.json         |  167 ++
+ docs/evidence/city-diagnosis/database.log          |   17 +
+ .../city-diagnosis/database_inventory.py.txt       |   43 +
+ .../city-diagnosis/database_inventory_after.py.txt |   43 +
+ docs/evidence/city-diagnosis/deploy-camera.log     |  126 ++
+ docs/evidence/city-diagnosis/deploy-final.log      |  132 ++
+ docs/evidence/city-diagnosis/deploy-final2.log     |  126 ++
+ docs/evidence/city-diagnosis/deploy-geometry.log   |  136 ++
+ docs/evidence/city-diagnosis/deploy-selection.log  |  132 ++
+ docs/evidence/city-diagnosis/deploy.log            |  132 ++
+ .../evidence/city-diagnosis/deployed-web-image.txt |    1 +
+ docs/evidence/city-diagnosis/final-services.txt    |    6 +
+ .../city-diagnosis/final-staged-secret-check.log   |    5 +
+ docs/evidence/city-diagnosis/frontend-final.log    |    8 +
+ .../city-diagnosis/geography-acceptance.log        |    1 +
+ docs/evidence/city-diagnosis/hooks-acceptance.log  |    6 +
+ docs/evidence/city-diagnosis/hooks-delivery.log    |    6 +
+ docs/evidence/city-diagnosis/hooks.log             |    6 +
+ .../city-diagnosis/inventory-acceptance.log        |  131 ++
+ docs/evidence/city-diagnosis/migrations.log        |    6 +
+ .../packaged-natural-earth-tilemap.xml             |   14 +
+ docs/evidence/city-diagnosis/quality-camera.log    |  219 +++
+ docs/evidence/city-diagnosis/quality-final.log     |  218 +++
+ docs/evidence/city-diagnosis/quality-final2.log    |  219 +++
+ docs/evidence/city-diagnosis/quality-geometry.log  |   53 +
+ docs/evidence/city-diagnosis/quality-selection.log |  219 +++
+ docs/evidence/city-diagnosis/quality.log           |  218 +++
+ .../city-diagnosis/real-geography-acceptance.json  |    1 +
+ docs/evidence/city-diagnosis/reselect-before.json  |   35 +
+ .../city-diagnosis/reselect-before.mjs.txt         |   14 +
+ .../city-diagnosis/reselect-regression-after.log   |   16 +
+ ...diagnosis-controlled-same-selection-mobile.json |   41 +
+ .../playwright-results.json                        |  189 ++
+ .../city-diagnosis/reselect-regression-before.log  |   64 +
+ ...diagnosis-controlled-same-selection-mobile.json |   59 +
+ .../error-context.md                               |  242 +++
+ .../test-failed-1.png                              |  Bin 0 -> 78655 bytes
+ .../playwright-results.json                        |  229 +++
+ docs/evidence/city-diagnosis/restore.log           |   37 +
+ .../city-diagnosis/same-selection-failure.json     |   10 +
+ docs/evidence/city-diagnosis/shutdown-events.jsonl |   21 +
+ docs/evidence/city-diagnosis/smoke-acceptance.log  |   17 +
+ docs/evidence/city-diagnosis/smoke-delivery.log    |   17 +
+ docs/evidence/city-diagnosis/smoke-final.log       |   17 +
+ docs/evidence/city-diagnosis/smoke-verified.log    |   17 +
+ .../city-diagnosis/staged-secret-check.log         |    5 +
+ .../city-diagnosis/verified-source-sha256.json     |   23 +
+ docs/evidence/city-diagnosis/worker-delay.log      |   16 +
+ .../diagnosis-controlled-worker-delay-desktop.json |   55 +
+ .../worker-delay/playwright-results.json           |  187 ++
+ docs/frontend-architecture.md                      |   10 +-
+ docs/verification.md                               |   19 +
+ scripts/check_cesium_assets.py                     |    1 +
+ 225 files changed, 26861 insertions(+), 64 deletions(-)

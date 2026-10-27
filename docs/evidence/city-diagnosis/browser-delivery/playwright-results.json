@@ -1,0 +1,1995 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "--workers=1"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 820,
+            "height": 1180
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "tablet"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "isMobile": true,
+          "hasTouch": true
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/private/tmp/earthmind-diagnosis-results/browser-delivery/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "city.spec.ts",
+      "file": "city.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "M03 real Cesium globe, backend road picking, camera controls, layers and attribution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17541,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:58:24.793Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-3b4c3e8332a9aaaeb33e",
+          "file": "city.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "M03 actual repeated navigation destroys the old viewer and restores one scene",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14210,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:58:42.502Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-209dd09e5884f7dfe1da",
+          "file": "city.spec.ts",
+          "line": 142,
+          "column": 1
+        },
+        {
+          "title": "M03 actual browser without WebGL shows a usable metadata fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:58:56.717Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-f65321978235e14ffce9",
+          "file": "city.spec.ts",
+          "line": 167,
+          "column": 1
+        },
+        {
+          "title": "M03 real Cesium globe, backend road picking, camera controls, layers and attribution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16198,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:01:35.843Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-61e9bd3beee9b5fea729",
+          "file": "city.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "M03 actual repeated navigation destroys the old viewer and restores one scene",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12067,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:01:52.124Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-db5ad3dfd657deea7d5c",
+          "file": "city.spec.ts",
+          "line": 142,
+          "column": 1
+        },
+        {
+          "title": "M03 actual browser without WebGL shows a usable metadata fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 687,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:04.195Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-ec652cd7fa9e3dfc8868",
+          "file": "city.spec.ts",
+          "line": 167,
+          "column": 1
+        },
+        {
+          "title": "M03 real Cesium globe, backend road picking, camera controls, layers and attribution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14492,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:03:35.006Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-aa255be9342c54c7243f",
+          "file": "city.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "M03 actual repeated navigation destroys the old viewer and restores one scene",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16168,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:03:49.581Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-8ead66c08eff7f3f898c",
+          "file": "city.spec.ts",
+          "line": 142,
+          "column": 1
+        },
+        {
+          "title": "M03 actual browser without WebGL shows a usable metadata fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 817,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:05.754Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c23f2316ad628a57541d-11d264e7d78a896f5752",
+          "file": "city.spec.ts",
+          "line": 167,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "dashboard.spec.ts",
+      "file": "dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1948,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:58:58.012Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-964d9e1fba4f61031fa3",
+          "file": "dashboard.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:58:59.964Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-a1c87396d7ffd4769e04",
+          "file": "dashboard.spec.ts",
+          "line": 86,
+          "column": 1
+        },
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1827,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:04.890Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-a3309bc2405e89f615dd",
+          "file": "dashboard.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:06.721Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-1100b0414e54d0f429ab",
+          "file": "dashboard.spec.ts",
+          "line": 86,
+          "column": 1
+        },
+        {
+          "title": "real dashboard connectivity, worker diagnostic, navigation and responsive layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2299,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:06.579Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-733bd2e69b85e715d9b4",
+          "file": "dashboard.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "UI-only mocked dependency failure shows honest error state and supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 946,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:08.881Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "90cda532ab82d274b30b-af290a176cd5665696bf",
+          "file": "dashboard.spec.ts",
+          "line": 86,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "diagnosis.spec.ts",
+      "file": "diagnosis.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "diagnosis reselecting the active fixture preserves in-flight stored roads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 49180,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    61 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    61 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:172:25",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 25,
+                      "line": 172
+                    },
+                    "snippet": "  170 |     await network.selectOption(await network.inputValue());\n  171 |     release();\n> 172 |     await expect(scene).toHaveAttribute(\"data-road-count\",\"8\",{timeout:30_000});\n      |                         ^\n  173 |     await expect(scene).toHaveAttribute(\"data-intersection-count\",\"6\");\n  174 |     await expect(scene).toHaveAttribute(\"data-phase\",\"ready\");\n  175 |     expect(observation.errors).toEqual([]);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 25,
+                        "line": 172
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    61 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n\n  170 |     await network.selectOption(await network.inputValue());\n  171 |     release();\n> 172 |     await expect(scene).toHaveAttribute(\"data-road-count\",\"8\",{timeout:30_000});\n      |                         ^\n  173 |     await expect(scene).toHaveAttribute(\"data-intersection-count\",\"6\");\n  174 |     await expect(scene).toHaveAttribute(\"data-phase\",\"ready\");\n  175 |     expect(observation.errors).toEqual([]);\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:172:25"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:59:00.321Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 25,
+                    "line": 172
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-b0bc4209271d44f8cd10",
+          "file": "diagnosis.spec.ts",
+          "line": 145,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled worker delay keeps source geometry loading until native preparation finishes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12118,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:59:50.235Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-173280240217ecfac609",
+          "file": "diagnosis.spec.ts",
+          "line": 185,
+          "column": 1
+        },
+        {
+          "title": "diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 24724,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/data-sources/6c360c5b-0e03-5144-8eed-196d402bffd2\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/data-sources/6c360c5b-0e03-5144-8eed-196d402bffd2\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:278:54",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 54,
+                      "line": 278
+                    },
+                    "snippet": "  276 |     expect(observation.errors).toEqual([]);\n  277 |     expect(observation.httpFailures).toEqual([]);\n> 278 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  279 |     expect(observation.externalRequests).toEqual([]);\n  280 |   } finally {\n  281 |     await saveEvidence(page, \"diagnosis-actual-local\", info.project.name, { scope: \"Actual deployed local services and retained source data; no geographic response substitutions; does not verify satellite or ion buildings\", config, network, cameras, observation });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 54,
+                        "line": 278
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/data-sources/6c360c5b-0e03-5144-8eed-196d402bffd2\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  276 |     expect(observation.errors).toEqual([]);\n  277 |     expect(observation.httpFailures).toEqual([]);\n> 278 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  279 |     expect(observation.externalRequests).toEqual([]);\n  280 |   } finally {\n  281 |     await saveEvidence(page, \"diagnosis-actual-local\", info.project.name, { scope: \"Actual deployed local services and retained source data; no geographic response substitutions; does not verify satellite or ion buildings\", config, network, cameras, observation });\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:278:54"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:02.431Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 54,
+                    "line": 278
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-6ab0fb5299a2bd37caa5",
+          "file": "diagnosis.spec.ts",
+          "line": 220,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:28.064Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-b5211b894f25f983df58",
+          "file": "diagnosis.spec.ts",
+          "line": 285,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled context failure remains an error while stored geography and the globe stay usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:34.284Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-0a8d58bcdbdf283da65b",
+          "file": "diagnosis.spec.ts",
+          "line": 320,
+          "column": 1
+        },
+        {
+          "title": "diagnosis reselecting the active fixture preserves in-flight stored roads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4108,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 54,
+                      "line": 177
+                    },
+                    "snippet": "  175 |     expect(observation.errors).toEqual([]);\n  176 |     expect(observation.httpFailures).toEqual([]);\n> 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  178 |     expect(observation.externalRequests).toEqual([]);\n  179 |   } finally {\n  180 |     release();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 54,
+                        "line": 177
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  175 |     expect(observation.errors).toEqual([]);\n  176 |     expect(observation.httpFailures).toEqual([]);\n> 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  178 |     expect(observation.externalRequests).toEqual([]);\n  179 |   } finally {\n  180 |     release();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:07.380Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 54,
+                    "line": 177
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-62326951a555ed3f1da5",
+          "file": "diagnosis.spec.ts",
+          "line": 145,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled worker delay keeps source geometry loading until native preparation finishes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9972,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:11.799Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-bb8dadcccd60450e9046",
+          "file": "diagnosis.spec.ts",
+          "line": 185,
+          "column": 1
+        },
+        {
+          "title": "diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20990,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:21.837Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-fa0c7ac55d403d61fc26",
+          "file": "diagnosis.spec.ts",
+          "line": 220,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5441,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:42.832Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-8e2cc81c88bfcf5085ae",
+          "file": "diagnosis.spec.ts",
+          "line": 285,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled context failure remains an error while stored geography and the globe stay usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6784,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:48.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-2ade6b8d35d5c6cd2ee6",
+          "file": "diagnosis.spec.ts",
+          "line": 320,
+          "column": 1
+        },
+        {
+          "title": "diagnosis reselecting the active fixture preserves in-flight stored roads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3136,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 54,
+                      "line": 177
+                    },
+                    "snippet": "  175 |     expect(observation.errors).toEqual([]);\n  176 |     expect(observation.httpFailures).toEqual([]);\n> 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  178 |     expect(observation.externalRequests).toEqual([]);\n  179 |   } finally {\n  180 |     release();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 54,
+                        "line": 177
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 8\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"cancellationScope\": null,\u001b[39m\n\u001b[31m+     \"error\": \"net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+     \"expectedCancellation\": false,\u001b[39m\n\u001b[31m+     \"path\": \"http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation\",\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  175 |     expect(observation.errors).toEqual([]);\n  176 |     expect(observation.httpFailures).toEqual([]);\n> 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);\n      |                                                      ^\n  178 |     expect(observation.externalRequests).toEqual([]);\n  179 |   } finally {\n  180 |     release();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:09.839Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 54,
+                    "line": 177
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-a91da80c6766e2e951f2",
+          "file": "diagnosis.spec.ts",
+          "line": 145,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled worker delay keeps source geometry loading until native preparation finishes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6426,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:13.306Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-a4beb8eb4c9d56aa99bc",
+          "file": "diagnosis.spec.ts",
+          "line": 185,
+          "column": 1
+        },
+        {
+          "title": "diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 32056,
+                  "error": {
+                    "message": "Error: Settled camera must retain the requested actual ground focus\n\nSettled camera must retain the requested actual ground focus\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 25000ms exceeded while waiting on the predicate",
+                    "stack": "Error: Settled camera must retain the requested actual ground focus\n\nSettled camera must retain the requested actual ground focus\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 25000ms exceeded while waiting on the predicate\n    at assertFocus (/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:125:100)\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:255:29",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 100,
+                      "line": 125
+                    },
+                    "snippet": "  123 |     return Boolean(camera?.groundFocus && await scene.getAttribute(\"data-camera-moving\") === \"false\" &&\n  124 |       Math.abs(camera.groundFocus[0] - target[0]) < 0.0005 && Math.abs(camera.groundFocus[1] - target[1]) < 0.0005);\n> 125 |   }, { timeout: 25_000, message: \"Settled camera must retain the requested actual ground focus\" }).toBe(true);\n      |                                                                                                    ^\n  126 |   const camera = await cameraState(page);\n  127 |   for (const value of [camera.longitude, camera.latitude, camera.height, camera.heading, camera.pitch]) expect(Number.isFinite(value)).toBe(true);\n  128 |   expect(camera.height).toBeGreaterThan(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 100,
+                        "line": 125
+                      },
+                      "message": "Error: Settled camera must retain the requested actual ground focus\n\nSettled camera must retain the requested actual ground focus\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 25000ms exceeded while waiting on the predicate\n\n  123 |     return Boolean(camera?.groundFocus && await scene.getAttribute(\"data-camera-moving\") === \"false\" &&\n  124 |       Math.abs(camera.groundFocus[0] - target[0]) < 0.0005 && Math.abs(camera.groundFocus[1] - target[1]) < 0.0005);\n> 125 |   }, { timeout: 25_000, message: \"Settled camera must retain the requested actual ground focus\" }).toBe(true);\n      |                                                                                                    ^\n  126 |   const camera = await cameraState(page);\n  127 |   for (const value of [camera.longitude, camera.latitude, camera.height, camera.heading, camera.pitch]) expect(Number.isFinite(value)).toBe(true);\n  128 |   expect(camera.height).toBeGreaterThan(0);\n    at assertFocus (/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:125:100)\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:255:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:19.796Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 100,
+                    "line": 125
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-6a2cf9bc0401241069cb",
+          "file": "diagnosis.spec.ts",
+          "line": 220,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4355,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:52.295Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-ef2791f49b4971533c1d",
+          "file": "diagnosis.spec.ts",
+          "line": 285,
+          "column": 1
+        },
+        {
+          "title": "diagnosis controlled context failure remains an error while stored geography and the globe stay usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5973,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:04:56.726Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-7cb561bc2503379d7860",
+          "file": "diagnosis.spec.ts",
+          "line": 320,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "geospatial.spec.ts",
+      "file": "geospatial.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "M02 real PostGIS fixture, network validation and provenance render without replacing M01",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 853,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:43.747Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-9bcd8e0ab81b67dd305a",
+          "file": "geospatial.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only empty dataset is honest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 243,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:44.604Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-f2d32bea8e70da75e720",
+          "file": "geospatial.spec.ts",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only service error supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1553,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:44.851Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-ed1f8ed3681dbe00d08f",
+          "file": "geospatial.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "M02 real PostGIS fixture, network validation and provenance render without replacing M01",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 676,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:55.072Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-c0a657cad4f3b749a1f7",
+          "file": "geospatial.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only empty dataset is honest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 237,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:55.751Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-2fddf5630ee1a6cf4a99",
+          "file": "geospatial.spec.ts",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only service error supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1564,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:55.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-f438e1202c0865df8017",
+          "file": "geospatial.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "M02 real PostGIS fixture, network validation and provenance render without replacing M01",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 968,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:05:02.710Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-40ad2b159fa4673aec5a",
+          "file": "geospatial.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only empty dataset is honest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 716,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:05:03.682Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-0ae148251de3ef1cb416",
+          "file": "geospatial.spec.ts",
+          "line": 82,
+          "column": 1
+        },
+        {
+          "title": "M02 UI-only service error supports retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2987,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:05:04.402Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c323d6cd08f0bd1e73e5-0768a7edd8e27004ae44",
+          "file": "geospatial.spec.ts",
+          "line": 104,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "recovery.spec.ts",
+      "file": "recovery.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "recovery real OSM default, native road picking, source metadata, layers and height-tagged context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27360,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 5637ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:00:46.451Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-51f6b2efa2ce90473558",
+          "file": "recovery.spec.ts",
+          "line": 90,
+          "column": 1
+        },
+        {
+          "title": "recovery map-first real view, native fullscreen resizing and Dubai camera presets",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21741,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 6280ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:01:13.816Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-168728edbeb6afbf70ba",
+          "file": "recovery.spec.ts",
+          "line": 192,
+          "column": 1
+        },
+        {
+          "title": "recovery real OSM default, native road picking, source metadata, layers and height-tagged context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19919,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 5088ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:02:57.603Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-02fbe99ac489fc216245",
+          "file": "recovery.spec.ts",
+          "line": 90,
+          "column": 1
+        },
+        {
+          "title": "recovery map-first real view, native fullscreen resizing and Dubai camera presets",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet",
+              "projectName": "tablet",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17193,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 5051ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:03:17.526Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-b25ede255a2c57502072",
+          "file": "recovery.spec.ts",
+          "line": 192,
+          "column": 1
+        },
+        {
+          "title": "recovery real OSM default, native road picking, source metadata, layers and height-tagged context",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15054,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 5218ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:05:07.441Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-6af3c93fe9034ab38416",
+          "file": "recovery.spec.ts",
+          "line": 90,
+          "column": 1
+        },
+        {
+          "title": "recovery map-first real view, native fullscreen resizing and Dubai camera presets",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12855,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Actual fresh-context navigation to nonempty ready roads: 4985ms\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T15:05:22.499Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef78f3da5c9c24fceacf-bdc8fd18be564d6813d1",
+          "file": "recovery.spec.ts",
+          "line": 192,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T14:58:24.535Z",
+    "duration": 430875.245,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

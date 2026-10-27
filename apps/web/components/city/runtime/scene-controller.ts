@@ -4,6 +4,7 @@ import {
 } from "cesium";
 import type { CesiumViewerProps, FeatureSelection, ProviderState, ViewerStatus } from "../../../lib/city/types";
 import { buildingSelectionId, preferredSelection, publicBuildingProperties } from "../../../lib/geo/selection";
+import { effectiveImageryMode } from "../../../lib/city/provider-policy";
 import { applyCamera, cameraSnapshot } from "./camera";
 import { CameraSettlement } from "./camera-settlement";
 import { GeographicLayers } from "./layers";
@@ -90,7 +91,7 @@ export class CitySceneController {
     viewer.scene.globe.tileCacheSize = 100;
     viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(55.2744,25.1972),0), {duration:0,offset:new HeadingPitchRange(0,CMath.toRadians(-55),3000)});
     this.layers = new GeographicLayers(viewer);
-    this.providers = new ProviderLayers(viewer,(props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) ? {...props.config,imageryMode:"natural-earth"} : props.config,(name,state) => this.providerState(name,state));
+    this.providers = new ProviderLayers(viewer,{...props.config,imageryMode:effectiveImageryMode(props.config,(props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true)},(name,state) => this.providerState(name,state));
     viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
     viewer.screenSpaceEventHandler.setInputAction((movement: {position: import("cesium").Cartesian2}) => {
       if (this.disposed) return;
@@ -126,7 +127,7 @@ export class CitySceneController {
     this.props = props;
     const wasSynthetic = (previous.data.network?.is_synthetic ?? previous.data.region?.metadata.is_synthetic) === true;
     const isSynthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
-    const effectiveConfig = isSynthetic ? {...props.config,imageryMode:"natural-earth" as const} : props.config;
+    const effectiveConfig = {...props.config,imageryMode:effectiveImageryMode(props.config,isSynthetic)};
     const configChanged = wasSynthetic !== isSynthetic || props.config.imageryMode !== previous.config.imageryMode || props.config.ionPublicToken !== previous.config.ionPublicToken || props.config.imageryAssetId !== previous.config.imageryAssetId || props.config.terrainAssetId !== previous.config.terrainAssetId;
     if (configChanged) {
       this.providers.destroy();
@@ -184,6 +185,12 @@ export class CitySceneController {
     if (this.disposed) return;
     const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
     if (this.props.config.diagnosticsEnabled) {
+      snapshot.renderDiagnostics = {
+        globeVisible:this.viewer.scene.globe.show,
+        globeTilesLoaded:this.viewer.scene.globe.tilesLoaded,
+        imageryLayerCount:this.viewer.imageryLayers.length,
+        boundaryFillAlpha:this.layers.boundaryFillAlpha(),
+      };
       // No native object is exposed: this optional local diagnostic is only a
       // projection of a real stored road coordinate into the actual canvas.
       snapshot.pickProbe = this.roadPickProbe();

@@ -1,0 +1,85 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1
+
+
+Running 39 tests using 1 worker
+
+(node:77777) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (165ms)
+(node:77782) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [desktop] › tests/browser/city.spec.ts:136:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (45.2s)
+(node:77887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   3 [desktop] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback (21.7s)
+
+
+  1) [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: Run CITY_DIAGNOSTICS_ENABLED=true make dev before native canvas-picking browser checks
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |   });
+      37 |   const configuration = await (await page.request.get("/api/city/config")).json() as {diagnosticsEnabled:boolean};
+    > 38 |   expect(configuration.diagnosticsEnabled, "Run CITY_DIAGNOSTICS_ENABLED=true make dev before native canvas-picking browser checks").toBe(true);
+         |                                                                                                                                      ^
+      39 |   await openCity(page);
+      40 |   const scene = await ready(page);
+      41 |   await expect(page.getByTestId("city-region-area")).toContainText("1.3398");
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:38:134
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/browser/city.spec.ts:136:1 › M03 actual repeated navigation destroys the old viewer and restores one scene 
+
+    Test timeout of 45000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-first/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+    [desktop] › tests/browser/city.spec.ts:136:1 › M03 actual repeated navigation destroys the old viewer and restores one scene 
+  1 interrupted
+    [desktop] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback 
+  36 did not run
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 130
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1

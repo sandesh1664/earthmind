@@ -141,3 +141,20 @@ ellipsoid-only heights; provider terrain is blocked to avoid mixed height models
 `natural-earth` remains the explicit lightweight global/test mode. `ion` uses
 configured public asset access; licensed provider tile execution remains blocked
 until credentials are actually available. See recovery-geography.md for details.
+
+## Rendering diagnosis and provider readiness
+
+[ADR 0013](decisions/0013-city-rendering-diagnostics.md) records the minimal
+provider-state corrections. Explicit ion mode without a token reports blocked
+and names the Natural Earth reference fallback; it does not claim satellite
+availability. The footer follows the renderer's effective mode, including
+synthetic selections. Tile/provider errors remain visible until a new load.
+Readiness requires a completed rendered frame; ion buildings additionally need
+visible nonempty tile content. These gates are not proof of whole-city coverage.
+
+Optional local diagnostics expose plain camera orientation/ground focus and
+actual globe, tile, imagery-count and boundary-alpha observations. No native
+viewer or credential is exported. To preserve previous evidence, run browser
+checks with an absolute EARTHMIND_EVIDENCE_DIR. The exact current diagnosis,
+commands, failures and remaining blockers are in
+[city-explorer-diagnosis.md](city-explorer-diagnosis.md).

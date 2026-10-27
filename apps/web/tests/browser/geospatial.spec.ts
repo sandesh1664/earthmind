@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { browserEvidencePath } from "./evidence";
 
 async function openGeospatial(page: import("@playwright/test").Page) {
   await page.goto("/");
@@ -72,7 +73,7 @@ test("M02 real PostGIS fixture, network validation and provenance render without
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/recovery/geospatial-${info.project.name}.png`,
+    path: browserEvidencePath(`geospatial-${info.project.name}.png`),
     fullPage: true,
   });
   expect(errors).toEqual([]);

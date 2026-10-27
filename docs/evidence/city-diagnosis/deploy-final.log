@@ -1,0 +1,132 @@
+ Image earthmind-web:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 563B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 ...
+
+#4 [auth] library/node:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#3 DONE 2.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 314B done
+#5 DONE 0.0s
+
+#6 [build  1/12] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#6 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 80.68kB done
+#7 DONE 0.0s
+
+#8 [build  5/12] COPY apps/web/package.json apps/web/package.json
+#8 CACHED
+
+#9 [build  2/12] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#9 CACHED
+
+#10 [build  3/12] WORKDIR /app
+#10 CACHED
+
+#11 [build  6/12] COPY packages/contracts/package.json packages/contracts/package.json
+#11 CACHED
+
+#12 [build  4/12] COPY package.json package-lock.json ./
+#12 CACHED
+
+#13 [build  7/12] COPY scripts/copy-cesium-assets.mjs scripts/copy-cesium-assets.mjs
+#13 CACHED
+
+#14 [build  8/12] COPY patches patches
+#14 CACHED
+
+#15 [build  9/12] RUN npm ci
+#15 CACHED
+
+#16 [build 10/12] COPY apps/web apps/web
+#16 DONE 0.0s
+
+#17 [build 11/12] COPY packages/contracts packages/contracts
+#17 DONE 0.0s
+
+#18 [build 12/12] RUN npm run build --workspace @earthmind/web
+#18 0.175 
+#18 0.175 > @earthmind/web@0.1.0 prebuild
+#18 0.175 > node ../../scripts/copy-cesium-assets.mjs
+#18 0.175 
+#18 0.320 Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+#18 0.321 
+#18 0.321 > @earthmind/web@0.1.0 build
+#18 0.321 > next build
+#18 0.321 
+#18 0.526 ▲ Next.js 16.4.3 (Turbopack)
+#18 0.557 ✓ Running next.config.ts took 31ms
+#18 0.562 
+#18 0.572   Creating an optimized production build ...
+#18 4.544 ✓ Compiled successfully in 4.0s
+#18 4.548   Running TypeScript ...
+#18 7.717   Finished TypeScript in 3.2s ...
+#18 7.722   Collecting page data using 9 workers ...
+#18 8.405   Generating static pages using 9 workers (0/3) ...
+#18 8.520 ✓ Generating static pages using 9 workers (3/3) in 115ms
+#18 8.524   Finalizing page optimization ...
+#18 8.767 
+#18 8.768 Route (app)
+#18 8.768 ┌ ○ /
+#18 8.768 ├ ○ /_not-found
+#18 8.768 ├ ƒ /api/capabilities
+#18 8.768 ├ ƒ /api/city/config
+#18 8.768 ├ ƒ /api/diagnostics
+#18 8.768 ├ ƒ /api/diagnostics/[id]
+#18 8.768 ├ ƒ /api/geospatial/[...path]
+#18 8.768 ├ ƒ /api/health
+#18 8.768 └ ƒ /api/health/live
+#18 8.768 
+#18 8.768 
+#18 8.768 ○  (Static)   prerendered as static content
+#18 8.768 ƒ  (Dynamic)  server-rendered on demand
+#18 8.768 
+#18 DONE 8.9s
+
+#19 [runtime 2/5] WORKDIR /app
+#19 CACHED
+
+#20 [runtime 3/5] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#20 DONE 0.2s
+
+#21 [runtime 4/5] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#21 DONE 0.1s
+
+#22 [runtime 5/5] COPY --from=build --chown=node:node /app/apps/web/public ./apps/web/public
+#22 DONE 0.1s
+
+#23 exporting to image
+#23 exporting layers
+#23 exporting layers 0.8s done
+#23 exporting manifest sha256:33b918dc196a4e0e9ad0fc1f7bc0fe0cac6b9313aaf0c29867f358c085aab2ee done
+#23 exporting config sha256:9c4716bfeb6423c99a399411f6b4862e2c0c0662198b2b1be740eeb3297362e6 done
+#23 exporting attestation manifest sha256:df2555c22ef1006cfba9802da0603a705d28d648437c6e326ba02e3d1cef3429 done
+#23 exporting manifest list sha256:dc193c5a4b31b3bd3ee29bbde79568bc95bb91d583d4237e9c3bbc9f344a1006 done
+#23 naming to docker.io/library/earthmind-web:m01 done
+#23 unpacking to docker.io/library/earthmind-web:m01
+#23 unpacking to docker.io/library/earthmind-web:m01 0.2s done
+#23 DONE 1.1s
+
+#24 resolving provenance for metadata file
+#24 DONE 0.0s
+ Image earthmind-web:m01 Built 
+ Container earthmind-web-1 Recreate 
+ Container earthmind-web-1 Recreated 
+ Container earthmind-web-1 Starting 
+ Container earthmind-web-1 Started 
+ Container earthmind-web-1 Waiting 
+ Container earthmind-web-1 Healthy 

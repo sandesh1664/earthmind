@@ -1,0 +1,229 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "diagnosis.spec.ts",
+      "--project=mobile",
+      "--grep",
+      "reselecting the active fixture",
+      "--workers=1"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "browserName": "chromium",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "isMobile": true,
+          "hasTouch": true
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "diagnosis.spec.ts",
+      "file": "diagnosis.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "diagnosis reselecting the active fixture preserves in-flight stored roads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 32711,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    63 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    63 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:172:25",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                      "column": 25,
+                      "line": 172
+                    },
+                    "snippet": "  170 |     await network.selectOption(await network.inputValue());\n  171 |     release();\n> 172 |     await expect(scene).toHaveAttribute(\"data-road-count\",\"8\",{timeout:30_000});\n      |                         ^\n  173 |     await expect(scene).toHaveAttribute(\"data-intersection-count\",\"6\");\n  174 |     await expect(scene).toHaveAttribute(\"data-phase\",\"ready\");\n  175 |     expect(observation.errors).toEqual([]);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                        "column": 25,
+                        "line": 172
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cesium-viewer')\nExpected: \u001b[32m\"8\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" getByTestId('cesium-viewer') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cesium-viewer')\u001b[22m\n\u001b[2m    63 × locator resolved to <div data-phase=\"ready\" data-road-count=\"0\" data-geometry-ready=\"true\" data-camera-moving=\"false\" class=\"city-viewer-surface\" data-testid=\"cesium-viewer\" data-imagery-status=\"ready\" data-intersection-count=\"6\" data-local-building-count=\"0\" data-buildings-status=\"blocked\" data-render-diagnostics=\"{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}\" data-layer-visibility=\"{\"boundary\":true,\"roads\":false,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"b…>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n\n  170 |     await network.selectOption(await network.inputValue());\n  171 |     release();\n> 172 |     await expect(scene).toHaveAttribute(\"data-road-count\",\"8\",{timeout:30_000});\n      |                         ^\n  173 |     await expect(scene).toHaveAttribute(\"data-intersection-count\",\"6\");\n  174 |     await expect(scene).toHaveAttribute(\"data-phase\",\"ready\");\n  175 |     expect(observation.errors).toEqual([]);\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:172:25"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T14:56:00.180Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/private/tmp/earthmind-diagnosis-results/reselect-regression-before/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts",
+                    "column": 25,
+                    "line": 172
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "01c67e58884d598a906c-a91da80c6766e2e951f2",
+          "file": "diagnosis.spec.ts",
+          "line": 145,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T14:55:59.929Z",
+    "duration": 33276.666999999994,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

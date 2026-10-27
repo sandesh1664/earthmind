@@ -1,0 +1,21 @@
+{"time": 1793109292, "action": "start", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109292, "action": "start", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_create: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_start: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_create: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_start: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_die", "name": "earthmind-web-1", "signal": null, "exitCode": "0"}
+{"time": 1793109297, "action": "health_status: healthy", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109297, "action": "exec_die", "name": "earthmind-api-1", "signal": null, "exitCode": "1"}
+{"time": 1793109302, "action": "exec_create: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109302, "action": "exec_start: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109302, "action": "exec_create: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109302, "action": "exec_start: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109302, "action": "exec_die", "name": "earthmind-web-1", "signal": null, "exitCode": "0"}
+{"time": 1793109302, "action": "exec_die", "name": "earthmind-api-1", "signal": null, "exitCode": "1"}
+{"time": 1793109307, "action": "exec_create: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109307, "action": "exec_start: node -e fetch('http://127.0.0.1:3000/api/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))", "name": "earthmind-web-1", "signal": null, "exitCode": null}
+{"time": 1793109307, "action": "exec_die", "name": "earthmind-web-1", "signal": null, "exitCode": "0"}
+{"time": 1793109307, "action": "exec_create: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109307, "action": "exec_start: python -c import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=5)", "name": "earthmind-api-1", "signal": null, "exitCode": null}
+{"time": 1793109307, "action": "exec_die", "name": "earthmind-api-1", "signal": null, "exitCode": "1"}

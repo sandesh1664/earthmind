@@ -1,0 +1,140 @@
+{
+  "observedAt": "2026-10-27T12:54:45.717Z",
+  "config": {
+    "imageryMode": "local-osm",
+    "publicIonTokenConfigured": false,
+    "imageryAssetId": 3812,
+    "terrainAssetId": 1
+  },
+  "console": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x10c0043c600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x10c0043c600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x10c0043c600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x10c0043c600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "httpFailures": [],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "workers": [
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/transferTypedArrayTest.js",
+    "http://127.0.0.1:3000/cesium/Workers/createVerticesFromHeightmap.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/combineGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/incrementallyBuildTerrainPicker.js"
+  ],
+  "naturalEarthTextures": [
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "status": 200
+    },
+    {
+      "path": "/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg",
+      "status": 200
+    }
+  ],
+  "externalRequests": [],
+  "states": [
+    {
+      "label": "real-default",
+      "regionId": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+      "networkId": "4aa62897-1a54-546c-a390-ddb156838f8e",
+      "camera": "55.27440° E · 25.18167° N · 2,458 m altitude",
+      "scene": {
+        "data-testid": "cesium-viewer",
+        "data-phase": "ready",
+        "data-local-building-count": "402",
+        "data-road-count": "500",
+        "data-intersection-count": "0",
+        "data-geometry-ready": "true",
+        "data-camera-moving": "false",
+        "data-layer-visibility": "{\"boundary\":false,\"roads\":true,\"intersections\":false,\"centroid\":false,\"highlight\":false,\"buildings\":true,\"imagery\":true,\"terrain\":false}",
+        "data-pick-x": "717.1",
+        "data-pick-y": "289.31",
+        "data-pick-id": "294201ab-80ef-54ec-8bb0-56092e538944"
+      },
+      "providerNotice": "Local OpenStreetMap cartography; ellipsoid terrain.Cesium ion building tiles unavailable: set CESIUM_ION_PUBLIC_TOKEN. OSM tagged-height context coverage is partial.",
+      "layers": [
+        "Scene layers\n4 enabled\nStudy region\nPostGIS boundary\nRoad centerlines\nVersioned network\nIntersections\nStored node records\n3D buildings\nOSM height tags / optional ion tiles\nGeographic basemap\nLocal OSM / configured ion\n\nSelf-hosted OpenStreetMap cartography · actual source geometry · ODbL\n\nWorld terrain\nConfigured Cesium ion\n\nBlocked · public provider token required\n\nSelection highlight\nSelected feature\nRegion centroid\nPostGIS representative point"
+      ]
+    },
+    {
+      "label": "development-fixture",
+      "regionId": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb",
+      "networkId": "22f68ce8-9247-5425-8342-827d86517ead",
+      "camera": "55.27450° E · 25.18260° N · 2,139 m altitude",
+      "scene": {
+        "data-testid": "cesium-viewer",
+        "data-phase": "ready",
+        "data-local-building-count": "0",
+        "data-road-count": "8",
+        "data-intersection-count": "6",
+        "data-geometry-ready": "true",
+        "data-camera-moving": "false",
+        "data-layer-visibility": "{\"boundary\":true,\"roads\":true,\"intersections\":true,\"centroid\":false,\"highlight\":false,\"buildings\":false,\"imagery\":true,\"terrain\":false}",
+        "data-pick-x": "538.08",
+        "data-pick-y": "487.8",
+        "data-pick-id": "892cdfec-5d1c-5880-aa32-66ff680f1756"
+      },
+      "providerNotice": "Local OpenStreetMap cartography; ellipsoid terrain.Cesium ion building tiles unavailable: set CESIUM_ION_PUBLIC_TOKEN. OSM tagged-height context coverage is partial.",
+      "layers": []
+    }
+  ],
+  "result": "completed"
+}

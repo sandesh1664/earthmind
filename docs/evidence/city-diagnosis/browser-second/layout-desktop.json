@@ -1,0 +1,25 @@
+{
+  "navigationToRoadReadyMs": 5977,
+  "timingScope": "Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "canvasBeforeFullscreen": {
+    "x": 101,
+    "y": 194.890625,
+    "width": 1320,
+    "height": 743.109375
+  },
+  "canvasDuringFullscreen": {
+    "x": 19,
+    "y": 148.890625,
+    "width": 1402,
+    "height": 786.109375
+  },
+  "businessBayCamera": "55.26100° E · 25.16621° N · 3,031 m altitude",
+  "downtownCamera": "55.27440° E · 25.18805° N · 2,175 m altitude",
+  "errors": [],
+  "httpFailures": [],
+  "externalRequests": []
+}

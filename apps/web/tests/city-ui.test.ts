@@ -65,7 +65,7 @@ const inspector = (
     }),
   );
 
-test("layer controls expose all eight scene switches and block only unavailable licensed providers", () => {
+test("layer controls expose eight switches and allow selected unavailable layers to be switched off", () => {
   const html = renderToStaticMarkup(
     createElement(LayerManager, {
       layers: DEFAULT_LAYERS,
@@ -75,7 +75,7 @@ test("layer controls expose all eight scene switches and block only unavailable 
     }),
   );
   assert.equal((html.match(/type="checkbox"/g) ?? []).length, 8);
-  assert.equal((html.match(/disabled=""/g) ?? []).length, 2);
+  assert.equal((html.match(/disabled=""/g) ?? []).length, 1);
   assert.match(html, /aria-label="Study region"/);
   assert.match(html, /aria-label="Geographic basemap"/);
   assert.match(html, /Blocked · public provider token required/);

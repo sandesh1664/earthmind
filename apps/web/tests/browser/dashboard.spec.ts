@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { browserEvidencePath } from "./evidence";
 
 async function openOverview(page: Page) {
   await page.goto("/");
@@ -54,7 +55,7 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/recovery/m01-regression-${info.project.name}.png`,
+    path: browserEvidencePath(`m01-regression-${info.project.name}.png`),
     fullPage: true,
   });
   const menu = page.getByRole("button", {

@@ -1,0 +1,43 @@
+import { createRequire } from 'node:module';
+import { mkdir, writeFile } from 'node:fs/promises';
+const require = createRequire('/Users/redmug/EARTHMIND/package.json');
+const { chromium, expect } = require('@playwright/test');
+const output='/private/tmp/earthmind-diagnosis-results/browser-before';
+await mkdir(output,{recursive:true});
+const browser=await chromium.launch();
+const context=await browser.newContext({viewport:{width:1440,height:1000}});
+const page=await context.newPage();
+const config=await (await page.request.get('http://127.0.0.1:3000/api/city/config')).json();
+const redact=text=>String(text).replaceAll(config.ionPublicToken||'__NO_CONFIGURED_TOKEN__','[REDACTED]').replace(/([?&](?:access_token|token)=)[^&\s]+/gi,'$1[REDACTED]');
+const safeUrl=input=>{try { const u=new URL(input); return `${u.origin}${u.pathname}`; } catch { return redact(input); }};
+const evidence={observedAt:new Date().toISOString(),config:{imageryMode:config.imageryMode,publicIonTokenConfigured:Boolean(config.ionPublicToken),imageryAssetId:config.imageryAssetId,terrainAssetId:config.terrainAssetId},console:[],pageErrors:[],httpFailures:[],failedRequests:[],workers:[],naturalEarthTextures:[],externalRequests:[],states:[]};
+page.on('console',m=>{if(['error','warning'].includes(m.type()))evidence.console.push({type:m.type(),text:redact(m.text())});});
+page.on('pageerror',e=>evidence.pageErrors.push(redact(e.message)));
+page.on('worker',w=>evidence.workers.push(safeUrl(w.url())));
+page.on('requestfailed',r=>evidence.failedRequests.push({url:safeUrl(r.url()),error:redact(r.failure()?.errorText)}));
+page.on('request',r=>{ const u=new URL(r.url()); if(/^https?:$/.test(u.protocol)&&!['localhost','127.0.0.1'].includes(u.hostname))evidence.externalRequests.push(safeUrl(r.url())); });
+page.on('response',r=>{const u=new URL(r.url());if(r.status()>=400)evidence.httpFailures.push({url:safeUrl(r.url()),status:r.status()});if(u.pathname.includes('NaturalEarthII')&&u.pathname.endsWith('.jpg'))evidence.naturalEarthTextures.push({path:u.pathname,status:r.status()});});
+async function snapshot(label){
+ const scene=page.getByTestId('cesium-viewer');
+ await expect(scene).toHaveAttribute('data-phase','ready');
+ await expect.poll(()=>scene.getAttribute('data-geometry-ready'),{timeout:60000}).toBe('true');
+ await expect(scene).toHaveAttribute('data-camera-moving','false');
+ const state={label,regionId:await page.getByLabel('3D study region',{exact:true}).inputValue(),networkId:await page.getByLabel('3D network version',{exact:true}).inputValue(),camera:await page.getByTestId('camera-position').innerText(),scene:await scene.evaluate(el=>Object.fromEntries([...el.attributes].filter(a=>a.name.startsWith('data-')).map(a=>[a.name,a.value]))),providerNotice:await page.locator('.city-provider-notice').innerText(),layers:await page.locator('.city-layer-panel').allInnerTexts()};
+ await page.screenshot({path:`${output}/${label}.png`,fullPage:true}); evidence.states.push(state);
+}
+try {
+ await page.goto('http://127.0.0.1:3000/');
+ await expect.poll(()=>page.getByTestId('cesium-viewer').getAttribute('data-road-count'),{timeout:60000}).toBe('500');
+ await expect.poll(()=>page.getByTestId('cesium-viewer').getAttribute('data-local-building-count'),{timeout:60000}).toBe('402');
+ await page.getByRole('button',{name:'Layers',exact:true}).click();
+ await snapshot('real-default');
+ await page.getByRole('button',{name:'Close layers',exact:true}).click();
+ await page.getByRole('checkbox',{name:'Development datasets',exact:true}).check();
+ await expect(page.getByLabel('3D network version',{exact:true})).toContainText('synthetic-v1');
+ await expect.poll(()=>page.getByTestId('cesium-viewer').getAttribute('data-road-count'),{timeout:60000}).toBe('8');
+ await snapshot('development-fixture');
+ evidence.result='completed';
+} catch(e){ evidence.result='failed'; evidence.failure=redact(e.stack); process.exitCode=1; }
+await context.close();await browser.close();
+await writeFile(`${output}/observations.json`,JSON.stringify(evidence,null,2)+'\n');
+console.log(JSON.stringify({result:evidence.result,states:evidence.states.map(s=>({label:s.label,networkId:s.networkId,roads:s.scene['data-road-count'],localBuildings:s.scene['data-local-building-count'],camera:s.camera})),consoleErrors:evidence.console.filter(m=>m.type==='error').length,pageErrors:evidence.pageErrors.length,httpFailures:evidence.httpFailures.length,failedRequests:evidence.failedRequests.length,workers:evidence.workers.length,naturalEarthTextureRequests:evidence.naturalEarthTextures.length,output}));

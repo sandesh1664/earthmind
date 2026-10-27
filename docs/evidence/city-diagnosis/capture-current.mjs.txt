@@ -1,0 +1,26 @@
+import {createRequire} from 'node:module';
+import {mkdir,writeFile} from 'node:fs/promises';
+const {chromium,expect}=createRequire('/Users/redmug/EARTHMIND/package.json')('@playwright/test');
+const output='/private/tmp/earthmind-diagnosis-results/current-browser';await mkdir(output,{recursive:true});
+const browser=await chromium.launch();const context=await browser.newContext({viewport:{width:1440,height:1000}});const page=await context.newPage();
+const observations={observedAt:new Date().toISOString(),consoleErrors:[],httpFailures:[],failedRequests:[]};
+const safe=text=>String(text).replace(/https?:\/\/[^\s"'<>]+/g,value=>{const u=new URL(value);return `${u.origin}${u.pathname}`;}).replace(/\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g,'[REDACTED]');
+page.on('pageerror',e=>observations.consoleErrors.push(safe(e.message)));page.on('console',m=>{if(m.type()==='error')observations.consoleErrors.push(safe(m.text()))});
+page.on('response',r=>{if(r.status()>=400)observations.httpFailures.push({path:new URL(r.url()).pathname,status:r.status()})});
+page.on('requestfailed',r=>observations.failedRequests.push({path:new URL(r.url()).pathname,error:r.failure()?.errorText}));
+try{
+ await page.goto('http://127.0.0.1:3000/');const scene=page.getByTestId('cesium-viewer');
+ await expect(scene).toHaveAttribute('data-road-count','500',{timeout:60000});
+ await expect(scene).toHaveAttribute('data-local-building-count','402');
+ await expect(scene).toHaveAttribute('data-imagery-status','ready');
+ await expect(scene).toHaveAttribute('data-buildings-status','ready');
+ await expect(scene).toHaveAttribute('data-camera-moving','false');
+ await expect(scene).toHaveAttribute('data-geometry-ready','true');
+ await expect(page.getByText('Loading visible network…',{exact:true})).not.toBeVisible();
+ observations.camera=JSON.parse(await page.getByTestId('camera-position').getAttribute('data-camera'));
+ observations.scene=await scene.evaluate(el=>Object.fromEntries([...el.attributes].filter(a=>a.name.startsWith('data-')).map(a=>[a.name,a.value])));
+ observations.networkId=await page.getByLabel('3D network version',{exact:true}).inputValue();
+ observations.result='captured';await page.screenshot({path:`${output}/city-current-desktop.png`,fullPage:true});
+}catch(e){observations.result='failed';observations.error=safe(e.stack);process.exitCode=1}
+await writeFile(`${output}/observations.json`,JSON.stringify(observations,null,2)+'\n');await context.close();await browser.close();
+console.log(JSON.stringify({result:observations.result,roads:observations.scene?.['data-road-count'],localModels:observations.scene?.['data-local-building-count'],consoleErrors:observations.consoleErrors.length,httpFailures:observations.httpFailures.length}));

@@ -1,5 +1,6 @@
 import { expect, test, chromium, type Page } from "@playwright/test";
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
+import { browserEvidencePath } from "./evidence";
 
 async function openCity(page: Page) {
   await page.goto("/");
@@ -84,7 +85,13 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   const buildingLayer = page.getByRole("checkbox", { name: "3D buildings", exact: true });
   // Synthetic development scope must not silently retain real OSM context.
   await expect(scene).toHaveAttribute("data-local-building-count","0");
+  // A selected blocked layer can be switched off; it cannot be switched back
+  // on without access. Neither state may retain real OSM building resources.
+  await expect(buildingLayer).toBeEnabled();
+  await buildingLayer.uncheck();
   await expect(buildingLayer).toBeDisabled();
+  await expect(scene).toHaveAttribute("data-buildings-status","off");
+  await expect(scene).toHaveAttribute("data-local-building-count","0");
   await expect(page.getByRole("checkbox", { name: "World terrain", exact: true })).toBeDisabled();
   const roads = page.getByRole("checkbox", { name: "Road centerlines", exact: true });
   await roads.uncheck();
@@ -117,7 +124,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   await ready(page);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.evaluate(() => window.scrollTo(0,0));
-  await page.screenshot({ path:`../../docs/evidence/recovery/city-${info.project.name}.png`, fullPage:true });
+  await page.screenshot({ path:browserEvidencePath(`city-${info.project.name}.png`), fullPage:true });
   expect(workers.length).toBeGreaterThan(0);
   expect(spatial.length).toBeGreaterThan(0);
   for (const value of spatial) {
@@ -129,8 +136,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   }
   expect(errors).toEqual([]);
   expect(external).toEqual([]);
-  await mkdir("../../docs/evidence/recovery", {recursive:true});
-  await writeFile(`../../docs/evidence/recovery/city-network-${info.project.name}.json`, JSON.stringify({workers,spatialRequests:spatial,externalRequests:external,errors},null,2)+"\n");
+  await writeFile(browserEvidencePath(`city-network-${info.project.name}.json`), JSON.stringify({workers,spatialRequests:spatial,externalRequests:external,errors},null,2)+"\n");
 });
 
 test("M03 actual repeated navigation destroys the old viewer and restores one scene", async ({ page }) => {
@@ -169,6 +175,6 @@ test("M03 actual browser without WebGL shows a usable metadata fallback", async 
     await expect(page.getByRole("button", {name:"Inspect road provisional:e0",exact:true})).toBeVisible();
     await page.getByRole("button", {name:"Inspect road provisional:e0",exact:true}).click();
     await expect(page.getByTestId("selected-road-identifier")).toHaveText("provisional:e0");
-    await page.screenshot({path:`../../docs/evidence/recovery/webgl-fallback-${info.project.name}.png`,fullPage:true});
+    await page.screenshot({path:browserEvidencePath(`webgl-fallback-${info.project.name}.png`),fullPage:true});
   } finally { await browser.close(); }
 });

@@ -1,0 +1,167 @@
+{
+  "observed_at_utc": "2026-10-27T12:50:08.255388+00:00",
+  "git_head": "d9c529c7f14aebc85c90d56e7b92f612cc62dc1e",
+  "database": {
+    "postgres": "PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "postgis": "3.6 USE_GEOS=1 USE_PROJ=1 USE_STATS=1",
+    "alembic_revision": "0004_run_state_integrity"
+  },
+  "regions": [
+    {
+      "id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+      "slug": "dubai-downtown-business-bay-osm",
+      "name": "Downtown Dubai / Business Bay \u2014 OpenStreetMap Study Area",
+      "is_synthetic": false,
+      "area_km2": 9.378769775598526,
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          55.273000003,
+          25.194000223
+        ]
+      },
+      "bounds": [
+        55.258,
+        25.18,
+        55.288,
+        25.208
+      ]
+    },
+    {
+      "id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb",
+      "slug": "dubai-downtown-demo",
+      "name": "Downtown Dubai \u2014 Synthetic Study Region",
+      "is_synthetic": true,
+      "area_km2": 1.3398134937911033,
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          55.2745,
+          25.195000053
+        ]
+      },
+      "bounds": [
+        55.2685,
+        25.19,
+        55.2805,
+        25.2
+      ]
+    }
+  ],
+  "networks": [
+    {
+      "id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+      "region_id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+      "version_label": "osm-20261026-0b027352ec38",
+      "status": "published",
+      "source_format": "osm_sumo_georeferenced",
+      "checksum_sha256": "0b027352ec382ba57db36eaf5ec3b54e6f95d837603599746a5a808ad6aba4f6",
+      "node_count": 1560,
+      "edge_count": 2364,
+      "is_validated": true,
+      "validation_status": "VALID_WITH_WARNINGS",
+      "source_type": "openstreetmap",
+      "is_synthetic": false,
+      "provider_name": "OpenStreetMap contributors",
+      "source_version": "9aab25c641c00ba9e1911001",
+      "source_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+      "actual_intersections": 1560,
+      "actual_road_records": 2364
+    },
+    {
+      "id": "22f68ce8-9247-5425-8342-827d86517ead",
+      "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb",
+      "version_label": "synthetic-v1",
+      "status": "published",
+      "source_format": "synthetic_geojson",
+      "checksum_sha256": "2706d3ffc30af0fe18892407afb8626be0199993b8f1236e9dde66e6e145b7cd",
+      "node_count": 6,
+      "edge_count": 8,
+      "is_validated": true,
+      "validation_status": "VALID",
+      "source_type": "synthetic",
+      "is_synthetic": true,
+      "provider_name": "EARTHMIND",
+      "source_version": "synthetic-v1",
+      "source_sha256": "2706d3ffc30af0fe18892407afb8626be0199993b8f1236e9dde66e6e145b7cd",
+      "actual_intersections": 6,
+      "actual_road_records": 8
+    }
+  ],
+  "public_config": {
+    "imageryMode": "local-osm",
+    "imageryAssetId": 3812,
+    "terrainAssetId": 1,
+    "diagnosticsEnabled": true,
+    "public_ion_token_configured": false
+  },
+  "public_region_order": [
+    {
+      "id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+      "slug": "dubai-downtown-business-bay-osm",
+      "is_synthetic": false
+    },
+    {
+      "id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb",
+      "slug": "dubai-downtown-demo",
+      "is_synthetic": true
+    }
+  ],
+  "public_networks": [
+    {
+      "id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+      "region_id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+      "version_label": "osm-20261026-0b027352ec38",
+      "status": "published",
+      "node_count": 1560,
+      "edge_count": 2364,
+      "is_synthetic": false
+    },
+    {
+      "id": "22f68ce8-9247-5425-8342-827d86517ead",
+      "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb",
+      "version_label": "synthetic-v1",
+      "status": "published",
+      "node_count": 6,
+      "edge_count": 8,
+      "is_synthetic": true
+    }
+  ],
+  "deployed_context_manifest": {
+    "source": "OpenStreetMap",
+    "license": "ODbL-1.0",
+    "attribution": "\u00a9 OpenStreetMap contributors",
+    "source_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+    "bounds": [
+      55.258,
+      25.18,
+      55.288,
+      25.208
+    ],
+    "cartographic_features": 4676,
+    "explicit_height_buildings": 402,
+    "labels": 120,
+    "rejected_incomplete_ways": 0,
+    "rejected_invalid_geometry": 0,
+    "artifacts": {
+      "context.geojson": {
+        "sha256": "30237bfcdca15d4427644d966eb564947392c6370bcd59715fc41069d0d4103d",
+        "bytes": 2053685,
+        "features": 4676,
+        "positions": 39090
+      },
+      "buildings.geojson": {
+        "sha256": "fc5c22bc575a5151b09093b57dcd0a21cd3e5681b8b0d8036259b87bd33e2724",
+        "bytes": 249109,
+        "features": 402,
+        "positions": 4895
+      }
+    },
+    "limitations": [
+      "OSM height tags are not field verified",
+      "Missing heights are not inferred; footprint remains flat",
+      "Simple way polygons only; unassembled multipolygon relations omitted",
+      "Cartographic roads are context, selectable network comes from PostGIS"
+    ]
+  }
+}

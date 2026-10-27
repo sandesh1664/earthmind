@@ -1,4 +1,4 @@
-import { BoundingSphere, Cartesian2, Cartesian3, HeadingPitchRange, Math as CMath, Rectangle, type Viewer } from "cesium";
+import { BoundingSphere, Cartesian2, Cartesian3, Cartographic, EllipsoidTerrainProvider, HeadingPitchRange, Math as CMath, Rectangle, type Viewer } from "cesium";
 import { CAMERA_PRESETS } from "../../../lib/geo/camera-presets";
 import { positionBounds } from "../../../lib/geo/coordinates";
 import type { Bounds, CameraCommand, CameraSnapshot, FeatureSelection, SceneData } from "../../../lib/city/types";
@@ -10,6 +10,14 @@ function flyBounds(viewer: Viewer, bounds: Bounds, perspective: boolean): void {
     duration: 1.15,
     offset: new HeadingPitchRange(0, perspective ? -1.0 : -CMath.PI_OVER_TWO, Math.max(sphere.radius * 3.1, 450)),
   });
+}
+function groundFocus(viewer: Viewer, center: Cartesian2): Cartesian3 | undefined {
+  const ellipsoid = viewer.camera.pickEllipsoid(center,viewer.scene.globe.ellipsoid);
+  // Flat local/reference modes have an exact analytic surface. A coarse or
+  // asynchronously prepared globe mesh pick can return a distant false focus.
+  if (viewer.terrainProvider instanceof EllipsoidTerrainProvider) return ellipsoid;
+  const ray = viewer.camera.getPickRay(center);
+  return (ray ? viewer.scene.globe.pick(ray,viewer.scene) : undefined) ?? ellipsoid;
 }
 export function applyCamera(viewer: Viewer, command: CameraCommand, data: SceneData, selection: FeatureSelection): void {
   const preset = command.preset;
@@ -32,11 +40,9 @@ export function applyCamera(viewer: Viewer, command: CameraCommand, data: SceneD
     return;
   } else if (preset === "top-down" || preset === "perspective") {
     const screenCenter = new Cartesian2(viewer.canvas.clientWidth / 2, viewer.canvas.clientHeight / 2);
-    const ray = viewer.camera.getPickRay(screenCenter);
     // Orbit the actual visible ground focus. Rotating in place at the camera's
     // cartographic position would shift a perspective view away from the study.
-    const target = (ray ? viewer.scene.globe.pick(ray,viewer.scene) : undefined)
-      ?? viewer.camera.pickEllipsoid(screenCenter,viewer.scene.globe.ellipsoid)
+    const target = groundFocus(viewer,screenCenter)
       ?? (data.region ? Cartesian3.fromDegrees(...data.region.centroid) : undefined);
     if (!target) return;
     const range = Math.max(150,Cartesian3.distance(viewer.camera.positionWC,target));
@@ -54,5 +60,8 @@ export function cameraSnapshot(viewer: Viewer): CameraSnapshot {
   const current = viewer.camera.positionCartographic;
   const rectangle = viewer.camera.computeViewRectangle(viewer.scene.globe.ellipsoid);
   const bounds: Bounds | null = rectangle ? [CMath.toDegrees(rectangle.west), CMath.toDegrees(rectangle.south), CMath.toDegrees(rectangle.east), CMath.toDegrees(rectangle.north)] : null;
-  return { longitude: CMath.toDegrees(current.longitude), latitude: CMath.toDegrees(current.latitude), height: current.height, heading: CMath.toDegrees(viewer.camera.heading), pitch: CMath.toDegrees(viewer.camera.pitch), bounds };
+  const center = new Cartesian2(viewer.canvas.clientWidth/2,viewer.canvas.clientHeight/2);
+  const focus = groundFocus(viewer,center);
+  const geographic = focus ? Cartographic.fromCartesian(focus,viewer.scene.globe.ellipsoid) : null;
+  return { longitude: CMath.toDegrees(current.longitude), latitude: CMath.toDegrees(current.latitude), height: current.height, heading: CMath.toDegrees(viewer.camera.heading), pitch: CMath.toDegrees(viewer.camera.pitch), bounds, groundFocus:geographic ? [CMath.toDegrees(geographic.longitude),CMath.toDegrees(geographic.latitude)] : null };
 }

@@ -1,4 +1,5 @@
 import { defineConfig } from "@playwright/test";
+import { browserEvidencePath } from "./tests/browser/evidence";
 
 export default defineConfig({
   testDir: "./tests/browser",
@@ -7,11 +8,14 @@ export default defineConfig({
   fullyParallel: false,
   workers: 2,
   retries: 0,
+  ...(process.env.EARTHMIND_EVIDENCE_DIR
+    ? { outputDir: browserEvidencePath("test-results") }
+    : {}),
   reporter: [
     ["list"],
     [
       "json",
-      { outputFile: "../../docs/evidence/recovery/playwright-results.json" },
+      { outputFile: browserEvidencePath("playwright-results.json") },
     ],
   ],
   use: {

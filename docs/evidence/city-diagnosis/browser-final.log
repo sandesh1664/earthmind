@@ -1,0 +1,110 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1 --max-failures=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1 --max-failures=1
+
+
+Running 42 tests using 1 worker
+
+(node:81200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (17.1s)
+  ✓   2 [desktop] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (14.5s)
+  ✓   3 [desktop] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (669ms)
+  ✓   4 [desktop] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.0s)
+  ✓   5 [desktop] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (284ms)
+  ✓   6 [desktop] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (12.0s)
+  ✓   7 [desktop] › tests/browser/diagnosis.spec.ts:180:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (26.2s)
+  ✓   8 [desktop] › tests/browser/diagnosis.spec.ts:245:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (6.4s)
+  ✓   9 [desktop] › tests/browser/diagnosis.spec.ts:280:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (7.8s)
+  ✓  10 [desktop] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (657ms)
+  ✓  11 [desktop] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (242ms)
+  ✓  12 [desktop] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5940ms
+  ✓  13 [desktop] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (27.0s)
+Actual fresh-context navigation to nonempty ready roads: 5686ms
+  ✓  14 [desktop] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (22.0s)
+(node:81423) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [tablet] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.0s)
+  ✓  16 [tablet] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (13.6s)
+  ✓  17 [tablet] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (639ms)
+  ✓  18 [tablet] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.8s)
+  ✓  19 [tablet] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (653ms)
+  ✓  20 [tablet] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (9.5s)
+  ✓  21 [tablet] › tests/browser/diagnosis.spec.ts:180:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (21.1s)
+  ✓  22 [tablet] › tests/browser/diagnosis.spec.ts:245:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (5.3s)
+  ✓  23 [tablet] › tests/browser/diagnosis.spec.ts:280:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (7.2s)
+  ✓  24 [tablet] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (694ms)
+  ✓  25 [tablet] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (238ms)
+  ✓  26 [tablet] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5624ms
+  ✓  27 [tablet] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (20.1s)
+Actual fresh-context navigation to nonempty ready roads: 5529ms
+  ✓  28 [tablet] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (18.9s)
+(node:81793) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  29 [mobile] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (17.8s)
+  ✘  30 [mobile] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (31.8s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [mobile] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "8"
+    Received: "0"
+    Timeout:  30000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 30000ms
+      - waiting for getByTestId('cesium-viewer')
+        5 × locator resolved to <div data-phase="ready" data-road-count="0" data-camera-moving="true" data-geometry-ready="true" class="city-viewer-surface" data-testid="cesium-viewer" data-intersection-count="0" data-imagery-status="loading" data-local-building-count="0" data-buildings-status="blocked" data-render-diagnostics="{"globeVisible":true,"globeTilesLoaded":false,"imageryLayerCount":1,"boundaryFillAlpha":0.13}" data-layer-visibility="{"boundary":true,"roads":false,"intersections":false,"centroid":false,"highlight":false…>…</div>
+          - unexpected value "0"
+        - locator resolved to <div data-phase="ready" data-road-count="0" data-camera-moving="true" data-geometry-ready="true" class="city-viewer-surface" data-testid="cesium-viewer" data-imagery-status="ready" data-intersection-count="0" data-local-building-count="0" data-buildings-status="blocked" data-render-diagnostics="{"globeVisible":true,"globeTilesLoaded":true,"imageryLayerCount":1,"boundaryFillAlpha":0.13}" data-layer-visibility="{"boundary":true,"roads":false,"intersections":false,"centroid":false,"highlight":false,"b…>…</div>
+        56 × unexpected value "0"
+           - locator resolved to <div data-phase="ready" data-road-count="0" data-geometry-ready="true" data-camera-moving="false" class="city-viewer-surface" data-testid="cesium-viewer" data-imagery-status="ready" data-intersection-count="0" data-local-building-count="0" data-buildings-status="blocked" data-render-diagnostics="{"globeVisible":true,"globeTilesLoaded":true,"imageryLayerCount":1,"boundaryFillAlpha":0.13}" data-layer-visibility="{"boundary":true,"roads":false,"intersections":false,"centroid":false,"highlight":false,"…>…</div>
+        - unexpected value "0"
+
+
+      18 |   await expect(scene).toHaveAttribute("data-phase", "ready", { timeout: 45_000 });
+      19 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true");
+    > 20 |   await expect(scene).toHaveAttribute("data-road-count", "8", { timeout: 30_000 });
+         |                       ^
+      21 |   await expect(scene).toHaveAttribute("data-intersection-count", "6");
+      22 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      23 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+        at ready (/Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:20:23)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:146:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-final/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-final/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-final/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-final/test-results/city-M03-actual-repeated-n-364b6-ewer-and-restores-one-scene-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene 
+  12 did not run
+  29 passed (5.1m)
+  1 error was not a part of any test, see above for details
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1 --max-failures=1

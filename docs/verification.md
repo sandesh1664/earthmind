@@ -257,3 +257,22 @@ forbidden artifacts/oversized files. [Commit output](evidence/recovery/git-commi
 status update are included by a documentation-only amendment of the same focused
 commit. No push has occurred. The final hash is obtained after that amendment
 with `git log -1` and reported to the owner.
+
+## City Explorer diagnosis — 2026-10-27
+
+A subsequent bounded rendering diagnosis is recorded separately in
+[city-explorer-diagnosis.md](city-explorer-diagnosis.md), with
+[ADR 0013](decisions/0013-city-rendering-diagnostics.md). It preserves the real
+OSM recovery already on disk and does not execute imports or begin another
+milestone. New evidence is isolated under `evidence/city-diagnosis/` so the
+historical milestone/recovery results above remain unchanged. Consult that
+report for the current commands, failed attempts, final browser observations and
+explicit satellite/ion-access blockers; earlier PASS records do not establish
+new provider coverage.
+
+Final local diagnosis acceptance: **116 Python + 96 TypeScript + 38 live DB tests**
+and **45/45 actual browser checks** passed. Lint/type checks, production build,
+current migration, six asset HTTP hashes, queue/SUMO/geospatial smoke and native
+ARM64 checks passed. Licensed satellite/ion coverage remains unverified with no
+configured public token. All failed attempts and the exact command ledger remain
+in the linked diagnosis; no new geographic import or later milestone was run.

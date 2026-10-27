@@ -1,0 +1,30 @@
+{
+  "workers": [
+    "http://127.0.0.1:3000/cesium/Workers/transferTypedArrayTest.js",
+    "http://127.0.0.1:3000/cesium/Workers/createVerticesFromHeightmap.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/combineGeometry.js",
+    "http://127.0.0.1:3000/cesium/Workers/incrementallyBuildTerrainPicker.js"
+  ],
+  "spatialRequests": [
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=100",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=200",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges?bbox=55.258%2C25.18%2C55.288%2C25.208&limit=100&offset=300",
+    "http://127.0.0.1:3000/api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/edges?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0",
+    "http://127.0.0.1:3000/api/geospatial/networks/22f68ce8-9247-5425-8342-827d86517ead/intersections?bbox=55.2685%2C25.19%2C55.2805%2C25.2&limit=100&offset=0"
+  ],
+  "externalRequests": [],
+  "errors": []
+}

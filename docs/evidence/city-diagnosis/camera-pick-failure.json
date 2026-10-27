@@ -1,0 +1,20 @@
+{
+  "source": "Actual failed mobile browser trace in browser-delivery",
+  "camera": {
+    "longitude": 55.27440000000001,
+    "latitude": 25.18167255980374,
+    "height": 2457.689295872061,
+    "heading": 359.9999999999868,
+    "pitch": -55.015470203763115
+  },
+  "initialGroundFocus": [
+    55.27440000003018,
+    25.197199999991817
+  ],
+  "laterGroundFocus": [
+    55.27440000077517,
+    25.579551653391267
+  ],
+  "confirmed": "Stationary camera reported materially different ground focus with the mesh-first pick path; root internal SDK trigger not established",
+  "fix": "Use analytic camera.pickEllipsoid for EllipsoidTerrainProvider in both snapshots and orbit commands; terrain-aware path remains for configured terrain"
+}

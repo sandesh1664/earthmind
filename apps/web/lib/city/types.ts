@@ -73,6 +73,7 @@ export interface CameraCommand { preset: CameraPreset; sequence: number }
 export interface CameraSnapshot {
   longitude: number; latitude: number; height: number;
   heading: number; pitch: number; bounds: Bounds | null;
+  groundFocus?: Position | null;
 }
 export interface ProviderState {
   status: "off" | "loading" | "ready" | "blocked" | "error";
@@ -86,6 +87,10 @@ export interface ViewerStatus {
   localBuildingCount?: number;
   geometryReady?: boolean;
   cameraMoving?: boolean;
+  renderDiagnostics?: {
+    globeVisible: boolean; globeTilesLoaded: boolean; imageryLayerCount: number;
+    boundaryFillAlpha: number | null;
+  };
   layerVisibility?: Record<keyof LayerSettings, boolean>;
   pickProbe?: { kind: "road"; id: string; x: number; y: number } | null;
   renderedFrames?: number; sampleFps?: number | null; heapBytes?: number | null;

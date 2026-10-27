@@ -1,0 +1,50 @@
+{
+  "observedAt": "2026-10-27T15:20:21.858Z",
+  "consoleErrors": [],
+  "httpFailures": [],
+  "failedRequests": [
+    {
+      "path": "/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "path": "/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "camera": {
+    "longitude": 55.27440000000001,
+    "latitude": 25.18167255980374,
+    "height": 2457.689295872061,
+    "heading": 359.9999999999868,
+    "pitch": -55.015470203763115,
+    "bounds": [
+      55.2521447145973,
+      25.188447590254615,
+      55.29665528564397,
+      25.21111430707688
+    ],
+    "groundFocus": [
+      55.27440000003018,
+      25.197199999991817
+    ]
+  },
+  "scene": {
+    "data-testid": "cesium-viewer",
+    "data-phase": "ready",
+    "data-imagery-status": "ready",
+    "data-buildings-status": "ready",
+    "data-local-building-count": "402",
+    "data-road-count": "500",
+    "data-intersection-count": "0",
+    "data-geometry-ready": "true",
+    "data-camera-moving": "false",
+    "data-layer-visibility": "{\"boundary\":false,\"roads\":true,\"intersections\":false,\"centroid\":false,\"highlight\":false,\"buildings\":true,\"imagery\":true,\"terrain\":false}",
+    "data-render-diagnostics": "{\"globeVisible\":true,\"globeTilesLoaded\":true,\"imageryLayerCount\":1,\"boundaryFillAlpha\":0.13}",
+    "data-pick-x": "717.1",
+    "data-pick-y": "289.31",
+    "data-pick-id": "294201ab-80ef-54ec-8bb0-56092e538944"
+  },
+  "networkId": "4aa62897-1a54-546c-a390-ddb156838f8e",
+  "result": "captured"
+}

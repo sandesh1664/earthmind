@@ -1,0 +1,16 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- diagnosis.spec.ts --project=desktop --grep controlled worker delay --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test diagnosis.spec.ts --project=desktop --grep controlled worker delay --workers=1
+
+
+Running 1 test using 1 worker
+
+(node:81058) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (12.5s)
+
+  1 passed (12.9s)

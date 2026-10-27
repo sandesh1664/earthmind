@@ -1,0 +1,291 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1
+
+
+Running 45 tests using 1 worker
+
+(node:83006) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (17.5s)
+  ✓   2 [desktop] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (14.2s)
+  ✓   3 [desktop] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (1.3s)
+  ✓   4 [desktop] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.9s)
+  ✓   5 [desktop] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (347ms)
+  ✘   6 [desktop] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads (49.2s)
+(node:83222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [desktop] › tests/browser/diagnosis.spec.ts:185:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (12.1s)
+  ✘   8 [desktop] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (24.7s)
+(node:83258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [desktop] › tests/browser/diagnosis.spec.ts:285:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (6.1s)
+  ✓  10 [desktop] › tests/browser/diagnosis.spec.ts:320:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (9.5s)
+  ✓  11 [desktop] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (853ms)
+  ✓  12 [desktop] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (243ms)
+  ✓  13 [desktop] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5637ms
+  ✓  14 [desktop] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (27.4s)
+Actual fresh-context navigation to nonempty ready roads: 6280ms
+  ✓  15 [desktop] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (21.7s)
+(node:83324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  16 [tablet] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.2s)
+  ✓  17 [tablet] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (12.1s)
+  ✓  18 [tablet] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (687ms)
+  ✓  19 [tablet] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.8s)
+  ✓  20 [tablet] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (648ms)
+  ✘  21 [tablet] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads (4.1s)
+(node:83360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [tablet] › tests/browser/diagnosis.spec.ts:185:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (10.0s)
+  ✓  23 [tablet] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (21.0s)
+  ✓  24 [tablet] › tests/browser/diagnosis.spec.ts:285:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (5.4s)
+  ✓  25 [tablet] › tests/browser/diagnosis.spec.ts:320:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (6.8s)
+  ✓  26 [tablet] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (676ms)
+  ✓  27 [tablet] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (237ms)
+  ✓  28 [tablet] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5088ms
+  ✓  29 [tablet] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (19.9s)
+Actual fresh-context navigation to nonempty ready roads: 5051ms
+  ✓  30 [tablet] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (17.2s)
+(node:83430) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  31 [mobile] › tests/browser/city.spec.ts:27:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (14.5s)
+  ✓  32 [mobile] › tests/browser/city.spec.ts:142:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (16.2s)
+  ✓  33 [mobile] › tests/browser/city.spec.ts:167:1 › M03 actual browser without WebGL shows a usable metadata fallback (817ms)
+  ✓  34 [mobile] › tests/browser/dashboard.spec.ts:11:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.3s)
+  ✓  35 [mobile] › tests/browser/dashboard.spec.ts:86:1 › UI-only mocked dependency failure shows honest error state and supports retry (946ms)
+  ✘  36 [mobile] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads (3.1s)
+(node:83482) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  37 [mobile] › tests/browser/diagnosis.spec.ts:185:1 › diagnosis controlled worker delay keeps source geometry loading until native preparation finishes (6.4s)
+  ✘  38 [mobile] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus (32.1s)
+(node:83524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  39 [mobile] › tests/browser/diagnosis.spec.ts:285:1 › diagnosis controlled configuration: missing ion token remains blocked with honest usable Natural Earth fallback (4.4s)
+  ✓  40 [mobile] › tests/browser/diagnosis.spec.ts:320:1 › diagnosis controlled context failure remains an error while stored geography and the globe stay usable (6.0s)
+  ✓  41 [mobile] › tests/browser/geospatial.spec.ts:22:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (968ms)
+  ✓  42 [mobile] › tests/browser/geospatial.spec.ts:82:1 › M02 UI-only empty dataset is honest (716ms)
+  ✓  43 [mobile] › tests/browser/geospatial.spec.ts:104:1 › M02 UI-only service error supports retry (3.0s)
+Actual fresh-context navigation to nonempty ready roads: 5218ms
+  ✓  44 [mobile] › tests/browser/recovery.spec.ts:90:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (15.1s)
+Actual fresh-context navigation to nonempty ready roads: 4985ms
+  ✓  45 [mobile] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (12.9s)
+
+
+  1) [desktop] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "8"
+    Received: "0"
+    Timeout:  30000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 30000ms
+      - waiting for getByTestId('cesium-viewer')
+        61 × locator resolved to <div data-phase="ready" data-road-count="0" data-geometry-ready="true" data-camera-moving="false" class="city-viewer-surface" data-testid="cesium-viewer" data-imagery-status="ready" data-intersection-count="6" data-local-building-count="0" data-buildings-status="blocked" data-render-diagnostics="{"globeVisible":true,"globeTilesLoaded":true,"imageryLayerCount":1,"boundaryFillAlpha":0.13}" data-layer-visibility="{"boundary":true,"roads":false,"intersections":true,"centroid":false,"highlight":false,"b…>…</div>
+           - unexpected value "0"
+
+
+      170 |     await network.selectOption(await network.inputValue());
+      171 |     release();
+    > 172 |     await expect(scene).toHaveAttribute("data-road-count","8",{timeout:30_000});
+          |                         ^
+      173 |     await expect(scene).toHaveAttribute("data-intersection-count","6");
+      174 |     await expect(scene).toHaveAttribute("data-phase","ready");
+      175 |     expect(observation.errors).toEqual([]);
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:172:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 8
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "cancellationScope": null,
+    +     "error": "net::ERR_ABORTED",
+    +     "expectedCancellation": false,
+    +     "path": "http://127.0.0.1:3000/api/geospatial/data-sources/6c360c5b-0e03-5144-8eed-196d402bffd2",
+    +   },
+    + ]
+
+      276 |     expect(observation.errors).toEqual([]);
+      277 |     expect(observation.httpFailures).toEqual([]);
+    > 278 |     expect(unexpectedTransportFailures(observation)).toEqual([]);
+          |                                                      ^
+      279 |     expect(observation.externalRequests).toEqual([]);
+      280 |   } finally {
+      281 |     await saveEvidence(page, "diagnosis-actual-local", info.project.name, { scope: "Actual deployed local services and retained source data; no geographic response substitutions; does not verify satellite or ion buildings", config, network, cameras, observation });
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:278:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [tablet] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 8
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "cancellationScope": null,
+    +     "error": "net::ERR_ABORTED",
+    +     "expectedCancellation": false,
+    +     "path": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation",
+    +   },
+    + ]
+
+      175 |     expect(observation.errors).toEqual([]);
+      176 |     expect(observation.httpFailures).toEqual([]);
+    > 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);
+          |                                                      ^
+      178 |     expect(observation.externalRequests).toEqual([]);
+      179 |   } finally {
+      180 |     release();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 8
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "cancellationScope": null,
+    +     "error": "net::ERR_ABORTED",
+    +     "expectedCancellation": false,
+    +     "path": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/validation",
+    +   },
+    + ]
+
+      175 |     expect(observation.errors).toEqual([]);
+      176 |     expect(observation.httpFailures).toEqual([]);
+    > 177 |     expect(unexpectedTransportFailures(observation)).toEqual([]);
+          |                                                      ^
+      178 |     expect(observation.externalRequests).toEqual([]);
+      179 |   } finally {
+      180 |     release();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:177:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-resele-6aca8-rves-in-flight-stored-roads-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+
+    Error: Settled camera must retain the requested actual ground focus
+
+    Settled camera must retain the requested actual ground focus
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 25000ms exceeded while waiting on the predicate
+
+      123 |     return Boolean(camera?.groundFocus && await scene.getAttribute("data-camera-moving") === "false" &&
+      124 |       Math.abs(camera.groundFocus[0] - target[0]) < 0.0005 && Math.abs(camera.groundFocus[1] - target[1]) < 0.0005);
+    > 125 |   }, { timeout: 25_000, message: "Settled camera must retain the requested actual ground focus" }).toBe(true);
+          |                                                                                                    ^
+      126 |   const camera = await cameraState(page);
+      127 |   for (const value of [camera.longitude, camera.latitude, camera.height, camera.heading, camera.pitch]) expect(Number.isFinite(value)).toBe(true);
+      128 |   expect(camera.height).toBeGreaterThan(0);
+        at assertFocus (/Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:125:100)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/diagnosis.spec.ts:255:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../private/tmp/earthmind-diagnosis-results/browser-delivery/test-results/diagnosis-diagnosis-actual-b2eb1-d-stable-Dubai-camera-focus-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [desktop] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+    [desktop] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+    [tablet] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+    [mobile] › tests/browser/diagnosis.spec.ts:145:1 › diagnosis reselecting the active fixture preserves in-flight stored roads 
+    [mobile] › tests/browser/diagnosis.spec.ts:220:1 › diagnosis actual local services show source-backed buildings, loaded globe, transparent boundary and stable Dubai camera focus 
+  40 passed (7.2m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1

@@ -1,0 +1,20 @@
+{
+  "before_utc": "2026-10-27T12:50:08.255388+00:00",
+  "after_utc": "2026-10-27T15:14:50.584753+00:00",
+  "unchanged": {
+    "database": true,
+    "regions": true,
+    "networks": true,
+    "public_region_order": true,
+    "public_networks": true,
+    "deployed_context_manifest": true
+  },
+  "all_checked_geographic_state_unchanged": true,
+  "final_public_config": {
+    "imageryMode": "local-osm",
+    "imageryAssetId": 3812,
+    "terrainAssetId": 1,
+    "diagnosticsEnabled": true,
+    "public_ion_token_configured": false
+  }
+}

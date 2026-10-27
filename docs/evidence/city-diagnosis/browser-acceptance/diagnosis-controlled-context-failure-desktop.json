@@ -1,0 +1,69 @@
+{
+  "scope": "Controlled transport abort of only the same-origin context GeoJSON; no substitute geographic response; expected browser network error retained",
+  "actualDeployedConfig": {
+    "imageryMode": "local-osm",
+    "diagnosticsEnabled": true,
+    "publicTokenConfigured": false
+  },
+  "injectedFailures": 1,
+  "observation": {
+    "errors": [
+      "Failed to load resource: net::ERR_FAILED"
+    ],
+    "httpFailures": [],
+    "requestFailures": [
+      {
+        "path": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections",
+        "error": "net::ERR_ABORTED",
+        "expectedCancellation": true,
+        "cancellationScope": "spatial"
+      },
+      {
+        "path": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED",
+        "expectedCancellation": true,
+        "cancellationScope": "spatial"
+      },
+      {
+        "path": "http://127.0.0.1:3000/geography/context.geojson",
+        "error": "net::ERR_FAILED",
+        "expectedCancellation": false,
+        "cancellationScope": null
+      },
+      {
+        "path": "http://127.0.0.1:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED",
+        "expectedCancellation": true,
+        "cancellationScope": "spatial"
+      }
+    ],
+    "externalRequests": [],
+    "workers": [
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/transferTypedArrayTest.js",
+      "http://127.0.0.1:3000/cesium/Workers/createVerticesFromHeightmap.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/createGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/combineGeometry.js",
+      "http://127.0.0.1:3000/cesium/Workers/incrementallyBuildTerrainPicker.js"
+    ],
+    "textureRequests": [
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg"
+    ],
+    "successfulTextures": [
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "http://127.0.0.1:3000/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg"
+    ]
+  }
+}

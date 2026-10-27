@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
-import { mkdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
+import { browserEvidencePath } from "./evidence";
 import { CityRoadCollectionSchema } from "../../lib/city/api";
 import type { RoadFeature } from "../../lib/city/types";
 
@@ -155,8 +156,7 @@ test("recovery real OSM default, native road picking, source metadata, layers an
   if (selected.properties.metadata?.lane_count_source === "inferred_by_netconvert") {
     await expect(page.getByTestId("selected-road-lanes")).toContainText("inferred by netconvert");
   }
-  await mkdir("../../docs/evidence/recovery", {recursive:true});
-  await page.screenshot({path:`../../docs/evidence/recovery/road-inspector-${info.project.name}.png`,fullPage:true});
+  await page.screenshot({path:browserEvidencePath(`road-inspector-${info.project.name}.png`),fullPage:true});
   await page.getByRole("button", {name:"Zoom to feature",exact:true}).click();
   await expect(scene).toHaveAttribute("data-camera-moving", "true");
   await expect(scene).toHaveAttribute("data-camera-moving", "false");
@@ -186,7 +186,7 @@ test("recovery real OSM default, native road picking, source metadata, layers an
     expect(bbox![3]!-bbox![1]!).toBeLessThanOrEqual(1);
   }
   await assertNoFatalOrExternalRequests(observation);
-  await writeFile(`../../docs/evidence/recovery/real-network-${info.project.name}.json`,JSON.stringify({navigationToRoadReadyMs:observation.navigationToRoadReadyMs,timingScope:"Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",regionId,networkId,network,source,context,selectedRoad:selected,edgeRequests:observation.edgeRequests,errors:observation.errors,httpFailures:observation.httpFailures,externalRequests:observation.externalRequests},null,2)+"\n");
+  await writeFile(browserEvidencePath(`real-network-${info.project.name}.json`),JSON.stringify({navigationToRoadReadyMs:observation.navigationToRoadReadyMs,timingScope:"Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",regionId,networkId,network,source,context,selectedRoad:selected,edgeRequests:observation.edgeRequests,errors:observation.errors,httpFailures:observation.httpFailures,externalRequests:observation.externalRequests},null,2)+"\n");
 });
 
 test("recovery map-first real view, native fullscreen resizing and Dubai camera presets", async ({page},info) => {
@@ -225,8 +225,7 @@ test("recovery map-first real view, native fullscreen resizing and Dubai camera 
   await expect(scene).toHaveAttribute("data-camera-moving", "false");
   await expect(scene).toHaveAttribute("data-geometry-ready", "true");
   await expect.poll(async () => Number(await scene.getAttribute("data-local-building-count")),{timeout:45_000}).toBeGreaterThan(0);
-  await mkdir("../../docs/evidence/recovery",{recursive:true});
-  await page.screenshot({path:`../../docs/evidence/recovery/dubai-${info.project.name}.png`,fullPage:true});
+  await page.screenshot({path:browserEvidencePath(`dubai-${info.project.name}.png`),fullPage:true});
   await assertNoFatalOrExternalRequests(observation);
-  await writeFile(`../../docs/evidence/recovery/layout-${info.project.name}.json`,JSON.stringify({navigationToRoadReadyMs:observation.navigationToRoadReadyMs,timingScope:"Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",viewport,canvasBeforeFullscreen:original,canvasDuringFullscreen:fullscreenBox,businessBayCamera:businessBay,downtownCamera:await page.getByTestId("camera-position").innerText(),errors:observation.errors,httpFailures:observation.httpFailures,externalRequests:observation.externalRequests},null,2)+"\n");
+  await writeFile(browserEvidencePath(`layout-${info.project.name}.json`),JSON.stringify({navigationToRoadReadyMs:observation.navigationToRoadReadyMs,timingScope:"Fresh browser context navigation to nonempty native-ready PostGIS roads and settled camera; includes context-loading contention, not GPU frame latency",viewport,canvasBeforeFullscreen:original,canvasDuringFullscreen:fullscreenBox,businessBayCamera:businessBay,downtownCamera:await page.getByTestId("camera-position").innerText(),errors:observation.errors,httpFailures:observation.httpFailures,externalRequests:observation.externalRequests},null,2)+"\n");
 });

@@ -1,0 +1,43 @@
+import hashlib
+import json
+import subprocess
+import sys
+from datetime import UTC, datetime
+from pathlib import Path
+from urllib.request import urlopen
+
+import psycopg
+from psycopg.rows import dict_row
+
+sys.path.insert(0, str(Path.cwd() / 'scripts'))
+from database_checks import database_url
+
+result = {'observed_at_utc': datetime.now(UTC).isoformat(), 'git_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()}
+with psycopg.connect(database_url(), connect_timeout=5, row_factory=dict_row) as connection:
+    connection.execute('SET TRANSACTION READ ONLY')
+    result['database'] = connection.execute('SELECT version() AS postgres, PostGIS_Version() AS postgis, (SELECT version_num FROM alembic_version) AS alembic_revision').fetchone()
+    result['regions'] = connection.execute('SELECT id::text,slug,name,metadata->\'is_synthetic\' AS is_synthetic,area_km2,ST_AsGeoJSON(centroid)::json AS centroid,ARRAY[ST_XMin(Box3D(boundary)),ST_YMin(Box3D(boundary)),ST_XMax(Box3D(boundary)),ST_YMax(Box3D(boundary))] AS bounds FROM regions ORDER BY slug').fetchall()
+    result['networks'] = connection.execute('''SELECT n.id::text,n.region_id::text,n.version_label,n.status,n.source_format,n.checksum_sha256,n.node_count,n.edge_count,n.is_validated,n.validation_summary->>'status' AS validation_status,s.source_type,(s.source_type = 'synthetic') AS is_synthetic,s.provider_name,s.source_version,s.checksum_sha256 AS source_sha256,(SELECT count(*) FROM intersections i WHERE i.network_version_id=n.id) AS actual_intersections,(SELECT count(*) FROM road_edges e WHERE e.network_version_id=n.id) AS actual_road_records FROM network_versions n LEFT JOIN data_sources s ON s.id=n.data_source_id ORDER BY n.version_label''').fetchall()
+
+def read_json(path):
+    with urlopen('http://127.0.0.1:3000' + path, timeout=30) as response:
+        return json.load(response)
+
+config = read_json('/api/city/config')
+result['public_config'] = {key: value for key, value in config.items() if 'token' not in key.lower()}
+result['public_config']['public_ion_token_configured'] = bool(config.get('ionPublicToken'))
+regions = read_json('/api/geospatial/regions?limit=100&offset=0')
+result['public_region_order'] = [{'id': r['id'], 'slug': r['slug'], 'is_synthetic': r['metadata'].get('is_synthetic')} for r in regions['items']]
+result['public_networks'] = []
+for region in regions['items']:
+    page = read_json('/api/geospatial/networks?region_id=' + region['id'] + '&limit=100&offset=0')
+    result['public_networks'].extend({key: n[key] for key in ('id','region_id','version_label','status','node_count','edge_count','is_synthetic')} for n in page['items'])
+try:
+    manifest = read_json('/geography/manifest.json')
+    result['deployed_context_manifest'] = manifest
+except Exception as error:
+    result['deployed_context_manifest_error'] = type(error).__name__
+
+output = Path('/private/tmp/earthmind-diagnosis-results/database-inventory.json')
+output.write_text(json.dumps(result, indent=2, default=str) + '\n')
+print(json.dumps({'evidence_file': str(output), **{key: result[key] for key in ('observed_at_utc','git_head','database','regions','networks','public_config','public_region_order','public_networks')}}, indent=2, default=str))

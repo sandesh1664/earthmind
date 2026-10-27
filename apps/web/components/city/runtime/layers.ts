@@ -146,6 +146,11 @@ export class GeographicLayers {
     };
   }
   pending(): boolean { return !!this.roads?.show && !this.roads.ready || !!this.highlight?.show && !this.highlight.ready; }
+  boundaryFillAlpha(): number | null {
+    const polygon = this.regionEntities.find(entity => entity.polygon)?.polygon;
+    const color = polygon?.material?.getValue(this.viewer.clock.currentTime) as { color?: Color } | undefined;
+    return color?.color?.alpha ?? null;
+  }
   destroy(): void {
     if (this.roads) this.viewer.scene.groundPrimitives.remove(this.roads);
     if (this.highlight) this.viewer.scene.groundPrimitives.remove(this.highlight);

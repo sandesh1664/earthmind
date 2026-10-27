@@ -221,8 +221,14 @@ A road count is nonzero only when its native primitive is enabled and ready.
 Intersection counts also apply the distant-camera rule. `geometryReady` tracks
 pending road/highlight primitives; it does not certify every external imagery,
 terrain or building tile. Native visibility snapshots do not count pixels or
-establish full source coverage. Provider `ready` means its object was created;
-subsequent tile failures have their own visible error state.
+establish full source coverage. Provider `ready` waits for a completed frame and
+loaded visible globe tiles. Local context/models also wait for the mount’s public
+native geometry batches and a further frame: the pinned SDK latches
+DataSourceDisplay.ready, so it alone cannot prove newly added geometry is ready.
+Ion buildings require visible nonempty tile content. These gates establish scene
+preparation, not per-building pixel visibility or whole-city coverage. Subsequent
+tile failures remain latched and visible outside the Layers drawer until a new
+load/toggle. See [ADR 0013](decisions/0013-city-rendering-diagnostics.md).
 
 Only with the explicit local diagnostics setting does the scene expose actual
 render samples, browser heap observations and a road-pick coordinate projection.

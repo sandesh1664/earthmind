@@ -1,0 +1,10 @@
+{
+  "source": "browser-final mobile repeated-navigation trace, no injected network delay",
+  "fixtureNetwork": "22f68ce8-9247-5425-8342-827d86517ead",
+  "edgeRequestStartMonotonicMs": 276751.89,
+  "unchangedRegionSelectionMonotonicMs": 276753.846,
+  "edgeCancelledAfterMs": 10.505,
+  "intersectionCancelledAfterMs": 10.503,
+  "observed": "No replacement spatial request; zero roads and nodes persisted to the 30-second assertion",
+  "sourceCause": "useCityData selectRegion/selectNetwork cancelled spatial queries even when active identifiers and query keys did not change"
+}
