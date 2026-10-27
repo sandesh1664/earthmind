@@ -1,4 +1,11 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
+
+async function openOverview(page: Page) {
+  await page.goto("/");
+  const menu = page.getByRole("button", {name: "Open navigation", exact: true});
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole("button", {name: "Overview", exact: true}).click();
+}
 
 test("real dashboard connectivity, worker diagnostic, navigation and responsive layout", async ({
   page,
@@ -8,7 +15,7 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
   page.on("console", (message) => {
     if (message.type() === "error") errors.push(message.text());
   });
-  await page.goto("/");
+  await openOverview(page);
   await expect(
     page.getByRole("heading", { name: "Platform overview", exact: true }),
   ).toBeVisible();
@@ -47,7 +54,7 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/m03/m01-regression-${info.project.name}.png`,
+    path: `../../docs/evidence/recovery/m01-regression-${info.project.name}.png`,
     fullPage: true,
   });
   const menu = page.getByRole("button", {
@@ -93,7 +100,7 @@ test("UI-only mocked dependency failure shows honest error state and supports re
       });
     else await route.continue();
   });
-  await page.goto("/");
+  await openOverview(page);
   await expect(
     page
       .getByRole("alert")

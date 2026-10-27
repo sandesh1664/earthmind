@@ -357,3 +357,11 @@ test("inactive camera viewports are garbage-collected while the active viewport 
   assert.equal(client.getQueryCache().find({queryKey: currentKey, exact: true}), undefined);
   client.clear();
 });
+
+test("public OSM provenance preserves bounded many-source IDs and strips private tags",()=>{
+ const value=road();
+ const parsed=CityRoadSchema.parse({...value,properties:{...value.properties,metadata:{osm_way_id:"123",osm_way_ids:["123","456"],lane_count_source:"inferred_by_netconvert",original_osm_tags:{secret:"private"},private_token:"private"}}});
+ assert.deepEqual(parsed.properties.metadata?.osm_way_ids,["123","456"]);
+ assert.equal(JSON.stringify(parsed).includes("private"),false);
+ assert.equal(CityRoadSchema.safeParse({...value,properties:{...value.properties,metadata:{osm_way_ids:Array(65).fill("123")}}}).success,false);
+});

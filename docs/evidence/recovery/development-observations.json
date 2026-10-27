@@ -1,0 +1,39 @@
+{
+  "mode": "Actual Next development server with React Strict Mode",
+  "cycles": [
+    {
+      "cycle": 0,
+      "liveCanvases": 1,
+      "afterUnmount": 0,
+      "position": "55.27440° E · 25.18167° N · 2,458 m altitude"
+    },
+    {
+      "cycle": 1,
+      "liveCanvases": 1,
+      "afterUnmount": 0,
+      "position": "55.27440° E · 25.18167° N · 2,458 m altitude"
+    },
+    {
+      "cycle": 2,
+      "liveCanvases": 1,
+      "afterUnmount": 0,
+      "position": "55.27440° E · 25.18167° N · 2,458 m altitude"
+    }
+  ],
+  "workers": [
+    "http://127.0.0.1:3300/cesium/Workers/createVerticesFromHeightmap.js",
+    "http://127.0.0.1:3300/cesium/Workers/transferTypedArrayTest.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/createGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/combineGeometry.js",
+    "http://127.0.0.1:3300/cesium/Workers/incrementallyBuildTerrainPicker.js"
+  ],
+  "errors": []
+}

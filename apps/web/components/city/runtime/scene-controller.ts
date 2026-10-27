@@ -1,6 +1,6 @@
 import {
-  Cartesian3, Cesium3DTileFeature, Color, EllipsoidTerrainProvider,
-  Math as CMath, SceneTransforms, ScreenSpaceEventType, Viewer,
+  Cartesian3, Cesium3DTileFeature, Entity, Color, EllipsoidTerrainProvider,
+  Math as CMath, BoundingSphere, HeadingPitchRange, SceneTransforms, ScreenSpaceEventType, Viewer,
 } from "cesium";
 import type { CesiumViewerProps, FeatureSelection, ProviderState, ViewerStatus } from "../../../lib/city/types";
 import { buildingSelectionId, preferredSelection, publicBuildingProperties } from "../../../lib/geo/selection";
@@ -25,6 +25,13 @@ function selectionFromPick(value: unknown, contentIdentity: (content:object,feat
   }
   if (typeof value !== "object" || value === null || !("id" in value)) return null;
   const identity = value.id;
+  if (identity instanceof Entity) {
+    const values = identity.properties?.getValue() as Record<string,unknown> | undefined;
+    if (values?.context_kind === "building" && typeof values.height === "number") {
+      const properties = publicBuildingProperties(Object.keys(values), key => values[key]);
+      return {kind:"building",id:buildingSelectionId(properties,identity.id),properties};
+    }
+  }
   if (typeof identity !== "object" || identity === null || !("kind" in identity) || !("id" in identity)) return null;
   if ((identity.kind === "road" || identity.kind === "intersection") && typeof identity.id === "string") return {kind:identity.kind,id:identity.id};
   return null;
@@ -81,9 +88,9 @@ export class CitySceneController {
     viewer.scene.globe.depthTestAgainstTerrain = false;
     viewer.scene.globe.maximumScreenSpaceError = 3;
     viewer.scene.globe.tileCacheSize = 100;
-    viewer.camera.setView({ destination:Cartesian3.fromDegrees(55.2744,25.1972,2400), orientation:{heading:0,pitch:CMath.toRadians(-65),roll:0} });
+    viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(55.2744,25.1972),0), {duration:0,offset:new HeadingPitchRange(0,CMath.toRadians(-55),3000)});
     this.layers = new GeographicLayers(viewer);
-    this.providers = new ProviderLayers(viewer,props.config,(name,state) => this.providerState(name,state));
+    this.providers = new ProviderLayers(viewer,(props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) ? {...props.config,imageryMode:"natural-earth"} : props.config,(name,state) => this.providerState(name,state));
     viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
     viewer.screenSpaceEventHandler.setInputAction((movement: {position: import("cesium").Cartesian2}) => {
       if (this.disposed) return;
@@ -117,10 +124,13 @@ export class CitySceneController {
     if (this.disposed) return;
     const previous = this.props;
     this.props = props;
-    const configChanged = props.config.ionPublicToken !== previous.config.ionPublicToken || props.config.imageryAssetId !== previous.config.imageryAssetId || props.config.terrainAssetId !== previous.config.terrainAssetId;
+    const wasSynthetic = (previous.data.network?.is_synthetic ?? previous.data.region?.metadata.is_synthetic) === true;
+    const isSynthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
+    const effectiveConfig = isSynthetic ? {...props.config,imageryMode:"natural-earth" as const} : props.config;
+    const configChanged = wasSynthetic !== isSynthetic || props.config.imageryMode !== previous.config.imageryMode || props.config.ionPublicToken !== previous.config.ionPublicToken || props.config.imageryAssetId !== previous.config.imageryAssetId || props.config.terrainAssetId !== previous.config.terrainAssetId;
     if (configChanged) {
       this.providers.destroy();
-      this.providers = new ProviderLayers(this.viewer,props.config,(name,state) => this.providerState(name,state));
+      this.providers = new ProviderLayers(this.viewer,effectiveConfig,(name,state) => this.providerState(name,state));
     }
     if (!this.hasUpdated || props.data.roads !== previous.data.roads || props.data.intersections !== previous.data.intersections || props.data.boundary !== previous.data.boundary || props.data.region !== previous.data.region || props.layers !== previous.layers || props.selection !== previous.selection) {
       this.layers.update(props.data,props.layers,props.selection);
@@ -128,8 +138,9 @@ export class CitySceneController {
     }
     this.providers.update(props.layers);
     if (props.data.region && props.data.region.id !== this.lastRegion) {
+      const firstRegion = this.lastRegion === null;
       this.lastRegion = props.data.region.id;
-      applyCamera(this.viewer,{preset:"region",sequence:0},props.data,null);
+      if (!firstRegion || props.data.network?.is_synthetic || props.data.region.metadata.is_synthetic) applyCamera(this.viewer,{preset:"region",sequence:0},props.data,null);
     }
     if (props.cameraCommand.sequence !== this.lastCameraSequence) {
       this.lastCameraSequence = props.cameraCommand.sequence;
@@ -158,7 +169,7 @@ export class CitySceneController {
   private afterRender(): void {
     if (this.disposed) return;
     this.renderedFrames += 1; this.sampleFrames += 1;
-    if (this.layers.pending() && this.status.phase === "ready") this.viewer.scene.requestRender();
+    if ((this.layers.pending() || !this.viewer.dataSourceDisplay.ready) && this.status.phase === "ready") this.viewer.scene.requestRender();
     const elapsed = performance.now() - this.sampleStart;
     if (this.props.config.diagnosticsEnabled && elapsed >= 1500) {
       this.sampleFps = this.sampleFrames * 1000 / elapsed;
@@ -171,7 +182,7 @@ export class CitySceneController {
   }
   private emit(): void {
     if (this.disposed) return;
-    const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),geometryReady:!this.layers.pending(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
+    const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
     if (this.props.config.diagnosticsEnabled) {
       // No native object is exposed: this optional local diagnostic is only a
       // projection of a real stored road coordinate into the actual canvas.
@@ -190,12 +201,20 @@ export class CitySceneController {
     return `local-viewer:${this.viewerNamespace}:object:${namespace}:feature:${featureId}`;
   }
   private roadPickProbe(): NonNullable<ViewerStatus["pickProbe"]> | null {
-    const road = this.props.data.roads[0];
-    const a = road?.geometry.coordinates[0], b = road?.geometry.coordinates[1];
-    if (!road || !a || !b || !this.props.layers.roads || this.layers.pending()) return null;
-    const point = SceneTransforms.worldToWindowCoordinates(this.viewer.scene,Cartesian3.fromDegrees((a[0]+b[0])/2,(a[1]+b[1])/2));
-    if (!point || point.x < 0 || point.y < 0 || point.x > this.viewer.canvas.clientWidth || point.y > this.viewer.canvas.clientHeight) return null;
-    return {kind:"road",id:road.id,x:Math.round(point.x*100)/100,y:Math.round(point.y*100)/100};
+    if (!this.props.layers.roads || this.layers.pending() || this.status.cameraMoving) return null;
+    for (const road of this.props.data.roads.slice(0,80)) {
+      const coordinates=road.geometry.coordinates;
+      for (const index of [Math.floor((coordinates.length-1)/2),0]) {
+        const a=coordinates[index],b=coordinates[index+1];
+        if(!a||!b)continue;
+        const point=SceneTransforms.worldToWindowCoordinates(this.viewer.scene,Cartesian3.fromDegrees((a[0]+b[0])/2,(a[1]+b[1])/2));
+        if (!point || point.x < 30 || point.y < 30 || point.x > this.viewer.canvas.clientWidth-30 || point.y > this.viewer.canvas.clientHeight-80) continue;
+        const bounds=this.viewer.canvas.getBoundingClientRect();
+        if(document.elementFromPoint(bounds.left+point.x,bounds.top+point.y)!==this.viewer.canvas)continue;
+        return {kind:"road",id:road.id,x:Math.round(point.x*100)/100,y:Math.round(point.y*100)/100};
+      }
+    }
+    return null;
   }
   destroy(): void {
     if (this.disposed) return;

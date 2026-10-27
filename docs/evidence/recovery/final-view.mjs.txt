@@ -1,0 +1,17 @@
+import {chromium} from '/Users/redmug/EARTHMIND/node_modules/@playwright/test/index.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[],httpFailures=[];
+page.on('pageerror',error=>errors.push(error.message));
+page.on('console',entry=>{if(entry.type()==='error')errors.push(entry.text());});
+page.on('response',response=>{if(response.status()>=400)httpFailures.push(response.status()+' '+response.url());});
+try{
+ await page.goto('http://127.0.0.1:3000');
+ await page.waitForFunction(()=>{const scene=document.querySelector('[data-testid="cesium-viewer"]');return scene?.dataset.phase==='ready'&&Number(scene.dataset.roadCount)>0&&Number(scene.dataset.localBuildingCount)>0&&scene.dataset.geometryReady==='true'&&scene.dataset.cameraMoving==='false'&&!document.querySelector('.city-map-progress')?.textContent.includes('Loading');},undefined,{timeout:60000});
+ const observation=await page.evaluate(()=>{const canvas=document.querySelector(".city-cesium-host canvas");const gl=canvas.getContext("webgl2");const debug=gl?.getExtension("WEBGL_debug_renderer_info");return ({graphics:{api:gl?"WebGL2":"unavailable",renderer:gl&&debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):"not exposed"},scene:{...document.querySelector('[data-testid="cesium-viewer"]').dataset},camera:document.querySelector('[data-testid="camera-position"]').textContent,provenance:document.querySelector('.city-provenance-strip').textContent,credits:document.querySelector('.cesium-widget-credits').textContent});});
+ if(errors.length||httpFailures.length)throw new Error(JSON.stringify({errors,httpFailures}));
+ await page.screenshot({path:'/Users/redmug/EARTHMIND/docs/evidence/recovery/final-view-desktop.png',fullPage:true});
+ await writeFile('/Users/redmug/EARTHMIND/docs/evidence/recovery/final-view.json',JSON.stringify({...observation,errors,httpFailures},null,2)+'\n');
+ console.log(JSON.stringify({...observation,errors,httpFailures}));
+}finally{await browser.close();}

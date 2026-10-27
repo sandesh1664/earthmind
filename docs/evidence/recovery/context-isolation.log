@@ -1,0 +1,2 @@
+
+PASS: Docker excludes 5 root/nested env fixtures and includes safe project files

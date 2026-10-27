@@ -1,0 +1,104 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1
+
+
+Running 30 tests using 1 worker
+
+(node:68196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (17.6s)
+  ✓   2 [desktop] › tests/browser/city.spec.ts:133:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (12.1s)
+  ✓   3 [desktop] › tests/browser/city.spec.ts:158:1 › M03 actual browser without WebGL shows a usable metadata fallback (732ms)
+  ✓   4 [desktop] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.2s)
+  ✓   5 [desktop] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (475ms)
+  ✓   6 [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (722ms)
+  ✓   7 [desktop] › tests/browser/geospatial.spec.ts:81:1 › M02 UI-only empty dataset is honest (249ms)
+  ✓   8 [desktop] › tests/browser/geospatial.spec.ts:103:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5809ms
+  ✓   9 [desktop] › tests/browser/recovery.spec.ts:89:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (27.1s)
+Actual fresh-context navigation to nonempty ready roads: 6454ms
+  ✓  10 [desktop] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (21.8s)
+(node:68295) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [tablet] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (16.2s)
+  ✓  12 [tablet] › tests/browser/city.spec.ts:133:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (13.4s)
+  ✓  13 [tablet] › tests/browser/city.spec.ts:158:1 › M03 actual browser without WebGL shows a usable metadata fallback (797ms)
+  ✓  14 [tablet] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.1s)
+  ✓  15 [tablet] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (508ms)
+  ✓  16 [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (409ms)
+  ✓  17 [tablet] › tests/browser/geospatial.spec.ts:81:1 › M02 UI-only empty dataset is honest (234ms)
+  ✓  18 [tablet] › tests/browser/geospatial.spec.ts:103:1 › M02 UI-only service error supports retry (1.6s)
+Actual fresh-context navigation to nonempty ready roads: 5780ms
+  ✓  19 [tablet] › tests/browser/recovery.spec.ts:89:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (21.6s)
+Actual fresh-context navigation to nonempty ready roads: 5394ms
+  ✓  20 [tablet] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (20.1s)
+(node:68362) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  21 [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (19.7s)
+(node:68377) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [mobile] › tests/browser/city.spec.ts:133:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (20.5s)
+  ✓  23 [mobile] › tests/browser/city.spec.ts:158:1 › M03 actual browser without WebGL shows a usable metadata fallback (688ms)
+  ✓  24 [mobile] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.1s)
+  ✓  25 [mobile] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (835ms)
+  ✓  26 [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (962ms)
+  ✓  27 [mobile] › tests/browser/geospatial.spec.ts:81:1 › M02 UI-only empty dataset is honest (583ms)
+  ✓  28 [mobile] › tests/browser/geospatial.spec.ts:103:1 › M02 UI-only service error supports retry (2.0s)
+Actual fresh-context navigation to nonempty ready roads: 5068ms
+  ✓  29 [mobile] › tests/browser/recovery.spec.ts:89:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (16.2s)
+Actual fresh-context navigation to nonempty ready roads: 4554ms
+  ✓  30 [mobile] › tests/browser/recovery.spec.ts:192:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (14.6s)
+
+
+  1) [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('selected-feature-id')
+    Expected: "892cdfec-5d1c-5880-aa32-66ff680f1756"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('selected-feature-id') with timeout 15000ms
+      - waiting for getByTestId('selected-feature-id')
+
+
+      61 |   const y = Number(await scene.getAttribute("data-pick-y"));
+      62 |   await page.mouse.click(rect.x+x, rect.y+y);
+    > 63 |   await expect(page.getByTestId("selected-feature-id")).toHaveText(backend.features[0]!.id);
+         |                                                         ^
+      64 |   await expect(page.getByTestId("selected-road-identifier")).toHaveText(backend.features[0]!.properties.sumo_edge_id);
+      65 |   await expect(page.getByTestId("selected-road-lanes")).toHaveText(String(backend.features[0]!.properties.lane_count));
+      66 |   await expect(page.getByTestId("selected-road-length")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString("en", {maximumFractionDigits:2}));
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:63:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+  29 passed (4.0m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1

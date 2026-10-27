@@ -235,7 +235,7 @@ function DiagnosticPanel({ connected }: { connected: boolean }) {
 }
 
 export function Dashboard() {
-  const [section, setSection] = useState("Overview");
+  const [section, setSection] = useState("City Explorer");
   const [menuOpen, setMenuOpen] = useState(false);
   const client = useQueryClient();
   const health = useQuery({
@@ -642,16 +642,16 @@ export function Dashboard() {
                     <div>
                       <span>
                         <Route size={13} />
-                        Dubai network import
+                        Dubai OSM import workflow
                       </span>
-                      <span className="later-tag">LATER MILESTONE</span>
+                      <span className="enabled-tag">LOCAL CLI</span>
                     </div>
                     <div>
                       <span>
                         <Activity size={13} />
-                        Traffic simulation
+                        Real-network SUMO smoke
                       </span>
-                      <span className="later-tag">LATER MILESTONE</span>
+                      <span className="enabled-tag">SYNTHETIC DEMAND</span>
                     </div>
                     <div>
                       <span>
@@ -662,8 +662,9 @@ export function Dashboard() {
                     </div>
                   </div>
                   <p className="capability-note">
-                    Capability status reflects the current backend. Future
-                    workflows are not enabled in M01.
+                    M01 runtime flags retain their original compatibility contract.
+                    The recovery adds an explicit local OSM import and bounded
+                    synthetic-demand SUMO CLI, independently of those flags.
                   </p>
                 </section>
               </div>
@@ -674,12 +675,12 @@ export function Dashboard() {
                 <div>
                   <h2>A connected foundation. A deliberate next step.</h2>
                   <p>
-                    This milestone establishes infrastructure, health checks and
-                    runtime diagnostics. City models, traffic scenarios and AI
-                    forecasts are reserved for later milestones.
+                    Health checks and runtime diagnostics remain available. City Explorer
+                    uses real OSM geography; the limited SUMO smoke uses synthetic
+                    vehicles. Operational traffic and AI forecasts are not connected.
                   </p>
                 </div>
-                <span className="foundation-tag">FOUNDATION ONLY</span>
+                <span className="foundation-tag">LOCAL RESEARCH</span>
               </section>
             </>
           ) : section === "City Explorer" ? (

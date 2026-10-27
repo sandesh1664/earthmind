@@ -1,0 +1,89 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- recovery.spec.ts --project=desktop --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test recovery.spec.ts --project=desktop --workers=1
+
+
+Running 2 tests using 1 worker
+
+(node:65226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (29.3s)
+(node:65274) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (31.7s)
+
+
+  1) [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+    > 63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+         |                                                                                      ^
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+      66 | }
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:86)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:79:17
+
+    Error Context: test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+    > 63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+         |                                                                                      ^
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+      66 | }
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:86)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:182:17
+
+    Error Context: test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+    [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test recovery.spec.ts --project=desktop --workers=1

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { CityConfigSchema } from "../lib/city/config";
+import { cityNetworksForMode, cityRegionsForMode, preferredCityRegion } from "../lib/city/catalog";
 import { CITY_SPATIAL_QUERY_OPTIONS } from "../lib/city/query-options";
 import {
   CITY_LIMITS,
@@ -43,7 +44,7 @@ function useCameraBounds(camera: CameraSnapshot | null): Bounds | null {
  * Consuming TanStack's signal aborts obsolete requests; no previous-region
  * placeholder data is reused while a new selection is loading.
  */
-export function useCityData(camera: CameraSnapshot | null) {
+export function useCityData(camera: CameraSnapshot | null, development = false) {
   const queryClient = useQueryClient();
   const [selection, setSelection] = useState({regionId: "", networkId: ""});
   const cameraBounds = useCameraBounds(camera);
@@ -59,10 +60,8 @@ export function useCityData(camera: CameraSnapshot | null) {
     staleTime: 15_000,
     refetchOnWindowFocus: false,
   });
-  const regions = regionsQuery.data?.items ?? [];
-  const region = regions.find((value) => value.id === selection.regionId)
-    ?? regions.find((value) => value.slug === "dubai-downtown-demo")
-    ?? regions[0] ?? null;
+  const regions = cityRegionsForMode(regionsQuery.data?.items ?? [], development);
+  const region = preferredCityRegion(regions, selection.regionId);
   const regionId = region?.id ?? "";
   const networksQuery = useQuery({
     queryKey: ["city", "networks", regionId],
@@ -71,7 +70,7 @@ export function useCityData(camera: CameraSnapshot | null) {
     staleTime: 15_000,
     refetchOnWindowFocus: false,
   });
-  const networks = networksQuery.data?.items ?? [];
+  const networks = cityNetworksForMode(networksQuery.data?.items ?? [], development);
   const network = (selection.regionId === regionId
     ? networks.find((value) => value.id === selection.networkId) : undefined)
     ?? networks.find((value) => value.status === "published")

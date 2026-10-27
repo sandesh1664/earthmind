@@ -7,6 +7,10 @@ async function openCity(page: Page) {
   if (await menu.isVisible()) await menu.click();
   await page.getByRole("button", { name: "City Explorer", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Dubai digital twin", exact: true })).toBeVisible();
+  // These preserved M03 regressions intentionally exercise the original fixture.
+  // The default production catalog now contains real geography only.
+  await page.getByRole("checkbox", {name: "Development datasets", exact: true}).check();
+  await page.getByLabel("3D study region", {exact: true}).selectOption("8d31afa3-5d52-59b5-a8bc-691b5867dfcb");
 }
 async function ready(page: Page) {
   const scene = page.getByTestId("cesium-viewer");
@@ -43,7 +47,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   await page.getByRole("button", { name: "Top-down view", exact: true }).click();
   await expect(scene).toHaveAttribute("data-camera-moving", "true");
   await expect(scene).toHaveAttribute("data-camera-moving", "false");
-  await expect(scene).toHaveAttribute("data-pick-id", backend.features[0]!.id);
+  await expect.poll(async()=>{const id=await scene.getAttribute("data-pick-id");return backend.features.some(feature=>feature.id===id);}).toBe(true);
   const canvas = scene.locator("canvas");
   // The opt-in diagnostic is a projection from the actual Cesium scene. No
   // native Viewer is exposed, and picking still runs through the real canvas.
@@ -56,10 +60,13 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   const x = Number(await scene.getAttribute("data-pick-x"));
   const y = Number(await scene.getAttribute("data-pick-y"));
   await page.mouse.click(rect.x+x, rect.y+y);
-  await expect(page.getByTestId("selected-feature-id")).toHaveText(backend.features[0]!.id);
-  await expect(page.getByTestId("selected-road-identifier")).toHaveText(backend.features[0]!.properties.sumo_edge_id);
-  await expect(page.getByTestId("selected-road-lanes")).toHaveText(String(backend.features[0]!.properties.lane_count));
-  await expect(page.getByTestId("selected-road-length")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString("en", {maximumFractionDigits:2}));
+  await expect(page.getByTestId("selected-feature-id")).toBeVisible();
+  const selectedId=await page.getByTestId("selected-feature-id").innerText();
+  const selected=backend.features.find(feature=>feature.id===selectedId);
+  expect(selected,"Native canvas pick must identify an actual fixture road").toBeDefined();
+  await expect(page.getByTestId("selected-road-identifier")).toHaveText(selected!.properties.sumo_edge_id);
+  await expect(page.getByTestId("selected-road-lanes")).toHaveText(String(selected!.properties.lane_count));
+  await expect(page.getByTestId("selected-road-length")).toHaveText(selected!.properties.length_m.toLocaleString("en", {maximumFractionDigits:2}));
   await page.getByRole("button", { name: "Layers", exact: true }).click();
   const highlight = page.getByRole("checkbox", {name:"Selection highlight",exact:true});
   await expect.poll(async () => JSON.parse(await scene.getAttribute("data-layer-visibility") ?? "{}").highlight as boolean).toBe(true);
@@ -74,7 +81,10 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   await page.getByRole("button", { name: "Zoom to study region", exact: true }).click();
   await ready(page);
   await page.getByRole("button", { name: "Layers", exact: true }).click();
-  await expect(page.getByRole("checkbox", { name: "3D buildings", exact: true })).toBeDisabled();
+  const buildingLayer = page.getByRole("checkbox", { name: "3D buildings", exact: true });
+  // Synthetic development scope must not silently retain real OSM context.
+  await expect(scene).toHaveAttribute("data-local-building-count","0");
+  await expect(buildingLayer).toBeDisabled();
   await expect(page.getByRole("checkbox", { name: "World terrain", exact: true })).toBeDisabled();
   const roads = page.getByRole("checkbox", { name: "Road centerlines", exact: true });
   await roads.uncheck();
@@ -84,7 +94,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   const nodes = page.getByRole("checkbox", { name: "Intersections", exact: true });
   await nodes.uncheck(); await expect(scene).toHaveAttribute("data-intersection-count", "0");
   await nodes.check(); await expect(scene).toHaveAttribute("data-intersection-count", "6");
-  for (const [label,key] of [["Study region","boundary"],["Basemap imagery","imagery"],["Region centroid","centroid"]] as const) {
+  for (const [label,key] of [["Study region","boundary"],["Geographic basemap","imagery"],["Region centroid","centroid"]] as const) {
     const input = page.getByRole("checkbox", {name:label,exact:true});
     const previous = await input.isChecked();
     await input.setChecked(!previous);
@@ -107,7 +117,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   await ready(page);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.evaluate(() => window.scrollTo(0,0));
-  await page.screenshot({ path:`../../docs/evidence/m03/city-${info.project.name}.png`, fullPage:true });
+  await page.screenshot({ path:`../../docs/evidence/recovery/city-${info.project.name}.png`, fullPage:true });
   expect(workers.length).toBeGreaterThan(0);
   expect(spatial.length).toBeGreaterThan(0);
   for (const value of spatial) {
@@ -119,8 +129,8 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
   }
   expect(errors).toEqual([]);
   expect(external).toEqual([]);
-  await mkdir("../../docs/evidence/m03", {recursive:true});
-  await writeFile(`../../docs/evidence/m03/city-network-${info.project.name}.json`, JSON.stringify({workers,spatialRequests:spatial,externalRequests:external,errors},null,2)+"\n");
+  await mkdir("../../docs/evidence/recovery", {recursive:true});
+  await writeFile(`../../docs/evidence/recovery/city-network-${info.project.name}.json`, JSON.stringify({workers,spatialRequests:spatial,externalRequests:external,errors},null,2)+"\n");
 });
 
 test("M03 actual repeated navigation destroys the old viewer and restores one scene", async ({ page }) => {
@@ -159,6 +169,6 @@ test("M03 actual browser without WebGL shows a usable metadata fallback", async 
     await expect(page.getByRole("button", {name:"Inspect road provisional:e0",exact:true})).toBeVisible();
     await page.getByRole("button", {name:"Inspect road provisional:e0",exact:true}).click();
     await expect(page.getByTestId("selected-road-identifier")).toHaveText("provisional:e0");
-    await page.screenshot({path:`../../docs/evidence/m03/webgl-fallback-${info.project.name}.png`,fullPage:true});
+    await page.screenshot({path:`../../docs/evidence/recovery/webgl-fallback-${info.project.name}.png`,fullPage:true});
   } finally { await browser.close(); }
 });

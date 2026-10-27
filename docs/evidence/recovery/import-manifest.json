@@ -1,0 +1,71 @@
+{
+  "kind": "osm_import",
+  "source_type": "openstreetmap",
+  "license_identifier": "ODbL-1.0",
+  "osm_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+  "sumo_network_sha256": "86a950ddf4b835f74a5235973669c2d374803bade3d7053669ec2ddd9d87a7ab",
+  "bbox": [
+    55.258,
+    25.18,
+    55.288,
+    25.208
+  ],
+  "geometry_derivation": "sumo_lane_centerline_from_osm",
+  "mapping_file": "source-sumo-db-mapping.json",
+  "mapping_sha256": "80bec1ad585f788a3137835f594207b4e2592f9958b9ff3345cd21d4d00c51b1",
+  "osm_way_count_with_imported_edges": 1273,
+  "source_way_count": 2377,
+  "omitted": {
+    "outside_bbox": 211,
+    "self_loop": 0,
+    "unmapped_source": 0,
+    "unsupported": 17
+  },
+  "created": false,
+  "network_id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+  "region_id": "bc48f4d4-32de-543b-aafc-0b49369f8bc8",
+  "version_label": "osm-20261026-0b027352ec38",
+  "node_count": 1560,
+  "edge_count": 2364,
+  "validation": {
+    "checks": {
+      "nonempty": true,
+      "geometry_valid": true,
+      "region_coverage": true,
+      "attributes_valid": true,
+      "counts_consistent": true,
+      "metadata_complete": true,
+      "connectivity_valid": false,
+      "identifiers_unique": true,
+      "endpoints_consistent": true,
+      "references_consistent": true,
+      "duplicate_edges_absent": true
+    },
+    "counts": {
+      "edges": 2364,
+      "nodes": 1560,
+      "components": 8,
+      "isolated_nodes": 0
+    },
+    "errors": [],
+    "status": "VALID_WITH_WARNINGS",
+    "omitted": {
+      "self_loop": 0,
+      "unsupported": 17,
+      "outside_bbox": 211,
+      "unmapped_source": 0
+    },
+    "warnings": [
+      "Explicit topology has 8 connected components and 0 isolated nodes"
+    ],
+    "semantics": "VALID has no findings. VALID_WITH_WARNINGS passes integrity checks but has structural or metadata warnings. INVALID has integrity errors. NOT_VALIDATED exceeds the bounded feature or coordinate validation budget. Synthetic topology is not evidence of real-world network accuracy.",
+    "validated": true,
+    "network_id": "4aa62897-1a54-546c-a390-ddb156838f8e",
+    "is_synthetic": false,
+    "restrictions": "OSM restrictions imported where supported by netconvert; incomplete and not field verified",
+    "source_way_count": 2377,
+    "geometry_derivation": "sumo_lane_centerline_from_osm",
+    "boundary_tolerance_m": 5.0,
+    "lane_inference_count": 923
+  }
+}

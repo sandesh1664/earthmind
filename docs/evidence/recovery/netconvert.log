@@ -1,0 +1,39 @@
+Success.
+ Container earthmind-worker-run-8ff524595acd Creating 
+ Container earthmind-worker-run-8ff524595acd Created 
+Warning: from-edge '699977949' of restriction relation could not be determined
+Warning: Ignoring restriction relation '13238452'.
+Warning: from-edge '484589299' of restriction relation could not be determined
+Warning: Ignoring restriction relation '13238479'.
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '14371005'.
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '15735309'.
+Warning: direction of restriction relation could not be determined
+Warning: Ignoring restriction relation '15735340'.
+Warning: to-edge '640065835' of restriction relation could not be determined
+Warning: direction of restriction relation could not be determined
+Warning: direction of restriction relation could not be determined
+Warning: Found sharp turn with radius 8.64 at the start of edge '-637607080#0'.
+Warning: Found sharp turn with radius 8.47 at the start of edge '1089815953#1'.
+Warning: Found sharp turn with radius 2.16 at the end of edge '1089815953#1'.
+Warning: Found sharp turn with radius 1.74 at the start of edge '1089815953#2'.
+Warning: Found sharp turn with radius 8.51 at the end of edge '1089815953#2'.
+Warning: Found sharp turn with radius 8.64 at the end of edge '637607080#0'.
+Warning: Found sharp turn with radius 6.82 at the end of edge '694601540'.
+Warning: Found sharp turn with radius 7.28 at the start of edge '947221441'.
+Warning: Found angle of 156.80 degrees at edge '947221459#1', segment 10.
+Warning: Shape for junction '10015320392' has distance 21.46 to its given position.
+Warning: Shape for junction '1029417195' has distance 21.31 to its given position.
+Warning: Shape for junction '1029418148' has distance 31.77 to its given position.
+Warning: Shape for junction '1125092876' has distance 42.73 to its given position.
+Warning: Shape for junction '12293588072' has distance 33.09 to its given position.
+Warning: Lane '-980076613_0' is not connected from any incoming edge at junction '1985200029'.
+Warning: Speed of straight connection '1167971949_0->484397152#4_0' reduced by 6.15 due to turning radius of 39.23 (length=9.34, angle=28.93).
+Warning: Speed of straight connection '1094106449_0->1093799802#7_0' reduced by 6.40 due to turning radius of 24.70 (length=10.12, angle=39.26).
+Warning: Speed of straight connection '1095588933#2_0->1095588933#3_0' reduced by 7.39 due to turning radius of 40.00 (length=17.20, angle=40.14).
+Warning: Speed of straight connection '1095588934#3_0->1095588934#4_0' reduced by 18.34 due to turning radius of 2.73 (length=1.14, angle=48.78).
+Warning: Speed of straight connection '1095588934#3_1->1095588934#4_1' reduced by 17.94 due to turning radius of 3.33 (length=1.49, angle=48.78).
+Warning: 8 total messages of type: Ignoring restriction relation '%'.
+Warning: 27 total messages of type: Shape for junction '%' has distance % to its given position.
+Warning: 117 total messages of type: Speed of % connection '%' reduced by % due to turning radius of % (length=%, angle=%).

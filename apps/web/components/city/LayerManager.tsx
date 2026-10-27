@@ -19,11 +19,11 @@ const LAYERS: {
     label: "Intersections",
     source: "Stored node records",
   },
-  { key: "buildings", label: "3D buildings", source: "Cesium OSM Buildings" },
+  { key: "buildings", label: "3D buildings", source: "OSM height tags / optional ion tiles" },
   {
     key: "imagery",
-    label: "Basemap imagery",
-    source: "Natural Earth / configured ion",
+    label: "Geographic basemap",
+    source: "Local OSM / configured ion",
   },
   { key: "terrain", label: "World terrain", source: "Configured Cesium ion" },
   {
@@ -50,11 +50,13 @@ export function LayerManager({
   onChange,
   status,
   hasProviderAccess,
+  hasLocalBuildings = false,
 }: {
   layers: LayerSettings;
   onChange: (layers: LayerSettings) => void;
   status: ViewerStatus | null;
   hasProviderAccess: boolean;
+  hasLocalBuildings?: boolean;
 }) {
   const providerStates: Partial<
     Record<keyof LayerSettings, ProviderState | undefined>
@@ -74,7 +76,7 @@ export function LayerManager({
       <div className="city-layer-list">
         {LAYERS.map(({ key, label, source }) => {
           const blocked =
-            !hasProviderAccess && (key === "buildings" || key === "terrain");
+            !hasProviderAccess && (key === "terrain" || (key === "buildings" && !hasLocalBuildings));
           const provider = providerStates[key];
           const message = blocked
             ? "Blocked · public provider token required"

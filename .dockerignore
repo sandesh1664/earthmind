@@ -18,3 +18,6 @@ docs
 .github
 
 **/public/cesium
+
+data
+apps/web/public/geography

@@ -1,0 +1,37 @@
+{
+  "source": "OpenStreetMap",
+  "license": "ODbL-1.0",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "source_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+  "bounds": [
+    55.258,
+    25.18,
+    55.288,
+    25.208
+  ],
+  "cartographic_features": 4676,
+  "explicit_height_buildings": 402,
+  "labels": 120,
+  "rejected_incomplete_ways": 0,
+  "rejected_invalid_geometry": 0,
+  "artifacts": {
+    "context.geojson": {
+      "sha256": "30237bfcdca15d4427644d966eb564947392c6370bcd59715fc41069d0d4103d",
+      "bytes": 2053685,
+      "features": 4676,
+      "positions": 39090
+    },
+    "buildings.geojson": {
+      "sha256": "fc5c22bc575a5151b09093b57dcd0a21cd3e5681b8b0d8036259b87bd33e2724",
+      "bytes": 249109,
+      "features": 402,
+      "positions": 4895
+    }
+  },
+  "limitations": [
+    "OSM height tags are not field verified",
+    "Missing heights are not inferred; footprint remains flat",
+    "Simple way polygons only; unassembled multipolygon relations omitted",
+    "Cartographic roads are context, selectable network comes from PostGIS"
+  ]
+}

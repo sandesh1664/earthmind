@@ -27,6 +27,7 @@ test("M02 real PostGIS fixture, network validation and provenance render without
     if (message.type() === "error") errors.push(message.text());
   });
   await openGeospatial(page);
+  await page.getByLabel("Study region",{exact:true}).selectOption("8d31afa3-5d52-59b5-a8bc-691b5867dfcb");
   await expect(
     page.getByRole("heading", {
       name: "Downtown Dubai — Synthetic Study Region",
@@ -71,7 +72,7 @@ test("M02 real PostGIS fixture, network validation and provenance render without
     )
     .toBe(true);
   await page.screenshot({
-    path: `../../docs/evidence/m03/geospatial-${info.project.name}.png`,
+    path: `../../docs/evidence/recovery/geospatial-${info.project.name}.png`,
     fullPage: true,
   });
   expect(errors).toEqual([]);
@@ -121,6 +122,7 @@ test("M02 UI-only service error supports retry", async ({ page }) => {
   ).toBeVisible();
   unavailable = false;
   await page.getByRole("button", { name: "Retry", exact: true }).click();
+  await page.getByLabel("Study region",{exact:true}).selectOption("8d31afa3-5d52-59b5-a8bc-691b5867dfcb");
   await expect(
     page.getByRole("heading", {
       name: "Downtown Dubai — Synthetic Study Region",

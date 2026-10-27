@@ -1,0 +1,24 @@
+{
+  "graphics": {
+    "api": "WebGL2",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+  },
+  "scene": {
+    "testid": "cesium-viewer",
+    "phase": "ready",
+    "localBuildingCount": "402",
+    "roadCount": "500",
+    "intersectionCount": "0",
+    "geometryReady": "true",
+    "cameraMoving": "false",
+    "layerVisibility": "{\"boundary\":false,\"roads\":true,\"intersections\":false,\"centroid\":false,\"highlight\":false,\"buildings\":true,\"imagery\":true,\"terrain\":false}",
+    "pickX": "717.1",
+    "pickY": "289.31",
+    "pickId": "294201ab-80ef-54ec-8bb0-56092e538944"
+  },
+  "camera": "55.27440° E · 25.18167° N · 2,458 m altitude",
+  "provenance": "REAL GEOGRAPHIC DATA — OpenStreetMap3D BUILDINGS — OSM tagged heights / provider coverage dependentSYNTHETIC TRAFFIC — CLI smoke only; no viewer playbackLIVE TRAFFIC — Not connectedINFERRED SIGNALS — Not field verified",
+  "credits": "© OpenStreetMap contributors · ODbL•Made with Natural Earth · public domainData attribution",
+  "errors": [],
+  "httpFailures": []
+}

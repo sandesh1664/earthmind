@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/redmug/EARTHMIND/scripts/verify_real_geography.py", line 85, in <module>
+    main()
+  File "/Users/redmug/EARTHMIND/scripts/verify_real_geography.py", line 25, in main
+    nodes = connection.execute(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/redmug/EARTHMIND/.venv/lib/python3.12/site-packages/psycopg/connection.py", line 304, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedColumn: column "geom" does not exist
+LINE 1: SELECT count(*),bool_and(ST_IsValid(geom) AND ST_SRID(geom)=...
+                                            ^

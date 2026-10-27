@@ -46,6 +46,7 @@ def main() -> None:
         configuration = json.load(response)
     if set(configuration) != {
         "ionPublicToken",
+        "imageryMode",
         "imageryAssetId",
         "terrainAssetId",
         "diagnosticsEnabled",

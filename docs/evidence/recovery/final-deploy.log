@@ -1,0 +1,383 @@
+uv run --locked python scripts/check_architecture.py --host-only
+Docker engine: aarch64 (native ARM64)
+docker compose --env-file .env up --build --detach --wait --wait-timeout 240
+ Image earthmind-python:m01 Building 
+ Image earthmind-worker:m01 Building 
+ Image earthmind-python:m01 Building 
+ Image earthmind-web:m01 Building 
+ Image earthmind-postgis:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.51kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.0s
+
+#3 [worker internal] load build definition from worker.Dockerfile
+#3 transferring dockerfile: 1.68kB done
+#3 DONE 0.0s
+
+#4 [api internal] load build definition from python.Dockerfile
+#4 transferring dockerfile: 1.20kB done
+#4 DONE 0.0s
+
+#5 [db internal] load build definition from Dockerfile
+#5 transferring dockerfile: 809B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load metadata for ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#6 ...
+
+#7 [auth] library/python:pull token for registry-1.docker.io
+#7 DONE 0.0s
+
+#8 [auth] library/node:pull token for registry-1.docker.io
+#8 DONE 0.0s
+
+#9 [auth] library/postgres:pull token for registry-1.docker.io
+#9 DONE 0.0s
+
+#6 [worker internal] load metadata for ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#6 DONE 0.8s
+
+#10 [migrate internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#10 ...
+
+#11 [web internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#11 DONE 1.4s
+
+#12 [worker internal] load .dockerignore
+#12 transferring context: 314B done
+#12 DONE 0.0s
+
+#13 [db internal] load metadata for docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27
+#13 DONE 1.4s
+
+#14 [web build  1/12] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#14 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d 0.0s done
+#14 DONE 0.0s
+
+#15 [db internal] load build context
+#15 transferring context: 153B done
+#15 DONE 0.0s
+
+#10 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#10 DONE 1.4s
+
+#16 [db 1/3] FROM docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27
+#16 resolve docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27 0.0s done
+#16 DONE 0.0s
+
+#17 [db 2/3] RUN test "arm64" = arm64     && test "$(dpkg --print-architecture)" = arm64     && apt-get update     && apt-get install -y --no-install-recommends         "postgresql-17-postgis-3=3.6.4+dfsg-2.pgdg12+1"         "postgresql-17-postgis-3-scripts=3.6.4+dfsg-2.pgdg12+1"     && dpkg-query -W postgresql-17-postgis-3     && rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [db 3/3] COPY infra/docker/postgis/10-postgis.sql /docker-entrypoint-initdb.d/10-postgis.sql
+#18 CACHED
+
+#19 [web internal] load build context
+#19 transferring context: 687.10kB 0.0s done
+#19 DONE 0.0s
+
+#20 [worker uv 1/1] FROM ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#20 resolve ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7 0.0s done
+#20 DONE 0.0s
+
+#21 [web build  5/12] COPY apps/web/package.json apps/web/package.json
+#21 CACHED
+
+#22 [web build  7/12] COPY scripts/copy-cesium-assets.mjs scripts/copy-cesium-assets.mjs
+#22 CACHED
+
+#23 [web build  3/12] WORKDIR /app
+#23 CACHED
+
+#24 [web build  8/12] COPY patches patches
+#24 CACHED
+
+#25 [web build  6/12] COPY packages/contracts/package.json packages/contracts/package.json
+#25 CACHED
+
+#26 [web build  4/12] COPY package.json package-lock.json ./
+#26 CACHED
+
+#27 [web build  2/12] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#27 CACHED
+
+#28 [web build  9/12] RUN npm ci
+#28 CACHED
+
+#29 [migrate build 1/9] FROM docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#29 resolve docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70 0.0s done
+#29 DONE 0.0s
+
+#30 [worker internal] load build context
+#30 transferring context: 5.58kB done
+#30 DONE 0.0s
+
+#31 [api internal] load build context
+#31 transferring context: 335.68kB 0.0s done
+#31 DONE 0.0s
+
+#32 [migrate build 5/9] COPY pyproject.toml uv.lock .python-version ./
+#32 CACHED
+
+#33 [migrate build 6/9] COPY apps/api apps/api
+#33 CACHED
+
+#34 [migrate build 7/9] COPY packages/contracts packages/contracts
+#34 CACHED
+
+#35 [migrate runtime 2/4] RUN groupadd --gid 10001 earthmind && useradd --uid 10001 --gid 10001 --create-home earthmind
+#35 CACHED
+
+#36 [migrate build 8/9] COPY packages/simulation-worker/pyproject.toml packages/simulation-worker/pyproject.toml
+#36 CACHED
+
+#37 [migrate runtime 3/4] WORKDIR /app
+#37 CACHED
+
+#38 [migrate build 9/9] RUN uv sync --locked --no-dev --no-editable --package earthmind-api
+#38 CACHED
+
+#39 [api runtime 4/4] COPY --from=build --chown=10001:10001 /app /app
+#39 CACHED
+
+#40 [migrate build 3/9] COPY --from=uv /uv /usr/local/bin/uv
+#40 CACHED
+
+#41 [migrate build 4/9] WORKDIR /app
+#41 CACHED
+
+#42 [worker build 5/9] COPY pyproject.toml uv.lock .python-version ./
+#42 CACHED
+
+#43 [worker build 8/9] COPY packages/simulation-worker packages/simulation-worker
+#43 CACHED
+
+#44 [worker build 9/9] RUN uv sync --locked --no-dev --no-editable --package earthmind-worker
+#44 CACHED
+
+#45 [migrate build 2/9] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#45 CACHED
+
+#46 [worker build 7/9] COPY packages/contracts packages/contracts
+#46 CACHED
+
+#47 [worker runtime 3/4] WORKDIR /app
+#47 CACHED
+
+#48 [worker build 6/9] COPY apps/api apps/api
+#48 CACHED
+
+#49 [worker runtime 2/4] RUN test "arm64" = arm64     && test "$(dpkg --print-architecture)" = arm64     && apt-get update     && apt-get install -y --no-install-recommends         "sumo=1.15.0+dfsg-1+deb12u1" "sumo-tools=1.15.0+dfsg-1+deb12u1"     && sumo --version     && netconvert --version     && test -r /usr/share/sumo/data/typemap/osmNetconvert.typ.xml     && test -r /usr/share/sumo/data/xsd/net_file.xsd     && rm -rf /var/lib/apt/lists/*     && groupadd --gid 10001 earthmind     && useradd --uid 10001 --gid 10001 --create-home earthmind
+#49 CACHED
+
+#50 [worker runtime 4/4] COPY --from=build --chown=10001:10001 /app /app
+#50 CACHED
+
+#51 [migrate] exporting to image
+#51 exporting layers done
+#51 exporting manifest sha256:4920e5250ded23d98b728ab8f7760230730ecd48ecba81361411ad4d7db48cdc
+#51 exporting manifest sha256:4920e5250ded23d98b728ab8f7760230730ecd48ecba81361411ad4d7db48cdc done
+#51 exporting config sha256:a154a0bf4007f3d2bee5c35bfb43b703387a9de735d14d3a4c8ca84ad45a9e32 done
+#51 exporting attestation manifest sha256:c24b79c9b7e0bb25ce8dcbf86a326fcd9cdfcfc2a0858cacd1cd26f139c4edf6 0.0s done
+#51 exporting manifest list sha256:bdd1784f5490108c2664f8729d76ae076b5b047d9c0179ca7ed5d3e5996604f8 0.0s done
+#51 naming to docker.io/library/earthmind-python:m01 done
+#51 unpacking to docker.io/library/earthmind-python:m01 0.0s done
+#51 DONE 0.1s
+
+#52 [db] exporting to image
+#52 exporting layers done
+#52 exporting manifest sha256:6ae251aa7b6b00061cc5c29182a01fd9ac1b6dd2735a9d1befbe92a67c9573d4 done
+#52 exporting config sha256:8d6bfcac3ae9914ecb06e3aa9f344b4a0f05e8223f721a74e62d531c015e5469 done
+#52 exporting attestation manifest sha256:76fcf14a070712b84ee9a848d7cd0d21938f6ddb37c81b3dc3d575e49499dead done
+#52 exporting manifest list sha256:d457b2c0fc135eace2816a01f4c48c843360989c0b28227ae76f1a4493782259 0.0s done
+#52 naming to docker.io/library/earthmind-postgis:m01 done
+#52 unpacking to docker.io/library/earthmind-postgis:m01 done
+#52 DONE 0.1s
+
+#53 [web build 10/12] COPY apps/web apps/web
+#53 DONE 0.0s
+
+#54 [web build 11/12] COPY packages/contracts packages/contracts
+#54 DONE 0.1s
+
+#55 [worker] exporting to image
+#55 exporting layers done
+#55 exporting manifest sha256:f0edfb8e9aa5422e55d6bdcaf3dc8f5ea1e657806b52d41e082d0fad07296264 done
+#55 exporting config sha256:b1f40474352c982e12d66bb5883fc63e5c38ac764f1eb35ec3d3198fe703e2c9 done
+#55 exporting attestation manifest sha256:b25c6e11cfb1eb0649dcc609ec5fc61495e3f9535bcfcafa571c73088a849d5f 0.0s done
+#55 exporting manifest list sha256:e5e133b9c47a873f5f83ee57210860f92d3833c058871c2f2ab1292cee2ca819 0.0s done
+#55 naming to docker.io/library/earthmind-worker:m01 done
+#55 unpacking to docker.io/library/earthmind-worker:m01 0.0s done
+#55 DONE 0.1s
+
+#56 [api] exporting to image
+#56 exporting layers done
+#56 exporting manifest sha256:0892dfa864e9e3cc205389cfc376238a2ab46bb174c433646685a57fed68d4d6 done
+#56 exporting config sha256:fecca916845f2980d763a998ae26211933be52911ae55abb57c2a381eb6eee81 0.0s done
+#56 exporting attestation manifest sha256:9883005d636f5fa290b0bc33e1f9f96404e1ac00d37e8fcf2a3883d0d91259de 0.0s done
+#56 exporting manifest list sha256:29df6dc702a33b134769c27136bbf9d8bebe9bbd74169f303f5e936d4189db16 0.0s done
+#56 naming to docker.io/library/earthmind-python:m01 done
+#56 unpacking to docker.io/library/earthmind-python:m01 done
+#56 DONE 0.1s
+
+#57 [migrate] resolving provenance for metadata file
+#57 DONE 0.0s
+
+#58 [db] resolving provenance for metadata file
+#58 DONE 0.0s
+
+#59 [worker] resolving provenance for metadata file
+#59 DONE 0.0s
+
+#60 [api] resolving provenance for metadata file
+#60 DONE 0.0s
+
+#61 [web build 12/12] RUN npm run build --workspace @earthmind/web
+#61 0.226 
+#61 0.226 > @earthmind/web@0.1.0 prebuild
+#61 0.226 > node ../../scripts/copy-cesium-assets.mjs
+#61 0.226 
+#61 0.445 Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+#61 0.447 
+#61 0.447 > @earthmind/web@0.1.0 build
+#61 0.447 > next build
+#61 0.447 
+#61 0.657 ▲ Next.js 16.4.3 (Turbopack)
+#61 0.692 ✓ Running next.config.ts took 35ms
+#61 0.697 
+#61 0.707   Creating an optimized production build ...
+#61 3.915 ✓ Compiled successfully in 3.2s
+#61 3.918   Running TypeScript ...
+#61 6.192   Finished TypeScript in 2.3s ...
+#61 6.193   Collecting page data using 9 workers ...
+#61 6.478   Generating static pages using 9 workers (0/3) ...
+#61 6.556 ✓ Generating static pages using 9 workers (3/3) in 78ms
+#61 6.558   Finalizing page optimization ...
+#61 6.743 
+#61 6.744 Route (app)
+#61 6.744 ┌ ○ /
+#61 6.744 ├ ○ /_not-found
+#61 6.744 ├ ƒ /api/capabilities
+#61 6.744 ├ ƒ /api/city/config
+#61 6.744 ├ ƒ /api/diagnostics
+#61 6.744 ├ ƒ /api/diagnostics/[id]
+#61 6.744 ├ ƒ /api/geospatial/[...path]
+#61 6.744 ├ ƒ /api/health
+#61 6.744 └ ƒ /api/health/live
+#61 6.744 
+#61 6.744 
+#61 6.744 ○  (Static)   prerendered as static content
+#61 6.744 ƒ  (Dynamic)  server-rendered on demand
+#61 6.744 
+#61 DONE 6.8s
+
+#62 [web runtime 2/5] WORKDIR /app
+#62 CACHED
+
+#63 [web runtime 3/5] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#63 DONE 0.1s
+
+#64 [web runtime 4/5] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#64 DONE 0.0s
+
+#65 [web runtime 5/5] COPY --from=build --chown=node:node /app/apps/web/public ./apps/web/public
+#65 DONE 0.0s
+
+#66 [web] exporting to image
+#66 exporting layers
+#66 exporting layers 0.7s done
+#66 exporting manifest sha256:b5821d9a29d74528177d7612d4a1e2b1a2c897313f6a4be94a2172b9b4e2c167 done
+#66 exporting config sha256:802dc8c1d325beb7fd09c5af88e37cabf4f99289b422054ba8738099738e20e3 done
+#66 exporting attestation manifest sha256:3a66960621cab3fa094fa843fb4ad1f7a55ee76c4697f1d4ba833d622d89d10f done
+#66 exporting manifest list sha256:f8a690d14fc76a9ae7dd21d7c506ccfd3591a29bade2c518b5e58de944c4dd0f done
+#66 naming to docker.io/library/earthmind-web:m01 done
+#66 unpacking to docker.io/library/earthmind-web:m01
+#66 unpacking to docker.io/library/earthmind-web:m01 0.2s done
+#66 DONE 0.9s
+
+#67 [web] resolving provenance for metadata file
+#67 DONE 0.0s
+ Image earthmind-worker:m01 Built 
+ Image earthmind-python:m01 Built 
+ Image earthmind-web:m01 Built 
+ Image earthmind-postgis:m01 Built 
+ Image earthmind-python:m01 Built 
+ Container earthmind-migrate-1 Recreate 
+ Container earthmind-migrate-1 Recreated 
+ Container earthmind-api-1 Recreate 
+ Container earthmind-api-1 Recreated 
+ Container earthmind-web-1 Recreate 
+ Container earthmind-web-1 Recreated 
+ Container earthmind-redis-1 Starting 
+ Container earthmind-db-1 Starting 
+ Container earthmind-redis-1 Started 
+ Container earthmind-db-1 Started 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-1 Starting 
+ Container earthmind-migrate-1 Started 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-redis-1 Waiting 
+ Container earthmind-redis-1 Healthy 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-worker-1 Starting 
+ Container earthmind-worker-1 Started 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-worker-1 Waiting 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-worker-1 Healthy 
+ Container earthmind-api-1 Starting 
+ Container earthmind-api-1 Started 
+ Container earthmind-api-1 Waiting 
+ Container earthmind-api-1 Healthy 
+ Container earthmind-web-1 Starting 
+ Container earthmind-web-1 Started 
+ Container earthmind-migrate-1 Waiting 
+ Container earthmind-worker-1 Waiting 
+ Container earthmind-api-1 Waiting 
+ Container earthmind-web-1 Waiting 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-redis-1 Waiting 
+ Container earthmind-redis-1 Healthy 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-1 Exited 
+ Container earthmind-worker-1 Healthy 
+ Container earthmind-api-1 Healthy 
+ Container earthmind-web-1 Healthy 
+uv run --locked python scripts/check_architecture.py
+Docker engine: aarch64 (native ARM64)
+api: earthmind-python:m01: linux/arm64
+db: earthmind-postgis:m01: linux/arm64
+migrate: earthmind-python:m01: linux/arm64
+redis: redis:7.4-bookworm@sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b: linux/arm64
+web: earthmind-web:m01: linux/arm64
+worker: earthmind-worker:m01: linux/arm64
+/Library/Developer/CommandLineTools/usr/bin/make seed
+docker compose --env-file .env run --rm migrate python -m earthmind_api.seed
+ Container earthmind-db-1 Running 
+ Container earthmind-db-1 Waiting 
+ Container earthmind-db-1 Healthy 
+ Container earthmind-migrate-run-de3ff9d212ac Creating 
+ Container earthmind-migrate-run-de3ff9d212ac Created 
+{"created": false, "edges": 8, "is_synthetic": true, "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "nodes": 6, "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb"}
+/Library/Developer/CommandLineTools/usr/bin/make smoke
+uv run --locked python scripts/smoke.py
+PASS http://127.0.0.1:8000/health/live: {"status":"ok","service":"api"}
+PASS http://127.0.0.1:8000/api/v1/health: {"service":"EARTHMIND API","status":"healthy","version":"0.1.0"}
+PASS http://127.0.0.1:8000/api/v1/ready: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health: {"checks": {"database": "ok", "redis": "ok", "worker": "ok"}, "service": "api", "status": "ok"}
+PASS http://127.0.0.1:3000/api/health/live: {"status":"ok","service":"web"}
+PASS http://127.0.0.1:3000: HTTP 200, EARTHMIND dashboard rendered
+PASS actual worker job 93fb1a87-d391-4519-af2a-1e5ff5c8772a: {"architecture": "aarch64", "kind": "diagnostic", "message": "Worker consumed this diagnostic from the Redis queue.", "worker_pid": 7}
+PASS actual worker job b10b72e0-08d9-4c14-a956-34afad1cca5a: {"architecture": "aarch64", "binary_versions": {"netconvert": "Eclipse SUMO netconvert Version 1.15.0", "sumo": "Eclipse SUMO sumo Version 1.15.0"}, "checked_at": "2026-10-27T11:45:37.125004+00:00", "kind": "sumo_runtime", "output_files": ["network.net.xml", "tripinfo.xml", "netconvert.log", "sumo.log"], "steps": 25, "traci_protocol": 20, "traci_server_version": "SUMO 1.15.0", "trips": [{"arrival": "22.00", "depart": "0.00", "duration": "22.00", "id": "probe_0", "routeLength": "195.00"}, {"arrival": "24.00", "depart": "2.00", "duration": "22.00", "id": "probe_1", "routeLength": "195.00"}], "vehicles_completed": 2, "vehicles_departed": 2, "verified": true, "version": "1.15.0", "worker_pid": 7}
+PASS http://127.0.0.1:8000/api/v1/system/capabilities: {"application":"EARTHMIND","version":"0.1.0","milestone":"M01","capabilities":{"api":true,"database":true,"redis":true,"worker":true,"simulation_runtime":true,"dubai_network_import":false,"traffic_simulation":false,"ai_forecasting":false},"runtime":{"verified":true,"version":"1.15.0","checked_at":"2026-10-27T11:45:37.125004Z","architecture":"aarch64"}}
+PASS http://127.0.0.1:3000/api/capabilities: {"application":"EARTHMIND","capabilities":{"ai_forecasting":false,"api":true,"database":true,"dubai_network_import":false,"redis":true,"simulation_runtime":true,"traffic_simulation":false,"worker":true},"milestone":"M01","runtime":{"architecture":"aarch64","checked_at":"2026-10-27T11:45:37.125004Z","verified":true,"version":"1.15.0"},"version":"0.1.0"}
+SMOKE PASSED: web -> API -> PostGIS -> Redis queue -> worker + actual SUMO fixture
+uv run --locked python scripts/geospatial_smoke.py
+{"area_km2": 1.3398134937911033, "bounds": [55.2685, 25.19, 55.2805, 25.2], "centroid": [55.2745, 25.195000053], "edges": 8, "independent_area_km2": 1.3398134937901496, "is_synthetic": true, "license_identifier": "LicenseRef-EARTHMIND-Proprietary-Synthetic", "nearest_distance_m": 20.15803569, "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "nodes": 6, "region_id": "8d31afa3-5d52-59b5-a8bc-691b5867dfcb", "unauthorized_write_status": 403, "validation": {"boundary_tolerance_m": 5, "checks": {"attributes_valid": true, "connectivity_valid": true, "counts_consistent": true, "duplicate_edges_absent": true, "endpoints_consistent": true, "geometry_valid": true, "identifiers_unique": true, "metadata_complete": true, "nonempty": true, "references_consistent": true, "region_coverage": true}, "counts": {"components": 1, "edges": 8, "isolated_nodes": 0, "nodes": 6}, "errors": [], "network_id": "22f68ce8-9247-5425-8342-827d86517ead", "semantics": "VALID has no findings. VALID_WITH_WARNINGS passes integrity checks but has structural or metadata warnings. INVALID has integrity errors. NOT_VALIDATED exceeds the bounded feature or coordinate validation budget. Synthetic topology is not evidence of real-world network accuracy.", "status": "VALID", "validated": true, "warnings": []}}
+M02 SMOKE PASSED: real PostGIS geometry, provenance, topology, meter queries and write gate
+uv run --locked python scripts/check_cesium_assets.py
+{"assets": [{"bytes": 5801, "mime": "application/javascript; charset=UTF-8", "path": "Workers/createGeometry.js"}, {"bytes": 55126, "mime": "application/wasm", "path": "ThirdParty/zip-module.wasm"}, {"bytes": 780, "mime": "application/xml", "path": "Assets/Textures/NaturalEarthII/tilemapresource.xml"}, {"bytes": 30710, "mime": "text/css; charset=UTF-8", "path": "Widgets/widgets.css"}, {"bytes": 55679, "mime": "text/markdown; charset=UTF-8", "path": "LICENSE.md"}], "local_diagnostics_enabled": true, "provider_token_configured": false, "version": "1.146.0"}

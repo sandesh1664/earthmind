@@ -1,0 +1,23 @@
+uv lock --check
+Resolved 67 packages in 2ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+62 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+scripts/import_dubai_osm.py:94: error: Item "None" of "Element[str] | None" has no attribute "get"  [union-attr]
+Found 1 error in 1 file (checked 48 source files)
+make[1]: *** [typecheck] Error 1
+make: *** [lint] Error 2

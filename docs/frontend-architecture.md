@@ -276,3 +276,17 @@ branches. They do not prove a real browser initialized WebGL, fetched workers,
 rendered geometry or released GPU resources. Actual commands, browser runs,
 screenshots, limitations and acceptance statuses are recorded only in
 [verification](verification.md).
+
+
+## Real-geography recovery
+
+City Explorer now opens by default, with imported regions/networks separated from
+explicit development fixture mode. The full-height scene, native fullscreen,
+compact controls and collapsible source details preserve native resource ownership.
+Local OSM context validates a streaming12MiB budget, schemas/coordinates,150k
+positions and artifact SHA256 before adoption. Unknown metadata/HTML is stripped.
+Source-tagged building heights are the only extrusions; ion tiles remain optional.
+Local context uses ellipsoid geometry with display-only submeter offsets and no
+public raster-tile fetching. Synthetic mode cancels/removes real context and uses
+the lightweight global reference. Road metadata preserves narrow inference facts
+and bounded source-ID arrays. See recovery-geography.md and actual verification.

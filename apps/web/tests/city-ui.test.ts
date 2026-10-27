@@ -77,7 +77,7 @@ test("layer controls expose all eight scene switches and block only unavailable 
   assert.equal((html.match(/type="checkbox"/g) ?? []).length, 8);
   assert.equal((html.match(/disabled=""/g) ?? []).length, 2);
   assert.match(html, /aria-label="Study region"/);
-  assert.match(html, /aria-label="Basemap imagery"/);
+  assert.match(html, /aria-label="Geographic basemap"/);
   assert.match(html, /Blocked · public provider token required/);
   assert.match(html, /PostGIS boundary/);
 });
@@ -217,4 +217,54 @@ test("viewer error boundary preserves the normal child surface and exposes a det
   assert.deepEqual(ViewerErrorBoundary.getDerivedStateFromError(), {
     failed: true,
   });
+});
+
+test("real OSM inspector distinguishes converter inference from source lane tags", () => {
+  const imported: RoadFeature = {
+    ...road,
+    properties: {
+      ...road.properties,
+      is_synthetic: false,
+      source_edge_id: "osm:way:12345",
+      sumo_edge_id: "12345#2",
+      name: "Source road name",
+      lane_count: 3,
+      metadata: {
+        osm_way_id: "12345", lane_count_source: "inferred_by_netconvert",
+        osm_lanes: null, osm_maxspeed: null,
+        turn_restrictions_status: "partial_osm_relations_no_field_verification",
+        sumo_identifier_verified: true, geometry_derivation: "sumo_lane_centerline_from_osm",
+      },
+    },
+  };
+  const render = (feature: RoadFeature) => renderToStaticMarkup(createElement(FeatureInspector, {
+    selection: {kind: "road", id: feature.id}, roads: [feature], intersections: [],
+    network: null, source: null, validation: null, onDeselect: noAction, onZoom: noAction,
+  }));
+  const inferred = render(imported);
+  assert.match(inferred, /REAL GEOGRAPHIC DATA — OpenStreetMap/);
+  assert.match(inferred, /data-testid="selected-road-lanes">3 · inferred by netconvert/);
+  assert.match(inferred, /OSM lanes tag<\/dt><dd>Not recorded/);
+  assert.match(inferred, /Partial OSM relations; not field verified/);
+  assert.match(inferred, /12345#2/);
+  assert.doesNotMatch(inferred, /SYNTHETIC DATA|>undefined<|>null</);
+  const directional = render({...imported, properties: {...imported.properties,
+    metadata: {...imported.properties.metadata, lane_count_source: "osm_directional_tag", osm_lanes: "6", osm_directional_lanes: "3"},
+  }});
+  assert.match(directional, /3 · OSM directional tag/);
+  const interpreted = render({...imported, properties: {...imported.properties,
+    metadata: {...imported.properties.metadata, lane_count_source: "sumo_interpreted_osm_lanes", osm_lanes: "6"},
+  }});
+  assert.match(interpreted, /3 · SUMO interpretation of OSM lanes/);
+});
+
+test("unclassified imported source is not relabeled OpenStreetMap", () => {
+  const feature: RoadFeature = {...road, properties: {...road.properties, is_synthetic: false}};
+  const html = renderToStaticMarkup(createElement(FeatureInspector, {
+    selection: {kind: "road", id: feature.id}, roads: [feature], intersections: [],
+    network: null, source: null, validation: null, onDeselect: noAction, onZoom: noAction,
+  }));
+  assert.match(html, /IMPORTED GEOGRAPHIC DATA/);
+  assert.match(html, /source provenance not recorded/);
+  assert.doesNotMatch(html, /REAL GEOGRAPHIC DATA — OpenStreetMap/);
 });

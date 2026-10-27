@@ -1,0 +1,101 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- city.spec.ts --project=mobile --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test city.spec.ts --project=mobile --workers=1
+
+
+Running 3 tests using 1 worker
+
+(node:69294) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (45.3s)
+(node:69335) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [mobile] › tests/browser/city.spec.ts:136:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (16.9s)
+  ✓  3 [mobile] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback (801ms)
+
+
+  1) [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Browser logs:
+
+    <launching> /Users/redmug/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/1f/0sqj_9s130v8gfp76k6jg47c0000gn/T/playwright_chromiumdev_profile-JNbSRl --remote-debugging-pipe --no-startup-window
+    <launched> pid=69295
+    [pid=69295][err] [1027/160858.942024:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+    [pid=69295][err] [1027/160859.097531:ERROR:ui/display/mac/cv_display_link_mac.mm:188] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+    [pid=69295][err] [1027/160859.851479:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=69295][err] [1027/160859.942337:INFO:CONSOLE:0] "[.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:3000/ (0)
+    [pid=69295][err] [1027/160859.946689:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=69295][err] [1027/160859.951317:INFO:CONSOLE:0] "[.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:3000/ (0)
+    [pid=69295][err] [1027/160859.951928:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+    [pid=69295][err] [1027/160859.957001:INFO:CONSOLE:0] "[.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels", source: http://127.0.0.1:3000/ (0)
+    [pid=69295][err] [1027/160859.969343:ERROR:gpu/command_buffer/service/gl_utils.cc:431] [.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+    [pid=69295][err] [1027/160859.971540:INFO:CONSOLE:0] "[.WebGL-0x12c0043ea00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)", source: http://127.0.0.1:3000/ (0)
+    [pid=69295] <gracefully close start>
+    Call log:
+      - waiting for getByRole('button', { name: 'Zoom to study region', exact: true })
+        - locator resolved to <button type="button" title="Zoom to study region" aria-label="Zoom to study region">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="city-feature-tabs">…</div> from <aside class="city-right-panel " aria-label="Geographic inspection panel">…</aside> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="city-feature-tabs">…</div> from <aside class="city-right-panel " aria-label="Geographic inspection panel">…</aside> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        72 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="city-feature-tabs">…</div> from <aside class="city-right-panel " aria-label="Geographic inspection panel">…</aside> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      79 |   await expect(page.getByTestId("camera-position")).toContainText("m altitude");
+      80 |   await page.getByRole("button", { name: "Deselect", exact: true }).click();
+    > 81 |   await page.getByRole("button", { name: "Zoom to study region", exact: true }).click();
+         |                                                                                 ^
+      82 |   await ready(page);
+      83 |   await page.getByRole("button", { name: "Layers", exact: true }).click();
+      84 |   const buildingLayer = page.getByRole("checkbox", { name: "3D buildings", exact: true });
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:81:81
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+  2 passed (1.1m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test city.spec.ts --project=mobile --workers=1

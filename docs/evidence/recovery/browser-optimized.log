@@ -1,0 +1,19 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- recovery.spec.ts --project=desktop --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test recovery.spec.ts --project=desktop --workers=1
+
+
+Running 2 tests using 1 worker
+
+(node:66527) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 6508ms
+  ✓  1 [desktop] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (25.9s)
+Actual fresh-context navigation to nonempty ready roads: 5611ms
+  ✓  2 [desktop] › tests/browser/recovery.spec.ts:190:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (21.3s)
+
+  2 passed (47.7s)

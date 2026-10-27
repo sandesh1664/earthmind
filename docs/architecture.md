@@ -126,3 +126,13 @@ See [frontend architecture](frontend-architecture.md), [3D scene](3d-digital-twi
 the credential-free packaged Natural Earth/ellipsoid fallback remains usable.
 The accepted SDK patch and explicit lifecycle cleanup have a version-locked
 upgrade obligation and actual browser regression evidence.
+
+
+The explicitly authorized Dubai recovery adds bounded OSM import and native SUMO
+conversion in an offline CLI, while FastAPI remains read-only for map queries.
+Source snapshots, checksums and many-to-many OSM/SUMO/DB mappings remain durable
+ignored artifacts. PostGIS is the selected network source; source-derived OSM
+cartographic context is a separate display provider, not another network store.
+See [recovery architecture](recovery-geography.md) and
+[ADR0012](decisions/0012-dubai-recovery.md). Synthetic demand is a bounded worker
+smoke with recorded outputs; browser vehicle playback and live traffic are absent.

@@ -1,0 +1,74 @@
+uv lock --check
+Resolved 67 packages in 3ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+61 files already formatted
+npm run lint
+
+> earthmind@0.1.0 lint
+> npm run lint --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 lint
+> eslint . --max-warnings 0
+
+/Library/Developer/CommandLineTools/usr/bin/make typecheck
+uv run --locked mypy
+Success: no issues found in 47 source files
+npm run typecheck
+
+> earthmind@0.1.0 typecheck
+> npm run typecheck --workspace @earthmind/web
+
+
+> @earthmind/web@0.1.0 typecheck
+> tsc --noEmit
+
+lib/city/api.ts(62,95): error TS1360: Type 'ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<{ type: ZodLiteral<"LineString">; coordinates: ZodArray<ZodTuple<[ZodNumber, ZodNumber], null>>; }, $strip>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>' does not satisfy the expected type 'ZodType<RoadFeature, unknown, $ZodTypeInternals<RoadFeature, unknown>>'.
+  The types of '_output.properties.metadata' are incompatible between these types.
+    Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+      Property 'osm_way_id' is incompatible with index signature.
+        Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+          Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+lib/city/api.ts(77,95): error TS1360: Type 'ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<{ type: ZodLiteral<"Point">; coordinates: ZodTuple<[ZodNumber, ZodNumber], null>; }, $strip>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>' does not satisfy the expected type 'ZodType<IntersectionFeature, unknown, $ZodTypeInternals<IntersectionFeature, unknown>>'.
+  The types of '_output.properties.metadata' are incompatible between these types.
+    Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+      Property 'osm_way_id' is incompatible with index signature.
+        Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+          Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+lib/city/api.ts(306,57): error TS2379: Argument of type 'ZodObject<{ total: ZodNumber; limit: ZodNumber; offset: ZodNumber; type: ZodLiteral<"FeatureCollection">; features: ZodArray<ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<...>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>>; }, $strip>' is not assignable to parameter of type 'ZodType<SpatialPage<RoadFeature>, unknown, $ZodTypeInternals<SpatialPage<RoadFeature>, unknown>>' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  The types of '_output.features' are incompatible between these types.
+    Type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to type 'RoadFeature[]'.
+      Type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to type 'RoadFeature'.
+        The types of 'properties.metadata' are incompatible between these types.
+          Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+            Property 'osm_way_id' is incompatible with index signature.
+              Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+                Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+lib/city/api.ts(308,73): error TS2379: Argument of type 'ZodObject<{ total: ZodNumber; limit: ZodNumber; offset: ZodNumber; type: ZodLiteral<"FeatureCollection">; features: ZodArray<ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<...>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>>; }, $strip>' is not assignable to parameter of type 'ZodType<SpatialPage<IntersectionFeature>, unknown, $ZodTypeInternals<SpatialPage<IntersectionFeature>, unknown>>' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  The types of '_output.features' are incompatible between these types.
+    Type '{ properties: { network_version_id: string; source_node_id: string; intersection_type: string; is_synthetic: boolean; metadata?: { osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; ... 10 more ...; sumo_identifier_verified?: boolean | undefined; }; sumo_node_id?: string | null; is_sign...' is not assignable to type 'IntersectionFeature[]'.
+      Type '{ properties: { network_version_id: string; source_node_id: string; intersection_type: string; is_synthetic: boolean; metadata?: { osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; ... 10 more ...; sumo_identifier_verified?: boolean | undefined; }; sumo_node_id?: string | null; is_sign...' is not assignable to type 'IntersectionFeature'.
+        The types of 'properties.metadata' are incompatible between these types.
+          Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+            Property 'osm_way_id' is incompatible with index signature.
+              Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+                Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+tests/browser/recovery.spec.ts(37,86): error TS2345: Argument of type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to parameter of type 'RoadFeature'.
+  The types of 'properties.metadata' are incompatible between these types.
+    Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+      Property 'osm_way_id' is incompatible with index signature.
+        Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+          Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c tsc --noEmit
+make[1]: *** [typecheck] Error 2
+make: *** [lint] Error 2

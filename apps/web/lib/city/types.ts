@@ -8,6 +8,7 @@ export interface RoadFeature {
   geometry: { type: "LineString"; coordinates: Position[] };
   properties: {
     network_version_id: string;
+    metadata?: Record<string, string | string[] | number | boolean | null | undefined>;
     sumo_edge_id: string;
     source_edge_id?: string | null;
     name?: string | null;
@@ -27,6 +28,7 @@ export interface IntersectionFeature {
   geometry: { type: "Point"; coordinates: Position };
   properties: {
     network_version_id: string;
+    metadata?: Record<string, string | string[] | number | boolean | null | undefined>;
     source_node_id: string;
     sumo_node_id?: string | null;
     intersection_type: string;
@@ -49,11 +51,12 @@ export interface LayerSettings {
   centroid: boolean;
 }
 export const DEFAULT_LAYERS: LayerSettings = {
-  boundary: true, roads: true, intersections: true, buildings: false,
+  boundary: false, roads: true, intersections: false, buildings: true,
   imagery: true, terrain: false, highlight: true, centroid: false,
 };
 export interface CityConfig {
   ionPublicToken: string | null;
+  imageryMode?: "local-osm" | "ion" | "natural-earth";
   imageryAssetId: number;
   terrainAssetId: number;
   diagnosticsEnabled: boolean;
@@ -80,6 +83,7 @@ export interface ViewerStatus {
   message: string;
   buildings: ProviderState; imagery: ProviderState; terrain: ProviderState;
   roadCount: number; intersectionCount: number;
+  localBuildingCount?: number;
   geometryReady?: boolean;
   cameraMoving?: boolean;
   layerVisibility?: Record<keyof LayerSettings, boolean>;

@@ -47,6 +47,22 @@ const MultiPolygonSchema = z
     );
   });
 
+export const PublicFeatureMetadataSchema = z.object({
+  osm_way_id: z.string().max(256).nullable().optional(),
+  osm_node_id: z.string().max(256).nullable().optional(),
+  osm_lanes: z.string().max(256).nullable().optional(),
+  osm_directional_lanes: z.string().max(256).nullable().optional(),
+  osm_maxspeed: z.string().max(256).nullable().optional(),
+  lane_count_source: z.string().max(256).nullable().optional(),
+  speed_limit_source: z.string().max(256).nullable().optional(),
+  turn_restrictions_status: z.string().max(256).nullable().optional(),
+  geometry_derivation: z.string().max(256).nullable().optional(),
+  signal_status: z.string().max(256).nullable().optional(),
+  node_origin: z.string().max(256).nullable().optional(),
+  osm_way_ids: z.array(z.string().max(128)).max(64).optional(),
+  sumo_identifier_verified:z.boolean().optional(),
+}).strip();
+
 export const PublicRegionMetadataSchema = z
   .object({
     is_synthetic: z.boolean().optional(),
@@ -224,7 +240,8 @@ const SpatialFeatureSchema = z
         network_version_id: UUID.optional(),
         name: z.string().max(255).nullable().optional(),
         source_edge_id: z.string().max(255).nullable().optional(),
-        start_intersection_id: UUID.optional(),
+        metadata: PublicFeatureMetadataSchema.optional(),
+    start_intersection_id: UUID.optional(),
         end_intersection_id: UUID.optional(),
         road_class: z.string().max(128).optional(),
         lane_count: z.number().int().positive().optional(),
@@ -232,7 +249,7 @@ const SpatialFeatureSchema = z
         length_m: finite.nonnegative().optional(),
         is_one_way: z.boolean().optional(),
         is_synthetic: z.boolean().optional(),
-        source_node_id: z.string().max(255).nullable().optional(),
+    source_node_id: z.string().max(255).nullable().optional(),
         sumo_node_id: z.string().max(255).nullable().optional(),
         sumo_edge_id: z.string().max(255).optional(),
         intersection_type: z.string().max(128).optional(),

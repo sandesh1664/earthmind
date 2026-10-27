@@ -62,3 +62,14 @@ status:
 
 clean:
 	$(UV_RUN) python scripts/clean.py
+
+.PHONY: import-dubai smoke-real
+import-dubai:
+	$(UV_RUN) python scripts/import_dubai_osm.py download
+	$(UV_RUN) python scripts/import_dubai_osm.py convert
+	$(UV_RUN) python scripts/import_dubai_osm.py import
+	$(UV_RUN) python scripts/build_osm_context.py --source data/dubai-osm/recovery-v1/source.osm.xml --output data/dubai-osm/recovery-v1/context
+	$(COMPOSE) up --detach --no-deps --force-recreate --wait --wait-timeout 120 web
+
+smoke-real:
+	$(UV_RUN) python scripts/run_real_network_smoke.py

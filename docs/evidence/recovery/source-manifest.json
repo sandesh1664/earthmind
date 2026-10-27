@@ -1,0 +1,27 @@
+{
+  "provider": "OpenStreetMap contributors via Overpass API",
+  "source_url": "https://overpass-api.de/api/interpreter",
+  "request_method": "GET",
+  "downloaded_at": "2026-10-26T23:12:15.216624+00:00",
+  "bbox_west_south_east_north": [
+    55.258,
+    25.18,
+    55.288,
+    25.208
+  ],
+  "coordinate_reference_system": "EPSG:4326",
+  "license_identifier": "ODbL-1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "checksum_sha256": "9aab25c641c00ba9e19110015173d6ac8bb2f18ba29975ed4545d85e8fe5eb3e",
+  "bytes": 8606335,
+  "response_content_type": "application/osm3s+xml",
+  "query": "[out:xml][timeout:60][maxsize:33554432];(way[\"highway\"~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|living_street|service)$\"](25.18,55.258,25.208,55.288);relation[\"type\"=\"restriction\"](25.18,55.258,25.208,55.288);way[\"building\"](25.18,55.258,25.208,55.288);relation[\"building\"](25.18,55.258,25.208,55.288);way[\"natural\"=\"water\"](25.18,55.258,25.208,55.288);relation[\"natural\"=\"water\"](25.18,55.258,25.208,55.288);way[\"waterway\"=\"riverbank\"](25.18,55.258,25.208,55.288);way[\"leisure\"=\"park\"](25.18,55.258,25.208,55.288);way[\"landuse\"](25.18,55.258,25.208,55.288);node[\"tourism\"][\"name\"](25.18,55.258,25.208,55.288););(._;>;);out meta;",
+  "nodes_in_original_extract": 36311,
+  "ways_in_original_extract": 4808,
+  "restriction_relations_in_original_extract": 158,
+  "extent_policy": "Complete source ways may cross query extent; database imports only converted edges fully inside the declared study bbox.",
+  "is_synthetic": false,
+  "relations_in_original_extract": 189,
+  "osm_base_timestamp": "2026-10-26T23:11:02Z"
+}

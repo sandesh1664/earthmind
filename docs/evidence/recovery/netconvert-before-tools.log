@@ -1,0 +1,9 @@
+ Container earthmind-worker-run-342ca3264f40 Creating 
+ Container earthmind-worker-run-342ca3264f40 Created 
+Warning: Cannot read local schema '/usr/share/sumo/data/xsd/additional_file.xsd'.
+Warning: Cannot read local schema '/usr/share/sumo/data/xsd/routes_file.xsd'.
+Warning: Cannot read local schema '/usr/share/sumo/data/xsd/net_file.xsd'.
+Error: Could not open types-file '/usr/share/sumo/data/typemap/osmNetconvert.typ.xml'.
+Error: No nodes loaded.
+Quitting (on error).
+

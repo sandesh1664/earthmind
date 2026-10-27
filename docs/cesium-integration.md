@@ -44,7 +44,7 @@ recorded lifecycle/browser results in verification.md.
 
 ## Lawful credential-free mode
 
-The globe starts with ellipsoid terrain and locally packaged Natural Earth II
+The M03 reference mode starts with ellipsoid terrain and locally packaged Natural Earth II
 imagery. This is low-resolution cartography, not current satellite imagery.
 Natural Earth describes its raster/vector data as public domain. Visible credits
 and upstream Cesium notices remain available. Region/road/intersection overlays
@@ -71,7 +71,7 @@ observable by design. Private environment values and the M02 write token are
 never returned. No token is baked through `NEXT_PUBLIC_*` or committed.
 
 Configure the ignored `.env`, then recreate the web service so it reads the new
-runtime environment. Missing tokens leave buildings/terrain explicitly blocked;
+runtime environment. Missing tokens leave ion building tiles/terrain explicitly blocked;
 this is not an application initialization failure. Optional provider requests
 use supported asynchronous APIs, retain automatic attribution and surface
 loading/errors. Provider failure must leave the local globe and backend overlays
@@ -128,3 +128,16 @@ attribution remain untouched while the viewer is active. Memory measurements
 disable DOM snapshot tracing because controlled trace-on/off experiments showed
 that tracer retention inflated DOM/listener counts. Functional browser checks
 retain failure traces separately.
+
+
+## Recovery default
+
+`CITY_IMAGERY_MODE=local-osm` now selects self-hosted OSM vector cartography plus
+explicit-height footprint models from the retained licensed extract. The web
+container mounts only generated public context under `/geography`; raw source,
+DB mapping and SUMO files remain private. Context file bytes are hash-checked
+against their manifest before schema validation/native adoption. Local mode uses
+ellipsoid-only heights; provider terrain is blocked to avoid mixed height models.
+`natural-earth` remains the explicit lightweight global/test mode. `ion` uses
+configured public asset access; licensed provider tile execution remains blocked
+until credentials are actually available. See recovery-geography.md for details.

@@ -1,0 +1,30 @@
+import {chromium} from '/Users/redmug/EARTHMIND/node_modules/@playwright/test/index.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[]; const workers=[];
+page.on('pageerror',error=>errors.push(error.message));
+page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
+page.on('worker',worker=>workers.push(worker.url()));
+const cycles=[];
+try {
+  await page.goto('http://127.0.0.1:3300');
+  for(let cycle=0;cycle<3;cycle++) {
+    await page.getByRole('button',{name:'City Explorer',exact:true}).click();
+    await page.waitForFunction(()=>{
+      const scene=document.querySelector('[data-testid="cesium-viewer"]');
+      return scene?.dataset.phase==='ready' && Number(scene.dataset.roadCount)>0 && scene.dataset.geometryReady==='true' && Number(scene.dataset.localBuildingCount)>0 && scene.dataset.cameraMoving==='false';
+    },undefined,{timeout:60000});
+    const count=await page.locator('.city-cesium-host canvas').count();
+    if(count!==1)throw new Error(`StrictMode mount has ${count} canvases`);
+    const position=await page.getByTestId('camera-position').textContent();
+    await page.getByRole('button',{name:'Overview',exact:true}).click();
+    if(await page.locator('.city-cesium-host canvas').count()!==0)throw new Error('Development viewer was not removed');
+    cycles.push({cycle,liveCanvases:count,afterUnmount:0,position});
+  }
+  if(errors.length)throw new Error(JSON.stringify(errors));
+  if(!workers.length)throw new Error('No actual Cesium Worker initialized');
+  const result={mode:'Actual Next development server with React Strict Mode',cycles,workers,errors};
+  await writeFile('/private/tmp/earthmind-recovery-results/development-observations.json',JSON.stringify(result,null,2)+'\n');
+  console.log(JSON.stringify(result));
+} finally {await browser.close();}

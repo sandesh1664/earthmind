@@ -1,0 +1,165 @@
+ .dockerignore                                      |    3 +
+ .env.example                                       |    5 +-
+ .github/workflows/ci.yml                           |   16 +-
+ .gitignore                                         |    4 +
+ AGENTS.md                                          |   16 +
+ Makefile                                           |   11 +
+ README.md                                          |   34 +-
+ apps/api/src/earthmind_api/osm_import.py           |  571 +++++++++
+ apps/api/src/earthmind_api/spatial.py              |   38 +
+ apps/api/tests/test_osm_context_builder.py         |  133 ++
+ apps/api/tests/test_osm_import.py                  |  169 +++
+ apps/web/app/city.css                              |  234 ++++
+ apps/web/components/city/CesiumViewer.tsx          |    2 +-
+ apps/web/components/city/CityExplorer.tsx          |  106 +-
+ apps/web/components/city/FeatureInspector.tsx      |   33 +-
+ apps/web/components/city/LayerManager.tsx          |   10 +-
+ apps/web/components/city/runtime/camera.ts         |    2 +-
+ apps/web/components/city/runtime/osm-context.ts    |   91 ++
+ apps/web/components/city/runtime/providers.ts      |   46 +-
+ .../components/city/runtime/scene-controller.ts    |   49 +-
+ apps/web/components/dashboard.tsx                  |   23 +-
+ apps/web/hooks/use-city-data.ts                    |   11 +-
+ apps/web/lib/city/api.ts                           |    3 +
+ apps/web/lib/city/catalog.ts                       |   17 +
+ apps/web/lib/city/config.ts                        |    2 +
+ apps/web/lib/city/types.ts                         |    6 +-
+ apps/web/lib/geospatial.ts                         |   21 +-
+ apps/web/playwright.config.ts                      |    2 +-
+ apps/web/playwright.performance.config.ts          |    2 +-
+ apps/web/tests/browser/city.spec.ts                |   32 +-
+ apps/web/tests/browser/dashboard.spec.ts           |   15 +-
+ apps/web/tests/browser/geospatial.spec.ts          |    4 +-
+ apps/web/tests/browser/recovery.spec.ts            |  232 ++++
+ apps/web/tests/city-catalog.test.ts                |   38 +
+ apps/web/tests/city-config.test.ts                 |    9 +-
+ apps/web/tests/city-data.test.ts                   |    8 +
+ apps/web/tests/city-ui.test.ts                     |   52 +-
+ apps/web/tests/performance/city.performance.ts     |    9 +-
+ compose.yaml                                       |    3 +
+ docs/architecture.md                               |   10 +
+ docs/cesium-integration.md                         |   17 +-
+ docs/decisions/0012-dubai-recovery.md              |   73 ++
+ docs/evidence/recovery/baseline.log                |  216 ++++
+ docs/evidence/recovery/browser-all.log             |  425 +++++++
+ docs/evidence/recovery/browser-complete.log        |   55 +
+ docs/evidence/recovery/browser-desktop-ready.log   |   69 +
+ .../evidence/recovery/browser-desktop-restored.log |   89 ++
+ docs/evidence/recovery/browser-optimized.log       |   19 +
+ docs/evidence/recovery/browser-recovery.log        |  251 ++++
+ docs/evidence/recovery/candidate-secret-check.log  |   10 +
+ docs/evidence/recovery/ci-syntax.log               |    1 +
+ docs/evidence/recovery/city-desktop.png            |  Bin 0 -> 150174 bytes
+ docs/evidence/recovery/city-mobile.png             |  Bin 0 -> 80361 bytes
+ docs/evidence/recovery/city-network-desktop.json   |   24 +
+ docs/evidence/recovery/city-network-mobile.json    |   39 +
+ docs/evidence/recovery/city-network-tablet.json    |   26 +
+ docs/evidence/recovery/city-tablet.png             |  Bin 0 -> 144617 bytes
+ docs/evidence/recovery/commands.jsonl              |   55 +
+ docs/evidence/recovery/context-isolation.log       |    2 +
+ docs/evidence/recovery/context-manifest.json       |   37 +
+ docs/evidence/recovery/conversion-manifest.json    |   41 +
+ docs/evidence/recovery/database-regressions.log    |   17 +
+ docs/evidence/recovery/deployment-restored.log     |  341 +++++
+ docs/evidence/recovery/deployment-types-fixed.log  |  372 ++++++
+ docs/evidence/recovery/deployment.log              |  504 ++++++++
+ docs/evidence/recovery/development-browser.mjs.txt |   30 +
+ .../recovery/development-observations.json         |   39 +
+ docs/evidence/recovery/development-recovery.log    |    3 +
+ docs/evidence/recovery/development-server.log      |   79 ++
+ docs/evidence/recovery/dubai-desktop.png           |  Bin 0 -> 543096 bytes
+ docs/evidence/recovery/dubai-mobile.png            |  Bin 0 -> 201924 bytes
+ docs/evidence/recovery/dubai-tablet.png            |  Bin 0 -> 446268 bytes
+ docs/evidence/recovery/failure-recovery.log        |   71 ++
+ docs/evidence/recovery/fallback-deploy.log         |  368 ++++++
+ docs/evidence/recovery/final-browser.log           |  104 ++
+ docs/evidence/recovery/final-checks.py.txt         |   19 +
+ docs/evidence/recovery/final-database.log          |   17 +
+ docs/evidence/recovery/final-deploy.log            |  383 ++++++
+ docs/evidence/recovery/final-geography.log         |    1 +
+ docs/evidence/recovery/final-migrate.log           |    6 +
+ docs/evidence/recovery/final-quality-verified.log  |  210 +++
+ docs/evidence/recovery/final-quality.log           |   23 +
+ docs/evidence/recovery/final-services.log          |    7 +
+ docs/evidence/recovery/final-smoke.log             |   17 +
+ docs/evidence/recovery/final-source-quality.log    |  211 +++
+ docs/evidence/recovery/final-startup.log           |  367 ++++++
+ docs/evidence/recovery/final-sumo-real.log         |    5 +
+ docs/evidence/recovery/final-view-desktop.png      |  Bin 0 -> 569545 bytes
+ docs/evidence/recovery/final-view.json             |   24 +
+ docs/evidence/recovery/final-view.mjs.txt          |   17 +
+ docs/evidence/recovery/final-visual.log            |    1 +
+ docs/evidence/recovery/geography-readonly.log      |   11 +
+ docs/evidence/recovery/geography-verified.log      |    1 +
+ docs/evidence/recovery/geospatial-desktop.png      |  Bin 0 -> 353880 bytes
+ docs/evidence/recovery/geospatial-mobile.png       |  Bin 0 -> 246697 bytes
+ docs/evidence/recovery/geospatial-tablet.png       |  Bin 0 -> 328986 bytes
+ docs/evidence/recovery/git-changed-files.txt       |    0
+ docs/evidence/recovery/git-commit.log              |    0
+ docs/evidence/recovery/git-diff-stat.txt           |    0
+ docs/evidence/recovery/git-gates.json              |    0
+ docs/evidence/recovery/git_gates.py.txt            |   41 +
+ docs/evidence/recovery/hooks.log                   |    6 +
+ docs/evidence/recovery/import-manifest.json        |   71 ++
+ docs/evidence/recovery/layout-desktop.json         |   25 +
+ docs/evidence/recovery/layout-mobile.json          |   25 +
+ docs/evidence/recovery/layout-tablet.json          |   25 +
+ docs/evidence/recovery/m01-regression-desktop.png  |  Bin 0 -> 433605 bytes
+ docs/evidence/recovery/m01-regression-mobile.png   |  Bin 0 -> 255997 bytes
+ docs/evidence/recovery/m01-regression-tablet.png   |  Bin 0 -> 369941 bytes
+ docs/evidence/recovery/migration-rehearsal.log     |  154 +++
+ docs/evidence/recovery/mobile-fix-deploy.log       |  400 ++++++
+ docs/evidence/recovery/mobile-picking.log          |  101 ++
+ docs/evidence/recovery/mobile-sheet-check.log      |   61 +
+ docs/evidence/recovery/mobile-sheet-deploy.log     |  364 ++++++
+ docs/evidence/recovery/native-architecture.log     |    7 +
+ docs/evidence/recovery/netconvert-before-tools.log |    9 +
+ docs/evidence/recovery/netconvert.log              |   39 +
+ docs/evidence/recovery/npm-advisories.log          |   22 +
+ docs/evidence/recovery/optimized-deploy.log        |  365 ++++++
+ docs/evidence/recovery/playwright-results.json     | 1277 +++++++++++++++++++
+ docs/evidence/recovery/postgis-inspection.json     |  388 ++++++
+ docs/evidence/recovery/postgis-inspection.log      |    1 +
+ docs/evidence/recovery/python-advisories.log       |   19 +
+ docs/evidence/recovery/quality-corrected.log       |   27 +
+ docs/evidence/recovery/quality-first.log           |  209 +++
+ docs/evidence/recovery/quality-integrated.log      |   27 +
+ docs/evidence/recovery/quality-restored.log        |   74 ++
+ docs/evidence/recovery/quality-types-fixed.log     |  209 +++
+ docs/evidence/recovery/real-network-desktop.json   |  375 ++++++
+ docs/evidence/recovery/real-network-mobile.json    |  366 ++++++
+ docs/evidence/recovery/real-network-tablet.json    |  365 ++++++
+ docs/evidence/recovery/release-quality.log         |  211 +++
+ docs/evidence/recovery/repeat-import.log           |   16 +
+ docs/evidence/recovery/road-inspector-desktop.png  |  Bin 0 -> 577250 bytes
+ docs/evidence/recovery/road-inspector-mobile.png   |  Bin 0 -> 159472 bytes
+ docs/evidence/recovery/road-inspector-tablet.png   |  Bin 0 -> 487147 bytes
+ docs/evidence/recovery/run_check.py.txt            |   27 +
+ docs/evidence/recovery/smoke-result.json           |  108 ++
+ docs/evidence/recovery/source-manifest.json        |   27 +
+ docs/evidence/recovery/source-whitespace.log       |    0
+ docs/evidence/recovery/staged-secret-check.log     |   10 +
+ docs/evidence/recovery/staged-whitespace.log       |    0
+ docs/evidence/recovery/sumo-real.log               |    5 +
+ docs/evidence/recovery/verify-development.py.txt   |   32 +
+ docs/evidence/recovery/webgl-fallback-desktop.png  |  Bin 0 -> 151572 bytes
+ docs/evidence/recovery/webgl-fallback-mobile.png   |  Bin 0 -> 88067 bytes
+ docs/evidence/recovery/webgl-fallback-tablet.png   |  Bin 0 -> 154774 bytes
+ docs/evidence/recovery/worker-build.log            | 1339 ++++++++++++++++++++
+ docs/frontend-architecture.md                      |   14 +
+ docs/osm-import.md                                 |  124 ++
+ docs/performance.md                                |   18 +
+ docs/recovery-geography.md                         |  269 ++++
+ docs/security.md                                   |   15 +
+ docs/verification-m03.md                           |  294 +++++
+ docs/verification.md                               |  534 ++++----
+ infra/docker/worker.Dockerfile                     |    5 +-
+ .../src/earthmind_worker/real_network_smoke.py     |  494 ++++++++
+ .../tests/test_real_network_smoke.py               |  221 ++++
+ scripts/build_osm_context.py                       |  248 ++++
+ scripts/check_cesium_assets.py                     |    1 +
+ scripts/copy-cesium-assets.mjs                     |   19 +-
+ scripts/import_dubai_osm.py                        |  222 ++++
+ scripts/run_real_network_smoke.py                  |   54 +
+ scripts/verify_real_geography.py                   |   86 ++
+ 164 files changed, 15829 insertions(+), 385 deletions(-)

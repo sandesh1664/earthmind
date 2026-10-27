@@ -1,0 +1,251 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- recovery.spec.ts
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test recovery.spec.ts
+
+
+Running 6 tests using 2 workers
+
+(node:63269) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (18.6m)
+(node:63343) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [tablet] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (18.6m)
+(node:63348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [tablet] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (4.6m)
+(node:63372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (4.6m)
+  ✘  5 [mobile] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (15.5m)
+(node:63382) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 [mobile] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (36.8s)
+
+
+  1) [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "true"
+    Received: "false"
+    Timeout:  60000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 60000ms
+      - waiting for getByTestId('cesium-viewer')
+        6 × locator resolved to <div data-phase="ready" data-road-count="0" data-camera-moving="false" class="city-viewer-surface" data-testid="cesium-viewer" data-intersection-count="0" data-geometry-ready="false" data-local-building-count="402" data-layer-visibility="{"boundary":false,"roads":false,"intersections":false,"centroid":false,"highlight":false,"buildings":true,"imagery":true,"terrain":false}">…</div>
+          - unexpected value "false"
+
+
+      60 |   await expect(scene).toHaveAttribute("data-phase", "ready", {timeout:60_000});
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+    > 62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+         |                       ^
+      63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:62:23)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:79:17
+
+    Error Context: test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.getAttribute: Target page, context or browser has been closed
+
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+    > 63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+         |                                                    ^
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+      66 | }
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:52
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:3)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:182:17
+
+    Error Context: test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [tablet] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.getAttribute: Target page, context or browser has been closed
+
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+    > 63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+         |                                                    ^
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+      66 | }
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:52
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:3)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:79:17
+
+    Error Context: test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-tablet/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [tablet] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "true"
+    Received: "false"
+    Timeout:  60000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 60000ms
+      - waiting for getByTestId('cesium-viewer')
+        3 × locator resolved to <div data-phase="ready" data-road-count="0" data-camera-moving="false" class="city-viewer-surface" data-testid="cesium-viewer" data-intersection-count="0" data-geometry-ready="false" data-local-building-count="402" data-layer-visibility="{"boundary":false,"roads":false,"intersections":false,"centroid":false,"highlight":false,"buildings":true,"imagery":true,"terrain":false}">…</div>
+          - unexpected value "false"
+
+
+      60 |   await expect(scene).toHaveAttribute("data-phase", "ready", {timeout:60_000});
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+    > 62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+         |                       ^
+      63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:62:23)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:182:17
+
+    Error Context: test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-tablet/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('cesium-viewer')
+    Expected: "ready"
+    Received: "loading"
+    Timeout:  60000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('cesium-viewer') with timeout 60000ms
+      - waiting for getByTestId('cesium-viewer')
+        4 × locator resolved to <div data-road-count="0" data-phase="loading" data-camera-moving="false" data-layer-visibility="{}" class="city-viewer-surface" data-testid="cesium-viewer" data-intersection-count="0" data-geometry-ready="false" data-local-building-count="0">…</div>
+          - unexpected value "loading"
+
+
+      58 |   await expect(page.getByTestId("city-geographic-source")).toHaveText("REAL GEOGRAPHIC DATA — OpenStreetMap");
+      59 |   const scene = page.getByTestId("cesium-viewer");
+    > 60 |   await expect(scene).toHaveAttribute("data-phase", "ready", {timeout:60_000});
+         |                       ^
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+      63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:60:23)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:79:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      61 |   await expect(scene.locator("canvas")).toHaveCount(1);
+      62 |   await expect(scene).toHaveAttribute("data-geometry-ready", "true", {timeout:60_000});
+    > 63 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+         |                                                                                      ^
+      64 |   await expect(scene).toHaveAttribute("data-camera-moving", "false");
+      65 |   return scene;
+      66 | }
+        at openRealCity (/Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:63:86)
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:182:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-map-firs-b7ad2-ng-and-Dubai-camera-presets-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [desktop] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+    [desktop] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+    [tablet] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+    [tablet] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+    [mobile] › tests/browser/recovery.spec.ts:76:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+    [mobile] › tests/browser/recovery.spec.ts:179:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets 
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test recovery.spec.ts

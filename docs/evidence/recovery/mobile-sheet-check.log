@@ -1,0 +1,61 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- city.spec.ts --project=mobile --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test city.spec.ts --project=mobile --workers=1
+
+
+Running 3 tests using 1 worker
+
+(node:69804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (18.6s)
+  ✓  2 [mobile] › tests/browser/city.spec.ts:136:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (20.9s)
+  ✘  3 [mobile] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback (15.7s)
+
+
+  1) [mobile] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Inspect road provisional:e0', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Inspect road provisional:e0', exact: true }) with timeout 15000ms
+      - waiting for getByRole('button', { name: 'Inspect road provisional:e0', exact: true })
+
+
+      167 |     await expect(page.getByTestId("cesium-viewer")).toHaveAttribute("data-phase", "webgl-unavailable");
+      168 |     await expect(page.getByTestId("city-region-area")).toContainText("km²");
+    > 169 |     await expect(page.getByRole("button", {name:"Inspect road provisional:e0",exact:true})).toBeVisible();
+          |                                                                                             ^
+      170 |     await page.getByRole("button", {name:"Inspect road provisional:e0",exact:true}).click();
+      171 |     await expect(page.getByTestId("selected-road-identifier")).toHaveText("provisional:e0");
+      172 |     await page.screenshot({path:`../../docs/evidence/recovery/webgl-fallback-${info.project.name}.png`,fullPage:true});
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:169:93
+
+    Error Context: test-results/city-M03-actual-browser-wi-6f8f6--a-usable-metadata-fallback-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-actual-browser-wi-6f8f6--a-usable-metadata-fallback-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-actual-browser-wi-6f8f6--a-usable-metadata-fallback-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests/browser/city.spec.ts:161:1 › M03 actual browser without WebGL shows a usable metadata fallback 
+  2 passed (55.7s)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test city.spec.ts --project=mobile --workers=1

@@ -18,9 +18,12 @@ ARG SUMO_PACKAGE_VERSION=1.15.0+dfsg-1+deb12u1
 RUN test "$TARGETARCH" = arm64 \
     && test "$(dpkg --print-architecture)" = arm64 \
     && apt-get update \
-    && apt-get install -y --no-install-recommends "sumo=$SUMO_PACKAGE_VERSION" \
+    && apt-get install -y --no-install-recommends \
+        "sumo=$SUMO_PACKAGE_VERSION" "sumo-tools=$SUMO_PACKAGE_VERSION" \
     && sumo --version \
     && netconvert --version \
+    && test -r /usr/share/sumo/data/typemap/osmNetconvert.typ.xml \
+    && test -r /usr/share/sumo/data/xsd/net_file.xsd \
     && rm -rf /var/lib/apt/lists/* \
     && groupadd --gid 10001 earthmind \
     && useradd --uid 10001 --gid 10001 --create-home earthmind

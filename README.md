@@ -1,5 +1,33 @@
 # EARTHMIND · 0.1.0
 
+
+The geography recovery now opens a real **Downtown Dubai / Business Bay** OSM
+network by default. The retained local snapshot contains 2,364 directed road
+records and 1,560 intersection records. Cesium displays self-hosted OSM cartography
+and 402 footprint models with explicit OSM height tags. These are partial-coverage
+extrusions, not photorealistic ion tiles or field-verified building dimensions.
+Synthetic fixtures require **Development datasets** mode.
+
+```sh
+make setup
+make dev
+# Explicit first download/import; retained checksummed snapshots are reused:
+make import-dubai
+uv run --locked python scripts/verify_real_geography.py
+make smoke-real
+```
+
+The final command runs 3 synthetic vehicles on actual mapped imported roads and
+retains recorded SUMO output. It does not connect live traffic or animate fake
+vehicles. For browser acceptance, run `CITY_DIAGNOSTICS_ENABLED=true make dev`
+then `npm run test:browser -- --workers=1`. Public provider credentials remain
+optional; configure `CESIUM_ION_PUBLIC_TOKEN` and `CITY_IMAGERY_MODE=ion` for
+licensed ion imagery/building tiles. No token was fabricated.
+
+[Actual recovery results](docs/verification.md),
+[source/import workflow](docs/osm-import.md),
+[geographic architecture and limits](docs/recovery-geography.md).
+
 **AI-Powered Urban Intelligence Platform** — a local-first foundation for a
 Dubai urban digital twin research platform.
 
@@ -49,7 +77,7 @@ Select **Geospatial Data** in the dashboard to inspect the real persisted data.
   WebGL fallback and opt-in local rendering diagnostics.
 
 Select **City Explorer** in the dashboard. Navigation and M02 overlays work
-without a simulation. Buildings require authorized provider access; no real
+without a simulation. Optional ion building tiles require authorized provider access; no real
 building coverage, traffic, signal observations or forecast is invented.
 
 ## Implemented in M02
@@ -208,12 +236,12 @@ blank configuration disables creation. Other spatial endpoints are read-only
 or geometry calculations. This is a local development gate, not user identity.
 Keep the loopback bindings; shared deployment requires the security work above.
 
-M03 stops at geographic visualization. M04 is not started.
+The explicitly requested recovery adds real OSM import and a limited synthetic-demand SUMO smoke. No separate M04 work or operational traffic/AI feature is started.
 
 For a scoped public Cesium ion token, use the documented `CESIUM_ION_PUBLIC_TOKEN`
 runtime setting in ignored `.env`, recreate web and reload the viewer. No private
 server token belongs in that setting. Missing access explicitly blocks optional
-buildings/terrain while the local globe and PostGIS overlays remain usable.
+ion building tiles/terrain while the local globe and PostGIS overlays remain usable.
 
 Rendering verification and optional local diagnostics:
 

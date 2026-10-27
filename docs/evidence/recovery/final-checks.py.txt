@@ -1,0 +1,19 @@
+import os,subprocess,sys
+runner='/private/tmp/earthmind-recovery-results/run_check.py'
+environment={**os.environ,'CITY_DIAGNOSTICS_ENABLED':'true'}
+checks=[
+ ('repeat-import',['make','import-dubai']),
+ ('final-geography',['uv','run','--locked','python','scripts/verify_real_geography.py']),
+ ('final-sumo-real',['make','smoke-real']),
+ ('final-database',['uv','run','--locked','python','scripts/database_checks.py']),
+ ('migration-rehearsal',['uv','run','--locked','python','scripts/verify_migrations.py']),
+ ('postgis-inspection',['uv','run','--locked','python','scripts/inspect_geospatial_database.py','--output','docs/evidence/recovery/postgis-inspection.json']),
+ ('failure-recovery',['uv','run','--locked','python','scripts/failure_smoke.py']),
+ ('final-migrate',['make','migrate']),
+ ('final-smoke',['make','smoke']),
+ ('context-isolation',['uv','run','--locked','python','infra/verification/check_build_context.py']),
+ ('native-architecture',['uv','run','--locked','python','scripts/check_architecture.py']),
+ ('final-services',['docker','compose','ps','--all'])]
+for label,command in checks:
+ result=subprocess.run([sys.executable,runner,label,*command],env=environment)
+ if result.returncode:sys.exit(result.returncode)

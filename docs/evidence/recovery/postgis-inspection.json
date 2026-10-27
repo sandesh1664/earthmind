@@ -1,0 +1,388 @@
+{
+  "database_versions": [
+    "PostgreSQL 17.11 (Debian 17.11-1.pgdg12+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+    "POSTGIS=\"3.6.4 94d984b\" [EXTENSION] PGSQL=\"170\" GEOS=\"3.11.1-CAPI-1.17.1\" PROJ=\"9.8.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db\" (compiled against PROJ 9.1.1) LIBXML=\"2.9.14\" LIBJSON=\"0.16\" LIBPROTOBUF=\"1.4.1\" WAGYU=\"0.5.0 (Internal)\""
+  ],
+  "tables": [
+    "alembic_version",
+    "audit_events",
+    "data_sources",
+    "demand_profiles",
+    "intersections",
+    "network_versions",
+    "regions",
+    "road_edges",
+    "run_artifacts",
+    "run_metrics",
+    "scenario_interventions",
+    "scenarios",
+    "simulation_runs",
+    "spatial_ref_sys",
+    "system_metadata",
+    "users"
+  ],
+  "required_tables": [
+    "audit_events",
+    "data_sources",
+    "demand_profiles",
+    "intersections",
+    "network_versions",
+    "regions",
+    "road_edges",
+    "run_artifacts",
+    "run_metrics",
+    "scenario_interventions",
+    "scenarios",
+    "simulation_runs",
+    "users"
+  ],
+  "geometry_columns": [
+    [
+      "intersections",
+      "location",
+      2,
+      4326,
+      "POINT"
+    ],
+    [
+      "regions",
+      "boundary",
+      2,
+      4326,
+      "MULTIPOLYGON"
+    ],
+    [
+      "regions",
+      "centroid",
+      2,
+      4326,
+      "POINT"
+    ],
+    [
+      "road_edges",
+      "geom",
+      2,
+      4326,
+      "LINESTRING"
+    ]
+  ],
+  "indexes": [
+    [
+      "intersections",
+      "intersections_pkey",
+      "CREATE UNIQUE INDEX intersections_pkey ON public.intersections USING btree (id)"
+    ],
+    [
+      "intersections",
+      "ix_intersections_location_gist",
+      "CREATE INDEX ix_intersections_location_gist ON public.intersections USING gist (location)"
+    ],
+    [
+      "intersections",
+      "ix_intersections_network_version_id",
+      "CREATE INDEX ix_intersections_network_version_id ON public.intersections USING btree (network_version_id)"
+    ],
+    [
+      "regions",
+      "ix_regions_boundary_gist",
+      "CREATE INDEX ix_regions_boundary_gist ON public.regions USING gist (boundary)"
+    ],
+    [
+      "road_edges",
+      "ix_road_edges_geography_gist",
+      "CREATE INDEX ix_road_edges_geography_gist ON public.road_edges USING gist (((geom)::geography))"
+    ],
+    [
+      "road_edges",
+      "ix_road_edges_geom_gist",
+      "CREATE INDEX ix_road_edges_geom_gist ON public.road_edges USING gist (geom)"
+    ],
+    [
+      "road_edges",
+      "ix_road_edges_network_version_id",
+      "CREATE INDEX ix_road_edges_network_version_id ON public.road_edges USING btree (network_version_id)"
+    ],
+    [
+      "regions",
+      "regions_pkey",
+      "CREATE UNIQUE INDEX regions_pkey ON public.regions USING btree (id)"
+    ],
+    [
+      "regions",
+      "regions_slug_key",
+      "CREATE UNIQUE INDEX regions_slug_key ON public.regions USING btree (slug)"
+    ],
+    [
+      "road_edges",
+      "road_edges_pkey",
+      "CREATE UNIQUE INDEX road_edges_pkey ON public.road_edges USING btree (id)"
+    ],
+    [
+      "intersections",
+      "uq_intersection_network_id",
+      "CREATE UNIQUE INDEX uq_intersection_network_id ON public.intersections USING btree (network_version_id, id)"
+    ],
+    [
+      "intersections",
+      "uq_intersection_source_id",
+      "CREATE UNIQUE INDEX uq_intersection_source_id ON public.intersections USING btree (network_version_id, source_node_id)"
+    ],
+    [
+      "intersections",
+      "uq_intersection_sumo_id",
+      "CREATE UNIQUE INDEX uq_intersection_sumo_id ON public.intersections USING btree (network_version_id, sumo_node_id)"
+    ],
+    [
+      "road_edges",
+      "uq_road_edge_sumo_id",
+      "CREATE UNIQUE INDEX uq_road_edge_sumo_id ON public.road_edges USING btree (network_version_id, sumo_edge_id)"
+    ]
+  ],
+  "fixture": {
+    "area_km2": 1.3398134937911033,
+    "geometry": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              55.2685,
+              25.19
+            ],
+            [
+              55.2805,
+              25.19
+            ],
+            [
+              55.2805,
+              25.2
+            ],
+            [
+              55.2685,
+              25.2
+            ],
+            [
+              55.2685,
+              25.19
+            ]
+          ]
+        ]
+      ]
+    },
+    "centroid": {
+      "type": "Point",
+      "coordinates": [
+        55.2745,
+        25.195000053
+      ]
+    }
+  },
+  "plans": {
+    "bbox": {
+      "query": "SELECT id FROM road_edges WHERE geom && ST_MakeEnvelope(55.273,25.194,55.275,25.196,4326) AND ST_Intersects(geom,ST_MakeEnvelope(55.273,25.194,55.275,25.196,4326))",
+      "default": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "ix_road_edges_geom_gist",
+          "Relation Name": "road_edges",
+          "Alias": "road_edges",
+          "Startup Cost": 0.14,
+          "Total Cost": 20.66,
+          "Plan Rows": 1,
+          "Plan Width": 16,
+          "Actual Startup Time": 0.136,
+          "Actual Total Time": 0.136,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Index Cond": "((geom && '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry) AND (geom && '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry))",
+          "Rows Removed by Index Recheck": 0,
+          "Filter": "st_intersects(geom, '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry)",
+          "Rows Removed by Filter": 1,
+          "Shared Hit Blocks": 28,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 78,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.267,
+        "Triggers": [],
+        "Execution Time": 0.156
+      },
+      "forced": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "ix_road_edges_geom_gist",
+          "Relation Name": "road_edges",
+          "Alias": "road_edges",
+          "Startup Cost": 0.14,
+          "Total Cost": 20.66,
+          "Plan Rows": 1,
+          "Plan Width": 16,
+          "Actual Startup Time": 0.022,
+          "Actual Total Time": 0.022,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Index Cond": "((geom && '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry) AND (geom && '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry))",
+          "Rows Removed by Index Recheck": 0,
+          "Filter": "st_intersects(geom, '0103000020E610000001000000050000006DE7FBA9F1A24B408B6CE7FBA93139406DE7FBA9F1A24B401904560E2D3239403333333333A34B401904560E2D3239403333333333A34B408B6CE7FBA93139406DE7FBA9F1A24B408B6CE7FBA9313940'::geometry)",
+          "Rows Removed by Filter": 1,
+          "Shared Hit Blocks": 4,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.117,
+        "Triggers": [],
+        "Execution Time": 0.026
+      },
+      "forced_index_names": [
+        "ix_road_edges_geom_gist"
+      ],
+      "interpretation": "Forced index eligibility demonstration on eight synthetic rows; not a production benchmark"
+    },
+    "nearby_meters": {
+      "query": "SELECT road_edges.id \nFROM road_edges \nWHERE ST_DWithin(CAST(road_edges.geom AS geography), CAST(ST_SetSRID(ST_MakePoint(55.2742, 25.195), 4326) AS geography), 100)",
+      "default": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "ix_road_edges_geography_gist",
+          "Relation Name": "road_edges",
+          "Alias": "road_edges",
+          "Startup Cost": 0.27,
+          "Total Cost": 20.79,
+          "Plan Rows": 1,
+          "Plan Width": 16,
+          "Actual Startup Time": 1.664,
+          "Actual Total Time": 1.671,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Index Cond": "((geom)::geography && _st_expand('0101000020E6100000174850FC18A34B4052B81E85EB313940'::geography, '100'::double precision))",
+          "Rows Removed by Index Recheck": 0,
+          "Filter": "st_dwithin((geom)::geography, '0101000020E6100000174850FC18A34B4052B81E85EB313940'::geography, '100'::double precision, true)",
+          "Rows Removed by Filter": 0,
+          "Shared Hit Blocks": 140,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 38,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.233,
+        "Triggers": [],
+        "Execution Time": 1.685
+      },
+      "forced": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "ix_road_edges_geography_gist",
+          "Relation Name": "road_edges",
+          "Alias": "road_edges",
+          "Startup Cost": 0.27,
+          "Total Cost": 20.79,
+          "Plan Rows": 1,
+          "Plan Width": 16,
+          "Actual Startup Time": 0.01,
+          "Actual Total Time": 0.011,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Index Cond": "((geom)::geography && _st_expand('0101000020E6100000174850FC18A34B4052B81E85EB313940'::geography, '100'::double precision))",
+          "Rows Removed by Index Recheck": 0,
+          "Filter": "st_dwithin((geom)::geography, '0101000020E6100000174850FC18A34B4052B81E85EB313940'::geography, '100'::double precision, true)",
+          "Rows Removed by Filter": 0,
+          "Shared Hit Blocks": 4,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.228,
+        "Triggers": [],
+        "Execution Time": 0.016
+      },
+      "forced_index_names": [
+        "ix_road_edges_geography_gist"
+      ],
+      "interpretation": "Forced index eligibility demonstration on eight synthetic rows; not a production benchmark"
+    }
+  }
+}

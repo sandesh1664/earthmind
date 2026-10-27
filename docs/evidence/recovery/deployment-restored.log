@@ -1,0 +1,341 @@
+uv run --locked python scripts/check_architecture.py --host-only
+Docker engine: aarch64 (native ARM64)
+docker compose --env-file .env up --build --detach --wait --wait-timeout 240
+ Image earthmind-worker:m01 Building 
+ Image earthmind-python:m01 Building 
+ Image earthmind-web:m01 Building 
+ Image earthmind-postgis:m01 Building 
+ Image earthmind-python:m01 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.51kB done
+#1 DONE 0.0s
+
+#2 [migrate internal] load build definition from python.Dockerfile
+#2 DONE 0.0s
+
+#3 [worker internal] load build definition from worker.Dockerfile
+#3 transferring dockerfile: 1.68kB done
+#3 DONE 0.0s
+
+#2 [api internal] load build definition from python.Dockerfile
+#2 transferring dockerfile: 1.20kB done
+#2 DONE 0.0s
+
+#4 [web internal] load build definition from web.Dockerfile
+#4 transferring dockerfile: 1.14kB done
+#4 DONE 0.0s
+
+#5 [db internal] load build definition from Dockerfile
+#5 transferring dockerfile: 809B done
+#5 DONE 0.0s
+
+#6 [migrate internal] load metadata for ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#6 ...
+
+#7 [auth] library/python:pull token for registry-1.docker.io
+#7 DONE 0.0s
+
+#8 [auth] library/postgres:pull token for registry-1.docker.io
+#8 DONE 0.0s
+
+#9 [auth] library/node:pull token for registry-1.docker.io
+#9 DONE 0.0s
+
+#10 [migrate internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#10 ...
+
+#6 [migrate internal] load metadata for ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#6 DONE 1.4s
+
+#10 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#10 DONE 1.5s
+
+#11 [db internal] load .dockerignore
+#11 transferring context: 314B done
+#11 DONE 0.0s
+
+#12 [db internal] load metadata for docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27
+#12 DONE 1.5s
+
+#13 [db internal] load build context
+#13 transferring context: 203B done
+#13 DONE 0.0s
+
+#14 [migrate uv 1/1] FROM ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7
+#14 resolve ghcr.io/astral-sh/uv:0.11.12@sha256:3a59a3cdd5f7c217faa36e32dbc7fddbb0412889c2a0a5229f6d790e5a019dd7 0.0s done
+#14 DONE 0.0s
+
+#15 [db 1/3] FROM docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27
+#15 resolve docker.io/library/postgres:17-bookworm@sha256:858bb5e98eed02eb8cafbcdc007f9a65d1b613972028944a8ec2133ccaf80d27 0.0s done
+#15 DONE 0.0s
+
+#16 [db 2/3] RUN test "arm64" = arm64     && test "$(dpkg --print-architecture)" = arm64     && apt-get update     && apt-get install -y --no-install-recommends         "postgresql-17-postgis-3=3.6.4+dfsg-2.pgdg12+1"         "postgresql-17-postgis-3-scripts=3.6.4+dfsg-2.pgdg12+1"     && dpkg-query -W postgresql-17-postgis-3     && rm -rf /var/lib/apt/lists/*
+#16 CACHED
+
+#17 [db 3/3] COPY infra/docker/postgis/10-postgis.sql /docker-entrypoint-initdb.d/10-postgis.sql
+#17 CACHED
+
+#18 [migrate build 1/9] FROM docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70
+#18 resolve docker.io/library/python:3.12-slim-bookworm@sha256:6a0e06f5ba0b373d051aabd3fffb9b873f27f9a2a3a14bcbe37dee6f0e3bbc70 0.0s done
+#18 DONE 0.0s
+
+#19 [worker internal] load build context
+#19 transferring context: 62.55kB done
+#19 DONE 0.0s
+
+#20 [api internal] load build context
+#20 transferring context: 363.31kB 0.0s done
+#20 DONE 0.0s
+
+#21 [migrate build 8/9] COPY packages/simulation-worker/pyproject.toml packages/simulation-worker/pyproject.toml
+#21 CACHED
+
+#22 [migrate build 9/9] RUN uv sync --locked --no-dev --no-editable --package earthmind-api
+#22 CACHED
+
+#23 [migrate runtime 2/4] RUN groupadd --gid 10001 earthmind && useradd --uid 10001 --gid 10001 --create-home earthmind
+#23 CACHED
+
+#24 [migrate build 6/9] COPY apps/api apps/api
+#24 CACHED
+
+#25 [migrate build 7/9] COPY packages/contracts packages/contracts
+#25 CACHED
+
+#26 [migrate runtime 3/4] WORKDIR /app
+#26 CACHED
+
+#27 [migrate build 5/9] COPY pyproject.toml uv.lock .python-version ./
+#27 CACHED
+
+#28 [migrate runtime 4/4] COPY --from=build --chown=10001:10001 /app /app
+#28 CACHED
+
+#29 [migrate build 3/9] COPY --from=uv /uv /usr/local/bin/uv
+#29 CACHED
+
+#30 [worker runtime 2/4] RUN test "arm64" = arm64     && test "$(dpkg --print-architecture)" = arm64     && apt-get update     && apt-get install -y --no-install-recommends         "sumo=1.15.0+dfsg-1+deb12u1" "sumo-tools=1.15.0+dfsg-1+deb12u1"     && sumo --version     && netconvert --version     && test -r /usr/share/sumo/data/typemap/osmNetconvert.typ.xml     && test -r /usr/share/sumo/data/xsd/net_file.xsd     && rm -rf /var/lib/apt/lists/*     && groupadd --gid 10001 earthmind     && useradd --uid 10001 --gid 10001 --create-home earthmind
+#30 CACHED
+
+#31 [migrate build 2/9] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#31 CACHED
+
+#32 [worker build 6/9] COPY apps/api apps/api
+#32 CACHED
+
+#33 [worker build 9/9] RUN uv sync --locked --no-dev --no-editable --package earthmind-worker
+#33 CACHED
+
+#34 [worker build 5/9] COPY pyproject.toml uv.lock .python-version ./
+#34 CACHED
+
+#35 [migrate build 4/9] WORKDIR /app
+#35 CACHED
+
+#36 [worker runtime 3/4] WORKDIR /app
+#36 CACHED
+
+#37 [worker build 7/9] COPY packages/contracts packages/contracts
+#37 CACHED
+
+#38 [worker build 8/9] COPY packages/simulation-worker packages/simulation-worker
+#38 CACHED
+
+#39 [worker runtime 4/4] COPY --from=build --chown=10001:10001 /app /app
+#39 CACHED
+
+#40 [api] exporting to image
+#40 exporting layers done
+#40 exporting manifest sha256:0892dfa864e9e3cc205389cfc376238a2ab46bb174c433646685a57fed68d4d6 done
+#40 exporting config sha256:fecca916845f2980d763a998ae26211933be52911ae55abb57c2a381eb6eee81 done
+#40 exporting attestation manifest sha256:104d95d51c8f843c4d31dd00893b069d8c76e6dbeba3a2ec67e93df5f5dfc549 done
+#40 exporting manifest list sha256:c10509eca4fa403668c26fb16fc95ebc941955b3699ad8107b21e74a28742c7d
+#40 exporting manifest list sha256:c10509eca4fa403668c26fb16fc95ebc941955b3699ad8107b21e74a28742c7d 0.0s done
+#40 naming to docker.io/library/earthmind-python:m01 done
+#40 unpacking to docker.io/library/earthmind-python:m01 0.0s done
+#40 DONE 0.1s
+
+#41 [db] exporting to image
+#41 exporting layers done
+#41 exporting manifest sha256:6ae251aa7b6b00061cc5c29182a01fd9ac1b6dd2735a9d1befbe92a67c9573d4 0.0s done
+#41 exporting config sha256:8d6bfcac3ae9914ecb06e3aa9f344b4a0f05e8223f721a74e62d531c015e5469 done
+#41 exporting attestation manifest sha256:f0a9d873cbb1b21f69df049e37a7e1ecf2a37bd666372bb1c55226543cc69199 0.0s done
+#41 exporting manifest list sha256:d39de2dc95b5819708fc3ca6b8ee306396b13d3887a89ce6cdbd7cbdbe29eae7 done
+#41 naming to docker.io/library/earthmind-postgis:m01 done
+#41 unpacking to docker.io/library/earthmind-postgis:m01 done
+#41 DONE 0.1s
+
+#42 [migrate] exporting to image
+#42 exporting layers done
+#42 exporting manifest sha256:4920e5250ded23d98b728ab8f7760230730ecd48ecba81361411ad4d7db48cdc done
+#42 exporting config sha256:a154a0bf4007f3d2bee5c35bfb43b703387a9de735d14d3a4c8ca84ad45a9e32 done
+#42 exporting attestation manifest sha256:f6161509186c1e5c4521ede3a7b90a1fd5ee3d11d3363ae28c49cd831cb139c9 done
+#42 exporting manifest list sha256:d9d2d3eb90e52743ca6f95ce6f49c9fea2aa62aeedaf076b70810fffca3ab998 0.0s done
+#42 naming to docker.io/library/earthmind-python:m01 done
+#42 unpacking to docker.io/library/earthmind-python:m01 0.0s done
+#42 DONE 0.1s
+
+#43 [worker] exporting to image
+#43 exporting layers done
+#43 exporting manifest sha256:f0edfb8e9aa5422e55d6bdcaf3dc8f5ea1e657806b52d41e082d0fad07296264 done
+#43 exporting config sha256:b1f40474352c982e12d66bb5883fc63e5c38ac764f1eb35ec3d3198fe703e2c9 done
+#43 exporting attestation manifest sha256:5c74a8d35cefb7d08d1b00e0fe015e0f63e3f314d19d0ce946dda471531651c4 done
+#43 exporting manifest list sha256:84b5c8c6be332f3e57950e9882428c37720360eaa79229e19041b71c2246314c 0.0s done
+#43 naming to docker.io/library/earthmind-worker:m01 done
+#43 unpacking to docker.io/library/earthmind-worker:m01 0.0s done
+#43 DONE 0.1s
+
+#44 [db] resolving provenance for metadata file
+#44 DONE 0.0s
+
+#45 [migrate] resolving provenance for metadata file
+#45 DONE 0.0s
+
+#46 [worker] resolving provenance for metadata file
+#46 DONE 0.0s
+
+#47 [api] resolving provenance for metadata file
+#47 DONE 0.0s
+
+#48 [web internal] load metadata for docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#48 DONE 2.0s
+
+#11 [web internal] load .dockerignore
+#11 CACHED
+
+#49 [web build  1/12] FROM docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d
+#49 resolve docker.io/library/node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d 0.0s done
+#49 DONE 0.0s
+
+#50 [web internal] load build context
+#50 transferring context: 711.17kB 0.0s done
+#50 DONE 0.0s
+
+#51 [web build  7/12] COPY scripts/copy-cesium-assets.mjs scripts/copy-cesium-assets.mjs
+#51 CACHED
+
+#52 [web build  3/12] WORKDIR /app
+#52 CACHED
+
+#53 [web build  2/12] RUN test "arm64" = arm64 && test "$(dpkg --print-architecture)" = arm64
+#53 CACHED
+
+#54 [web build  4/12] COPY package.json package-lock.json ./
+#54 CACHED
+
+#55 [web build  5/12] COPY apps/web/package.json apps/web/package.json
+#55 CACHED
+
+#56 [web build  6/12] COPY packages/contracts/package.json packages/contracts/package.json
+#56 CACHED
+
+#57 [web build  8/12] COPY patches patches
+#57 CACHED
+
+#58 [web build  9/12] RUN npm ci
+#58 CACHED
+
+#59 [web build 10/12] COPY apps/web apps/web
+#59 DONE 0.0s
+
+#60 [web build 11/12] COPY packages/contracts packages/contracts
+#60 DONE 0.0s
+
+#61 [web build 12/12] RUN npm run build --workspace @earthmind/web
+#61 0.214 
+#61 0.214 > @earthmind/web@0.1.0 prebuild
+#61 0.214 > node ../../scripts/copy-cesium-assets.mjs
+#61 0.214 
+#61 0.367 Verified engine 26.4.0 patch 8753d08f6374a2a3e1d1e836c15bcdf4cd8b77d5517236048b5817b91f12ce1c; copied Cesium 1.146.0 static assets and notices to apps/web/public/cesium
+#61 0.368 
+#61 0.368 > @earthmind/web@0.1.0 build
+#61 0.368 > next build
+#61 0.368 
+#61 0.590 ▲ Next.js 16.4.3 (Turbopack)
+#61 0.634 ✓ Running next.config.ts took 44ms
+#61 0.639 
+#61 0.649   Creating an optimized production build ...
+#61 4.272 ✓ Compiled successfully in 3.6s
+#61 4.273   Running TypeScript ...
+#61 6.704 lib/city/api.ts(62,95): error TS1360: Type 'ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<{ type: ZodLiteral<"LineString">; coordinates: ZodArray<ZodTuple<[ZodNumber, ZodNumber], null>>; }, $strip>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>' does not satisfy the expected type 'ZodType<RoadFeature, unknown, $ZodTypeInternals<RoadFeature, unknown>>'.
+#61 6.704   The types of '_output.properties.metadata' are incompatible between these types.
+#61 6.704     Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+#61 6.704       Property 'osm_way_id' is incompatible with index signature.
+#61 6.704         Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704           Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704 lib/city/api.ts(77,95): error TS1360: Type 'ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<{ type: ZodLiteral<"Point">; coordinates: ZodTuple<[ZodNumber, ZodNumber], null>; }, $strip>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>' does not satisfy the expected type 'ZodType<IntersectionFeature, unknown, $ZodTypeInternals<IntersectionFeature, unknown>>'.
+#61 6.704   The types of '_output.properties.metadata' are incompatible between these types.
+#61 6.704     Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+#61 6.704       Property 'osm_way_id' is incompatible with index signature.
+#61 6.704         Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704           Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704 lib/city/api.ts(306,57): error TS2379: Argument of type 'ZodObject<{ total: ZodNumber; limit: ZodNumber; offset: ZodNumber; type: ZodLiteral<"FeatureCollection">; features: ZodArray<ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<...>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>>; }, $strip>' is not assignable to parameter of type 'ZodType<SpatialPage<RoadFeature>, unknown, $ZodTypeInternals<SpatialPage<RoadFeature>, unknown>>' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+#61 6.704   The types of '_output.features' are incompatible between these types.
+#61 6.704     Type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to type 'RoadFeature[]'.
+#61 6.704       Type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to type 'RoadFeature'.
+#61 6.704         The types of 'properties.metadata' are incompatible between these types.
+#61 6.704           Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+#61 6.704             Property 'osm_way_id' is incompatible with index signature.
+#61 6.704               Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704                 Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704 lib/city/api.ts(308,73): error TS2379: Argument of type 'ZodObject<{ total: ZodNumber; limit: ZodNumber; offset: ZodNumber; type: ZodLiteral<"FeatureCollection">; features: ZodArray<ZodPipe<ZodObject<{ type: ZodLiteral<"Feature">; id: ZodUUID; geometry: ZodObject<...>; properties: ZodObject<...>; }, $strip>, ZodTransform<...>>>; }, $strip>' is not assignable to parameter of type 'ZodType<SpatialPage<IntersectionFeature>, unknown, $ZodTypeInternals<SpatialPage<IntersectionFeature>, unknown>>' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+#61 6.704   The types of '_output.features' are incompatible between these types.
+#61 6.704     Type '{ properties: { network_version_id: string; source_node_id: string; intersection_type: string; is_synthetic: boolean; metadata?: { osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; ... 10 more ...; sumo_identifier_verified?: boolean | undefined; }; sumo_node_id?: string | null; is_sign...' is not assignable to type 'IntersectionFeature[]'.
+#61 6.704       Type '{ properties: { network_version_id: string; source_node_id: string; intersection_type: string; is_synthetic: boolean; metadata?: { osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; ... 10 more ...; sumo_identifier_verified?: boolean | undefined; }; sumo_node_id?: string | null; is_sign...' is not assignable to type 'IntersectionFeature'.
+#61 6.704         The types of 'properties.metadata' are incompatible between these types.
+#61 6.704           Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+#61 6.704             Property 'osm_way_id' is incompatible with index signature.
+#61 6.704               Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704                 Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704 tests/browser/recovery.spec.ts(37,86): error TS2345: Argument of type '{ properties: { network_version_id: string; sumo_edge_id: string; road_class: string; lane_count: number; length_m: number; is_one_way: boolean; is_synthetic: boolean; metadata?: { osm_way_id?: string | ... 1 more ... | undefined; ... 11 more ...; sumo_identifier_verified?: boolean | undefined; }; ... 4 more ...; en...' is not assignable to parameter of type 'RoadFeature'.
+#61 6.704   The types of 'properties.metadata' are incompatible between these types.
+#61 6.704     Type '{ osm_way_id?: string | null | undefined; osm_node_id?: string | null | undefined; osm_lanes?: string | null | undefined; osm_directional_lanes?: string | null | undefined; osm_maxspeed?: string | ... 1 more ... | undefined; ... 7 more ...; sumo_identifier_verified?: boolean | undefined; }' is not assignable to type 'Record<string, string | number | boolean | string[] | null>'.
+#61 6.704       Property 'osm_way_id' is incompatible with index signature.
+#61 6.704         Type 'string | null | undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.704           Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+#61 6.727 Failed to type check.
+#61 6.727 
+#61 6.745 npm error Lifecycle script `build` failed with error:
+#61 6.745 npm error code 1
+#61 6.745 npm error path /app/apps/web
+#61 6.745 npm error workspace @earthmind/web@0.1.0
+#61 6.745 npm error location /app/apps/web
+#61 6.745 npm error command failed
+#61 6.745 npm error command sh -c next build
+#61 ERROR: process "/bin/sh -c npm run build --workspace @earthmind/web" did not complete successfully: exit code: 1
+------
+ > [web build 12/12] RUN npm run build --workspace @earthmind/web:
+6.704           Type 'undefined' is not assignable to type 'string | number | boolean | string[] | null'.
+6.727 Failed to type check.
+6.727 
+6.745 npm error Lifecycle script `build` failed with error:
+6.745 npm error code 1
+6.745 npm error path /app/apps/web
+6.745 npm error workspace @earthmind/web@0.1.0
+6.745 npm error location /app/apps/web
+6.745 npm error command failed
+6.745 npm error command sh -c next build
+------
+web.Dockerfile:14
+
+--------------------
+
+  12 |     COPY apps/web apps/web
+
+  13 |     COPY packages/contracts packages/contracts
+
+  14 | >>> RUN npm run build --workspace @earthmind/web
+
+  15 |     
+
+  16 |     FROM node:22-bookworm-slim@sha256:de170b39439eb0e5a3444ad7d60b015614a381e10fecae2e30ec9e735122f38d AS runtime
+
+--------------------
+
+target web: failed to solve: process "/bin/sh -c npm run build --workspace @earthmind/web" did not complete successfully: exit code: 1
+
+
+
+View build details: docker-desktop://dashboard/build/default/default/0h6gdh0b4fdj76gvhz0z16v03
+
+make: *** [dev] Error 1

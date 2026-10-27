@@ -105,3 +105,21 @@ coordinates rather than inventing a generalization accuracy policy. Real dense
 imports, production load/concurrency, long-duration GPU/RSS behavior and physical
 Apple GPU performance remain unverified future work. No uniform licensed
 building coverage or real-world network accuracy follows from this test.
+
+
+## Real geography recovery scope
+
+The preserved M03 figures above concern the eight-road/300-road fixture and
+pre-recovery UI; they are historical, not a current real-city benchmark. Recovery
+adds 2,364 stored real roads, 1,560 nodes and 402 source-height building models.
+Only the bounded viewport subset (500 features/25k positions) is interactive at
+once. Self-hosted context is separately capped at 12 MiB/12k features/150k positions.
+
+Initial actual fresh-context software-rendered road-ready observations were
+19–27s with unnecessary ground classification. Ellipsoid-specific context
+rendering reduced subsequent measured ready observations to about 5–7 s in the
+recorded desktop/tablet checks. These are scenario observations, not a controlled
+hardware comparison or physical Apple GPU FPS. Exact final per-viewport timings
+and native fullscreen/lifecycle results are retained in verification.md/evidence.
+No current thirty-cycle real-context stability or GPU memory claim is made from
+the earlier M03 benchmark.

@@ -2,9 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readPublicCityConfig } from "../lib/city/config";
 
-test("missing public visualization token produces the usable offline configuration", () => {
+test("missing public visualization token produces the self-hosted OSM configuration", () => {
   assert.deepEqual(readPublicCityConfig({}), {
-    ionPublicToken: null, imageryAssetId: 3812, terrainAssetId: 1, diagnosticsEnabled: false,
+    ionPublicToken: null, imageryMode: "local-osm", imageryAssetId: 3812, terrainAssetId: 1, diagnosticsEnabled: false,
   });
 });
 test("viewer configuration exposes only the explicitly public token and allowlisted settings", () => {
@@ -20,4 +20,9 @@ test("malformed visualization configuration fails closed without forwarding arbi
   assert.throws(() => readPublicCityConfig({ CESIUM_ION_IMAGERY_ASSET_ID: "https://example.com" }));
   assert.throws(() => readPublicCityConfig({ CESIUM_ION_PUBLIC_TOKEN: "untrusted token with whitespace" }));
   assert.throws(() => readPublicCityConfig({ CESIUM_ION_TERRAIN_ASSET_ID: "-2" }));
+});
+
+test("imagery modes are allowlisted, not arbitrary tile URLs",()=>{
+ assert.equal(readPublicCityConfig({CITY_IMAGERY_MODE:"natural-earth"}).imageryMode,"natural-earth");
+ assert.throws(()=>readPublicCityConfig({CITY_IMAGERY_MODE:"https://arbitrary.example/tiles"}));
 });

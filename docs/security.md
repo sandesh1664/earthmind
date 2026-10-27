@@ -92,3 +92,18 @@ current terms. No token was invented and no prohibited tiles were harvested.
 Opt-in diagnostics expose numeric scene observations/projections, not native
 viewer objects or credentials; they are disabled by default. Local loopback and
 all earlier identity/role/TLS/backup limits still apply.
+
+
+## Real-geography recovery
+
+OSM downloads are explicit bounded CLI requests to allowlisted Overpass hosts,
+not public API fetch/proxy inputs. Original XML, snapshots and simulated outputs
+stay outside Git/build contexts. The importer rejects entities/declarations,
+unsafe/oversized geometry, checksum changes and invalid network mappings. New
+versions are published after validation without deleting fixtures or old data.
+Public feature metadata is projected by both Python and Zod allowlists; private
+original tags and artifact paths remain private. The browser verifies local OSM
+context hashes and finite geometry budgets, suppresses default GeoJSON HTML
+descriptions, and renders inspector text safely. SUMO smoke paths are typed local
+CLI arguments, and every route edge must match a checksum-verified imported DB ID.
+Explicit simulated traffic is never reported as live or measured traffic.

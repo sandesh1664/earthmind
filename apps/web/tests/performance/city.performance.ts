@@ -16,10 +16,13 @@ test("actual 300-road PostGIS display, selection and repeated viewer cleanup", a
     const start = Date.now();
     if (cycle===0) {
       await page.goto("/");
+      await page.getByRole("button",{name:"Overview",exact:true}).click();
+      await expect(page.locator(".city-cesium-host canvas")).toHaveCount(0);
       baselineCreditStyles = await page.evaluate(() => [...document.head.querySelectorAll("style")].filter(style => style.textContent?.includes(".cesium-credit-lightbox")).length);
     }
     await page.getByRole("button",{name:"City Explorer",exact:true}).click();
     await expect(page.getByRole("heading",{name:"Dubai digital twin",exact:true})).toBeVisible();
+    await page.getByRole("checkbox",{name:"Development datasets",exact:true}).check();
     const regions = page.getByLabel("3D study region",{exact:true});
     await expect(regions.locator(`option[value="${regionId}"]`)).toHaveCount(1);
     await regions.selectOption(regionId);
@@ -38,7 +41,7 @@ test("actual 300-road PostGIS display, selection and repeated viewer cleanup", a
     await expect(page.getByTestId("selected-road-identifier")).toHaveText("provisional:benchmark-e000");
     selectionMs.push(Date.now()-selected);
     await page.getByRole("button",{name:"Deselect",exact:true}).click();
-    if (cycle===29) await page.screenshot({path:"../../docs/evidence/m03/benchmark-300-roads.png",fullPage:true});
+    if (cycle===29) await page.screenshot({path:"../../docs/evidence/recovery/benchmark-300-roads.png",fullPage:true});
     await page.getByRole("button",{name:"Overview",exact:true}).click();
     await expect(page.locator(".city-cesium-host canvas")).toHaveCount(0);
     await expect.poll(() => page.evaluate(() => [...document.head.querySelectorAll("style")].filter(style => style.textContent?.includes(".cesium-credit-lightbox")).length)).toBe(baselineCreditStyles);
@@ -58,14 +61,14 @@ test("actual 300-road PostGIS display, selection and repeated viewer cleanup", a
     const extension = gl.getExtension("WEBGL_debug_renderer_info");
     return {api:String(gl.getParameter(gl.VERSION)), renderer:extension ? String(gl.getParameter(extension.UNMASKED_RENDERER_WEBGL)) : String(gl.getParameter(gl.RENDERER))};
   });
-  await mkdir("../../docs/evidence/m03",{recursive:true});
+  await mkdir("../../docs/evidence/recovery",{recursive:true});
   await page.getByRole("button",{name:"Overview",exact:true}).click();
   await page.waitForTimeout(2000);
   await session.send("HeapProfiler.collectGarbage");
   const finalMetrics = await session.send("Performance.getMetrics");
   const delayedPostUnmountJSHeapBytes = finalMetrics.metrics.find(metric => metric.name==="JSHeapUsedSize")?.value ?? null;
   const result = {domSamples,delayedPostUnmountJSHeapBytes,dataset:"Temporary project-generated synthetic QA network in actual PostGIS; 300 nodes and 300 roads; not Dubai observations",cycles:30,loadMs,selectionMs,postUnmountCollectedJSHeapBytes:heap,graphics,errors,scope:"Local Chromium/diagnostics-enabled; JS heap excludes GPU allocations; thirty cycles are not a long-duration leak or production throughput benchmark"};
-  await writeFile("../../docs/evidence/m03/performance-observations.json",JSON.stringify(result,null,2)+"\n");
+  await writeFile("../../docs/evidence/recovery/performance-observations.json",JSON.stringify(result,null,2)+"\n");
   expect(errors).toEqual([]);
   expect(loadMs).toHaveLength(30);
   const steadyHeap = heap.slice(-10);

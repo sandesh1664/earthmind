@@ -46,7 +46,7 @@ export function CesiumViewer(props: CesiumViewerProps) {
       element.replaceChildren();
     };
   },[]);
-  return <div className="city-viewer-surface" data-testid="cesium-viewer" data-phase={status.phase} data-road-count={status.roadCount} data-intersection-count={status.intersectionCount} data-geometry-ready={status.geometryReady ?? false} data-camera-moving={status.cameraMoving ?? false} data-layer-visibility={JSON.stringify(status.layerVisibility ?? {})} data-pick-x={status.pickProbe?.x} data-pick-y={status.pickProbe?.y} data-pick-id={status.pickProbe?.id}>
+  return <div className="city-viewer-surface" data-testid="cesium-viewer" data-phase={status.phase} data-local-building-count={status.localBuildingCount ?? 0} data-road-count={status.roadCount} data-intersection-count={status.intersectionCount} data-geometry-ready={status.geometryReady ?? false} data-camera-moving={status.cameraMoving ?? false} data-layer-visibility={JSON.stringify(status.layerVisibility ?? {})} data-pick-x={status.pickProbe?.x} data-pick-y={status.pickProbe?.y} data-pick-id={status.pickProbe?.id}>
     <div ref={host} className="city-cesium-host" aria-label="Interactive 3D geographic globe" />
     {status.phase !== "ready" && <div className="city-viewer-message" role={status.phase === "loading" ? "status" : "alert"}>{status.message}</div>}
   </div>;

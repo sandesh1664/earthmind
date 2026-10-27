@@ -90,6 +90,19 @@ export function FeatureInspector({
       ? intersections.find((item) => item.id === selection.id)
       : undefined;
   const building = selection?.kind === "building" ? selection : undefined;
+  const roadMetadata = road?.properties.metadata;
+  const nodeMetadata = node?.properties.metadata;
+  const roadIsSynthetic = road?.properties.is_synthetic === true;
+  const laneSource = roadMetadata?.lane_count_source;
+  const laneDescription = road && !roadIsSynthetic
+    ? laneSource === "osm_directional_tag" || laneSource === "osm" ? `${recorded(road.properties.lane_count)} · OSM directional tag`
+      : laneSource === "sumo_interpreted_osm_lanes" ? `${recorded(road.properties.lane_count)} · SUMO interpretation of OSM lanes`
+      : laneSource === "inferred_by_netconvert" ? `${recorded(road.properties.lane_count)} · inferred by netconvert`
+        : `${recorded(road.properties.lane_count)} · source provenance not recorded`
+    : road?.properties.lane_count;
+  const isOpenStreetMap = Boolean(source?.provider_name.toLowerCase().includes("openstreetmap")
+    || roadMetadata?.osm_way_id || road?.properties.source_edge_id?.startsWith("osm:way:")
+    || node?.properties.source_node_id.startsWith("osm:"));
   const hasSelection = Boolean(road || node || building);
   return (
     <section
@@ -145,7 +158,7 @@ export function FeatureInspector({
             >
               {road?.properties.is_synthetic || node?.properties.is_synthetic
                 ? "SYNTHETIC DATA"
-                : "STORED SOURCE DATA"}
+                : isOpenStreetMap ? "REAL GEOGRAPHIC DATA — OpenStreetMap" : "IMPORTED GEOGRAPHIC DATA"}
             </span>
           ) : (
             <span className="city-data-badge">EXTERNAL PROVIDER DATA</span>
@@ -163,6 +176,8 @@ export function FeatureInspector({
                   value={road.properties.sumo_edge_id}
                   testId="selected-road-identifier"
                 />
+                <Field name="Road name" value={road.properties.name} />
+                <Field name="OSM way ID" value={roadMetadata?.osm_way_id ?? (road.properties.source_edge_id?.startsWith("osm:way:") ? road.properties.source_edge_id.slice(8) : null)} />
                 <Field
                   name="Source identifier"
                   value={road.properties.source_edge_id}
@@ -173,13 +188,22 @@ export function FeatureInspector({
                 />
                 <Field
                   name="Lane count"
-                  value={road.properties.lane_count}
+                  value={laneDescription}
                   testId="selected-road-lanes"
                 />
                 <Field
                   name="Speed limit · m/s"
                   value={road.properties.speed_limit_mps}
                 />
+                {!roadIsSynthetic && <>
+                  <Field name="OSM lanes tag" value={roadMetadata?.osm_lanes} />
+                  <Field name="OSM directional lanes tag" value={roadMetadata?.osm_directional_lanes} />
+                  <Field name="OSM maxspeed tag" value={roadMetadata?.osm_maxspeed} />
+                  <Field name="Lane-count provenance" value={laneSource === "osm_directional_tag" || laneSource === "osm" ? "OSM directional tag; not field verified" : laneSource === "sumo_interpreted_osm_lanes" ? "SUMO directional interpretation of OSM lanes; not field verified" : laneSource === "inferred_by_netconvert" ? "Converter inference; not observed" : "Not recorded"} />
+                  <Field name="Turn restrictions" value={roadMetadata?.turn_restrictions_status === "partial_osm_relations_no_field_verification" ? "Partial OSM relations; not field verified" : "Completeness not established"} />
+                  <Field name="Geometry derivation" value={roadMetadata?.geometry_derivation} />
+                  <Field name="SUMO identifier verified" value={roadMetadata?.sumo_identifier_verified} />
+                </>}
                 <Field
                   name="Length · meters"
                   value={road.properties.length_m}
@@ -218,6 +242,7 @@ export function FeatureInspector({
                   }
                   value={node.properties.is_signalized}
                 />
+                {!node.properties.is_synthetic && <Field name="Signal provenance" value={nodeMetadata?.signal_status === "osm_tag_not_field_verified" ? "OSM tag; not field verified" : "Signal status not recorded"} />}
                 <Field
                   name="Longitude, latitude"
                   value={node.geometry.coordinates.join(", ")}
@@ -249,7 +274,9 @@ export function FeatureInspector({
           <p className="city-inspector-note">
             {building
               ? "Only available provider properties are shown. Building coverage and metadata vary by location."
-              : "Synthetic compatibility IDs are provisional. Structural validation does not establish real-world infrastructure accuracy."}
+              : roadIsSynthetic || node?.properties.is_synthetic
+                ? "Synthetic compatibility IDs are provisional. Structural validation does not establish real-world infrastructure accuracy."
+                : "Imported geometry is source-backed. Lane counts, speeds, turn restrictions and signals can be missing or inferred; this is not verified lane-level traffic data."}
           </p>
           <div className="city-inspector-actions">
             {!building && (

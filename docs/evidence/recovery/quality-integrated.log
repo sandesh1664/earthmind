@@ -1,0 +1,27 @@
+uv lock --check
+Resolved 67 packages in 12ms
+uv run --locked python packages/contracts/generate_types.py --check
+TypeScript schema literals match the canonical JSON schemas
+uv run --locked ruff check .
+E501 Line too long (106 > 100)
+  --> scripts/run_real_network_smoke.py:23:101
+   |
+21 |     command = [
+22 |         "docker", "compose", "run", "--rm", "--no-deps", "--user", f"{os.getuid()}:{os.getgid()}",
+23 |         "--volume", f"{directory}:/data", "worker", "python", "-m", "earthmind_worker.real_network_smoke",
+   |                                                                                                     ^^^^^^
+24 |         "--network", "/data/network.net.xml", "--import-manifest", "/data/import-manifest.json",
+25 |         "--output-dir", "/data/" + name,
+   |
+
+E501 Line too long (141 > 100)
+  --> scripts/run_real_network_smoke.py:28:101
+   |
+26 | …
+27 | …
+28 | …y / name), "traffic":"synthetic demand on real OSM geometry; not live Dubai traffic"}))
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+
+Found 2 errors.
+make: *** [lint] Error 1

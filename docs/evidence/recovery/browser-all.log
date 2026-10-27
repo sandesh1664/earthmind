@@ -1,0 +1,425 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test --workers=1
+
+
+Running 30 tests using 1 worker
+
+(node:66650) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [desktop] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (30.8s)
+(node:66674) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [desktop] › tests/browser/city.spec.ts:134:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (19.1s)
+  ✓   3 [desktop] › tests/browser/city.spec.ts:159:1 › M03 actual browser without WebGL shows a usable metadata fallback (797ms)
+  ✓   4 [desktop] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (1.8s)
+  ✓   5 [desktop] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (660ms)
+  ✘   6 [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (15.3s)
+(node:66756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [desktop] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (254ms)
+  ✘   8 [desktop] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (16.6s)
+(node:66767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 6540ms
+  ✓   9 [desktop] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (27.3s)
+Actual fresh-context navigation to nonempty ready roads: 6042ms
+  ✓  10 [desktop] › tests/browser/recovery.spec.ts:190:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (22.3s)
+(node:66863) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [tablet] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (30.0s)
+(node:66913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [tablet] › tests/browser/city.spec.ts:134:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (13.8s)
+  ✓  13 [tablet] › tests/browser/city.spec.ts:159:1 › M03 actual browser without WebGL shows a usable metadata fallback (710ms)
+  ✓  14 [tablet] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.1s)
+  ✓  15 [tablet] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (587ms)
+  ✘  16 [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (15.2s)
+(node:67015) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [tablet] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (265ms)
+  ✘  18 [tablet] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (16.6s)
+(node:67036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 5960ms
+  ✓  19 [tablet] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (20.8s)
+Actual fresh-context navigation to nonempty ready roads: 5058ms
+  ✓  20 [tablet] › tests/browser/recovery.spec.ts:190:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (20.1s)
+(node:67074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  21 [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution (22.1s)
+(node:67094) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [mobile] › tests/browser/city.spec.ts:134:1 › M03 actual repeated navigation destroys the old viewer and restores one scene (18.9s)
+  ✓  23 [mobile] › tests/browser/city.spec.ts:159:1 › M03 actual browser without WebGL shows a usable metadata fallback (857ms)
+  ✓  24 [mobile] › tests/browser/dashboard.spec.ts:10:1 › real dashboard connectivity, worker diagnostic, navigation and responsive layout (2.4s)
+  ✓  25 [mobile] › tests/browser/dashboard.spec.ts:85:1 › UI-only mocked dependency failure shows honest error state and supports retry (997ms)
+  ✘  26 [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 (16.6s)
+(node:67151) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [mobile] › tests/browser/geospatial.spec.ts:80:1 › M02 UI-only empty dataset is honest (798ms)
+  ✘  28 [mobile] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry (17.1s)
+(node:67187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 5466ms
+  ✓  29 [mobile] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (17.1s)
+Actual fresh-context navigation to nonempty ready roads: 4929ms
+  ✓  30 [mobile] › tests/browser/recovery.spec.ts:190:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (12.9s)
+
+
+  1) [desktop] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByRole('checkbox', { name: '3D buildings', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('checkbox', { name: '3D buildings', exact: true }) with timeout 15000ms
+      - waiting for getByRole('checkbox', { name: '3D buildings', exact: true })
+        32 × locator resolved to <input checked disabled type="checkbox" aria-label="3D buildings"/>
+           - unexpected value "disabled"
+
+
+      82 |   const localBuildings = await scene.getAttribute("data-local-building-count");
+      83 |   // Recovery permits actual OSM height-tagged context without an ion token.
+    > 84 |   if (localBuildings !== null && Number(localBuildings) > 0) await expect(buildingLayer).toBeEnabled();
+         |                                                                                          ^
+      85 |   else await expect(buildingLayer).toBeDisabled();
+      86 |   await expect(page.getByRole("checkbox", { name: "World terrain", exact: true })).toBeDisabled();
+      87 |   const roads = page.getByRole("checkbox", { name: "Road centerlines", exact: true });
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:84:90
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      33 |       exact: true,
+      34 |     }),
+    > 35 |   ).toBeVisible();
+         |     ^
+      36 |   await expect(
+      37 |     page.getByText("Synthetic study data", { exact: true }),
+      38 |   ).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:35:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ─
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      127 |       exact: true,
+      128 |     }),
+    > 129 |   ).toBeVisible();
+          |     ^
+      130 | });
+      131 |
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:129:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-UI-only-service-error-supports-retry-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-UI-only-service-error-supports-retry-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [tablet] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByRole('checkbox', { name: '3D buildings', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('checkbox', { name: '3D buildings', exact: true }) with timeout 15000ms
+      - waiting for getByRole('checkbox', { name: '3D buildings', exact: true })
+        32 × locator resolved to <input checked disabled type="checkbox" aria-label="3D buildings"/>
+           - unexpected value "disabled"
+
+
+      82 |   const localBuildings = await scene.getAttribute("data-local-building-count");
+      83 |   // Recovery permits actual OSM height-tagged context without an ion token.
+    > 84 |   if (localBuildings !== null && Number(localBuildings) > 0) await expect(buildingLayer).toBeEnabled();
+         |                                                                                          ^
+      85 |   else await expect(buildingLayer).toBeDisabled();
+      86 |   await expect(page.getByRole("checkbox", { name: "World terrain", exact: true })).toBeDisabled();
+      87 |   const roads = page.getByRole("checkbox", { name: "Road centerlines", exact: true });
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:84:90
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      33 |       exact: true,
+      34 |     }),
+    > 35 |   ).toBeVisible();
+         |     ^
+      36 |   await expect(
+      37 |     page.getByText("Synthetic study data", { exact: true }),
+      38 |   ).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:35:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [tablet] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      127 |       exact: true,
+      128 |     }),
+    > 129 |   ).toBeVisible();
+          |     ^
+      130 | });
+      131 |
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:129:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-tablet/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-UI-only-service-error-supports-retry-tablet/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-tablet/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-UI-only-service-error-supports-retry-tablet/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('selected-feature-id')
+    Expected: "892cdfec-5d1c-5880-aa32-66ff680f1756"
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('selected-feature-id') with timeout 15000ms
+      - waiting for getByTestId('selected-feature-id')
+
+
+      61 |   const y = Number(await scene.getAttribute("data-pick-y"));
+      62 |   await page.mouse.click(rect.x+x, rect.y+y);
+    > 63 |   await expect(page.getByTestId("selected-feature-id")).toHaveText(backend.features[0]!.id);
+         |                                                         ^
+      64 |   await expect(page.getByTestId("selected-road-identifier")).toHaveText(backend.features[0]!.properties.sumo_edge_id);
+      65 |   await expect(page.getByTestId("selected-road-lanes")).toHaveText(String(backend.features[0]!.properties.lane_count));
+      66 |   await expect(page.getByTestId("selected-road-length")).toHaveText(backend.features[0]!.properties.length_m.toLocaleString("en", {maximumFractionDigits:2}));
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/city.spec.ts:63:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/city-M03-real-Cesium-globe-fabb7-rols-layers-and-attribution-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      33 |       exact: true,
+      34 |     }),
+    > 35 |   ).toBeVisible();
+         |     ^
+      36 |   await expect(
+      37 |     page.getByText("Synthetic study data", { exact: true }),
+      38 |   ).toBeVisible();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:35:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-real-PostGI-c6cb5-ender-without-replacing-M01-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [mobile] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Downtown Dubai — Synthetic Study Region', exact: true })
+
+
+      127 |       exact: true,
+      128 |     }),
+    > 129 |   ).toBeVisible();
+          |     ^
+      130 | });
+      131 |
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/geospatial.spec.ts:129:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/geospatial-M02-UI-only-service-error-supports-retry-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/geospatial-M02-UI-only-service-error-supports-retry-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/geospatial-M02-UI-only-service-error-supports-retry-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9 failed
+    [desktop] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+    [desktop] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+    [desktop] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ──
+    [tablet] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+    [tablet] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+    [tablet] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ───
+    [mobile] › tests/browser/city.spec.ts:26:1 › M03 real Cesium globe, backend road picking, camera controls, layers and attribution 
+    [mobile] › tests/browser/geospatial.spec.ts:21:1 › M02 real PostGIS fixture, network validation and provenance render without replacing M01 
+    [mobile] › tests/browser/geospatial.spec.ts:102:1 › M02 UI-only service error supports retry ───
+  21 passed (6.2m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test --workers=1

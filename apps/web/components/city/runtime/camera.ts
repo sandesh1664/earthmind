@@ -46,7 +46,7 @@ export function applyCamera(viewer: Viewer, command: CameraCommand, data: SceneD
     });
   } else {
     const target = preset in CAMERA_PRESETS ? CAMERA_PRESETS[preset as keyof typeof CAMERA_PRESETS] : CAMERA_PRESETS.downtown;
-    viewer.camera.flyTo({ destination: Cartesian3.fromDegrees(target.longitude,target.latitude,target.height), orientation: { heading: 0, pitch: CMath.toRadians(target.pitch), roll: 0 }, duration: 1.25 });
+    viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(target.longitude,target.latitude),0),{offset:new HeadingPitchRange(0,CMath.toRadians(target.pitch),target.height),duration:1.25});
   }
   viewer.scene.requestRender();
 }

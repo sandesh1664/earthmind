@@ -52,3 +52,19 @@
 - Keep performance QA datasets clearly synthetic and remove only task-owned rows;
   distinguish JS heap/software-renderer observations from GPU/production benchmarks.
 - Do not push or begin M04 without explicit authorization.
+
+- The owner explicitly authorized geography recovery beyond the original M03 demo:
+  real bounded OSM import, native netconvert lineage and a limited synthetic-demand
+  SUMO smoke are now implemented. Do not describe these as deferred future work.
+- Default City Explorer to imported real datasets. Synthetic fixtures belong only
+  to explicit development mode and must remain separate/versioned.
+- Keep original licensed OSM extracts/manifests/SUMO outputs under ignored data/,
+  not Git or Docker build contexts. Never refresh/overwrite an existing snapshot.
+- Local OSM context uses source-tagged heights only, checksum-verified artifacts
+  and ellipsoid-only rendering. Missing height tags remain unmodeled/flat;
+  no level-to-height guesses or claim of photorealistic/ion coverage.
+- Smoke routes must use checksum-verified PostGIS-imported SUMO edge mappings,
+  not unimported edges outside the study extent. Synthetic vehicles are not live.
+- Public Overpass is an explicit bounded import source, not a runtime backend.
+  Do not run public raster tile scraping/headless pan/zoom. Ordinary CI stays
+  offline; real-data CI requires the explicit workflow input and actual import.

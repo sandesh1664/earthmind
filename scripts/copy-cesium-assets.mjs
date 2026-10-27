@@ -1,5 +1,5 @@
 /** Reproducible local copy of the pinned npm package; never downloads provider tiles. */
-import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { createHash } from "node:crypto";
 import path from "node:path";
@@ -36,3 +36,20 @@ await writeFile(path.join(destination, "manifest.json"), JSON.stringify({
   directories: ["Workers", "ThirdParty", "Assets", "Widgets"],
 }, null, 2) + "\n");
 console.log(`Verified engine ${engine.version} patch ${expectedPatchedSource}; copied Cesium ${metadata.version} static assets and notices to apps/web/public/cesium`);
+
+// Docker mounts these generated provider artifacts at runtime. Direct Next.js
+// development/builds copy only the three public context files, never raw OSM or SUMO data.
+const contextRoot=path.join(root,"data/dubai-osm/recovery-v1/context");
+let hasContext=true;
+try {await access(path.join(contextRoot,"manifest.json"));} catch(error) {
+ if(error?.code!=="ENOENT")throw error;
+ hasContext=false;
+}
+if(hasContext){
+ const publicContext=path.join(root,"apps/web/public/geography");
+ await mkdir(publicContext,{recursive:true});
+ for(const name of ["manifest.json","context.geojson","buildings.geojson"]){
+  await cp(path.join(contextRoot,name),path.join(publicContext,name));
+ }
+ console.log("Prepared checksum-validated local OSM context for direct Next.js development");
+}

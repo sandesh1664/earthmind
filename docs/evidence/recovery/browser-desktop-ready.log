@@ -1,0 +1,69 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- recovery.spec.ts --project=desktop --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test recovery.spec.ts --project=desktop --workers=1
+
+
+Running 2 tests using 1 worker
+
+(node:65957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 27396ms
+  ✘  1 [desktop] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context (1.6m)
+(node:66018) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Actual fresh-context navigation to nonempty ready roads: 19475ms
+  ✓  2 [desktop] › tests/browser/recovery.spec.ts:190:1 › recovery map-first real view, native fullscreen resizing and Dubai camera presets (1.6m)
+
+
+  1) [desktop] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.check: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for getByRole('checkbox', { name: 'Road centerlines', exact: true })
+        - locator resolved to <input checked type="checkbox" aria-label="Road centerlines"/>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+
+
+      166 |   await expect(scene).toHaveAttribute("data-road-count", "0");
+      167 |   await expect.poll(async () => JSON.parse(await scene.getAttribute("data-layer-visibility") ?? "{}").roads as boolean).toBe(false);
+    > 168 |   await roads.check();
+          |               ^
+      169 |   await expect.poll(async () => Number(await scene.getAttribute("data-road-count"))).toBeGreaterThan(0);
+      170 |   const buildings = page.getByRole("checkbox", {name:"3D buildings",exact:true});
+      171 |   await expect(buildings).toBeEnabled();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/recovery.spec.ts:168:15
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/recovery-recovery-real-OSM-bdfb9-s-and-height-tagged-context-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/browser/recovery.spec.ts:87:1 › recovery real OSM default, native road picking, source metadata, layers and height-tagged context 
+  1 passed (3.2m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test recovery.spec.ts --project=desktop --workers=1

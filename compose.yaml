@@ -136,10 +136,13 @@ services:
       dockerfile: infra/docker/web.Dockerfile
     environment:
       API_INTERNAL_URL: http://api:8000
+      CITY_IMAGERY_MODE: ${CITY_IMAGERY_MODE:-local-osm}
       CESIUM_ION_PUBLIC_TOKEN: ${CESIUM_ION_PUBLIC_TOKEN:-}
       CESIUM_ION_IMAGERY_ASSET_ID: ${CESIUM_ION_IMAGERY_ASSET_ID:-3812}
       CESIUM_ION_TERRAIN_ASSET_ID: ${CESIUM_ION_TERRAIN_ASSET_ID:-1}
       CITY_DIAGNOSTICS_ENABLED: ${CITY_DIAGNOSTICS_ENABLED:-false}
+    volumes:
+      - ./data/dubai-osm/recovery-v1/context:/app/apps/web/public/geography:ro
     ports:
       - "127.0.0.1:${WEB_PORT:-3000}:3000"
     depends_on:

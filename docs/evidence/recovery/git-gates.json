@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "scope": "actual source/staged gates and successful initial focused commit; evidence added by verification-only amendment",
+  "checks": {
+    "source-whitespace": {
+      "exit_code": 0,
+      "output": "source-whitespace.log"
+    },
+    "candidate-secret-check": {
+      "exit_code": 0,
+      "output": "candidate-secret-check.log"
+    },
+    "staged-whitespace": {
+      "exit_code": 0,
+      "output": "staged-whitespace.log"
+    },
+    "staged-secret-check": {
+      "exit_code": 0,
+      "output": "staged-secret-check.log"
+    },
+    "hooks": {
+      "exit_code": 0,
+      "output": "hooks.log"
+    },
+    "final-staged-secret-check": {
+      "exit_code": 0,
+      "output": "final-staged-secret-check.log"
+    },
+    "final-staged-whitespace": {
+      "exit_code": 0,
+      "output": "final-staged-whitespace.log"
+    },
+    "git-commit": {
+      "exit_code": 0,
+      "output": "git-commit.log"
+    }
+  },
+  "initial_post_commit_porcelain": "",
+  "initial_clean_status_observed": true,
+  "final_identity_command": "git log -1 --format=%H",
+  "base_commit": "91e97f1c498e1ca511a007674c966eb380d2c6e4",
+  "remote_push_performed": false,
+  "separate_M04_started": false
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   AlertTriangle,
@@ -12,6 +12,9 @@ import {
   Layers3,
   LoaderCircle,
   MapPin,
+  Maximize,
+  Minimize,
+  FlaskConical,
   PanelRightClose,
   PanelRightOpen,
   RefreshCw,
@@ -43,7 +46,26 @@ const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
 
 export function CityExplorer() {
   const [camera, setCamera] = useState<CameraSnapshot | null>(null);
-  const data = useCityData(camera);
+  const [developmentMode, setDevelopmentMode] = useState(false);
+  const data = useCityData(camera, developmentMode);
+  const workspaceRef = useRef<HTMLElement>(null);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [fullscreenError, setFullscreenError] = useState("");
+  useEffect(() => {
+    const changed = () => setFullscreen(document.fullscreenElement === workspaceRef.current);
+    document.addEventListener("fullscreenchange", changed);
+    return () => document.removeEventListener("fullscreenchange", changed);
+  }, []);
+  const toggleFullscreen = async () => {
+    setFullscreenError("");
+    try {
+      if (document.fullscreenElement === workspaceRef.current) await document.exitFullscreen();
+      else if (workspaceRef.current?.requestFullscreen) await workspaceRef.current.requestFullscreen();
+      else throw new Error("Fullscreen is unavailable in this browser.");
+    } catch {
+      setFullscreenError("Fullscreen could not start. Use the expanded map or your browser window controls.");
+    }
+  };
   const [layers, setLayers] = useState(DEFAULT_LAYERS);
   const [picked, setPicked] = useState<{
     scope: string;
@@ -54,7 +76,7 @@ export function CityExplorer() {
     preset: "downtown",
     sequence: 0,
   });
-  const [inspectorOpen, setInspectorOpen] = useState(true);
+  const [inspectorOpen, setInspectorOpen] = useState(false);
   const [layersOpen, setLayersOpen] = useState(false);
   const [featureTab, setFeatureTab] = useState<"roads" | "intersections">(
     "roads",
@@ -70,7 +92,10 @@ export function CityExplorer() {
       : null;
   const ready = viewerStatus?.phase === "ready";
   const statusCallback = useCallback(
-    (status: ViewerStatus) => setViewerStatus(status),
+    (status: ViewerStatus) => {
+      setViewerStatus(status);
+      if (status.phase === "webgl-unavailable") setInspectorOpen(true);
+    },
     [],
   );
   const cameraCallback = useCallback(
@@ -81,8 +106,9 @@ export function CityExplorer() {
     (feature: FeatureSelection) => {
       setPicked(feature ? { scope, feature } : null);
       if (feature) setInspectorOpen(true);
+      else if (window.matchMedia("(max-width: 760px)").matches) setInspectorOpen(viewerStatus?.phase === "webgl-unavailable");
     },
-    [scope],
+    [scope, viewerStatus?.phase],
   );
   const command = useCallback(
     (preset: CameraPreset) =>
@@ -106,11 +132,15 @@ export function CityExplorer() {
   );
   const isSynthetic =
     data.network?.is_synthetic ?? data.region?.metadata.is_synthetic;
+  const isOSM = !isSynthetic && Boolean(data.network && (data.network.source_format.toLowerCase().includes("osm") || data.source?.provider_name.toLowerCase().includes("openstreetmap")));
+  const basemapSource = data.config?.imageryMode === "natural-earth" ? "Natural Earth"
+    : data.config?.imageryMode === "ion" ? "Cesium ion" : "OpenStreetMap";
   const selectedRows = featureTab === "roads" ? data.roads : data.intersections;
 
   return (
     <section
-      className="city-workspace"
+      ref={workspaceRef}
+      className={`city-workspace${developmentMode ? " city-development-mode" : ""}`}
       aria-label="Dubai 3D digital twin"
       onKeyDown={(event) => {
         if (event.key === "Escape") {
@@ -121,12 +151,12 @@ export function CityExplorer() {
     >
       <div className="city-heading">
         <div>
-          <p className="city-eyebrow">M03 · GEOGRAPHIC VISUALIZATION</p>
+          <p className="city-eyebrow">DOWNTOWN DUBAI / BUSINESS BAY</p>
           <h2>Dubai digital twin</h2>
-          <p>Explore geographic context and inspect versioned study data.</p>
+          <p>Geographic exploration · source-backed road intelligence</p>
         </div>
         <span className="city-live-badge">
-          <Globe2 size={14} /> 3D EXPLORER
+          <Globe2 size={14} /> {isOSM ? "OPENSTREETMAP" : developmentMode ? "DEVELOPMENT DATA" : "GEOGRAPHIC WORKSPACE"}
         </span>
       </div>
 
@@ -181,6 +211,28 @@ export function CityExplorer() {
           </select>
         </label>
         <div className="city-context-actions">
+          <label className="city-development-toggle" title="Show synthetic fixtures instead of imported geographic datasets">
+            <input
+              type="checkbox"
+              aria-label="Development datasets"
+              checked={developmentMode}
+              onChange={(event) => {
+                setDevelopmentMode(event.target.checked);
+                setLayers(current=>({...current,intersections:event.target.checked,boundary:event.target.checked}));
+                select(null);
+                setCamera(null);
+              }}
+            />
+            <FlaskConical size={14} /> <span>Development datasets</span>
+          </label>
+          <button
+            type="button"
+            aria-label={fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            aria-pressed={fullscreen}
+            onClick={() => void toggleFullscreen()}
+          >
+            {fullscreen ? <Minimize size={17} /> : <Maximize size={17} />}
+          </button>
           <button
             type="button"
             aria-expanded={layersOpen}
@@ -215,6 +267,13 @@ export function CityExplorer() {
         </div>
       </div>
 
+      {fullscreenError && <p className="city-fullscreen-error" role="alert">{fullscreenError}</p>}
+      {!developmentMode && !data.loading && !data.region && (
+        <p className="city-import-notice" role="status">
+          No imported road dataset is available. The geographic basemap remains operational.
+          Import the bounded OpenStreetMap extract to inspect real roads; development datasets are separate fixtures.
+        </p>
+      )}
       {data.errors.length > 0 && (
         <div className="city-query-errors" role="alert">
           <AlertTriangle size={17} />
@@ -229,6 +288,15 @@ export function CityExplorer() {
           </button>
         </div>
       )}
+      <div className="city-provenance-strip" aria-label="Geographic data provenance">
+        <span className={isOSM ? "city-real-source" : ""} data-testid="city-geographic-source">
+          {isOSM ? "REAL GEOGRAPHIC DATA — OpenStreetMap" : isSynthetic ? "SYNTHETIC GEOGRAPHY — Development fixture" : `GEOGRAPHIC BASEMAP — ${basemapSource}`}
+        </span>
+        <span>3D BUILDINGS — {viewerStatus?.buildings.status === "ready" ? "OSM tagged heights / provider coverage dependent" : data.config?.ionPublicToken ? "Provider supplied, availability pending" : "Token not configured"}</span>
+        <span>SYNTHETIC TRAFFIC — CLI smoke only; no viewer playback</span>
+        <span>LIVE TRAFFIC — Not connected</span>
+        <span>INFERRED SIGNALS — Not field verified</span>
+      </div>
       {isSynthetic && (
         <div className="city-synthetic-strip" role="note">
           <ShieldCheck size={15} />
@@ -252,7 +320,7 @@ export function CityExplorer() {
                 {isSynthetic
                   ? "SYNTHETIC OVERLAYS"
                   : data.network
-                    ? "STORED NETWORK"
+                    ? "OSM ROAD NETWORK"
                     : "GEOGRAPHIC CONTEXT"}
               </span>
             </div>
@@ -328,7 +396,7 @@ export function CityExplorer() {
               </span>
               <span>
                 <i className="city-legend-node signal" />
-                Stored signal flag
+                {isSynthetic ? "Simulated signal flag" : "OSM signal tag · unverified"}
               </span>
               <span>
                 <i className="city-legend-selected" />
@@ -443,11 +511,11 @@ export function CityExplorer() {
                             className={road ? "city-row-road" : "city-row-node"}
                           />
                           <span>
-                            {label}
+                            {"name" in feature.properties && feature.properties.name ? feature.properties.name : label}
                             <small>
                               {feature.properties.is_synthetic
                                 ? "Synthetic"
-                                : "Stored source"}
+                                : "OpenStreetMap · source geometry"}
                             </small>
                           </span>
                           <Crosshair size={12} />
@@ -472,6 +540,7 @@ export function CityExplorer() {
               onChange={setLayers}
               status={viewerStatus}
               hasProviderAccess={Boolean(data.config?.ionPublicToken)}
+              hasLocalBuildings={!isSynthetic && (data.config?.imageryMode ?? "local-osm") === "local-osm"}
             />
             <button
               type="button"
@@ -484,6 +553,8 @@ export function CityExplorer() {
         )}
       </div>
 
+      <details className="city-metadata">
+        <summary><Database size={14} /> Network &amp; source details <span>{data.network ? `${data.network.edge_count.toLocaleString("en")} roads · ${data.network.node_count.toLocaleString("en")} nodes` : "No network selected"}</span><ChevronDown size={13} /></summary>
       <div className="city-summary-grid">
         <section className="city-study-summary">
           <div className="city-panel-heading">
@@ -558,6 +629,8 @@ export function CityExplorer() {
           </p>
         </section>
       </div>
+      {!isSynthetic && <section className="city-experiment-help"><strong>Reproducible real-network SUMO smoke</strong><p>Run <code>make smoke-real</code> from the repository. It creates three synthetic vehicles on mapped imported roads, verifies actual movement/completion, and saves recorded FCD and metrics. No live traffic or browser vehicle playback is connected.</p></section>}
+      </details>
 
       {data.messages.length > 0 && (
         <div className="city-data-messages" role="status">
@@ -570,10 +643,9 @@ export function CityExplorer() {
         <p className="city-provider-notice">
           <Globe2 size={15} />
           <span>
-            Using the bundled Natural Earth basemap and ellipsoid globe.
-            Optional ion imagery, terrain and 3D buildings require a scoped
-            public visualization token. Building access:{" "}
-            <strong>BLOCKED — token not configured.</strong>
+            {data.config?.imageryMode === "natural-earth" ? "Natural Earth basemap" : "Local OpenStreetMap cartography"}; ellipsoid terrain.
+            <strong>Cesium ion building tiles unavailable:</strong> set CESIUM_ION_PUBLIC_TOKEN.
+            OSM tagged-height context coverage is partial.
           </span>
         </p>
       )}

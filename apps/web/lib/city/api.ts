@@ -6,6 +6,7 @@ import {
   NetworkListSchema,
   NetworkValidationSchema,
   PositionSchema,
+  PublicFeatureMetadataSchema,
   RegionFeatureSchema,
   RegionListSchema,
 } from "../geospatial";
@@ -45,6 +46,7 @@ export const CityRoadSchema = z.object({
   }), "Road geometry has no extent"),
   properties: z.object({
     network_version_id: uuid,
+    metadata: PublicFeatureMetadataSchema.optional(),
     sumo_edge_id: z.string().min(1).max(255),
     source_edge_id: z.string().max(255).nullable().optional(),
     name: z.string().max(255).nullable().optional(),
@@ -65,6 +67,7 @@ export const CityIntersectionSchema = z.object({
   geometry: z.object({type: z.literal("Point"), coordinates: PositionSchema}).strip(),
   properties: z.object({
     network_version_id: uuid,
+    metadata: PublicFeatureMetadataSchema.optional(),
     source_node_id: z.string().min(1).max(255),
     sumo_node_id: z.string().max(255).nullable().optional(),
     intersection_type: z.string().min(1).max(128),

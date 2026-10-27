@@ -51,6 +51,42 @@ def public_region_metadata(value: dict[str, Any]) -> dict[str, JsonValue]:
     )
 
 
+PUBLIC_FEATURE_METADATA = {
+    "osm_way_id",
+    "osm_way_ids",
+    "osm_node_id",
+    "osm_lanes",
+    "osm_directional_lanes",
+    "osm_maxspeed",
+    "lane_count_source",
+    "speed_limit_source",
+    "turn_restrictions_status",
+    "sumo_identifier_verified",
+    "geometry_derivation",
+    "signal_status",
+    "node_origin",
+}
+
+
+def public_feature_metadata(value: dict[str, Any]) -> dict[str, JsonValue]:
+    """Expose bounded provenance facts, never arbitrary original source tags/URIs."""
+    result: dict[str, JsonValue] = {}
+    for key, item in value.items():
+        if key not in PUBLIC_FEATURE_METADATA:
+            continue
+        if item is None or isinstance(item, bool):
+            result[key] = item
+        elif isinstance(item, str):
+            result[key] = item[:256]
+        elif (
+            isinstance(item, list)
+            and len(item) <= 64
+            and all(isinstance(part, str) and len(part) <= 128 for part in item)
+        ):
+            result[key] = item
+    return result
+
+
 def bounds_expression(geometry: Any) -> list[Any]:
     return [
         func.ST_XMin(geometry),
@@ -250,6 +286,7 @@ def edge_feature(edge: RoadEdge, encoded: str, distance_m: float | None = None) 
         "is_synthetic": edge.metadata_.get("is_synthetic") is True,
         "start_intersection_id": str(edge.start_intersection_id),
         "end_intersection_id": str(edge.end_intersection_id),
+        "metadata": public_feature_metadata(edge.metadata_),
     }
     if distance_m is not None:
         properties["distance_m"] = distance_m
@@ -336,6 +373,7 @@ async def query_intersections(
                 "intersection_type": node.intersection_type,
                 "is_signalized": node.is_signalized,
                 "is_synthetic": node.metadata_.get("is_synthetic") is True,
+                "metadata": public_feature_metadata(node.metadata_),
             },
         )
         for node, encoded in cast(Sequence[tuple[Intersection, str]], rows)
