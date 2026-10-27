@@ -2,6 +2,7 @@ import type { Network, Region, RegionFeature } from "../geospatial";
 
 export type Position = [number, number];
 export type Bounds = [number, number, number, number];
+export type VisualizationMode = "engineering" | "realistic";
 export interface RoadFeature {
   type: "Feature";
   id: string;
@@ -84,6 +85,8 @@ export interface ViewerStatus {
   message: string;
   buildings: ProviderState; imagery: ProviderState; terrain: ProviderState;
   roadCount: number; intersectionCount: number;
+  visualizationMode?: VisualizationMode;
+  viewerInstanceId?: number;
   localBuildingCount?: number;
   geometryReady?: boolean;
   cameraMoving?: boolean;
@@ -98,6 +101,7 @@ export interface ViewerStatus {
 export interface CesiumViewerProps {
   data: SceneData;
   config: CityConfig;
+  visualizationMode?: VisualizationMode;
   layers: LayerSettings;
   selection: FeatureSelection;
   cameraCommand: CameraCommand;

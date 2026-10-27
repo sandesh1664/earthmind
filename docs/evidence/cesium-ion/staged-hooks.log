@@ -1,0 +1,6 @@
+Generated service contracts..........................(no files to check)Skipped
+Ruff lint............................................(no files to check)Skipped
+Ruff format..........................................(no files to check)Skipped
+Python type check....................................(no files to check)Skipped
+ESLint...................................................................Passed
+TypeScript check.........................................................Passed

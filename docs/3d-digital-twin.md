@@ -1,5 +1,7 @@
 # M03 — Dubai 3D geographic workspace
 
+This original M03 guide is historical. The subsequent [real geography recovery](recovery-geography.md) changes the default dataset to retained OSM/PostGIS roads. Current Engineering/Realistic City modes and authorized ion setup are in the [ion integration guide](cesium-ion-integration.md), with [actual verification](verification-cesium-ion.md).
+
 City Explorer is a CesiumJS visualization of geographic context and stored study
 data. It extends the existing EARTHMIND dashboard; Geospatial Data, system
 health, diagnostics and the M01 worker remain separate working surfaces.

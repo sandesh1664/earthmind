@@ -4,7 +4,7 @@ import { readPublicCityConfig } from "../lib/city/config";
 
 test("missing public visualization token produces the self-hosted OSM configuration", () => {
   assert.deepEqual(readPublicCityConfig({}), {
-    ionPublicToken: null, imageryMode: "local-osm", imageryAssetId: 3812, terrainAssetId: 1, diagnosticsEnabled: false,
+    ionPublicToken: null, imageryMode: "local-osm", imageryAssetId: 2, terrainAssetId: 1, diagnosticsEnabled: false,
   });
 });
 test("viewer configuration exposes only the explicitly public token and allowlisted settings", () => {

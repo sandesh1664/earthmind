@@ -1,6 +1,6 @@
 import {
-  Cartesian3, Cesium3DTileFeature, Entity, Color, EllipsoidTerrainProvider,
-  Math as CMath, BoundingSphere, HeadingPitchRange, SceneTransforms, ScreenSpaceEventType, Viewer,
+  Cartesian3, Cesium3DTileFeature, Entity, Color, Credit, EllipsoidTerrainProvider,
+  Math as CMath, BoundingSphere, HeadingPitchRange, JulianDate, SceneTransforms, ScreenSpaceEventType, ShadowMode, SunLight, Viewer,
 } from "cesium";
 import type { CesiumViewerProps, FeatureSelection, ProviderState, ViewerStatus } from "../../../lib/city/types";
 import { buildingSelectionId, preferredSelection, publicBuildingProperties } from "../../../lib/geo/selection";
@@ -62,6 +62,8 @@ export class CitySceneController {
   private heapBytes: number | null = null;
   private readonly cameraSettlement = new CameraSettlement();
   private lastCameraSample = Number.NEGATIVE_INFINITY;
+  private readonly roadCredit = new Credit('© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · ODbL',true);
+  private roadCreditVisible = false;
   constructor(container: HTMLElement, props: CesiumViewerProps) {
     this.props = props;
     const existingStyles = new Set(document.querySelectorAll("style"));
@@ -89,9 +91,11 @@ export class CitySceneController {
     viewer.scene.globe.depthTestAgainstTerrain = false;
     viewer.scene.globe.maximumScreenSpaceError = 3;
     viewer.scene.globe.tileCacheSize = 100;
+    this.presentation(props.visualizationMode ?? "engineering");
     viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(55.2744,25.1972),0), {duration:0,offset:new HeadingPitchRange(0,CMath.toRadians(-55),3000)});
     this.layers = new GeographicLayers(viewer);
-    this.providers = new ProviderLayers(viewer,{...props.config,imageryMode:effectiveImageryMode(props.config,(props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true)},(name,state) => this.providerState(name,state));
+    const isSynthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
+    this.providers = new ProviderLayers(viewer,{...props.config,imageryMode:effectiveImageryMode(props.config,isSynthetic,props.visualizationMode ?? "engineering")},(name,state) => this.providerState(name,state),props.visualizationMode ?? "engineering",isSynthetic);
     viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
     viewer.screenSpaceEventHandler.setInputAction((movement: {position: import("cesium").Cartesian2}) => {
       if (this.disposed) return;
@@ -121,20 +125,59 @@ export class CitySceneController {
     if (this.disposed) return;
     this.status = {...this.status,[name]:state}; this.emit();
   }
+  private roadAttribution(props: CesiumViewerProps): void {
+    const synthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
+    const osm = !synthetic && Boolean(props.data.network?.source_format.toLowerCase().includes("osm"));
+    if (osm === this.roadCreditVisible) return;
+    const credits = this.viewer.cesiumWidget.creditDisplay;
+    if (osm) credits.addStaticCredit(this.roadCredit);
+    else credits.removeStaticCredit(this.roadCredit);
+    this.roadCreditVisible = osm;
+    this.viewer.scene.requestRender();
+  }
+  private presentation(mode: NonNullable<CesiumViewerProps["visualizationMode"]>): void {
+    const realistic = mode === "realistic";
+    const viewer = this.viewer;
+    viewer.scene.backgroundColor = Color.fromCssColorString(realistic ? "#b7cbd9" : "#08131f");
+    viewer.scene.globe.baseColor = Color.fromCssColorString(realistic ? "#a9b6b5" : "#183648");
+    viewer.scene.globe.enableLighting = realistic;
+    if (viewer.scene.skyAtmosphere) viewer.scene.skyAtmosphere.show = realistic;
+    viewer.scene.light = new SunLight({color:Color.WHITE,intensity:realistic ? 1.15 : 1});
+    // Presentation reference: 13:00 Dubai on the project date, not live weather/time.
+    if (realistic) viewer.clock.currentTime = JulianDate.fromIso8601("2026-10-27T09:00:00Z");
+    viewer.shadows = realistic;
+    viewer.terrainShadows = realistic ? ShadowMode.RECEIVE_ONLY : ShadowMode.DISABLED;
+    viewer.scene.shadowMap.size = 1024;
+    viewer.scene.shadowMap.maximumDistance = 6000;
+    viewer.scene.shadowMap.darkness = 0.18;
+    viewer.scene.shadowMap.softShadows = true;
+    viewer.scene.requestRender();
+  }
   update(props: CesiumViewerProps): void {
     if (this.disposed) return;
     const previous = this.props;
     this.props = props;
+    this.roadAttribution(props);
     const wasSynthetic = (previous.data.network?.is_synthetic ?? previous.data.region?.metadata.is_synthetic) === true;
     const isSynthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
-    const effectiveConfig = {...props.config,imageryMode:effectiveImageryMode(props.config,isSynthetic)};
-    const configChanged = wasSynthetic !== isSynthetic || props.config.imageryMode !== previous.config.imageryMode || props.config.ionPublicToken !== previous.config.ionPublicToken || props.config.imageryAssetId !== previous.config.imageryAssetId || props.config.terrainAssetId !== previous.config.terrainAssetId;
+    const mode = props.visualizationMode ?? "engineering";
+    const modeChanged = mode !== (previous.visualizationMode ?? "engineering");
+    const effectiveConfig = {...props.config,imageryMode:effectiveImageryMode(props.config,isSynthetic,mode)};
+    const configChanged = modeChanged || wasSynthetic !== isSynthetic || props.config.imageryMode !== previous.config.imageryMode || props.config.ionPublicToken !== previous.config.ionPublicToken || props.config.imageryAssetId !== previous.config.imageryAssetId || props.config.terrainAssetId !== previous.config.terrainAssetId;
+    if (modeChanged) this.presentation(mode);
     if (configChanged) {
+      // Provider identity changes atomically. Never relabel a previous source's
+      // ready state as newly requested ion/local content during the first callback.
+      this.status = {...this.status,
+        imagery:{status:props.layers.imagery ? "loading" : "off",message:"Updating geographic imagery source"},
+        buildings:{status:props.layers.buildings ? "loading" : "off",message:"Updating building source"},
+        terrain:{status:props.layers.terrain ? "loading" : "off",message:"Updating terrain policy"},
+      };
       this.providers.destroy();
-      this.providers = new ProviderLayers(this.viewer,effectiveConfig,(name,state) => this.providerState(name,state));
+      this.providers = new ProviderLayers(this.viewer,effectiveConfig,(name,state) => this.providerState(name,state),mode,isSynthetic);
     }
-    if (!this.hasUpdated || props.data.roads !== previous.data.roads || props.data.intersections !== previous.data.intersections || props.data.boundary !== previous.data.boundary || props.data.region !== previous.data.region || props.layers !== previous.layers || props.selection !== previous.selection) {
-      this.layers.update(props.data,props.layers,props.selection);
+    if (!this.hasUpdated || modeChanged || props.data.roads !== previous.data.roads || props.data.intersections !== previous.data.intersections || props.data.boundary !== previous.data.boundary || props.data.region !== previous.data.region || props.layers !== previous.layers || props.selection !== previous.selection) {
+      this.layers.update(props.data,props.layers,props.selection,mode);
       this.hasUpdated = true;
     }
     this.providers.update(props.layers);
@@ -183,7 +226,7 @@ export class CitySceneController {
   }
   private emit(): void {
     if (this.disposed) return;
-    const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
+    const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),visualizationMode:this.props.visualizationMode ?? "engineering",viewerInstanceId:this.viewerNamespace,geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
     if (this.props.config.diagnosticsEnabled) {
       snapshot.renderDiagnostics = {
         globeVisible:this.viewer.scene.globe.show,
@@ -230,6 +273,8 @@ export class CitySceneController {
     const context = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
     this.viewer.camera.cancelFlight();
     this.removeListeners.forEach((remove) => remove()); this.removeListeners = [];
+    if (this.roadCreditVisible) this.viewer.cesiumWidget.creditDisplay.removeStaticCredit(this.roadCredit);
+    this.roadCreditVisible = false;
     const inputHandler = this.viewer.screenSpaceEventHandler;
     if (!inputHandler.isDestroyed()) inputHandler.removeInputAction(ScreenSpaceEventType.LEFT_CLICK);
     this.providers.destroy(); this.layers.destroy();

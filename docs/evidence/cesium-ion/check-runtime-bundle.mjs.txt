@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const token=process.env.NEXT_PUBLIC_CESIUM_ION_TOKEN||process.env.CESIUM_ION_PUBLIC_TOKEN;
+if(!token)throw new Error('Configured public token missing');
+let count=0,matches=0;
+function scan(directory){for(const item of fs.readdirSync(directory,{withFileTypes:true})){const target=path.join(directory,item.name);if(item.isDirectory())scan(target);else if(item.isFile()){count++;if(fs.readFileSync(target).includes(Buffer.from(token)))matches++;}}}
+scan('/app/apps/web/.next/static');
+console.log(JSON.stringify({publicTokenConfigured:true,canonicalConfigured:Boolean(process.env.NEXT_PUBLIC_CESIUM_ION_TOKEN),legacyConfigured:Boolean(process.env.CESIUM_ION_PUBLIC_TOKEN),imageryAssetId:process.env.CESIUM_ION_IMAGERY_ASSET_ID,staticAssets:count,tokenMatches:matches}));
+if(matches)process.exit(1);

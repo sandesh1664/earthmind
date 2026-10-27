@@ -1,0 +1,1 @@
+{"area_km2": 1.3398134937911033, "geometry_columns": 4, "plans": {"bbox": {"indexes": ["ix_road_edges_geom_gist"], "observed_execution_ms": 0.017}, "nearby_meters": {"indexes": ["ix_road_edges_geography_gist"], "observed_execution_ms": 0.013}}, "required_tables": 13}

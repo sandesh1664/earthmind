@@ -21,7 +21,9 @@ export default defineConfig({
   use: {
     baseURL: process.env.WEB_BASE_URL ?? "http://127.0.0.1:3000",
     browserName: "chromium",
-    trace: "retain-on-failure",
+    // Traces retain response bodies and request query strings, including public
+    // ion tokens. Keep sanitized observations/screenshots instead.
+    trace: "off",
     screenshot: "only-on-failure",
   },
   projects: [

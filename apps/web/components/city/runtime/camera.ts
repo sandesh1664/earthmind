@@ -1,4 +1,4 @@
-import { BoundingSphere, Cartesian2, Cartesian3, Cartographic, EllipsoidTerrainProvider, HeadingPitchRange, Math as CMath, Rectangle, type Viewer } from "cesium";
+import { BoundingSphere, Cartesian2, Cartesian3, Cartographic, EasingFunction, EllipsoidTerrainProvider, HeadingPitchRange, Math as CMath, Rectangle, type Viewer } from "cesium";
 import { CAMERA_PRESETS } from "../../../lib/geo/camera-presets";
 import { positionBounds } from "../../../lib/geo/coordinates";
 import type { Bounds, CameraCommand, CameraSnapshot, FeatureSelection, SceneData } from "../../../lib/city/types";
@@ -8,6 +8,7 @@ function flyBounds(viewer: Viewer, bounds: Bounds, perspective: boolean): void {
   const sphere = BoundingSphere.fromRectangle3D(rectangle);
   viewer.camera.flyToBoundingSphere(sphere, {
     duration: 1.15,
+    easingFunction:EasingFunction.CUBIC_IN_OUT,
     offset: new HeadingPitchRange(0, perspective ? -1.0 : -CMath.PI_OVER_TWO, Math.max(sphere.radius * 3.1, 450)),
   });
 }
@@ -48,11 +49,12 @@ export function applyCamera(viewer: Viewer, command: CameraCommand, data: SceneD
     const range = Math.max(150,Cartesian3.distance(viewer.camera.positionWC,target));
     viewer.camera.flyToBoundingSphere(new BoundingSphere(target,0),{
       duration:0.75,
+      easingFunction:EasingFunction.CUBIC_IN_OUT,
       offset:new HeadingPitchRange(viewer.camera.heading,preset === "top-down" ? -CMath.PI_OVER_TWO : -CMath.toRadians(55),range),
     });
   } else {
     const target = preset in CAMERA_PRESETS ? CAMERA_PRESETS[preset as keyof typeof CAMERA_PRESETS] : CAMERA_PRESETS.downtown;
-    viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(target.longitude,target.latitude),0),{offset:new HeadingPitchRange(0,CMath.toRadians(target.pitch),target.height),duration:1.25});
+    viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(target.longitude,target.latitude),0),{offset:new HeadingPitchRange(0,CMath.toRadians(target.pitch),target.height),duration:1.65,easingFunction:EasingFunction.CUBIC_IN_OUT});
   }
   viewer.scene.requestRender();
 }

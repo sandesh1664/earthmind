@@ -1444,6 +1444,42 @@
 
 /* Layer controls must remain usable above the selected-feature mobile sheet. */
 .city-layer-drawer { z-index: 45; }
+
+/* Mode selection updates the owned scene; its controls never mask the canvas. */
+.city-heading-actions { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.city-mode-switch { display: inline-flex; flex-shrink: 0; gap: 3px; padding: 3px; border: 1px solid #2c4356; border-radius: 6px; background: #101d2a; }
+.city-mode-switch button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 30px; border: 1px solid transparent; border-radius: 3px; padding: 5px 8px; background: transparent; color: #8faabd; font-size: 9px; white-space: nowrap; }
+.city-mode-switch button:hover { background: #1c3444; color: #d4eaf2; }
+.city-mode-switch button[aria-pressed="true"] { border-color: #45667b; background: #263e4d; color: #d7eef4; }
+.city-mode-switch button:focus-visible { outline: 2px solid var(--city-cyan); outline-offset: 2px; }
+.city-visualization-realistic .city-mode-switch button[aria-pressed="true"] { border-color: #8a9d98; background: #d8e2df; color: #1c333a; }
+.city-provider-notice > div { min-width: 0; }
+.city-provider-notice [role="alert"] { display: block; color: #e5bd88; }
+.city-provider-unavailable { color: #c6c6b0; }
+.city-position-bar .city-map-progress { position: static; z-index: auto; margin-left: auto; font-size: inherit; text-shadow: none; white-space: nowrap; }
+.city-position-bar .city-position-crs { margin-left: 8px; }
+.city-data-footer { display: flex; flex: 0 0 auto; align-items: flex-start; gap: 12px; min-width: 0; }
+.city-data-footer .city-metadata { flex: 1; min-width: 0; }
+.city-view-notices { flex: 0 1 auto; max-width: 48%; font-size: 9px; color: #b4b79c; }
+.city-view-notices > summary { display: flex; align-items: center; gap: 6px; min-height: 25px; padding: 3px 0; cursor: pointer; white-space: nowrap; }
+.city-view-notices > summary > span { padding: 1px 4px; border: 1px solid #5e6047; border-radius: 3px; font: 8px monospace; }
+.city-view-notices .city-data-messages { position: static; max-width: none; max-height: 88px; overflow: auto; margin: 0; padding: 4px 8px; pointer-events: auto; background: #141d24; }
+.city-view-notices .city-data-messages p { font-size: 9px; line-height: 1.5; }
+.city-access-help { display: inline-block; margin-left: 7px; }
+.city-access-help > summary { cursor: pointer; color: #adcbd7; text-decoration: underline; text-underline-offset: 2px; }
+.city-access-help[open] { display: block; margin: 5px 0 0; }
+.city-access-help p { max-width: 850px; margin: 4px 0 0; line-height: 1.5; color: #9db3c1; }
+@media (max-width: 760px) {
+  .city-heading-actions { gap: 0; }
+  .city-heading-actions .city-live-badge { display: none; }
+  .city-mode-switch { padding: 2px; gap: 2px; }
+  .city-mode-switch button { min-height: 30px; padding: 4px 5px; gap: 3px; font-size: 8px; }
+  .city-mode-switch button svg { width: 11px; height: 11px; }
+  .city-position-bar .city-map-progress { font-size: 6px; gap: 3px; }
+  .city-data-footer { gap: 8px; }
+  .city-view-notices { font-size: 8px; }
+  .city-view-notices .city-data-messages p { font-size: 8px; }
+}
 @media (max-width: 760px) {
   .city-scene-layout.has-inspector .city-map-stage .cesium-viewer-bottom {
     top: 66px;

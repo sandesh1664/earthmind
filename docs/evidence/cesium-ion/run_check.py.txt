@@ -1,0 +1,27 @@
+import datetime
+import json
+import pathlib
+import subprocess
+import sys
+import time
+from zoneinfo import ZoneInfo
+
+root = pathlib.Path(__file__).resolve().parent
+label, *command = sys.argv[1:]
+started = datetime.datetime.now(ZoneInfo("Asia/Dubai")).isoformat()
+clock = time.monotonic()
+with (root / f"{label}.log").open("w") as output:
+    result = subprocess.run(command, stdout=output, stderr=subprocess.STDOUT)
+record = {
+    "label": label,
+    "command": command,
+    "cwd": str(pathlib.Path.cwd()),
+    "started_at": started,
+    "duration_seconds": round(time.monotonic() - clock, 3),
+    "exit_code": result.returncode,
+    "output_file": f"{label}.log",
+}
+with (root / "commands.jsonl").open("a") as output:
+    output.write(json.dumps(record) + "\n")
+print(json.dumps(record), flush=True)
+sys.exit(result.returncode)

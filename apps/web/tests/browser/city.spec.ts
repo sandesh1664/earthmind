@@ -1,3 +1,4 @@
+import { safeBrowserText, safeBrowserURL } from "./security";
 import { expect, test, chromium, type Page } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { browserEvidencePath } from "./evidence";
@@ -26,9 +27,9 @@ async function ready(page: Page) {
 
 test("M03 real Cesium globe, backend road picking, camera controls, layers and attribution", async ({ page }, info) => {
   const errors: string[] = [], workers: string[] = [], spatial: string[] = [], external: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
-  page.on("worker", (worker) => workers.push(worker.url()));
+  page.on("pageerror", (error) => errors.push(safeBrowserText(error.message)));
+  page.on("console", (message) => { if (message.type() === "error") errors.push(safeBrowserText(message.text())); });
+  page.on("worker", (worker) => workers.push(safeBrowserURL(worker.url())));
   page.on("request", (request) => {
     const url = new URL(request.url());
     if (url.pathname.includes("/api/geospatial/networks/") && /edges|intersections/.test(url.pathname)) spatial.push(url.toString());
@@ -141,7 +142,7 @@ test("M03 real Cesium globe, backend road picking, camera controls, layers and a
 
 test("M03 actual repeated navigation destroys the old viewer and restores one scene", async ({ page }) => {
   const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
+  page.on("pageerror", error => errors.push(safeBrowserText(error.message)));
   for (let cycle=0; cycle<3; cycle++) {
     await openCity(page); await ready(page);
     const menu = page.getByRole("button", {name:"Open navigation",exact:true});

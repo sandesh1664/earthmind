@@ -1,0 +1,535 @@
+{
+  "scope": "Actual authorized local token and live provider tiles, no geography/tile substitutions, all URLs stripped of query credentials",
+  "publicTokenConfigured": true,
+  "imageryAssetId": 2,
+  "terrainAssetId": 1,
+  "viewerInstanceId": "1",
+  "before": {
+    "longitude": 55.27440000000001,
+    "latitude": 25.18167255980374,
+    "height": 2457.689295872061,
+    "heading": 359.9999999999868,
+    "pitch": -55.015470203763115,
+    "bounds": [
+      55.25370705499764,
+      25.183607332947126,
+      55.29509294506049,
+      25.229264725741157
+    ],
+    "groundFocus": [
+      55.27440000003018,
+      25.197199999991817
+    ]
+  },
+  "realistic": {
+    "longitude": 55.27440000000001,
+    "latitude": 25.18167255980374,
+    "height": 2457.689295872061,
+    "heading": 359.9999999999868,
+    "pitch": -55.015470203763115,
+    "bounds": [
+      55.25398251140449,
+      25.18360733854279,
+      55.29481748875874,
+      25.229264589449116
+    ],
+    "groundFocus": [
+      55.27440000003018,
+      25.197199999991817
+    ]
+  },
+  "after": {
+    "longitude": 55.27440000000001,
+    "latitude": 25.18167255980374,
+    "height": 2457.689295872061,
+    "heading": 359.9999999999868,
+    "pitch": -55.015470203763115,
+    "bounds": [
+      55.25370705499764,
+      25.183607332947126,
+      55.29509294506049,
+      25.229264725741157
+    ],
+    "groundFocus": [
+      55.27440000003018,
+      25.197199999991817
+    ]
+  },
+  "selectedId": "65b312a6-a744-5b0b-831d-af63b7f2af21",
+  "creditText": "© OpenStreetMap contributors · ODbL•Upgrade for commercial use.•© 2026 Microsoft Corporation•© Maxar•©CNES (2026) Distribution Airbus DS•© Mapbox•Data attribution",
+  "observation": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "responses": [
+      {
+        "url": "https://api.cesium.com/v1/assets/96188/endpoint",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "endpoint"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/tileset.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://api.cesium.com/v1/assets/2/endpoint",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "endpoint"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/root.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/0-1-0.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://dev.virtualearth.net/REST/v1/Imagery/Metadata/Aerial",
+        "status": 200,
+        "contentType": "application/json; charset=utf-8",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a1230231303230.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a1230231303203.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a10.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a1230231303212.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12300.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a123023130322.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12302313210.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a1230.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a1230231303221.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a1230231303223.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a123023132100.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a12302.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a1212.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a123023132101.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a12302313032.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a1.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a3.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a123.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a121.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a123023.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a123023130321.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a123021.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a123023130323.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a1230231303.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a1230231.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a1230233.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a1230231321.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a2.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a123023130.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a123023132.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12302331.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a12302313.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a0.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/0/1/0.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/1/2/0.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/2-5-1.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a1230231303232.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a123023130320.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12302313032322.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a12302313032230.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t1.tiles.virtualearth.net/tiles/a12302313032213.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a12302313032320.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t0.tiles.virtualearth.net/tiles/a12302313032212.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a12302313032302.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t3.tiles.virtualearth.net/tiles/a12302313032233.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a12302313032231.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "http://ecn.t2.tiles.virtualearth.net/tiles/a12302313032232.jpeg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "resourceType": "xhr",
+        "kind": "imagery-tile"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5-41-11.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/2/5/1.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/4/20/5.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/3/10/2.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5/41/11.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/7-167-46.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/6/83/23.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/8/334/92.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/7/167/46.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/10/1338/368.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/9/669/184.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      }
+    ]
+  }
+}

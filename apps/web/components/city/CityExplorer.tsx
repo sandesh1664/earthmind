@@ -27,12 +27,14 @@ import {
   type CameraPreset,
   type CameraSnapshot,
   type FeatureSelection,
+  type VisualizationMode,
   type ViewerStatus,
 } from "@/lib/city/types";
 import { FeatureInspector, selectedFeature } from "./FeatureInspector";
 import { LayerManager } from "./LayerManager";
 import { MapToolbar } from "./MapToolbar";
 import { ViewerErrorBoundary } from "./ViewerErrorBoundary";
+import { VisualizationModeSwitch } from "./VisualizationModeSwitch";
 import { effectiveImageryMode, imageryDescription } from "@/lib/city/provider-policy";
 
 const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
@@ -48,6 +50,7 @@ const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
 export function CityExplorer() {
   const [camera, setCamera] = useState<CameraSnapshot | null>(null);
   const [developmentMode, setDevelopmentMode] = useState(false);
+  const [visualizationMode, setVisualizationMode] = useState<VisualizationMode>("engineering");
   const data = useCityData(camera, developmentMode);
   const workspaceRef = useRef<HTMLElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
@@ -134,7 +137,7 @@ export function CityExplorer() {
   const isSynthetic =
     data.network?.is_synthetic ?? data.region?.metadata.is_synthetic;
   const isOSM = !isSynthetic && Boolean(data.network && (data.network.source_format.toLowerCase().includes("osm") || data.source?.provider_name.toLowerCase().includes("openstreetmap")));
-  const imageryMode = data.config ? effectiveImageryMode(data.config,isSynthetic === true) : null;
+  const imageryMode = data.config ? effectiveImageryMode(data.config,isSynthetic === true,visualizationMode) : null;
   const basemapSource = imageryMode === "natural-earth" ? "Natural Earth"
     : imageryMode === "ion" ? "Cesium ion" : "OpenStreetMap";
   const selectedRows = featureTab === "roads" ? data.roads : data.intersections;
@@ -144,7 +147,8 @@ export function CityExplorer() {
   return (
     <section
       ref={workspaceRef}
-      className={`city-workspace${developmentMode ? " city-development-mode" : ""}`}
+      className={`city-workspace city-visualization-${visualizationMode}${developmentMode ? " city-development-mode" : ""}`}
+      data-visualization-mode={visualizationMode}
       aria-label="Dubai 3D digital twin"
       onKeyDown={(event) => {
         if (event.key === "Escape") {
@@ -159,9 +163,12 @@ export function CityExplorer() {
           <h2>Dubai digital twin</h2>
           <p>Geographic exploration · source-backed road intelligence</p>
         </div>
-        <span className="city-live-badge">
-          <Globe2 size={14} /> {isOSM ? "OPENSTREETMAP" : developmentMode ? "DEVELOPMENT DATA" : "GEOGRAPHIC WORKSPACE"}
-        </span>
+        <div className="city-heading-actions">
+          <VisualizationModeSwitch mode={visualizationMode} onChange={setVisualizationMode} />
+          <span className="city-live-badge">
+            <Globe2 size={14} /> {isOSM ? "OPENSTREETMAP" : developmentMode ? "DEVELOPMENT DATA" : "GEOGRAPHIC WORKSPACE"}
+          </span>
+        </div>
       </div>
 
       <div className="city-context-bar">
@@ -338,6 +345,7 @@ export function CityExplorer() {
                 <CesiumViewer
                   data={data.sceneData}
                   config={data.config}
+                  visualizationMode={visualizationMode}
                   layers={layers}
                   selection={selection}
                   cameraCommand={cameraCommand}
@@ -371,27 +379,6 @@ export function CityExplorer() {
                 </button>
               </div>
             )}
-            <div className="city-map-progress" role="status">
-              {data.geometryLoading ? (
-                <>
-                  <LoaderCircle className="city-spin" size={13} /> Loading
-                  visible network…
-                </>
-              ) : ready ? (
-                <>
-                  <span data-testid="scene-road-count">
-                    {viewerStatus.roadCount}
-                  </span>{" "}
-                  roads ·{" "}
-                  <span data-testid="scene-intersection-count">
-                    {viewerStatus.intersectionCount}
-                  </span>{" "}
-                  intersections rendered
-                </>
-              ) : (
-                (viewerStatus?.message ?? "Starting viewer")
-              )}
-            </div>
             <div className="city-map-legend" aria-label="Map legend">
               <span>
                 <i className="city-legend-line" />
@@ -431,6 +418,27 @@ export function CityExplorer() {
             </span>
             <span className="city-position-crs">
               EPSG:4326 · longitude, latitude
+            </span>
+            <span className="city-map-progress" role="status">
+              {data.geometryLoading ? (
+                <>
+                  <LoaderCircle className="city-spin" size={13} /> Loading
+                  visible network…
+                </>
+              ) : ready ? (
+                <>
+                  <span data-testid="scene-road-count">
+                    {viewerStatus.roadCount}
+                  </span>{" "}
+                  roads ·{" "}
+                  <span data-testid="scene-intersection-count">
+                    {viewerStatus.intersectionCount}
+                  </span>{" "}
+                  intersections rendered
+                </>
+              ) : (
+                (viewerStatus?.message ?? "Starting viewer")
+              )}
             </span>
           </div>
         </div>
@@ -548,8 +556,8 @@ export function CityExplorer() {
               layers={layers}
               onChange={setLayers}
               status={viewerStatus}
-              hasProviderAccess={Boolean(data.config?.ionPublicToken)}
-              hasLocalBuildings={!isSynthetic && (data.config?.imageryMode ?? "local-osm") === "local-osm"}
+              hasProviderAccess={visualizationMode === "realistic" && !isSynthetic && Boolean(data.config?.ionPublicToken)}
+              hasLocalBuildings={!isSynthetic && imageryMode === "local-osm"}
             />
             <button
               type="button"
@@ -562,6 +570,7 @@ export function CityExplorer() {
         )}
       </div>
 
+      <div className="city-data-footer">
       <details className="city-metadata">
         <summary><Database size={14} /> Network &amp; source details <span>{data.network ? `${data.network.edge_count.toLocaleString("en")} roads · ${data.network.node_count.toLocaleString("en")} nodes` : "No network selected"}</span><ChevronDown size={13} /></summary>
       <div className="city-summary-grid">
@@ -642,22 +651,33 @@ export function CityExplorer() {
       </details>
 
       {data.messages.length > 0 && (
-        <div className="city-data-messages" role="status">
-          {data.messages.map((message) => (
-            <p key={message}>{message}</p>
-          ))}
-        </div>
+        <details className="city-view-notices">
+          <summary><AlertTriangle size={12} /> View notices <span>{data.messages.length}</span></summary>
+          <div className="city-data-messages" role="status">
+            {data.messages.map((message) => (
+              <p key={message}>{message}</p>
+            ))}
+          </div>
+        </details>
       )}
+      </div>
       {data.config && (
-        <p className="city-provider-notice">
+        <div className={`city-provider-notice${visualizationMode === "realistic" && !data.config.ionPublicToken && !isSynthetic ? " city-provider-unavailable" : ""}`}>
           <Globe2 size={15} />
-          <span>
-            {imageryDescription(data.config,isSynthetic === true)}.
-            {!data.config.ionPublicToken && <> <strong>Cesium ion building tiles unavailable:</strong> set CESIUM_ION_PUBLIC_TOKEN.</>}
+          <div>
+            {visualizationMode === "realistic" && !data.config.ionPublicToken && !isSynthetic && <strong>Aerial imagery unavailable — configure public ion access. </strong>}
+            {imageryDescription(data.config,isSynthetic === true,visualizationMode)}.
+            {!data.config.ionPublicToken && <> <strong>Cesium ion building tiles unavailable:</strong> configure NEXT_PUBLIC_CESIUM_ION_TOKEN.</>}
             {imageryMode === "local-osm" && <> Ellipsoid terrain; OSM tagged-height buildings cover only part of the source area.</>}
             {providerErrors.map(({name,message}) => <span role="alert" key={name}> {name}: {message}</span>)}
-          </span>
-        </p>
+            {visualizationMode === "realistic" && !data.config.ionPublicToken && !isSynthetic && (
+              <details className="city-access-help">
+                <summary>Access requirements</summary>
+                <p>Configure NEXT_PUBLIC_CESIUM_ION_TOKEN with read-only access to the authorized aerial imagery asset and Cesium OSM Buildings. Set CESIUM_ION_IMAGERY_ASSET_ID to that asset, then recreate the web service. Token values stay outside source control.</p>
+              </details>
+            )}
+          </div>
+        </div>
       )}
       {data.config?.diagnosticsEnabled && (
         <section className="city-diagnostics">

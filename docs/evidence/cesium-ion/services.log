@@ -1,0 +1,7 @@
+NAME                  IMAGE                                                                                        COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+earthmind-api-1       earthmind-python:m01                                                                         "uvicorn earthmind_a…"   api       5 hours ago     Up 4 hours (healthy)     127.0.0.1:8000->8000/tcp
+earthmind-db-1        sha256:ff0c9cd2dbf2925bf9c85f3066be79a20a1d72f0d5bdbff25c4fa6dd821dd345                      "docker-entrypoint.s…"   db        7 hours ago     Up 4 hours (healthy)     127.0.0.1:5434->5432/tcp
+earthmind-migrate-1   earthmind-python:m01                                                                         "alembic -c apps/api…"   migrate   5 hours ago     Exited (0) 4 hours ago   
+earthmind-redis-1     redis:7.4-bookworm@sha256:44960b3100c48159a66d28c18b0588c193492e25f7551d60e51dd464fc3eca5b   "docker-entrypoint.s…"   redis     24 hours ago    Up 4 hours (healthy)     6379/tcp
+earthmind-web-1       earthmind-web:m01                                                                            "docker-entrypoint.s…"   web       5 minutes ago   Up 5 minutes (healthy)   127.0.0.1:3000->3000/tcp
+earthmind-worker-1    sha256:3f6a15dd9bde143b430a9cd705a64a4ad168696295536c770d518e9fb58ed625                      "python -m earthmind…"   worker    7 hours ago     Up 4 hours (healthy)     

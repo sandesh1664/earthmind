@@ -1,3 +1,4 @@
+import { safeBrowserText } from "./security";
 import { test, expect } from "@playwright/test";
 import { browserEvidencePath } from "./evidence";
 
@@ -23,9 +24,9 @@ test("M02 real PostGIS fixture, network validation and provenance render without
   page,
 }, info) => {
   const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("pageerror", (error) => errors.push(safeBrowserText(error.message)));
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (message.type() === "error") errors.push(safeBrowserText(message.text()));
   });
   await openGeospatial(page);
   await page.getByLabel("Study region",{exact:true}).selectOption("8d31afa3-5d52-59b5-a8bc-691b5867dfcb");

@@ -1,0 +1,254 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.0.0/bin/node",
+      "/Users/redmug/EARTHMIND/node_modules/.bin/playwright",
+      "test",
+      "ion.spec.ts",
+      "--project=desktop",
+      "--workers=1"
+    ],
+    "configFile": "/Users/redmug/EARTHMIND/apps/web/playwright.config.ts",
+    "rootDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/earthmind-m035-results/ion-desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-m035-results/ion-desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet",
+        "name": "tablet",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/private/tmp/earthmind-m035-results/ion-desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/private/tmp/earthmind-m035-results/ion-desktop/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "snapshotDir": "/Users/redmug/EARTHMIND/apps/web/tests/browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://localhost:3000",
+          "browserName": "chromium",
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/private/tmp/earthmind-m035-results/ion-desktop/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "ion.spec.ts",
+      "file": "ion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual ion aerial and OSM building tiles render while mode changes preserve viewer, camera and inspector",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 53791,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\nCall Log:\n- Timeout 30000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\nCall Log:\n- Timeout 30000ms exceeded while waiting on the predicate\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts:71:148",
+                    "location": {
+                      "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts",
+                      "column": 148,
+                      "line": 71
+                    },
+                    "snippet": "  69 |   await expect(page.getByTestId(\"selected-feature-id\")).toHaveText(selectedId);\n  70 |   await expect(scene).toHaveAttribute(\"data-local-building-count\",\"0\");\n> 71 |   await expect.poll(()=>observation.responses.filter(item=>item.kind===\"imagery-tile\"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);\n     |                                                                                                                                                    ^\n  72 |   await expect.poll(()=>observation.responses.filter(item=>item.kind===\"building-content\"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);\n  73 |   await expect(page.locator(\".cesium-widget-credits\")).toBeVisible();\n  74 |   await page.getByRole(\"button\",{name:\"Close feature inspector\",exact:true}).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts",
+                        "column": 148,
+                        "line": 71
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\nCall Log:\n- Timeout 30000ms exceeded while waiting on the predicate\n\n  69 |   await expect(page.getByTestId(\"selected-feature-id\")).toHaveText(selectedId);\n  70 |   await expect(scene).toHaveAttribute(\"data-local-building-count\",\"0\");\n> 71 |   await expect.poll(()=>observation.responses.filter(item=>item.kind===\"imagery-tile\"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);\n     |                                                                                                                                                    ^\n  72 |   await expect.poll(()=>observation.responses.filter(item=>item.kind===\"building-content\"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);\n  73 |   await expect(page.locator(\".cesium-widget-credits\")).toBeVisible();\n  74 |   await page.getByRole(\"button\",{name:\"Close feature inspector\",exact:true}).click();\n    at /Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts:71:148"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:15:45.146Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/private/tmp/earthmind-m035-results/ion-desktop/test-results/ion-actual-ion-aerial-and--5f2b1-viewer-camera-and-inspector-desktop/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/private/tmp/earthmind-m035-results/ion-desktop/test-results/ion-actual-ion-aerial-and--5f2b1-viewer-camera-and-inspector-desktop/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts",
+                    "column": 148,
+                    "line": 71
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b024741f9c1b403135c2-f14ae6de2a9c3fd1827a",
+          "file": "ion.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "actual unavailable legacy imagery asset produces an actionable visible error without hiding stored roads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 100000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13733,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:16:39.436Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b024741f9c1b403135c2-a1f571ff7bd8318b2c48",
+          "file": "ion.spec.ts",
+          "line": 93,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T17:15:44.924Z",
+    "duration": 68352.49200000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

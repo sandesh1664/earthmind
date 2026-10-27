@@ -1,3 +1,4 @@
+import { safeBrowserText } from "./security";
 import { expect, test, type Locator, type Page } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { browserEvidencePath } from "./evidence";
@@ -26,12 +27,8 @@ function safeURL(value: string): string {
   try { const url = new URL(value); return `${url.origin}${url.pathname}`; }
   catch { return "[non-URL]"; }
 }
-function safeText(value: string): string {
-  return value
-    .replace(/https?:\/\/[^\s"'<>]+/g, safeURL)
-    .replace(/((?:access_)?token|authorization)\s*[:=]\s*[^\s,;]+/gi, "$1=[REDACTED]")
-    .replace(/\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g, "[REDACTED]");
-}
+function safeText(value: string): string { return safeBrowserText(value); }
+
 function cancellableRead(request: import("@playwright/test").Request, page: Page): "network-catalog" | "scope" | "spatial" | null {
   const url = new URL(request.url());
   if (request.method() !== "GET" || url.origin !== new URL(page.url()).origin) return null;
@@ -299,6 +296,7 @@ test("diagnosis controlled configuration: missing ion token remains blocked with
   });
   try {
     const scene = await openCity(page);
+    await page.getByRole("button", {name:"Realistic city mode",exact:true}).click();
     await expect(scene).toHaveAttribute("data-imagery-status", "blocked");
     await expect(scene).toHaveAttribute("data-buildings-status", "blocked");
     await expect.poll(async () => (await renderState(scene))?.globeTilesLoaded).toBe(true);

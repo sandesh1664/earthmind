@@ -1,0 +1,152 @@
+{
+  "scope": "Controlled configuration selects legacy asset3812; actual remote HTTP404 is not substituted; stored PostGIS geography remains actual",
+  "publicTokenConfigured": true,
+  "observation": {
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/intersections",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://localhost:3000/api/geospatial/networks/4aa62897-1a54-546c-a390-ddb156838f8e/edges",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "responses": [
+      {
+        "url": "https://api.cesium.com/v1/assets/3812/endpoint",
+        "status": 404,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "endpoint"
+      },
+      {
+        "url": "https://api.cesium.com/v1/assets/96188/endpoint",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "endpoint"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/tileset.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/0-1-0.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/root.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/2-5-1.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/1/2/0.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/0/1/0.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/2/5/1.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/3/10/2.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/4/21/5.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5-42-11.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5-41-11.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/4/20/5.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5/42/11.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/5/41/11.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/7-167-46.json",
+        "status": 200,
+        "contentType": "application/json",
+        "resourceType": "xhr",
+        "kind": "external"
+      },
+      {
+        "url": "https://assets.ion.cesium.com/ap-northeast-1/asset_depot/96188/OpenStreetMap/CWT/2026-06-08/6/83/23.b3dm",
+        "status": 200,
+        "contentType": "application/octet-stream",
+        "resourceType": "xhr",
+        "kind": "building-content"
+      }
+    ]
+  }
+}

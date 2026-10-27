@@ -1,3 +1,4 @@
+import { safeBrowserText } from "./security";
 import { expect, test, type Page } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { browserEvidencePath } from "./evidence";
@@ -19,9 +20,9 @@ function observeActualServices(page: Page): Observation {
   const observation: Observation = {
     errors: [], httpFailures: [], externalRequests: [], edgeRequests: [], roads: new Map(), navigationToRoadReadyMs:null,
   };
-  page.on("pageerror", error => observation.errors.push(error.message));
+  page.on("pageerror", error => observation.errors.push(safeBrowserText(error.message)));
   page.on("console", message => {
-    if (message.type() === "error") observation.errors.push(message.text());
+    if (message.type() === "error") observation.errors.push(safeBrowserText(message.text()));
   });
   page.on("request", request => {
     const url = new URL(request.url());
@@ -130,16 +131,21 @@ test("recovery real OSM default, native road picking, source metadata, layers an
   await expect(scene).toHaveAttribute("data-camera-moving", "true");
   await expect(scene).toHaveAttribute("data-camera-moving", "false");
   await expect(scene).toHaveAttribute("data-geometry-ready", "true");
-  await expect.poll(async () => await scene.getAttribute("data-pick-id"), {timeout:30_000}).toMatch(/^[a-f0-9-]{36}$/);
   await expect.poll(() => observation.roads.size).toBeGreaterThan(0);
-  const canvas = scene.locator("canvas");
-  const rectangle = await canvas.boundingBox();
-  if (!rectangle) throw new Error("Actual Cesium canvas has no layout");
-  const x = Number(await scene.getAttribute("data-pick-x"));
-  const y = Number(await scene.getAttribute("data-pick-y"));
-  expect(x).toBeGreaterThan(0); expect(y).toBeGreaterThan(0);
-  expect(x).toBeLessThan(rectangle.width); expect(y).toBeLessThan(rectangle.height);
-  await page.mouse.click(rectangle.x+x,rectangle.y+y);
+  // Camera settlement starts a debounced viewport refresh. Read the complete
+  // probe and native readiness atomically; separate attribute reads can span a
+  // valid transition where the previous probe is deliberately removed.
+  let probe: {id:string|null;x:number;y:number;left:number;top:number;width:number;height:number;ready:boolean}|null=null;
+  await expect.poll(async () => {
+    probe=await scene.evaluate(element=>{
+      const rectangle=element.querySelector("canvas")?.getBoundingClientRect();
+      return {id:element.getAttribute("data-pick-id"),x:Number(element.getAttribute("data-pick-x")),y:Number(element.getAttribute("data-pick-y")),left:rectangle?.left??0,top:rectangle?.top??0,width:rectangle?.width??0,height:rectangle?.height??0,ready:element.getAttribute("data-geometry-ready")==="true"&&element.getAttribute("data-camera-moving")==="false"};
+    });
+    return probe.ready&&/^[a-f0-9-]{36}$/.test(probe.id??"")&&probe.x>0&&probe.y>0&&probe.x<probe.width&&probe.y<probe.height;
+  },{timeout:30_000,message:"A single ready native scene must expose an on-canvas real road probe"}).toBe(true);
+  if(!probe)throw new Error("Actual native road probe is unavailable");
+  const point=probe as {x:number;y:number;left:number;top:number};
+  await page.mouse.click(point.left+point.x,point.top+point.y);
   await expect(page.getByTestId("selected-road-identifier")).toBeVisible();
   const selectedId = await page.getByTestId("selected-feature-id").innerText();
   await expect.poll(() => observation.roads.has(selectedId)).toBe(true);

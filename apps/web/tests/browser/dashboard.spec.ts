@@ -1,3 +1,4 @@
+import { safeBrowserText } from "./security";
 import { test, expect, type Page } from "@playwright/test";
 import { browserEvidencePath } from "./evidence";
 
@@ -12,9 +13,9 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
   page,
 }, info) => {
   const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("pageerror", (error) => errors.push(safeBrowserText(error.message)));
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (message.type() === "error") errors.push(safeBrowserText(message.text()));
   });
   await openOverview(page);
   await expect(

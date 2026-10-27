@@ -1,0 +1,32 @@
+"""Copy explicit sanitized verification outputs; never local environment/data."""
+from pathlib import Path
+import shutil
+
+source=Path(__file__).resolve().parent
+target=Path('/private/tmp/earthmind-m035/docs/evidence/cesium-ion')
+target.mkdir(parents=True,exist_ok=True)
+for path in source.glob('*.log'):
+    shutil.copy2(path,target/path.name)
+for name in ['commands.jsonl','ion-endpoint-access.json','postgis-inspection.json','provider-credits.json']:
+    if (source/name).exists():shutil.copy2(source/name,target/name)
+for name in ['run_check.py','probe_ion.py','security_gates.py','check-runtime-bundle.mjs','curate_evidence.py','audit_provider_credits.py']:
+    shutil.copy2(source/name,target/(name+'.txt'))
+for directory in ['ion-desktop','ion-desktop-final','browser-acceptance','browser-release']:
+    origin=source/directory
+    if not origin.exists():continue
+    destination=target/directory;destination.mkdir(exist_ok=True)
+    for path in origin.rglob('*.json'):
+        item=destination/path.relative_to(origin);item.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,item)
+    for path in origin.rglob('error-context.md'):
+        item=destination/path.relative_to(origin);item.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,item)
+    for path in ([] if directory=='ion-desktop' else origin.rglob('test-failed-*.png')):
+        item=destination/path.relative_to(origin);item.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,item)
+    if directory=='browser-release':
+        for path in origin.glob('ion-*.png'):shutil.copy2(path,destination/path.name)
+
+# The initial failed licensed capture predates inline imagery attribution. Keep
+# its original private diagnostic on disk, but do not redistribute it in Git.
+for path in (target/'ion-desktop').rglob('test-failed-*.png'):
+    path.unlink()
+
+print(f'Curated {sum(p.is_file() for p in target.rglob("*"))} explicit evidence files.')

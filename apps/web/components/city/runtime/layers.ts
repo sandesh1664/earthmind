@@ -4,7 +4,7 @@ import {
   PointPrimitiveCollection, PolygonHierarchy, PolylineColorAppearance,
   type Entity, type PointPrimitive, type Viewer,
 } from "cesium";
-import type { FeatureSelection, LayerSettings, SceneData } from "../../../lib/city/types";
+import type { FeatureSelection, LayerSettings, SceneData, VisualizationMode } from "../../../lib/city/types";
 import { flatDegrees, validPosition } from "../../../lib/geo/coordinates";
 
 export interface PickIdentity { kind: "road" | "intersection"; id: string }
@@ -15,12 +15,12 @@ function roadColor(roadClass: string): Color {
   if (/primary|secondary/.test(roadClass)) return Color.fromCssColorString("#8ab8ff");
   return CYAN;
 }
-function roadPrimitive(data: SceneData["roads"], highlight = false): GroundPolylinePrimitive {
+function roadPrimitive(data: SceneData["roads"], highlight = false, mode: VisualizationMode = "engineering"): GroundPolylinePrimitive {
   return new GroundPolylinePrimitive({
     geometryInstances: data.map((road) => new GeometryInstance({
       id: { kind: "road", id: road.id } satisfies PickIdentity,
-      geometry: new GroundPolylineGeometry({ positions: Cartesian3.fromDegreesArray(flatDegrees(road.geometry.coordinates)), width: highlight ? 8 : 4 }),
-      attributes: { color: ColorGeometryInstanceAttribute.fromColor(highlight ? SELECTED : roadColor(road.properties.road_class)) },
+      geometry: new GroundPolylineGeometry({ positions: Cartesian3.fromDegreesArray(flatDegrees(road.geometry.coordinates)), width: highlight ? (mode === "realistic" ? 6 : 8) : mode === "realistic" ? 2 : 4 }),
+      attributes: { color: ColorGeometryInstanceAttribute.fromColor(highlight ? SELECTED : mode === "realistic" ? Color.fromCssColorString("#d6c9ac") : roadColor(road.properties.road_class)) },
     })),
     appearance: new PolylineColorAppearance({ translucent: false }),
     asynchronous: true,
@@ -41,13 +41,15 @@ export class GeographicLayers {
   private flags: LayerSettings | null = null;
   private roadCount = 0;
   private nodeCount = 0;
+  private mode: VisualizationMode = "engineering";
   constructor(private viewer: Viewer) {
     this.nodes = viewer.scene.primitives.add(new PointPrimitiveCollection()) as PointPrimitiveCollection;
   }
-  update(data: SceneData, flags: LayerSettings, selection: FeatureSelection): void {
-    if (data.roads !== this.previousData?.roads) {
+  update(data: SceneData, flags: LayerSettings, selection: FeatureSelection, mode: VisualizationMode = "engineering"): void {
+    const modeChanged = mode !== this.mode;
+    if (data.roads !== this.previousData?.roads || modeChanged) {
       if (this.roads) this.viewer.scene.groundPrimitives.remove(this.roads);
-      this.roads = data.roads.length ? this.viewer.scene.groundPrimitives.add(roadPrimitive(data.roads)) as GroundPolylinePrimitive : null;
+      this.roads = data.roads.length ? this.viewer.scene.groundPrimitives.add(roadPrimitive(data.roads,false,mode)) as GroundPolylinePrimitive : null;
       this.roadCount = data.roads.length;
     }
     if (data.intersections !== this.previousData?.intersections) {
@@ -99,19 +101,19 @@ export class GeographicLayers {
         });
       }
     }
-    if (selection?.id !== this.selection?.id || selection?.kind !== this.selection?.kind || data.roads !== this.previousData?.roads) {
+    if (modeChanged || selection?.id !== this.selection?.id || selection?.kind !== this.selection?.kind || data.roads !== this.previousData?.roads) {
       if (this.highlight) this.viewer.scene.groundPrimitives.remove(this.highlight);
       this.highlight = null;
       if (selection?.kind === "road") {
         const road = data.roads.find((value) => value.id === selection.id);
-        if (road) this.highlight = this.viewer.scene.groundPrimitives.add(roadPrimitive([road],true)) as GroundPolylinePrimitive;
+        if (road) this.highlight = this.viewer.scene.groundPrimitives.add(roadPrimitive([road],true,mode)) as GroundPolylinePrimitive;
       }
       if (this.selection?.kind === "intersection") {
         const old = this.points.get(this.selection.id);
         if (old) { old.outlineColor = Color.fromCssColorString("#102b3c"); old.outlineWidth = 2; }
       }
     }
-    this.selection = selection; this.flags = flags; this.previousData = data;
+    this.selection = selection; this.flags = flags; this.previousData = data;this.mode = mode;
     this.visibility();
     this.viewer.scene.requestRender();
   }

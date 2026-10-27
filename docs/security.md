@@ -79,8 +79,13 @@ zero inactive viewport cache retention. This supplements existing database/API
 bounds; no arbitrary geographic query or executable metadata is accepted.
 
 The runtime viewer configuration returns only explicit public visualization
-settings. `CESIUM_ION_PUBLIC_TOKEN` must be an intentionally browser-public,
-read-only, asset/origin-restricted token. No server/private GIS credential or
+settings. `NEXT_PUBLIC_CESIUM_ION_TOKEN` (legacy alias `CESIUM_ION_PUBLIC_TOKEN`)
+must be an intentionally browser-public, read-only, asset/origin-restricted token.
+Different nonempty aliases fail safely. Runtime lookup avoids embedding the
+value in static JavaScript; it remains intentionally observable through the
+allowlisted public configuration API. Never persist that response in traces.
+Browser evidence strips signed URL queries and credentials; functional traces
+are disabled. See [current configuration](cesium-ion-integration.md). No server/private GIS credential or
 M02 development write token is returned. Provider URLs are SDK-controlled and
 never submitted to an open server proxy. Rendered metadata uses React text,
 without raw HTML. OSM identities distinguish element namespaces; fallback IDs

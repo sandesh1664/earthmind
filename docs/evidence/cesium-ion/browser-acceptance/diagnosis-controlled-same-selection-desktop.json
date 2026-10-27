@@ -1,0 +1,54 @@
+{
+  "scope": "Existing explicitly selected synthetic-v1 fixture from actual PostGIS/API; its real spatial responses held/released while unchanged selections are re-emitted; no fabricated or newly imported data",
+  "actualDeployedConfig": {
+    "imageryMode": "local-osm",
+    "diagnosticsEnabled": true,
+    "publicTokenConfigured": true
+  },
+  "held": 1,
+  "observation": {
+    "errors": [],
+    "httpFailures": [],
+    "requestFailures": [
+      {
+        "path": "http://localhost:3000/api/geospatial/networks",
+        "error": "net::ERR_ABORTED",
+        "expectedCancellation": true,
+        "cancellationScope": "network-catalog"
+      },
+      {
+        "path": "http://localhost:3000/api/geospatial/regions/bc48f4d4-32de-543b-aafc-0b49369f8bc8/geojson",
+        "error": "net::ERR_ABORTED",
+        "expectedCancellation": true,
+        "cancellationScope": "scope"
+      }
+    ],
+    "externalRequests": [],
+    "workers": [
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/transferTypedArrayTest.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createGeometry.js",
+      "http://localhost:3000/cesium/Workers/createVerticesFromHeightmap.js",
+      "http://localhost:3000/cesium/Workers/combineGeometry.js",
+      "http://localhost:3000/cesium/Workers/incrementallyBuildTerrainPicker.js"
+    ],
+    "textureRequests": [
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg"
+    ],
+    "successfulTextures": [
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/0/1/0.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/0/0/0.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/1/2/1.jpg",
+      "http://localhost:3000/cesium/Assets/Textures/NaturalEarthII/2/5/2.jpg"
+    ]
+  }
+}

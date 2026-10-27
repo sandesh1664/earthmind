@@ -27,3 +27,9 @@ already stored inside an initialized PostgreSQL volume.
 `make down` stops only this project's services and preserves named volumes.
 `make clean` removes only known disposable build/test caches. Neither removes
 datasets, credentials or database volumes.
+
+For authorized aerial imagery and Cesium OSM Buildings, follow the
+[Cesium ion configuration and restart guide](cesium-ion-integration.md).
+`NEXT_PUBLIC_CESIUM_ION_TOKEN` is the canonical public visualization setting;
+keep its value only in ignored local environment files. Select Realistic City
+in the existing Explorer mode control after the web service is recreated.

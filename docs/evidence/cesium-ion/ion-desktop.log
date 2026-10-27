@@ -1,0 +1,54 @@
+
+> earthmind@0.1.0 test:browser
+> npm run test:browser --workspace @earthmind/web -- ion.spec.ts --project=desktop --workers=1
+
+
+> @earthmind/web@0.1.0 test:browser
+> playwright test ion.spec.ts --project=desktop --workers=1
+
+
+Running 2 tests using 1 worker
+
+(node:91428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/browser/ion.spec.ts:44:1 › actual ion aerial and OSM building tiles render while mode changes preserve viewer, camera and inspector (53.8s)
+(node:91556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [desktop] › tests/browser/ion.spec.ts:93:1 › actual unavailable legacy imagery asset produces an actionable visible error without hiding stored roads (13.7s)
+
+
+  1) [desktop] › tests/browser/ion.spec.ts:44:1 › actual ion aerial and OSM building tiles render while mode changes preserve viewer, camera and inspector 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 30000ms exceeded while waiting on the predicate
+
+      69 |   await expect(page.getByTestId("selected-feature-id")).toHaveText(selectedId);
+      70 |   await expect(scene).toHaveAttribute("data-local-building-count","0");
+    > 71 |   await expect.poll(()=>observation.responses.filter(item=>item.kind==="imagery-tile"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);
+         |                                                                                                                                                    ^
+      72 |   await expect.poll(()=>observation.responses.filter(item=>item.kind==="building-content"&&item.status>=200&&item.status<300).length,{timeout:30_000}).toBeGreaterThan(0);
+      73 |   await expect(page.locator(".cesium-widget-credits")).toBeVisible();
+      74 |   await page.getByRole("button",{name:"Close feature inspector",exact:true}).click();
+        at /Users/redmug/EARTHMIND/apps/web/tests/browser/ion.spec.ts:71:148
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../private/tmp/earthmind-m035-results/ion-desktop/test-results/ion-actual-ion-aerial-and--5f2b1-viewer-camera-and-inspector-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../private/tmp/earthmind-m035-results/ion-desktop/test-results/ion-actual-ion-aerial-and--5f2b1-viewer-camera-and-inspector-desktop/error-context.md
+
+  1 failed
+    [desktop] › tests/browser/ion.spec.ts:44:1 › actual ion aerial and OSM building tiles render while mode changes preserve viewer, camera and inspector 
+  1 passed (1.1m)
+npm error Lifecycle script `test:browser` failed with error:
+npm error code 1
+npm error path /Users/redmug/EARTHMIND/apps/web
+npm error workspace @earthmind/web@0.1.0
+npm error location /Users/redmug/EARTHMIND/apps/web
+npm error command failed
+npm error command sh -c playwright test ion.spec.ts --project=desktop --workers=1

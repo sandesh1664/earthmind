@@ -1,0 +1,8 @@
+{
+  "initialFocusedCommit": "b79c3417cd7265800e923a29af2862022f9c4468",
+  "initialCommitExit": 0,
+  "workingTreeCleanAfterInitialCommit": true,
+  "sourceAndApplicationTestsCompletedBeforeCommit": true,
+  "remotePushPerformed": false,
+  "documentationOnlyAmendIncludesCommitEvidence": true
+}

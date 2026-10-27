@@ -1,0 +1,31 @@
+{
+  "publicTokenConfigured": true,
+  "scope": "Actual Cesium asset endpoint access only; not proof of visible imagery or building tiles",
+  "requests": [
+    {
+      "assetId": 3812,
+      "httpStatus": 404
+    },
+    {
+      "assetId": 2,
+      "httpStatus": 200,
+      "endpointType": "IMAGERY",
+      "externalType": "BING",
+      "attributionEntries": 2
+    },
+    {
+      "assetId": 96188,
+      "httpStatus": 200,
+      "endpointType": "3DTILES",
+      "externalType": null,
+      "attributionEntries": 3
+    },
+    {
+      "assetId": 1,
+      "httpStatus": 200,
+      "endpointType": "TERRAIN",
+      "externalType": null,
+      "attributionEntries": 3
+    }
+  ]
+}

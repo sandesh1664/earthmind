@@ -57,8 +57,9 @@ Only these runtime environment variables are exposed by the allowlisted
 `GET /api/city/config` route:
 
 ```dotenv
+NEXT_PUBLIC_CESIUM_ION_TOKEN=
 CESIUM_ION_PUBLIC_TOKEN=
-CESIUM_ION_IMAGERY_ASSET_ID=3812
+CESIUM_ION_IMAGERY_ASSET_ID=2
 CESIUM_ION_TERRAIN_ASSET_ID=1
 CITY_DIAGNOSTICS_ENABLED=false
 ```
@@ -68,7 +69,7 @@ the necessary assets and deployment origins in your own account. Follow current
 ion terms and entitlements. Never paste an account administrator, upload/write,
 private GIS or server service token into this setting. Browser tokens are
 observable by design. Private environment values and the M02 write token are
-never returned. No token is baked through `NEXT_PUBLIC_*` or committed.
+never returned. The canonical public name is `NEXT_PUBLIC_CESIUM_ION_TOKEN`; the legacy alias remains supported. Different nonempty aliases fail safely. The server reads these dynamically at runtime, so the value is not baked into static JavaScript or committed. See [current setup and restart steps](cesium-ion-integration.md).
 
 Configure the ignored `.env`, then recreate the web service so it reads the new
 runtime environment. Missing tokens leave ion building tiles/terrain explicitly blocked;
@@ -126,8 +127,7 @@ Owned SDK credit-style elements are tracked during synchronous Viewer creation
 and removed on disposal (also on initialization failure). Existing styles and
 attribution remain untouched while the viewer is active. Memory measurements
 disable DOM snapshot tracing because controlled trace-on/off experiments showed
-that tracer retention inflated DOM/listener counts. Functional browser checks
-retain failure traces separately.
+that tracer retention inflated DOM/listener counts. Functional browser checks also disable traces because response bodies and signed request URLs may contain visualization credentials; sanitized observations and screenshots are retained instead.
 
 
 ## Recovery default
@@ -139,8 +139,7 @@ DB mapping and SUMO files remain private. Context file bytes are hash-checked
 against their manifest before schema validation/native adoption. Local mode uses
 ellipsoid-only heights; provider terrain is blocked to avoid mixed height models.
 `natural-earth` remains the explicit lightweight global/test mode. `ion` uses
-configured public asset access; licensed provider tile execution remains blocked
-until credentials are actually available. See recovery-geography.md for details.
+configured public asset access. Authorized live imagery and OSM Building tiles were exercised in the later [ion integration verification](verification-cesium-ion.md); previous tokenless results remain historical. See recovery-geography.md for the retained local source details.
 
 ## Rendering diagnosis and provider readiness
 
@@ -158,3 +157,8 @@ viewer or credential is exported. To preserve previous evidence, run browser
 checks with an absolute EARTHMIND_EVIDENCE_DIR. The exact current diagnosis,
 commands, failures and remaining blockers are in
 [city-explorer-diagnosis.md](city-explorer-diagnosis.md).
+
+
+## Explicit visualization modes
+
+Engineering remains the initial mode and preserves local OSM context, road categories and source-height models. Realistic City requests authorized aerial imagery and streamed Cesium OSM Buildings in the same Viewer without resetting camera or selection. The mode control overrides the legacy initial imagery setting; synthetic development scopes remain isolated. See [ADR 0014](decisions/0014-cesium-ion-modes.md) and the [current integration guide](cesium-ion-integration.md).

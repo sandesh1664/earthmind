@@ -1,0 +1,30 @@
+"""Read only endpoint access probe; never print tokens, headers or signed tile URLs."""
+import json
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
+from dotenv import dotenv_values
+
+settings=dotenv_values('/Users/redmug/EARTHMIND/.env')
+token=settings.get('NEXT_PUBLIC_CESIUM_ION_TOKEN') or settings.get('CESIUM_ION_PUBLIC_TOKEN')
+if not token:raise SystemExit('Public token is not configured; no provider calls made.')
+configured=settings.get('CESIUM_ION_IMAGERY_ASSET_ID') or '3812'
+if not configured.isdecimal():raise SystemExit('Imagery asset ID must be an integer; no credential printed.')
+rows=[]
+for identifier in dict.fromkeys([int(configured),2,96188,1]):
+ url=f'https://api.cesium.com/v1/assets/{identifier}/endpoint?'+urllib.parse.urlencode({'access_token':token})
+ request=urllib.request.Request(url,headers={'Accept':'application/json','Referer':'http://localhost:3000/'})
+ row={'assetId':identifier}
+ try:
+  with urllib.request.urlopen(request,timeout=20) as response:
+   body=json.loads(response.read(262144));row['httpStatus']=response.status
+   row['endpointType']=body.get('type') if body.get('type') in ['IMAGERY','3DTILES','TERRAIN'] else 'other'
+   external=body.get('externalType');row['externalType']=external if isinstance(external,str) and external.replace('_','').isalpha() else None
+   row['attributionEntries']=len(body.get('attributions',[]))
+ except urllib.error.HTTPError as error:row['httpStatus']=error.code
+ except Exception as error:row['transportError']=type(error).__name__
+ rows.append(row)
+result={'publicTokenConfigured':True,'scope':'Actual Cesium asset endpoint access only; not proof of visible imagery or building tiles','requests':rows}
+Path('/private/tmp/earthmind-m035-results/ion-endpoint-access.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result))

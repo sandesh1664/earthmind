@@ -21,8 +21,11 @@ The final command runs 3 synthetic vehicles on actual mapped imported roads and
 retains recorded SUMO output. It does not connect live traffic or animate fake
 vehicles. For browser acceptance, run `CITY_DIAGNOSTICS_ENABLED=true make dev`
 then `npm run test:browser -- --workers=1`. Public provider credentials remain
-optional; configure `CESIUM_ION_PUBLIC_TOKEN` and `CITY_IMAGERY_MODE=ion` for
-licensed ion imagery/building tiles. No token was fabricated.
+optional; configure `NEXT_PUBLIC_CESIUM_ION_TOKEN` in ignored `.env`, recreate
+web, then select **Realistic city** for authorized World Imagery and OSM Buildings.
+The legacy `CESIUM_ION_PUBLIC_TOKEN` alias remains supported. See the
+[exact setup/restart guide](docs/cesium-ion-integration.md) and
+[actual ion browser verification](docs/verification-cesium-ion.md).
 
 [Actual recovery results](docs/verification.md),
 [source/import workflow](docs/osm-import.md),
@@ -238,8 +241,9 @@ Keep the loopback bindings; shared deployment requires the security work above.
 
 The explicitly requested recovery adds real OSM import and a limited synthetic-demand SUMO smoke. No separate M04 work or operational traffic/AI feature is started.
 
-For a scoped public Cesium ion token, use the documented `CESIUM_ION_PUBLIC_TOKEN`
-runtime setting in ignored `.env`, recreate web and reload the viewer. No private
+For a scoped public Cesium ion token, use the canonical `NEXT_PUBLIC_CESIUM_ION_TOKEN`
+runtime setting in ignored `.env` (legacy `CESIUM_ION_PUBLIC_TOKEN` is compatible),
+recreate web, reload the viewer and choose Realistic City. No private
 server token belongs in that setting. Missing access explicitly blocks optional
 ion building tiles/terrain while the local globe and PostGIS overlays remain usable.
 

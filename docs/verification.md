@@ -276,3 +276,25 @@ current migration, six asset HTTP hashes, queue/SUMO/geospatial smoke and native
 ARM64 checks passed. Licensed satellite/ion coverage remains unverified with no
 configured public token. All failed attempts and the exact command ledger remain
 in the linked diagnosis; no new geographic import or later milestone was run.
+
+## Authorized Cesium ion integration — 2026-10-27
+
+The later bounded [ion integration report](verification-cesium-ion.md) supersedes
+the previous missing-token rendering blocker. `NEXT_PUBLIC_CESIUM_ION_TOKEN` is
+configured only in the ignored local environment. Actual Chromium sessions verified
+World Imagery asset2 and streamed OSM Buildings asset96188 in Downtown Dubai.
+Legacy imagery3812 returned actual404; both Compose/server defaults now use2.
+
+Final local verification: **116 Python unit +103 TypeScript +38 live PostGIS/API
+tests passed;49 browser checks passed /2 intentional skips /0failed**. Locked
+lint/type checks, production build, migrations/fresh rehearsal, asset hashes,
+queue/SUMO/geospatial smoke, source/context preservation and native ARM64 checks
+passed. Same Viewer/camera/selection and inline credits are verified in both modes.
+All failed attempts remain in the linked report and evidence; no PASS is fabricated.
+
+See [setup/restart steps](cesium-ion-integration.md),
+[ADR0014](decisions/0014-cesium-ion-modes.md), and the report's actual desktop,
+tablet and mobile screenshots. The account still displays Upgrade for commercial
+use; account entitlements and token scope/origin restrictions remain operator
+responsibilities. The existing bounded feature safeguards and simulation scope
+are unchanged. No data import, broader spatial LOD milestone or M04 was started.

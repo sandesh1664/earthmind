@@ -1,4 +1,4 @@
-import { readPublicCityConfig } from "@/lib/city/config";
+import { PublicCityConfigurationError, readPublicCityConfig } from "@/lib/city/config";
 
 export const dynamic = "force-dynamic";
 export function GET(): Response {
@@ -6,8 +6,8 @@ export function GET(): Response {
     return Response.json(readPublicCityConfig(process.env), {
       headers: { "Cache-Control": "no-store" },
     });
-  } catch {
-    return Response.json({ error: "Public viewer configuration is invalid. Check the server configuration." }, {
+  } catch (error) {
+    return Response.json({ error: error instanceof PublicCityConfigurationError ? error.message : "Public viewer configuration is invalid. Check the public token format and numeric asset IDs in the server environment." }, {
       status: 503, headers: { "Cache-Control": "no-store" },
     });
   }
