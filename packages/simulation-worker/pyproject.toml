@@ -5,6 +5,7 @@ description = "EARTHMIND simulation worker lifecycle (M01)"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "earthmind-contracts",
+  "earthmind-api",
   "pydantic-settings>=2.11,<3",
   "redis>=6.4,<7",
   "sumolib==1.15.0",
@@ -17,3 +18,4 @@ build-backend = "uv_build"
 
 [tool.uv.sources]
 earthmind-contracts = { workspace = true }
+earthmind-api = { workspace = true }

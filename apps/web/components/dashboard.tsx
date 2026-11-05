@@ -50,15 +50,19 @@ import dynamic from "next/dynamic";
 
 const CityExplorer = dynamic(() => import("@/components/city/CityExplorer"), { ssr: false, loading: () => <p role="status">Loading the 3D workspace…</p> });
 
+const ScenarioStudio = dynamic(() => import("@/components/simulation/ScenarioStudio"), {loading:()=><p role="status">Loading Scenario Studio…</p>});
+const SimulationLaboratory = dynamic(() => import("@/components/simulation/SimulationLaboratory"), {loading:()=><p role="status">Loading Simulation Laboratory…</p>});
+const SimulationAnalytics = dynamic(() => import("@/components/simulation/SimulationAnalytics"), {loading:()=><p role="status">Loading simulation analytics…</p>});
+
 const navigation: { label: string; icon: LucideIcon; active: boolean }[] = [
   { label: "Overview", icon: LayoutDashboard, active: true },
   { label: "Geospatial Data", icon: MapIcon, active: true },
   { label: "City Explorer", icon: MapIcon, active: true },
-  { label: "Scenario Studio", icon: Layers3, active: false },
-  { label: "Simulation Laboratory", icon: FlaskConical, active: false },
+  { label: "Scenario Studio", icon: Layers3, active: true },
+  { label: "Simulation Laboratory", icon: FlaskConical, active: true },
   { label: "Traffic Intelligence", icon: Route, active: false },
   { label: "AI Command Center", icon: BrainCircuit, active: false },
-  { label: "Analytics", icon: ChartNoAxesCombined, active: false },
+  { label: "Analytics", icon: ChartNoAxesCombined, active: true },
   { label: "System Status", icon: Activity, active: true },
   { label: "Settings", icon: Settings, active: false },
 ];
@@ -237,6 +241,11 @@ function DiagnosticPanel({ connected }: { connected: boolean }) {
 export function Dashboard() {
   const [section, setSection] = useState("City Explorer");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedRunId,setSelectedRunId]=useState<string|null>(null);
+  const [replayRunId,setReplayRunId]=useState<string|null>(null);
+  const openRun=(id:string)=>{setSelectedRunId(id);setSection("Simulation Laboratory");};
+  const openReplay=(id:string)=>{setSelectedRunId(id);setReplayRunId(id);setSection("City Explorer");};
+  const openAnalytics=(id:string)=>{setSelectedRunId(id);setSection("Analytics");};
   const client = useQueryClient();
   const health = useQuery({
     queryKey: ["health"],
@@ -316,7 +325,7 @@ export function Dashboard() {
     },
   ];
   return (
-    <div className={`mission-shell${section === "City Explorer" ? " city-active" : ""}`}>
+    <div className={`mission-shell${section === "City Explorer" ? " city-active" : ["Scenario Studio","Simulation Laboratory","Analytics"].includes(section) ? " simulation-active" : ""}`}>
       {menuOpen && (
         <button
           className="nav-scrim"
@@ -341,7 +350,7 @@ export function Dashboard() {
           </span>
         </a>
         <p className="nav-label">
-          WORKSPACE <span>M03</span>
+          WORKSPACE <span>M04</span>
         </p>
         <nav aria-label="Main navigation">
           {navigation.map(({ label, icon: Icon, active }) => (
@@ -397,7 +406,7 @@ export function Dashboard() {
               LOCAL DEVELOPMENT
             </span>
             <span className="keyboard-hint">
-              <Command size={11} /> M03
+              <Command size={11} /> M04
             </span>
           </div>
         </header>
@@ -684,7 +693,13 @@ export function Dashboard() {
               </section>
             </>
           ) : section === "City Explorer" ? (
-            <CityExplorer />
+            <CityExplorer replayRunId={replayRunId} onCloseReplay={()=>setReplayRunId(null)} />
+          ) : section === "Scenario Studio" ? (
+            <ScenarioStudio onOpenRun={openRun}/>
+          ) : section === "Simulation Laboratory" ? (
+            <SimulationLaboratory selectedRunId={selectedRunId} onSelectRun={setSelectedRunId} onOpenReplay={openReplay} onOpenAnalytics={openAnalytics}/>
+          ) : section === "Analytics" ? (
+            <SimulationAnalytics selectedRunId={selectedRunId} onSelectRun={setSelectedRunId}/>
           ) : section === "Geospatial Data" ? (
             <GeospatialData />
           ) : (
@@ -719,7 +734,7 @@ export function Dashboard() {
             <div>
               <span>VERSION {caps?.version ?? "—"}</span>
               <span className="footer-divider" />
-              <span>MILESTONE M03</span>
+              <span>MILESTONE M03 · M04 SIMULATION</span>
               <a href="/api/health">
                 Readiness API <ArrowUpRight size={11} />
               </a>

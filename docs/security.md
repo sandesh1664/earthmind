@@ -112,3 +112,44 @@ context hashes and finite geometry budgets, suppresses default GeoJSON HTML
 descriptions, and renders inspector text safely. SUMO smoke paths are typed local
 CLI arguments, and every route edge must match a checksum-verified imported DB ID.
 Explicit simulated traffic is never reported as live or measured traffic.
+
+
+## M04 simulation boundary
+
+The private developer-write gate authorizes expensive scenario, submission,
+cancel and comparison mutations. Its value is injected only by the server-side
+Next bridge after loopback Host (not forwarded Host), same-origin, fetch-site,
+explicit application intent, strict JSON/body budgets and allowlisted routes are
+validated. This is a trusted local operator boundary, not user login or tenant
+authorization. All host bindings remain loopback; Redis stays private. External
+deployment requires proper identity/resource policies, TLS and managed secrets.
+
+Clients cannot choose executable flags, native paths, output directories or
+artifact URIs. Worker claims are strict typed snapshots of immutable server-
+resolved network/demand inputs. SUMO commands use a fixed argv list without shell
+interpolation. XML is byte-bounded and DTD/entity declarations rejected before
+parsing. Native children get only allowlisted runtime variables, excluding
+service/database/developer-write/Cesium credentials. No Docker socket is mounted.
+
+Run submission uses transaction-scoped serialization for idempotency/capacity.
+Worker identity/heartbeat fences state changes and publication. Native children
+are process-group owned, timed out/cancelled/reaped; worker concurrency is one.
+A lease loss cannot publish outputs. Retried work has a new linked identity.
+Queued records remain durable even if a Redis UUID notification is lost; service
+health still reflects actual infrastructure availability.
+
+Inputs mount read-only. The named artifact volume is UID/GID10001 mode0750,
+worker read/write and API read-only; isolated run workspaces are mode0700.
+Artifact lookup uses run UUID, trusted metadata, root containment, regular-file/
+symlink checks, sizes and SHA256. Only successful verified records expose results;
+there is no directory browser or arbitrary file-serving endpoint. Request/page/
+trip/duration/CPU/memory/process/wall-time/output/log/chunk/marker/cache budgets
+are explicit. Storage retention/backups and production admission policy remain
+operator responsibilities; persistent data is never erased to make checks pass.
+
+Replay samples/metrics have finite bounded numeric schemas and text-only React
+inspection. The browser independently verifies replay bytes and adopts no native
+objects from server data. Raw traces/HAR, signed provider URL queries, response
+bodies containing visualization credentials and huge simulation outputs stay out
+of Git. Existing Cesium configuration is unchanged. Actual tests and limits,
+including any failed fault/recovery attempts, are recorded in verification-m04.md.

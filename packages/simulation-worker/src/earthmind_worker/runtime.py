@@ -48,7 +48,12 @@ async def runtime_checks(
         try:
             await asyncio.wait_for(stop.wait(), configuration.worker_runtime_check_interval_seconds)
         except TimeoutError:
-            await verify_and_publish_runtime(cache, lock, configuration.worker_job_timeout_seconds)
+            # Full M04 native work renews the runtime marker from actual advancing
+            # SUMO progress. Do not time out a probe waiting on the same native lock.
+            if not lock.locked():
+                await verify_and_publish_runtime(
+                    cache, lock, configuration.worker_job_timeout_seconds
+                )
 
 
 class StopWorker(Exception):
@@ -90,7 +95,7 @@ async def run(settings: Settings | None = None) -> None:
         socket_connect_timeout=2,
         socket_timeout=2,
     )
-    logger.info("Simulation worker started (bounded M01 diagnostics)")
+    logger.info("Simulation worker started (single native execution; M01 diagnostics and M04)")
     lock = asyncio.Lock()
     try:
         if stop.is_set():
@@ -106,6 +111,10 @@ async def run(settings: Settings | None = None) -> None:
                     consume(cache, stop, lock, configuration.worker_job_timeout_seconds)
                 )
                 tasks.create_task(runtime_checks(cache, stop, lock, configuration))
+                if configuration.simulation_enabled:
+                    from earthmind_worker.simulation_jobs import consume_simulations
+
+                    tasks.create_task(consume_simulations(cache, stop, lock, configuration))
                 tasks.create_task(wait_for_stop(stop))
         except* StopWorker:
             pass

@@ -33,3 +33,4 @@ class SystemMetadata(Base):
 
 # Import registrations after Base exists; all milestones share this metadata.
 from earthmind_api import geospatial_models as _geospatial_models  # noqa: E402, F401
+from earthmind_api import simulation_models as _simulation_models  # noqa: E402, F401

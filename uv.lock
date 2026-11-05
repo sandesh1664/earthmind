@@ -182,6 +182,7 @@ name = "earthmind-worker"
 version = "0.1.0"
 source = { editable = "packages/simulation-worker" }
 dependencies = [
+    { name = "earthmind-api" },
     { name = "earthmind-contracts" },
     { name = "pydantic-settings" },
     { name = "redis" },
@@ -191,6 +192,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "earthmind-api", editable = "apps/api" },
     { name = "earthmind-contracts", editable = "packages/contracts" },
     { name = "pydantic-settings", specifier = ">=2.11,<3" },
     { name = "redis", specifier = ">=6.4,<7" },

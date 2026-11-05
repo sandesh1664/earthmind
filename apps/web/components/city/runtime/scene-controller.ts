@@ -11,6 +11,8 @@ import { GeographicLayers } from "./layers";
 import { ProviderLayers } from "./providers";
 import { destroyWithOwnedContext, destroyWithOwnedInputHandler, ownedCreditStyles } from "./lifecycle";
 
+import {VehicleReplayLayer} from "./vehicles";
+
 const INITIAL: ViewerStatus = {
   phase:"loading", message:"Initializing the geographic renderer",
   cameraMoving:false,
@@ -43,6 +45,7 @@ export class CitySceneController {
   private viewer: Viewer;
   private layers: GeographicLayers;
   private providers: ProviderLayers;
+  private vehicles:VehicleReplayLayer;
   private readonly creditStyles: HTMLStyleElement[];
   private disposed = false;
   private props: CesiumViewerProps;
@@ -94,12 +97,16 @@ export class CitySceneController {
     this.presentation(props.visualizationMode ?? "engineering");
     viewer.camera.flyToBoundingSphere(new BoundingSphere(Cartesian3.fromDegrees(55.2744,25.1972),0), {duration:0,offset:new HeadingPitchRange(0,CMath.toRadians(-55),3000)});
     this.layers = new GeographicLayers(viewer);
+    this.vehicles = new VehicleReplayLayer(viewer);
     const isSynthetic = (props.data.network?.is_synthetic ?? props.data.region?.metadata.is_synthetic) === true;
     this.providers = new ProviderLayers(viewer,{...props.config,imageryMode:effectiveImageryMode(props.config,isSynthetic,props.visualizationMode ?? "engineering")},(name,state) => this.providerState(name,state),props.visualizationMode ?? "engineering",isSynthetic);
     viewer.screenSpaceEventHandler.removeInputAction(ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
     viewer.screenSpaceEventHandler.setInputAction((movement: {position: import("cesium").Cartesian2}) => {
       if (this.disposed) return;
-      const selections = (viewer.scene.drillPick(movement.position,16) as unknown[]).map((value) => selectionFromPick(value,(content,id) => this.localBuildingIdentity(content,id)));
+      const picks=viewer.scene.drillPick(movement.position,16) as unknown[];
+      const vehicle=this.vehicles.selectFromPicks(picks);
+      if(vehicle){this.vehicles.select(vehicle);return;}
+      const selections = picks.map((value) => selectionFromPick(value,(content,id) => this.localBuildingIdentity(content,id)));
       this.props.onSelect(preferredSelection(selections));
     },ScreenSpaceEventType.LEFT_CLICK);
     this.removeListeners.push(viewer.camera.moveStart.addEventListener(() => this.observeCamera()));
@@ -181,6 +188,7 @@ export class CitySceneController {
       this.hasUpdated = true;
     }
     this.providers.update(props.layers);
+    this.vehicles.update(props.replay??null);
     if (props.data.region && props.data.region.id !== this.lastRegion) {
       const firstRegion = this.lastRegion === null;
       this.lastRegion = props.data.region.id;
@@ -212,6 +220,7 @@ export class CitySceneController {
   }
   private afterRender(): void {
     if (this.disposed) return;
+    this.vehicles.rendered();
     this.renderedFrames += 1; this.sampleFrames += 1;
     if ((this.layers.pending() || !this.viewer.dataSourceDisplay.ready) && this.status.phase === "ready") this.viewer.scene.requestRender();
     const elapsed = performance.now() - this.sampleStart;
@@ -220,13 +229,13 @@ export class CitySceneController {
       const memory = (performance as Performance & {memory?:{usedJSHeapSize:number}}).memory;
       this.heapBytes = memory?.usedJSHeapSize ?? null;
       this.sampleFrames = 0; this.sampleStart = performance.now();
-      this.status = {...this.status,renderedFrames:this.renderedFrames,sampleFps:this.sampleFps,heapBytes:this.heapBytes};
+      this.status = {...this.status,replayInViewCount:this.vehicles.inViewCount(),renderedFrames:this.renderedFrames,sampleFps:this.sampleFps,heapBytes:this.heapBytes};
     }
     this.emit();
   }
   private emit(): void {
     if (this.disposed) return;
-    const snapshot: ViewerStatus = {...this.status,...this.layers.counts(),visualizationMode:this.props.visualizationMode ?? "engineering",viewerInstanceId:this.viewerNamespace,geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
+    const snapshot: ViewerStatus = {...this.status,replayVehicleCount:this.vehicles.count(),replayReadyCount:this.vehicles.readyCount(),...this.layers.counts(),visualizationMode:this.props.visualizationMode ?? "engineering",viewerInstanceId:this.viewerNamespace,geometryReady:!this.layers.pending() && this.viewer.dataSourceDisplay.ready,localBuildingCount:this.providers.localBuildingCount(),layerVisibility:{...this.layers.visibilitySnapshot(),...this.providers.visibilitySnapshot()}};
     if (this.props.config.diagnosticsEnabled) {
       snapshot.renderDiagnostics = {
         globeVisible:this.viewer.scene.globe.show,
@@ -237,6 +246,7 @@ export class CitySceneController {
       // No native object is exposed: this optional local diagnostic is only a
       // projection of a real stored road coordinate into the actual canvas.
       snapshot.pickProbe = this.roadPickProbe();
+      snapshot.replayProbe = this.vehicles.probe();
     }
     const signature = JSON.stringify(snapshot);
     if (signature !== this.lastStatus) { this.lastStatus = signature; this.props.onStatus(snapshot); }
@@ -277,7 +287,7 @@ export class CitySceneController {
     this.roadCreditVisible = false;
     const inputHandler = this.viewer.screenSpaceEventHandler;
     if (!inputHandler.isDestroyed()) inputHandler.removeInputAction(ScreenSpaceEventType.LEFT_CLICK);
-    this.providers.destroy(); this.layers.destroy();
+    this.vehicles.destroy(); this.providers.destroy(); this.layers.destroy();
     try {
       destroyWithOwnedContext(() => {
         // Cesium 1.146 removes two actions but leaves the widget's input handler

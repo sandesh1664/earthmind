@@ -11,6 +11,9 @@ class Settings(BaseSettings):
 
     database_url: str = "postgresql://localhost:5434/earthmind"
     redis_url: str = "redis://localhost:6379/0"
+    simulation_inputs_root: str = "/simulation-inputs"
+    simulation_artifacts_root: str = "/simulation-artifacts"
+    simulation_queue_limit: int = Field(default=20, ge=1, le=100)
     cors_origins: list[str] = ["http://localhost:3000"]
     health_timeout_seconds: float = Field(default=2.0, gt=0, le=10)
     dev_write_token: SecretStr | None = Field(

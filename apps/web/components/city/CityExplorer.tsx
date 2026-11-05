@@ -35,6 +35,8 @@ import { LayerManager } from "./LayerManager";
 import { MapToolbar } from "./MapToolbar";
 import { ViewerErrorBoundary } from "./ViewerErrorBoundary";
 import { VisualizationModeSwitch } from "./VisualizationModeSwitch";
+import {ReplayControls} from "./ReplayControls";
+import {useVehicleReplay} from "../../hooks/use-vehicle-replay";
 import { effectiveImageryMode, imageryDescription } from "@/lib/city/provider-policy";
 
 const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
@@ -47,11 +49,12 @@ const CesiumViewer = dynamic(() => import("./CesiumViewer"), {
   ),
 });
 
-export function CityExplorer() {
+export function CityExplorer({replayRunId=null,onCloseReplay}:{replayRunId?:string|null;onCloseReplay?:()=>void}={}) {
   const [camera, setCamera] = useState<CameraSnapshot | null>(null);
   const [developmentMode, setDevelopmentMode] = useState(false);
   const [visualizationMode, setVisualizationMode] = useState<VisualizationMode>("engineering");
   const data = useCityData(camera, developmentMode);
+  const replay=useVehicleReplay(replayRunId,data.networkId);
   const workspaceRef = useRef<HTMLElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
@@ -81,6 +84,9 @@ export function CityExplorer() {
     sequence: 0,
   });
   const [inspectorOpen, setInspectorOpen] = useState(false);
+  const selectReplay=replay.select;
+  const selectReplayVehicle=useCallback((id:string)=>{selectReplay(id);setInspectorOpen(false);},[selectReplay]);
+  const replayScene=useMemo(()=>replay.manifest&&replay.networkMatches?{vehicles:replay.vehicles,time:replay.time,selectedId:replay.selectedId,follow:replay.follow,onSelect:selectReplayVehicle}:null,[replay.manifest,replay.networkMatches,replay.vehicles,replay.time,replay.selectedId,replay.follow,selectReplayVehicle]);
   const [layersOpen, setLayersOpen] = useState(false);
   const [featureTab, setFeatureTab] = useState<"roads" | "intersections">(
     "roads",
@@ -309,7 +315,7 @@ export function CityExplorer() {
           ? `OSM source-height context · ${viewerStatus?.buildings.status === "ready" ? "partial coverage" : viewerStatus?.buildings.status ?? "loading"}`
           : viewerStatus?.buildings.status === "ready" ? "Cesium OSM tiles · partial provider coverage"
           : !data.config?.ionPublicToken ? "Blocked · public token required" : `Cesium OSM tiles · ${viewerStatus?.buildings.status ?? "loading"}`}</span>
-        <span>SYNTHETIC TRAFFIC — CLI smoke only; no viewer playback</span>
+        <span>SYNTHETIC TRAFFIC — {replayRunId?"Recorded SUMO replay · not live":"Configure recorded runs in Scenario Studio"}</span>
         <span>LIVE TRAFFIC — Not connected</span>
         <span>INFERRED SIGNALS — Not field verified</span>
       </div>
@@ -346,6 +352,7 @@ export function CityExplorer() {
                   data={data.sceneData}
                   config={data.config}
                   visualizationMode={visualizationMode}
+                  replay={replayScene}
                   layers={layers}
                   selection={selection}
                   cameraCommand={cameraCommand}
@@ -570,6 +577,7 @@ export function CityExplorer() {
         )}
       </div>
 
+      {replayRunId&&<ReplayControls replay={replay} onClose={()=>onCloseReplay?.()} onMatchNetwork={()=>{setDevelopmentMode(false);if(replay.manifest)data.selectNetwork(replay.manifest.network_version_id);}}/>}
       <div className="city-data-footer">
       <details className="city-metadata">
         <summary><Database size={14} /> Network &amp; source details <span>{data.network ? `${data.network.edge_count.toLocaleString("en")} roads · ${data.network.node_count.toLocaleString("en")} nodes` : "No network selected"}</span><ChevronDown size={13} /></summary>

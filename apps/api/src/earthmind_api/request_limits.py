@@ -11,22 +11,41 @@ class GeoBodyLimitMiddleware:
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         path = scope.get("path", "")
-        bounded = path == "/api/v1/regions" or path.startswith("/api/v1/geo/")
+        bounded = (
+            path == "/api/v1/regions"
+            or path.startswith("/api/v1/geo/")
+            or path.startswith(("/api/v1/scenarios", "/api/v1/simulations", "/api/v1/comparisons"))
+        )
         if scope["type"] != "http" or scope.get("method") != "POST" or not bounded:
             await self.app(scope, receive, send)
             return
+        maximum = (
+            min(self.max_bytes, 65536)
+            if path.startswith(("/api/v1/scenarios", "/api/v1/simulations", "/api/v1/comparisons"))
+            else self.max_bytes
+        )
         body = bytearray()
         while True:
             message = await receive()
             if message["type"] == "http.disconnect":
                 return
             chunk = message.get("body", b"")
-            if len(body) + len(chunk) > self.max_bytes:
+            if len(body) + len(chunk) > maximum:
                 response = JSONResponse(
                     {
                         "error": {
                             "code": "payload_too_large",
-                            "message": "Geospatial request exceeds its byte limit",
+                            "message": (
+                                "Simulation request exceeds its byte limit"
+                                if path.startswith(
+                                    (
+                                        "/api/v1/scenarios",
+                                        "/api/v1/simulations",
+                                        "/api/v1/comparisons",
+                                    )
+                                )
+                                else "Geospatial request exceeds its byte limit"
+                            ),
                         }
                     },
                     status_code=413,

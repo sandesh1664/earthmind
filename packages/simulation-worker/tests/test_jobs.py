@@ -133,3 +133,19 @@ async def test_redis_queue_failure_retries_are_bounded(monkeypatch) -> None:
     with pytest.raises(RuntimeError, match="five consecutive attempts"):
         await jobs.consume(cache, asyncio.Event(), asyncio.Lock(), 5)
     assert cache.blpop.await_count == jobs.MAX_REDIS_FAILURES
+
+
+async def test_busy_native_slot_is_not_misreported_as_an_unavailable_engine(monkeypatch) -> None:
+    job = queued("sumo_runtime")
+    cache = AsyncMock()
+    cache.get.return_value = job.model_dump_json()
+    execute = AsyncMock()
+    monkeypatch.setattr(jobs, "execute_sumo", execute)
+    lock = asyncio.Lock()
+    async with lock:
+        await jobs.process_job(cache, str(job.job_id), lock, 5)
+    completed = DiagnosticJob.model_validate_json(cache.set.call_args_list[-1].args[1])
+    assert completed.status == "failed"
+    assert "busy" in completed.error
+    execute.assert_not_awaited()
+    assert all(call.args[0] != SUMO_RUNTIME_KEY for call in cache.set.call_args_list)

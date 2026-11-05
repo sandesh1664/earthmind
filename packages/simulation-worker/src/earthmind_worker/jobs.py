@@ -31,6 +31,10 @@ json_object = TypeAdapter(dict[str, JsonValue])
 MAX_REDIS_FAILURES = 5
 
 
+class NativeEngineBusy(RuntimeError):
+    """The single native execution slot is occupied, not an unavailable runtime."""
+
+
 async def execute_sumo(budget_seconds: float) -> dict[str, JsonValue]:
     """Isolate native tools, bound wall time, and kill their process group on cancellation."""
     process = await asyncio.create_subprocess_exec(
@@ -120,6 +124,8 @@ async def process_job(cache: Redis, job_id: str, lock: asyncio.Lock, budget_seco
                 "message": "Worker consumed this diagnostic from the Redis queue.",
             }
         else:
+            if lock.locked():
+                raise NativeEngineBusy
             async with asyncio.timeout(budget_seconds):
                 async with lock:
                     result = await execute_sumo(budget_seconds)
@@ -131,6 +137,18 @@ async def process_job(cache: Redis, job_id: str, lock: asyncio.Lock, budget_seco
                 "updated_at": datetime.now(UTC),
                 "result": result,
                 "error": None,
+            }
+        )
+    except NativeEngineBusy:
+        job = job.model_copy(
+            update={
+                "status": "failed",
+                "updated_at": datetime.now(UTC),
+                "result": None,
+                "error": (
+                    "The native engine is busy with a simulation. "
+                    "Retry this diagnostic after that run finishes."
+                ),
             }
         )
     except (RuntimeError, OSError, ValueError, TimeoutError):

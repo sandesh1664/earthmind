@@ -6,7 +6,7 @@ COMPOSE := docker compose --env-file .env
 
 .PHONY: help setup dev test lint typecheck migrate smoke down build logs status clean seed
 help:
-	@echo 'EARTHMIND M03: setup dev down test lint typecheck migrate seed smoke logs status clean build'
+	@echo 'EARTHMIND M04: setup dev down test lint typecheck migrate seed smoke logs status clean build'
 
 setup:
 	sh scripts/bootstrap.sh

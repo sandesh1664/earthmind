@@ -17,5 +17,6 @@ ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH=/app/.venv/bin:$PATH
 RUN groupadd --gid 10001 earthmind && useradd --uid 10001 --gid 10001 --create-home earthmind
 WORKDIR /app
 COPY --from=build --chown=10001:10001 /app /app
+RUN install -d -o 10001 -g 10001 -m 0750 /simulation-artifacts
 USER 10001:10001
 CMD ["uvicorn", "earthmind_api.main:app", "--host", "0.0.0.0", "--port", "8000"]

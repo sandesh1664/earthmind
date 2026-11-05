@@ -71,13 +71,13 @@ test("real dashboard connectivity, worker diagnostic, navigation and responsive 
   await expect(
     page.getByRole("heading", { name: "Scenario Studio", exact: true }).first(),
   ).toBeVisible();
-  await expect(
-    page.getByText(
-      "This workflow is reserved for a later milestone and is not enabled yet.",
-      { exact: true },
-    ),
-  ).toBeVisible();
-  await page.getByRole("button", { name: "Return to overview" }).click();
+  const studio = page.getByRole("region", { name: "Scenario Studio", exact: true });
+  await expect(studio).toBeVisible();
+  await expect(studio.getByRole("button", { name: "Run validation", exact: true })).toBeVisible();
+  await expect(studio).toContainText("Synthetic traffic experiment");
+  await expect(page.locator(".future-panel")).toHaveCount(0);
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole("button", { name: "Overview", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "Platform overview", exact: true }),
   ).toBeVisible();

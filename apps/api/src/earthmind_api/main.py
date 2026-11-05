@@ -26,6 +26,7 @@ from earthmind_api.geospatial_routes import router as geospatial_router
 from earthmind_api.logging import configure_logging
 from earthmind_api.request_limits import GeoBodyLimitMiddleware
 from earthmind_api.settings import Settings
+from earthmind_api.simulation_routes import router as simulation_router
 
 logger = logging.getLogger(__name__)
 
@@ -111,7 +112,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             {
                 "error": {
                     "code": codes.get(error.status_code, "request_failed"),
-                    "message": messages.get(error.status_code, "Request failed"),
+                    "message": (
+                        "Simulation queue is full"
+                        if error.status_code == 429
+                        and _request.url.path.startswith("/api/v1/simulations")
+                        else messages.get(error.status_code, "Request failed")
+                    ),
                 }
             },
             status_code=error.status_code,
@@ -218,6 +224,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return job
 
     application.include_router(geospatial_router)
+    application.include_router(simulation_router)
     return application
 
 

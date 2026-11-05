@@ -30,5 +30,6 @@ RUN test "$TARGETARCH" = arm64 \
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PATH=/app/.venv/bin:$PATH SUMO_HOME=/usr/share/sumo
 WORKDIR /app
 COPY --from=build --chown=10001:10001 /app /app
+RUN install -d -o 10001 -g 10001 -m 0750 /simulation-artifacts
 USER 10001:10001
 CMD ["python", "-m", "earthmind_worker"]

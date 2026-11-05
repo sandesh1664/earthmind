@@ -68,7 +68,7 @@ def main() -> None:
         )
         sql("SELECT PostGIS_Version(); SELECT application_name,schema_version FROM system_metadata")
         compose("run", "--rm", "migrate")
-        if sql("SELECT version_num FROM alembic_version").strip() != "0004_run_state_integrity":
+        if sql("SELECT version_num FROM alembic_version").strip() != "0005_simulation_execution":
             raise RuntimeError("M01 to M02 migration did not reach the current head")
         if (
             sql(
@@ -129,7 +129,7 @@ def main() -> None:
             raise RuntimeError("Populated M02 downgrade unexpectedly succeeded")
         if sql("SELECT count(*) FROM road_edges").strip() != "8":
             raise RuntimeError("Protected downgrade failed to preserve the synthetic graph")
-        if sql("SELECT version_num FROM alembic_version").strip() != "0004_run_state_integrity":
+        if sql("SELECT version_num FROM alembic_version").strip() != "0005_simulation_execution":
             raise RuntimeError("Protected downgrade did not roll back schema changes atomically")
         compose("run", "--rm", "migrate")
     finally:

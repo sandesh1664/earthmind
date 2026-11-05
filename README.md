@@ -1,3 +1,24 @@
+# EARTHMIND — M04 synthetic traffic experiments
+
+The existing Dubai city explorer now supports persisted Scenario Studio experiments,
+real asynchronous SUMO execution, actual metrics/comparison/export, and recorded
+vehicle replay in the same Cesium Viewer. Demand is synthetic; these are not live
+RTA observations or calibrated predictions. Previous milestone functionality and
+licensed Cesium configuration are preserved.
+
+Start the existing stack with `make dev`, open Scenario Studio, choose the validated
+retained network, validate/save demand, then start a run. Simulation Laboratory
+retains jobs across reloads and exposes cancellation/retry, events, verified engine
+logs, metrics, exports and replay. Analytics compares compatible completed runs
+with completion-count disclosures. No road-closure or M05 AI controls are offered.
+
+- [Architecture](docs/sumo-architecture.md) and [execution/first run](docs/simulation-execution.md)
+- [Scenario Studio](docs/scenario-studio.md), [demand](docs/traffic-demand.md), [metrics](docs/traffic-metrics.md)
+- [API](docs/simulation-api.md), [replay](docs/replay-engine.md), [security](docs/security.md)
+- [Actual M04 verification](docs/verification-m04.md), including commands, failed attempts and benchmarks
+
+The original foundation/recovery documentation below remains available as history.
+
 # EARTHMIND · 0.1.0
 
 

@@ -8,7 +8,7 @@
 - Keep JavaScript dependencies in the npm workspace lock and Python dependencies
   in the uv workspace lock. Use `uv run --locked` for verification commands.
 - Keep API routes thin, database access in injected sessions, and SUMO execution
-  in the worker process. Accept only typed diagnostic jobs, never shell input.
+  in the worker process. Accept only typed diagnostics and validated simulation claims, never shell input.
 - Run `make lint typecheck test`, a production build, migrations, and real
   deployment smoke checks before claiming completion. Keep failures and blocked
   checks visible in `docs/verification.md` with command, exit status, and evidence.
@@ -51,7 +51,7 @@
   regressions; isolated mocks are not end-to-end evidence. Preserve failed runs.
 - Keep performance QA datasets clearly synthetic and remove only task-owned rows;
   distinguish JS heap/software-renderer observations from GPU/production benchmarks.
-- Do not push or begin M04 without explicit authorization.
+- M04 is explicitly authorized. Do not push or begin M05 without authorization.
 
 - The owner explicitly authorized geography recovery beyond the original M03 demo:
   real bounded OSM import, native netconvert lineage and a limited synthetic-demand
@@ -68,3 +68,17 @@
 - Public Overpass is an explicit bounded import source, not a runtime backend.
   Do not run public raster tile scraping/headless pan/zoom. Ordinary CI stays
   offline; real-data CI requires the explicit workflow input and actual import.
+
+- M04 reuses existing Scenario/DemandProfile/SimulationRun/metrics/artifact tables
+  through additive migration0005; migrations0001–0004 remain frozen.
+- Simulated passenger demand is synthetic, not RTA observations or calibrated OD.
+  Reuse checksum-verified SUMO/source/DB mappings; no arbitrary network paths/flags.
+- Durable PostgreSQL run rows fence native execution/publication. Redis contains
+  UUID hints only. One worker; expired leases fail explicitly, retries use new IDs.
+- Stream bounded replay chunks from actual TraCI samples. Preserve exact event
+  times and segment identities; never interpolate through arrivals/teleports/gaps.
+- Keep server write authorization out of browsers/native subprocesses. The local
+  same-origin bridge validates loopback Host, JSON, intent, budgets and routes.
+- Full M04 browser acceptance requires EARTHMIND_SIMULATION_E2E=true and actual
+  SUMO jobs. Mocked responses cannot establish end-to-end simulation success.
+- Preserve named simulation artifact storage. No huge generated run outputs in Git.

@@ -7,6 +7,7 @@ from uuid import UUID, uuid4
 from geoalchemy2 import Geometry
 from geoalchemy2.elements import WKBElement
 from sqlalchemy import (
+    BigInteger,
     Boolean,
     CheckConstraint,
     Computed,
@@ -297,6 +298,7 @@ class Scenario(Identity, Created, Base):
     duration_seconds: Mapped[int] = mapped_column(Integer, nullable=False)
     config: Mapped[dict[str, Any]] = mapped_column(JSONB, nullable=False)
     created_by: Mapped[UUID | None] = mapped_column(ForeignKey("users.id", ondelete="RESTRICT"))
+    configuration_checksum: Mapped[str | None] = mapped_column(String(64))
 
 
 class ScenarioIntervention(Identity, Created, Base):
@@ -318,6 +320,8 @@ class ScenarioIntervention(Identity, Created, Base):
 class SimulationRun(Identity, Created, Base):
     __tablename__ = "simulation_runs"
     __table_args__ = (
+        UniqueConstraint("idempotency_key", name="uq_simulation_runs_idempotency_key"),
+        Index("ix_simulation_runs_status_created", "status", "created_at"),
         CheckConstraint(
             "status IN ('queued','running','succeeded','failed','cancelled')", name="ck_run_status"
         ),
@@ -329,9 +333,8 @@ class SimulationRun(Identity, Created, Base):
         CheckConstraint(
             "(status='queued' AND started_at IS NULL AND finished_at IS NULL) "
             "OR (status='running' AND started_at IS NOT NULL AND finished_at IS NULL) "
-            "OR (status IN ('succeeded','failed') AND started_at IS NOT NULL "
-            "AND finished_at IS NOT NULL) "
-            "OR (status='cancelled' AND finished_at IS NOT NULL)",
+            "OR (status='succeeded' AND started_at IS NOT NULL AND finished_at IS NOT NULL) "
+            "OR (status IN ('failed','cancelled') AND finished_at IS NOT NULL)",
             name="ck_run_state_timestamps",
         ),
         CheckConstraint(
@@ -348,6 +351,26 @@ class SimulationRun(Identity, Created, Base):
     seed: Mapped[int] = mapped_column(Integer, nullable=False)
     input_sha256: Mapped[str] = mapped_column(String(64), nullable=False)
     engine_version: Mapped[str | None] = mapped_column(String(100))
+    idempotency_key: Mapped[str | None] = mapped_column(String(128))
+    request_sha256: Mapped[str | None] = mapped_column(String(64))
+    input_config: Mapped[dict[str, Any]] = mapped_column(
+        JSONB, nullable=False, default=dict, server_default=text("'{}'::jsonb")
+    )
+    progress: Mapped[dict[str, Any]] = mapped_column(
+        JSONB, nullable=False, default=dict, server_default=text("'{}'::jsonb")
+    )
+    worker_id: Mapped[str | None] = mapped_column(String(100))
+    heartbeat_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    cancel_requested: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False, server_default=text("false")
+    )
+    attempt_number: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=1, server_default="1"
+    )
+    retry_of: Mapped[UUID | None] = mapped_column(
+        ForeignKey("simulation_runs.id", ondelete="RESTRICT", name="fk_simulation_retry")
+    )
+    output_manifest_uri: Mapped[str | None] = mapped_column(Text)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     error_code: Mapped[str | None] = mapped_column(String(100))
@@ -367,8 +390,11 @@ class RunMetric(Base):
     )
     metric_name: Mapped[str] = mapped_column(String(100), primary_key=True)
     aggregation: Mapped[str] = mapped_column(String(64), primary_key=True)
-    value: Mapped[float] = mapped_column(Float, nullable=False)
+    value: Mapped[float | None] = mapped_column(Float)
     unit: Mapped[str] = mapped_column(String(64), nullable=False)
+    calculation_version: Mapped[str] = mapped_column(
+        String(64), nullable=False, default="sumo-m04-v1", server_default="sumo-m04-v1"
+    )
 
 
 class RunArtifact(Identity, Created, Base):
@@ -376,6 +402,15 @@ class RunArtifact(Identity, Created, Base):
     __table_args__ = (checksum_constraint("checksum_sha256", "ck_run_artifact_checksum"),)
     run_id: Mapped[UUID] = mapped_column(
         ForeignKey("simulation_runs.id", ondelete="RESTRICT"), nullable=False
+    )
+    size_bytes: Mapped[int] = mapped_column(
+        BigInteger, nullable=False, default=0, server_default="0"
+    )
+    content_type: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False,
+        default="application/octet-stream",
+        server_default="application/octet-stream",
     )
     artifact_type: Mapped[str] = mapped_column(String(100), nullable=False)
     storage_uri: Mapped[str] = mapped_column(Text, nullable=False)

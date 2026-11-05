@@ -1,3 +1,4 @@
+import type {ReplaySceneState} from "../replay";
 import type { Network, Region, RegionFeature } from "../geospatial";
 
 export type Position = [number, number];
@@ -88,6 +89,10 @@ export interface ViewerStatus {
   visualizationMode?: VisualizationMode;
   viewerInstanceId?: number;
   localBuildingCount?: number;
+  replayVehicleCount?:number;
+  replayReadyCount?:number;
+  replayInViewCount?:number;
+  replayProbe?:{id:string;x:number;y:number;longitude:number;latitude:number;time:number}|null;
   geometryReady?: boolean;
   cameraMoving?: boolean;
   renderDiagnostics?: {
@@ -102,6 +107,7 @@ export interface CesiumViewerProps {
   data: SceneData;
   config: CityConfig;
   visualizationMode?: VisualizationMode;
+  replay?:ReplaySceneState|null;
   layers: LayerSettings;
   selection: FeatureSelection;
   cameraCommand: CameraCommand;
